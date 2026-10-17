@@ -1,6 +1,6 @@
 # AI Search Audit Full: site audit, 3 pages
 
-**No page has a blocking problem or hides text from AI** · 3 of 3 pages evaluated (cap 50) · skill 2.106
+**No page has a blocking problem or hides text from AI** · 3 of 3 pages evaluated (cap 50) · skill 2.107
 
 ## Pages
 
