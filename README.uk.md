@@ -30,7 +30,7 @@ AI Search Audit Full **2.101** — навичка (Agent Skill) від [GetLoopL
 
 ![Звіт сайту з прикладу](docs/ai-search-audit-full-site-1280.png)
 
-![Звіт сторінки, темна тема](docs/ai-search-audit-full-dark-1280.png) ![Звіт сторінки українською, 500 px](docs/ai-search-audit-full-light-uk-500.png)
+![Звіт сторінки, темна тема](docs/ai-search-audit-full-dark-1280.png)
 
 ## Приклади
 

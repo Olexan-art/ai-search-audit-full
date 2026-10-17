@@ -30,7 +30,7 @@ The site report, the same page in dark, and a page in Ukrainian on a narrow scre
 
 ![The site report of the example run](docs/ai-search-audit-full-site-1280.png)
 
-![A page report, dark](docs/ai-search-audit-full-dark-1280.png) ![A page report in Ukrainian at 500 px](docs/ai-search-audit-full-light-uk-500.png)
+![A page report, dark](docs/ai-search-audit-full-dark-1280.png)
 
 ## Examples
 
