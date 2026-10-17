@@ -1,0 +1,3572 @@
+{
+  "schema": "getlooploop/ai-search-audit-reading@1",
+  "skillVersion": "2.101",
+  "createdAt": "2026-10-17T12:59:42.540Z",
+  "requestedInput": "https://www.getlooploop.com/es/vectorscope",
+  "ok": true,
+  "reasonCode": "ok",
+  "fetch": {
+    "requestedUrl": "https://www.getlooploop.com/es/vectorscope",
+    "finalUrl": "https://www.getlooploop.com/es/vectorscope",
+    "saved": false,
+    "chain": [
+      {
+        "url": "https://www.getlooploop.com/es/vectorscope",
+        "status": 200
+      }
+    ],
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "xRobotsTag": null,
+    "hsts": "max-age=63072000",
+    "contentLanguage": null,
+    "csp": null,
+    "xContentTypeOptions": null,
+    "referrerPolicy": null,
+    "xFrameOptions": null,
+    "contentEncoding": "br",
+    "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate",
+    "gzipBytes": 30208
+  },
+  "facts": {
+    "pageUrl": "https://www.getlooploop.com/es/vectorscope",
+    "htmlBytes": 137394,
+    "head": {
+      "title": "Fragmentado semántico de tu página — Vectorscope",
+      "titleCount": 1,
+      "metaDescriptions": [
+        "Gratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera."
+      ],
+      "cspMeta": null,
+      "referrerMeta": "origin-when-cross-origin",
+      "robotsMeta": [
+        {
+          "name": "robots",
+          "content": "index, follow"
+        },
+        {
+          "name": "googlebot",
+          "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        }
+      ],
+      "viewport": "width=device-width, initial-scale=1",
+      "lang": "es",
+      "hreflang": [
+        {
+          "hreflang": "en",
+          "href": "https://www.getlooploop.com/vectorscope",
+          "raw": "https://www.getlooploop.com/vectorscope"
+        },
+        {
+          "hreflang": "uk",
+          "href": "https://www.getlooploop.com/uk/vectorscope",
+          "raw": "https://www.getlooploop.com/uk/vectorscope"
+        },
+        {
+          "hreflang": "es",
+          "href": "https://www.getlooploop.com/es/vectorscope",
+          "raw": "https://www.getlooploop.com/es/vectorscope"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://www.getlooploop.com/vectorscope",
+          "raw": "https://www.getlooploop.com/vectorscope"
+        }
+      ],
+      "og": {
+        "og:title": "Fragmentado semántico de tu página — Vectorscope",
+        "og:description": "Gratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera.",
+        "og:url": "https://www.getlooploop.com/es/vectorscope",
+        "og:site_name": "GetLoopLoop",
+        "og:locale": "es_ES",
+        "og:image": "https://www.getlooploop.com/images/social/looploop-x.jpg",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Fragmentado semántico de tu página — Vectorscope | GetLoopLoop",
+        "og:type": "website"
+      },
+      "twitter": {
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Fragmentado semántico de tu página — Vectorscope",
+        "twitter:description": "Gratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera.",
+        "twitter:image": "https://www.getlooploop.com/images/social/looploop-x.jpg"
+      },
+      "scripts": {
+        "total": 42,
+        "external": 20,
+        "inline": 22,
+        "blocking": 1
+      }
+    },
+    "structured": {
+      "jsonLd": [
+        {
+          "index": 1,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://www.getlooploop.com/#organization",
+                "name": "GetLoopLoop",
+                "url": "https://www.getlooploop.com",
+                "logo": "https://www.getlooploop.com/brand/getlooploop-logo.jpg",
+                "description": "See which brands ChatGPT, Gemini, Claude and Perplexity name for your buyers' questions. Every answer stored as evidence, re-checked after each fix.",
+                "sameAs": [
+                  "https://x.com/Looploopnow",
+                  "https://discord.gg/Z6cRuhprMa"
+                ],
+                "founder": {
+                  "@type": "Person",
+                  "@id": "https://www.getlooploop.com/about#author",
+                  "name": "Olexandr",
+                  "url": "https://www.linkedin.com/in/olexandr-tsyrkin-07460539",
+                  "sameAs": [
+                    "https://www.linkedin.com/in/olexandr-tsyrkin-07460539"
+                  ]
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://www.getlooploop.com/#website",
+                "url": "https://www.getlooploop.com",
+                "name": "GetLoopLoop",
+                "description": "See which brands ChatGPT, Gemini, Claude and Perplexity name for your buyers' questions. Every answer stored as evidence, re-checked after each fix.",
+                "publisher": {
+                  "@id": "https://www.getlooploop.com/#organization"
+                },
+                "inLanguage": "en"
+              }
+            ]
+          },
+          "types": [
+            "Organization",
+            "Person",
+            "WebSite"
+          ],
+          "top": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        {
+          "index": 2,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "@id": "https://www.getlooploop.com/es/vectorscope#tool",
+            "name": "Vectorscope",
+            "alternateName": "comprobador de preparación de contenido para IA",
+            "applicationCategory": "DeveloperApplication",
+            "applicationSubCategory": "SEO and retrieval analysis",
+            "operatingSystem": "Any (browser)",
+            "url": "https://www.getlooploop.com/es/vectorscope",
+            "inLanguage": "es",
+            "description": "Gratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera.",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "featureList": [
+              "Extrae el texto legible de una URL e indica qué porcentaje de la página es",
+              "Corta el texto en pasajes en cada h2 y después en ventanas de 2000 caracteres con 200 de solapamiento",
+              "Vectoriza cada pasaje y los agrupa por significado",
+              "Señala los pasajes que quedan fuera del límite de recuperación y nunca se leen",
+              "Responde a una pregunta usando únicamente los pasajes de la propia página"
+            ],
+            "publisher": {
+              "@id": "https://www.getlooploop.com/#organization"
+            }
+          },
+          "types": [
+            "SoftwareApplication",
+            "Offer"
+          ],
+          "top": [
+            "SoftwareApplication"
+          ]
+        },
+        {
+          "index": 3,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "@id": "https://www.getlooploop.com/es/vectorscope#howto",
+            "name": "Cómo comprobar si un asistente de IA puede leer tu página",
+            "description": "Pasa una URL por la misma extracción, fragmentación y vectorización que usa un sistema de recuperación, y lee lo que produjo.",
+            "inLanguage": "es",
+            "totalTime": "PT1M",
+            "tool": {
+              "@id": "https://www.getlooploop.com/es/vectorscope#tool"
+            },
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Pega la URL",
+                "text": "Pega cualquier página pública. No hay registro y no se guarda nada más allá de la propia lectura.",
+                "url": "https://www.getlooploop.com/es/vectorscope#run"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Lee los cinco pasos",
+                "text": "Descargado, extraído, fragmentado, vectorizado, agrupado. Cada paso informa de lo que produjo, así que una página que falla lo hace en un paso concreto y no «en general».",
+                "url": "https://www.getlooploop.com/es/vectorscope#steps"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Corrige los pasajes que nadie lee",
+                "text": "Los pasajes que superan el límite de recuperación no llegan al modelo. Sube lo importante por encima del corte o divide la página.",
+                "url": "https://www.getlooploop.com/es/vectorscope#reading"
+              }
+            ]
+          },
+          "types": [
+            "HowTo",
+            "HowToStep"
+          ],
+          "top": [
+            "HowTo"
+          ]
+        },
+        {
+          "index": 4,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "@id": "https://www.getlooploop.com/es/vectorscope#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": "https://www.getlooploop.com/es"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Vectorscope",
+                "item": "https://www.getlooploop.com/es/vectorscope"
+              }
+            ]
+          },
+          "types": [
+            "BreadcrumbList",
+            "ListItem"
+          ],
+          "top": [
+            "BreadcrumbList"
+          ]
+        },
+        {
+          "index": 5,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": "https://www.getlooploop.com/es/vectorscope#faq",
+            "inLanguage": "es",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cómo elige AI Mode las fuentes que cita?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nadie fuera de Google puede afirmar el mecanismo, y esta página no va a fingirlo. Lo observable es que las páginas citadas suelen contener un pasaje que responde la consulta completa por sí solo, y que las páginas cuya respuesta se reparte entre varias secciones se citan menos de lo que su contenido merece. Vectorscope te muestra si tu página tiene tal pasaje."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cómo consigo que me citen en AI Overviews?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Dale a la respuesta su propio pasaje, bajo un titular que nombre la pregunta, lo bastante arriba para sobrevivir al límite de recuperación. No es un truco: es la forma que la recuperación premia, y puedes comprobar si tu página la tiene pasándola por aquí."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Es una herramienta de visualización de embeddings?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, para una página a la vez. Genera embeddings de cada pasaje de una URL y los agrupa por significado, así ves qué partes de la página están cerca y cuáles se sostienen solas. No dibuja un corpus de miles de documentos."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué diferencia hay entre fragmentado por titulares y semántico?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El fragmentado por titulares corta en los titulares de la página; el fragmentado semántico corta donde cambia el significado, haya titular o no. El primero es barato y sigue al autor; el segundo necesita los embeddings de las frases antes del primer corte."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Vectorscope usa fragmentado semántico?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No para cortar la página. Vectorscope corta en cada h2 —un h3 no abre un pasaje nuevo— y divide una sección larga en ventanas de 2000 caracteres con 200 de solapamiento. El paso semántico llega después: cada pasaje recibe su embedding y los pasajes cercanos en significado se agrupan, lo que muestra dónde el fragmentado semántico no estaría de acuerdo con tus titulares."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Guardáis la página que pruebo?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La lectura se conserva brevemente para poder compartirla con un enlace, y la página descargada no se retiene después de producirla. No hace falta cuenta, así que no hay nada a lo que vincularla."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Es gratis de verdad?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, con un límite de frecuencia en lugar de un muro de pago. El límite existe porque cada lectura gasta una llamada de embeddings, y se reinicia en una ventana fija que la página te avisa antes de que la alcances."
+                }
+              }
+            ]
+          },
+          "types": [
+            "FAQPage",
+            "Question",
+            "Answer"
+          ],
+          "top": [
+            "FAQPage"
+          ]
+        },
+        {
+          "index": 6,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "DefinedTermSet",
+            "@id": "https://www.getlooploop.com/es/vectorscope#glossary",
+            "name": "Palabras usadas en esta página",
+            "inLanguage": "es",
+            "hasDefinedTerm": [
+              {
+                "@type": "DefinedTerm",
+                "name": "Fragmentado semántico",
+                "description": "Cortar un texto en pasajes allí donde cambia su significado, y no por longitud fija ni en cada titular. En esta página el paso basado en el significado es el agrupamiento de pasajes ya cortados, no el corte en sí.",
+                "inDefinedTermSet": "https://www.getlooploop.com/es/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Fragmento (chunk)",
+                "description": "Un pasaje de una página, cortado para poder leerse por sí solo. Los sistemas de recuperación guardan y devuelven fragmentos, nunca páginas completas, y por eso la estructura importa más que la longitud.",
+                "inDefinedTermSet": "https://www.getlooploop.com/es/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Embedding",
+                "description": "Una lista de números que representa el significado de un pasaje, de modo que dos pasajes sobre lo mismo quedan cerca. Comparar embeddings es cómo un recuperador encuentra un pasaje sin coincidencia de palabras.",
+                "inDefinedTermSet": "https://www.getlooploop.com/es/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Similitud coseno",
+                "description": "Una medida de cuánto apuntan dos embeddings en la misma dirección, de 1 para idénticos a 0 para no relacionados. Es el número detrás de toda afirmación de que dos pasajes tratan de lo mismo.",
+                "inDefinedTermSet": "https://www.getlooploop.com/es/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Generación aumentada por recuperación (RAG)",
+                "description": "Responder recuperando primero pasajes de una fuente y escribiendo después a partir de ellos, en vez de solo desde la memoria del modelo. Toda respuesta de IA que cita una página hizo esto, y la página que citó era un fragmento.",
+                "inDefinedTermSet": "https://www.getlooploop.com/es/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Extracción",
+                "description": "Convertir un documento HTML descargado en el texto legible que recibe un modelo, descartando navegación, scripts y plantilla. Lo que la extracción descarta, ningún modelo lo ve.",
+                "inDefinedTermSet": "https://www.getlooploop.com/es/vectorscope#glossary"
+              }
+            ]
+          },
+          "types": [
+            "DefinedTermSet",
+            "DefinedTerm"
+          ],
+          "top": [
+            "DefinedTermSet"
+          ]
+        },
+        {
+          "index": 7,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://www.getlooploop.com/es/vectorscope",
+            "url": "https://www.getlooploop.com/es/vectorscope",
+            "name": "Fragmentado semántico de tu página — Vectorscope",
+            "description": "Gratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera.",
+            "inLanguage": "es",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "GetLoopLoop",
+              "url": "https://www.getlooploop.com"
+            },
+            "mainEntity": {
+              "@id": "https://www.getlooploop.com/es/vectorscope#tool"
+            },
+            "about": [
+              {
+                "@type": "Thing",
+                "name": "Semantic chunking"
+              },
+              {
+                "@type": "Thing",
+                "name": "Text embeddings"
+              },
+              {
+                "@type": "Thing",
+                "name": "Retrieval-augmented generation"
+              },
+              {
+                "@type": "Thing",
+                "name": "AI search visibility"
+              }
+            ],
+            "significantLink": [
+              "https://www.getlooploop.com/es/methodology",
+              "https://www.getlooploop.com/notes"
+            ]
+          },
+          "types": [
+            "WebPage",
+            "WebSite",
+            "Thing"
+          ],
+          "top": [
+            "WebPage"
+          ]
+        }
+      ],
+      "microdata": [],
+      "rdfa": []
+    },
+    "headings": [
+      {
+        "level": 1,
+        "text": "El fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial.",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 1,
+        "path": "div.mx-auto.w-full > section.grid.items-center > div.flex.min-w-0 > h1.pt-h1",
+        "glued": [],
+        "textContent": "El fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial."
+      },
+      {
+        "level": 2,
+        "text": "Ejecuta Vectorscope dentro de tu agente de código",
+        "hidden": false,
+        "furniture": "aside",
+        "overlay": false,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.min-w-0.flex-1 > h2#skill-banner"
+      },
+      {
+        "level": 2,
+        "text": "¿Qué significa esto?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 3,
+        "path": "div.md:pr-6 > div.flex.gap-4 > div.min-w-0 > h2.pt-h2.mb-1.5"
+      },
+      {
+        "level": 2,
+        "text": "¿Un pasaje importante fuera del límite?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 4,
+        "path": "div.md:px-6 > div.flex.gap-4 > div.min-w-0 > h2.pt-h2.mb-1.5"
+      },
+      {
+        "level": 2,
+        "text": "Los modelos y los límites varían.",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 5,
+        "path": "div.md:pl-6 > div.flex.gap-4 > div.min-w-0 > h2.pt-h2.mb-1.5"
+      },
+      {
+        "level": 2,
+        "text": "Cómo leer tu resultado",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#reading > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Fragmentos que nunca llegan al índice",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "La proporción de extracción",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Grupos, y qué significa un grupo apretado",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "El fragmento que una pregunta recupera de verdad",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 2,
+        "text": "¿Qué es el fragmentado semántico?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#semantic-chunking > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Fragmentado de longitud fija",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "section#semantic-chunking > div.mt-8.grid > article.pt-card.p-4 > h3.mt-1.text-[14.5px]"
+      },
+      {
+        "level": 3,
+        "text": "Fragmentado que respeta los titulares",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "section#semantic-chunking > div.mt-8.grid > article.pt-card.p-4 > h3.mt-1.text-[14.5px]"
+      },
+      {
+        "level": 3,
+        "text": "Fragmentado semántico, y en qué se diferencia de agrupar",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "section#semantic-chunking > div.mt-8.grid > article.pt-card.p-4 > h3.mt-1.text-[14.5px]"
+      },
+      {
+        "level": 2,
+        "text": "¿Está mi contenido listo para la búsqueda con IA?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 8,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#readiness > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Lo que esta herramienta puede decirte",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 8,
+        "path": "section#readiness > div.mt-8.grid > div.pt-card.pt-card--tone > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Lo que no puede decirte",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 8,
+        "path": "section#readiness > div.mt-8.grid > div.pt-card.p-5 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 2,
+        "text": "Usar Vectorscope para probar un pipeline RAG",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 9,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#rag > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 2,
+        "text": "¿Para quién es Vectorscope?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#who > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Equipos de contenido y SEO",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "section#who > div.mt-7.grid > article.pt-card.p-4 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Ingenieros que construyen RAG",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "section#who > div.mt-7.grid > article.pt-card.p-4 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Editores que reorganizan una página",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "section#who > div.mt-7.grid > article.pt-card.p-4 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 2,
+        "text": "Palabras usadas en esta página",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 11,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#glossary > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 2,
+        "text": "Seguir leyendo",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#more > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 2,
+        "text": "Preguntas que la gente hace sobre esto",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "section.mt-12.grid > section#faq > div > h2.pt-h2.mb-3"
+      },
+      {
+        "level": 2,
+        "text": "Otras herramientas SEO con IA gratis",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "div.pt > div.mx-auto.w-full > section.mt-12.border-t > h2#other-tools"
+      },
+      {
+        "level": 2,
+        "text": "Lo que esto no puede enseñarte",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "div.pt > div.mx-auto.w-full > div#limits > h2.pt-h2"
+      }
+    ],
+    "images": [],
+    "links": [
+      {
+        "url": "https://www.getlooploop.com/es",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "GetLoopLoop",
+        "name": "Get Loop Loop",
+        "rel": "",
+        "imgs": 1,
+        "imgsEmptyAlt": 1,
+        "path": "div.marketing-root.min-h-screen > header.fixed.inset-x-0 > div.mx-auto.flex > a.flex.items-center",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/free-tools",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Free tools",
+        "name": "Free tools",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/glossary",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Glossary",
+        "name": "Glossary",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/skills",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Skills",
+        "name": "Skills",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/news",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "News",
+        "name": "News",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/notes",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Notes",
+        "name": "Notes",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Inicio",
+        "name": "Inicio",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "nav.mb-6 > ol.flex.flex-wrap > li.flex.items-center > a.transition.hover:text-gll-cyan",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 2,
+        "hidden": false,
+        "text": "Leer sobre la skill",
+        "name": "Leer sobre la skill",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--primary",
+        "self": false
+      },
+      {
+        "url": "https://github.com/Olexan-art/getlooploop-skills",
+        "internal": false,
+        "zone": 2,
+        "hidden": false,
+        "text": "Código en GitHub",
+        "name": "Código en GitHub",
+        "rel": "noopener noreferrer",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--ghost",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/methodology",
+        "internal": true,
+        "zone": 5,
+        "hidden": false,
+        "text": "Fuentes y metodología",
+        "name": "Fuentes y metodología",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.flex.gap-4 > div.min-w-0 > div.pt-body > a.mt-1.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/patternscope",
+        "internal": true,
+        "zone": 10,
+        "hidden": false,
+        "text": "PatternScope",
+        "name": "PatternScope",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#who > p.pt-body.mt-5 > a.font-semibold.text-[var(--pt-accent)]",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/notes/what-is-semantic-chunking",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Qué es el fragmentado semántico y a qué renunciaLas tres es…",
+        "name": "Qué es el fragmentado semántico y a qué renuncia Las tres e…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/notes/optimise-content-for-ai-search",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Cómo optimizar contenido para la búsqueda con IALo que de v…",
+        "name": "Cómo optimizar contenido para la búsqueda con IA Lo que de …",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/methodology",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "MetodologíaCada fórmula detrás de las lecturas de arriba, e…",
+        "name": "Metodología Cada fórmula detrás de las lecturas de arriba, …",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "La skill Vectorscope para Claude CodeLa misma lectura, en l…",
+        "name": "La skill Vectorscope para Claude Code La misma lectura, en …",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/voicescope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Voicescope Empieza con una palabra clave y explora las preg…",
+        "name": "Voicescope Empieza con una palabra clave y explora las preg…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/brandscope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Brandscope Haz a tres asistentes de IA las preguntas de un …",
+        "name": "Brandscope Haz a tres asistentes de IA las preguntas de un …",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/reviewscope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Reviewscope Pregunta a tres asistentes de IA qué dicen las …",
+        "name": "Reviewscope Pregunta a tres asistentes de IA qué dicen las …",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/patternscope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "PatternScope Pega una página y verás las frases hechas, las…",
+        "name": "PatternScope Pega una página y verás las frases hechas, las…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/ai-volatility",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Volatilidad de las respuestas de IA Una lectura diaria de c…",
+        "name": "Volatilidad de las respuestas de IA Una lectura diaria de c…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/free-tools",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Todas las herramientas gratis",
+        "name": "Todas las herramientas gratis",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/invite",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Pedir una invitación",
+        "name": "Pedir una invitación",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.pt > div.mx-auto.w-full > div#limits > a.mt-4.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://x.com/Looploopnow",
+        "internal": false,
+        "zone": 13,
+        "hidden": false,
+        "text": "X",
+        "name": "X",
+        "rel": "noreferrer",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://discord.gg/Z6cRuhprMa",
+        "internal": false,
+        "zone": 13,
+        "hidden": false,
+        "text": "Discord",
+        "name": "Discord",
+        "rel": "noreferrer",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/free-tools",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "All free toolsChoose a page, keyword or brand reading",
+        "name": "All free tools Choose a page, keyword or brand reading",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/vectorscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "VectorscopeSee a page as an assistant reads it",
+        "name": "Vectorscope See a page as an assistant reads it",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": true
+      },
+      {
+        "url": "https://www.getlooploop.com/es/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Vectorscope skillThe same reading inside Claude Code",
+        "name": "Vectorscope skill The same reading inside Claude Code",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/voicescope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "VoicescopeSee how a keyword is asked out loud",
+        "name": "Voicescope See how a keyword is asked out loud",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/brandscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "BrandscopeSee what assistants say about a brand",
+        "name": "Brandscope See what assistants say about a brand",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/patternscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "PatternScopeSee where writing reads like a template",
+        "name": "PatternScope See where writing reads like a template",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/reviewscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "ReviewscopeSee what assistants say about your reviews",
+        "name": "Reviewscope See what assistants say about your reviews",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/questions",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Questions",
+        "name": "Questions",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/methodology",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Methodology",
+        "name": "Methodology",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/ai-model-usage",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "AI model usage",
+        "name": "AI model usage",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/ai-volatility",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "AI answer volatility",
+        "name": "AI answer volatility",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/skills",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Skills",
+        "name": "Skills",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/glossary",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Glossary",
+        "name": "Glossary",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/news",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "News",
+        "name": "News",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/notes",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Notes",
+        "name": "Notes",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/es/free-tools",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Free tools",
+        "name": "Free tools",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Legal hub",
+        "name": "Legal hub",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/privacy",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Privacy Policy",
+        "name": "Privacy Policy",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/terms",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Terms of Service",
+        "name": "Terms of Service",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/dpa",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Data Processing Agreement",
+        "name": "Data Processing Agreement",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "llms.txt",
+        "name": "llms.txt",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/glossary/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "glossary/llms.txt",
+        "name": "glossary/llms.txt",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "self": false
+      }
+    ],
+    "fragments": [],
+    "fragmentTotal": 0,
+    "fragmentCap": 5000,
+    "placeholders": [],
+    "removedHeaders": [
+      {
+        "path": "div.contents > div.marketing-root.min-h-screen > header.fixed.inset-x-0",
+        "hasH1": false,
+        "hasNav": true,
+        "banner": false,
+        "chars": 60,
+        "ledes": [],
+        "ledeCount": 0,
+        "ledeChars": 0,
+        "zone": 0
+      }
+    ],
+    "hiddenHeadings": [],
+    "hiddenChars": 0,
+    "visibleText": "Get Loop Loop Free tools Glossary Skills News Notes Dark Light Console Inicio Vectorscope Herramienta gratuita Sin cuenta Experimental Vectorscope El fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial. Vectorscope es un visor gratuito de fragmentado semántico: corta una URL en los pasajes que guardaría un sistema de recuperación, los agrupa por significado y muestra cuánto de la página no llega nunca al índice. URL de la página Leer la página Probar un ejemplo p. ej. signnow.com / electronic-signature tipalti.com / w9-form Un límite gratuito por visitante, sin necesidad de cuenta. Nuevo · gratis · código abierto Ejecuta Vectorscope dentro de tu agente de código La skill de Vectorscope da a Claude Code, Codex, opencode o Hermes el mismo corte y el mismo límite de 26 pasajes, además de doce comprobaciones automáticas, un plan de reescritura, una prueba con consultas y una comparación de páginas — en local, sin llamadas propias a modelos. Leer sobre la skill Código en GitHub Resultado lo que la máquina lee de verdad corte en h2, luego ventanas de 2000 caracteres máx. 26 fragmentos / página agrupado por significado sin cuenta 1 . Descargada 2 . Extraído 3 . Dividida 4 . Vectores 5 . Agrupado pasajes leídos huecos usados del límite de 26 pasajes texto único en pasajes, caracteres en pasajes con solapamiento e introducción, caracteres caracteres más allá del límite dentro del límite más allá, sin leer Pega una URL arriba. La página se corta en pasajes por sus titulares h2; los que caben en el límite se leen, y lo que el límite deja fuera, no. ¿Qué significa esto? La lectura muestra qué pasajes de tu página puede recibir un sistema de recuperación y cómo se agrupan por significado: la pregunta del fragmentado semántico, hecha a pasajes ya cortados. Es una vista previa de lo que ve la máquina, no una garantía de lo que hará con ella un asistente. ¿Un pasaje importante fuera del límite? Súbelo en la página, o divide la página para que ese pasaje tenga su propio presupuesto. Esta lectura toma como máximo 26 pasajes de una página. Los modelos y los límites varían. Esto no demuestra que ningún asistente haya indexado la página. Cada sistema corta a su manera —ventanas fijas, titulares o fragmentado semántico— e incrusta y limita a su manera; esta es la cadena que ejecuta el producto. Fuentes y metodología Cómo leer tu resultado Cuatro lecturas deciden si una página es legible para un sistema de recuperación. Esto es lo que significa cada una cuando va mal. Fragmentos que nunca llegan al índice Un sistema de recuperación lee un número fijo de fragmentos de una página e ignora el resto, así que todo lo que queda por debajo de ese corte es invisible por bueno que sea. Vectorscope aplica el mismo límite que el producto y nombra los fragmentos que se quedaron fuera. Si tu respuesta, tu diferencia o tu FAQ están por debajo del corte, la solución no es más texto, y el fragmentado semántico tampoco lo arregla: un fragmento bien cortado más allá del límite sigue sin leerlo nadie. Sube ese fragmento, o divide la página para que tenga su propio presupuesto de fragmentos. La proporción de extracción La proporción de extracción es cuánto de la página se convirtió en texto legible; una baja significa que la mayor parte de lo que publicaste era navegación, plantilla o marcado que ningún modelo verá. Una página larga con una proporción baja es una página corta para la recuperación. La extracción ocurre antes de cualquier corte, también antes del fragmentado semántico, así que el texto perdido aquí se pierde para cualquier estrategia. Causas habituales, por frecuencia: texto que solo dibuja JavaScript; un artículo envuelto en tanto armazón que el cuerpo es minoría del documento; e imágenes que llevan palabras que no existen en el HTML. Grupos, y qué significa un grupo apretado Los grupos son la parte semántica de esta lectura, lo más cerca que llega del fragmentado semántico: fragmentos que el embedding sitúa cerca por significado, bajo el titular que sea. Un grupo enorme suele significar que la página dice una cosa muchas veces, y eso se lee como pobre para un recuperador aunque se lea como exhaustivo para un editor. Varios grupos pequeños de un fragmento cada uno es el problema contrario: una página que cambia de tema constantemente no le da al recuperador nada completo que citar. El fragmento que una pregunta recupera de verdad Preguntarle a la página devuelve los fragmentos que responden, ordenados, usando solo esa página — lo más cerca que se puede estar de ver a un modelo decidir para qué sirve tu página. Si el fragmento devuelto no es el que habrías elegido, la página no está organizada como crees. También es la forma más rápida de probar un titular reescrito: cambia el titular, vuelve a pasar la página, haz la misma pregunta. ¿Qué es el fragmentado semántico? El fragmentado semántico es dividir una página en pasajes allí donde cambia su significado, en lugar de cada N caracteres o en cada titular. Vectorscope no corta así: corta en cada h2 y después en ventanas de longitud fija, y su paso semántico llega tras el corte, cuando los pasajes se agrupan por significado. 01 Fragmentado de longitud fija El fragmentado de longitud fija corta cada N caracteres y es el predeterminado en casi todos los pipelines porque es trivial de implementar. También corta en medio de una frase, separa un titular de la respuesta que lleva debajo y produce fragmentos que empiezan con media palabra. Vectorscope lo usa solo dentro de una sección larga: una ventana de 2000 caracteres con 200 de solapamiento, que termina en un final de frase si hay uno lo bastante cerca. 02 Fragmentado que respeta los titulares El fragmentado que respeta los titulares usa los titulares de la página como líneas de corte, así que un fragmento llega con el titular que lo nombra. Es el primer corte de Vectorscope, y solo lo hace un h2: un h3 se queda dentro del pasaje de su h2, así que una sección con seis preguntas en h3 es un solo pasaje, o varias ventanas de uno. También significa que el texto de tus titulares trabaja para la recuperación. Una sección llamada «Resumen» no aporta nada al fragmento; una llamada «¿Puedo cancelar cuando quiera?» aporta la pregunta misma. 03 Fragmentado semántico, y en qué se diferencia de agrupar El fragmentado semántico compara frases vecinas y corta donde se desplaza el significado: da pasajes que se sostienen solos, pero exige pasar embeddings por toda la página antes de que exista un solo fragmento. Vectorscope no hace ese paso. Su parte semántica es el agrupamiento: cada pasaje recibe su embedding una vez cortado, y los pasajes cercanos en significado se dibujan como un grupo. Así, el mapa hace la pregunta del fragmentado semántico —¿dónde termina una idea?— a los pasajes que ya cortaron tus titulares. Un grupo que cruza tres secciones h2 dice que los titulares partieron una idea; una sección larga cuyas ventanas caen en dos grupos dice que bajo un titular hay dos. ¿Está mi contenido listo para la búsqueda con IA? Esta página responde a eso para una URL a la vez, con honestidad — lo que significa nombrar lo que no puede ver con la misma claridad que lo que sí. Lo que esta herramienta puede decirte Cuánto de tu página se convierte en texto legible, como proporción y no como adjetivo. Qué fragmentos exactos recibiría un recuperador, en orden, con los que quedan fuera del límite marcados. Qué pasajes comparten tema cuando se agrupan por significado: la pregunta del fragmentado semántico, hecha a tu propia página. Si tus fragmentos se sostienen solos o dependen del anterior para tener sentido. Qué fragmento recupera una pregunta real de tu página, con los embeddings de la propia página. Si la página pide no ser indexada: una directiva noindex se informa, no se ignora. Lo que no puede decirte Si un asistente concreto tiene tu página en su índice. Nadie fuera de esas empresas lo ve. Cómo clasifica un modelo tu página frente a la de un competidor. Eso necesita un corpus de ambas, que es el producto y no la demo. Si te citan hoy en una respuesta. Eso es una medición en el tiempo sobre prompts que tú eliges, no una propiedad de una página. Usar Vectorscope para probar un pipeline RAG Si construyes recuperación en lugar de contenido, esta página es una implementación de referencia que puedes apuntar a cualquier URL en unos veinte segundos. 1 Pasa una página que ya indexas y compara los límites de fragmento con los de tu fragmentador, sea de ventanas fijas, por titulares o de fragmentado semántico. 2 Mira la proporción de extracción: si la tuya es menor en la misma URL, tu extractor está descartando cuerpo de texto, no armazón. 3 Hazle a la página una pregunta cuya respuesta conoces y comprueba si el fragmento superior es el que la contiene. 4 Pasa una página deliberadamente larguísima. Los fragmentos más allá del límite son los que tu propio top-k tampoco alcanzará. El fragmentador (cortes en h2, después ventanas de 2000 caracteres con 200 de solapamiento), el modelo de embeddings y el límite aquí son los que el producto ejecuta en producción. Una demo con un pipeline simplificado halagaría al pipeline que existe para demostrar. ¿Para quién es Vectorscope? Vectorscope es para cualquiera cuya página se lea por pasajes: quienes la escriben y quienes construyen la recuperación que la lee. Ambos reciben la misma lectura: el corte, el límite y la pregunta del fragmentado semántico sobre qué pasajes van juntos. Equipos de contenido y SEO Para comprobar que la respuesta que la página existe para dar cabe en un pasaje que un recuperador puede citar, dentro del límite y bajo un titular que la nombre. Ingenieros que construyen RAG Para tener una lectura de referencia de cualquier URL con la que contrastar tu propio fragmentador, ya corte por ventanas fijas, por titulares o con fragmentado semántico. Editores que reorganizan una página Para decidir dónde va un titular: los grupos muestran qué secciones comparten tema y qué sección son en realidad dos. Cuando los pasajes están en su sitio, toca mirar las palabras de dentro: PatternScope lee un borrador y señala las frases hechas y las estructuras repetidas que un lector nota. Palabras usadas en esta página Los términos en los que se apoya esta página, cada uno definido una vez, porque una página que los usa sin definirlos es una página que un asistente no puede explicarle a nadie. Fragmentado semántico Cortar un texto en pasajes allí donde cambia su significado, y no por longitud fija ni en cada titular. En esta página el paso basado en el significado es el agrupamiento de pasajes ya cortados, no el corte en sí. Fragmento (chunk) Un pasaje de una página, cortado para poder leerse por sí solo. Los sistemas de recuperación guardan y devuelven fragmentos, nunca páginas completas, y por eso la estructura importa más que la longitud. Embedding Una lista de números que representa el significado de un pasaje, de modo que dos pasajes sobre lo mismo quedan cerca. Comparar embeddings es cómo un recuperador encuentra un pasaje sin coincidencia de palabras. Similitud coseno Una medida de cuánto apuntan dos embeddings en la misma dirección, de 1 para idénticos a 0 para no relacionados. Es el número detrás de toda afirmación de que dos pasajes tratan de lo mismo. Generación aumentada por recuperación (RAG) Responder recuperando primero pasajes de una fuente y escribiendo después a partir de ellos, en vez de solo desde la memoria del modelo. Toda respuesta de IA que cita una página hizo esto, y la página que citó era un fragmento. Extracción Convertir un documento HTML descargado en el texto legible que recibe un modelo, descartando navegación, scripts y plantilla. Lo que la extracción descarta, ningún modelo lo ve. Seguir leyendo Respuestas más largas a las preguntas que esta página solo puede resumir. Qué es el fragmentado semántico y a qué renuncia Las tres estrategias, lado a lado, en la misma página. Cómo optimizar contenido para la búsqueda con IA Lo que de verdad cambia las posibilidades de que un pasaje se recupere. Metodología Cada fórmula detrás de las lecturas de arriba, enunciada por completo. La skill Vectorscope para Claude Code La misma lectura, en local dentro de Claude Code, con fuentes. Preguntas que la gente hace sobre esto ¿Cómo elige AI Mode las fuentes que cita? Nadie fuera de Google puede afirmar el mecanismo, y esta página no va a fingirlo. Lo observable es que las páginas citadas suelen contener un pasaje que responde la consulta completa por sí solo, y que las páginas cuya respuesta se reparte entre varias secciones se citan menos de lo que su contenido merece. Vectorscope te muestra si tu página tiene tal pasaje. ¿Cómo consigo que me citen en AI Overviews? Dale a la respuesta su propio pasaje, bajo un titular que nombre la pregunta, lo bastante arriba para sobrevivir al límite de recuperación. No es un truco: es la forma que la recuperación premia, y puedes comprobar si tu página la tiene pasándola por aquí. ¿Es una herramienta de visualización de embeddings? Sí, para una página a la vez. Genera embeddings de cada pasaje de una URL y los agrupa por significado, así ves qué partes de la página están cerca y cuáles se sostienen solas. No dibuja un corpus de miles de documentos. ¿Qué diferencia hay entre fragmentado por titulares y semántico? El fragmentado por titulares corta en los titulares de la página; el fragmentado semántico corta donde cambia el significado, haya titular o no. El primero es barato y sigue al autor; el segundo necesita los embeddings de las frases antes del primer corte. ¿Vectorscope usa fragmentado semántico? No para cortar la página. Vectorscope corta en cada h2 —un h3 no abre un pasaje nuevo— y divide una sección larga en ventanas de 2000 caracteres con 200 de solapamiento. El paso semántico llega después: cada pasaje recibe su embedding y los pasajes cercanos en significado se agrupan, lo que muestra dónde el fragmentado semántico no estaría de acuerdo con tus titulares. ¿Guardáis la página que pruebo? La lectura se conserva brevemente para poder compartirla con un enlace, y la página descargada no se retiene después de producirla. No hace falta cuenta, así que no hay nada a lo que vincularla. ¿Es gratis de verdad? Sí, con un límite de frecuencia en lugar de un muro de pago. El límite existe porque cada lectura gasta una llamada de embeddings, y se reinicia en una ventana fija que la página te avisa antes de que la alcances. Pausar el movimiento Otras herramientas SEO con IA gratis Voicescope Empieza con una palabra clave y explora las preguntas que alguien puede hacer a un asistente de IA en contextos reales. Brandscope Haz a tres asistentes de IA las preguntas de un comprador sobre una marca y compara sus respuestas con la propia página de la marca. Reviewscope Pregunta a tres asistentes de IA qué dicen las reseñas de una marca, primero sin nombrar plataformas y luego nombrando las doce, y verás qué valoraciones dan sin ninguna fuente. PatternScope Pega una página y verás las frases hechas, las estructuras de frase repetidas y las afirmaciones sin respaldo. No es un detector de IA. Volatilidad de las respuestas de IA Una lectura diaria de cuánto se movieron las respuestas de los asistentes desde ayer, para poder leer una caída de tu visibilidad junto al día en que ocurrió. Todas las herramientas gratis Lo que esto no puede enseñarte Una página aislada. Si esa página responde a lo que la gente pregunta de verdad a un asistente, cómo se sostiene frente a la página de un competidor sobre el mismo tema, y para qué temas no tienes página alguna: eso necesita el corpus del sitio entero, medido en el tiempo. Pedir una invitación Get Loop Loop Find where a brand loses AI-search conversations. Close the gap. Prove it worked. X Discord Free tools All free tools Choose a page, keyword or brand reading Vectorscope See a page as an assistant reads it Vectorscope skill The same reading inside Claude Code Voicescope See how a keyword is asked out loud Brandscope See what assistants say about a brand PatternScope See where writing reads like a template Reviewscope See what assistants say about your reviews Read Questions Methodology AI model usage AI answer volatility Explore Skills Glossary News Notes Free tools Legal Legal hub Privacy Policy Terms of Service Data Processing Agreement © 2026 GetLoopLoop llms.txt glossary/llms.txt English Українська Español signal over noise",
+    "extras": {
+      "roots": [],
+      "nosnippet": {
+        "elements": 4,
+        "chars": 294
+      },
+      "icons": [
+        "https://www.getlooploop.com/favicon.ico",
+        "https://www.getlooploop.com/icon.png?c69525945aef8c93",
+        "https://www.getlooploop.com/apple-icon.png?99def00d99b8e227"
+      ],
+      "markdown": [],
+      "indexnow": [],
+      "mixed": [],
+      "mixedTotal": 0,
+      "trust": {
+        "about": true,
+        "contact": false,
+        "privacy": true,
+        "terms": true
+      },
+      "byline": false,
+      "visibleDates": [],
+      "hasArticleElement": true
+    },
+    "zones": [
+      {
+        "id": 0,
+        "kind": "header",
+        "label": null,
+        "headings": [],
+        "chars": 92,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": true,
+        "hasNav": true,
+        "merged": 0
+      },
+      {
+        "id": 1,
+        "kind": "hero",
+        "label": "El fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial.",
+        "headings": [
+          "El fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial."
+        ],
+        "chars": 1138,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 2,
+        "kind": "aside",
+        "label": null,
+        "headings": [
+          "Ejecuta Vectorscope dentro de tu agente de código"
+        ],
+        "chars": 399,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 3,
+        "kind": "section",
+        "label": "¿Qué significa esto?",
+        "headings": [
+          "¿Qué significa esto?"
+        ],
+        "chars": 308,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 4,
+        "kind": "section",
+        "label": "¿Un pasaje importante fuera del límite?",
+        "headings": [
+          "¿Un pasaje importante fuera del límite?"
+        ],
+        "chars": 185,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 5,
+        "kind": "section",
+        "label": "Los modelos y los límites varían.",
+        "headings": [
+          "Los modelos y los límites varían."
+        ],
+        "chars": 279,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 6,
+        "kind": "section",
+        "label": "Cómo leer tu resultado",
+        "headings": [
+          "Cómo leer tu resultado"
+        ],
+        "chars": 2460,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 7,
+        "kind": "section",
+        "label": "¿Qué es el fragmentado semántico?",
+        "headings": [
+          "¿Qué es el fragmentado semántico?"
+        ],
+        "chars": 2169,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 8,
+        "kind": "section",
+        "label": "¿Está mi contenido listo para la búsqueda con IA?",
+        "headings": [
+          "¿Está mi contenido listo para la búsqueda con IA?"
+        ],
+        "chars": 1189,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 9,
+        "kind": "section",
+        "label": "Usar Vectorscope para probar un pipeline RAG",
+        "headings": [
+          "Usar Vectorscope para probar un pipeline RAG"
+        ],
+        "chars": 1008,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 10,
+        "kind": "section",
+        "label": "¿Para quién es Vectorscope?",
+        "headings": [
+          "¿Para quién es Vectorscope?"
+        ],
+        "chars": 1005,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 11,
+        "kind": "section",
+        "label": "Palabras usadas en esta página",
+        "headings": [
+          "Palabras usadas en esta página"
+        ],
+        "chars": 1556,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 12,
+        "kind": "more",
+        "label": "Seguir leyendo",
+        "headings": [
+          "Seguir leyendo",
+          "Preguntas que la gente hace sobre esto",
+          "Otras herramientas SEO con IA gratis",
+          "Lo que esto no puede enseñarte"
+        ],
+        "chars": 4206,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 4
+      },
+      {
+        "id": 13,
+        "kind": "footer",
+        "label": null,
+        "headings": [],
+        "chars": 752,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Fragmentado semántico de tu página — Vectorscope",
+        "text": "Fragmentado semántico de tu página — Vectorscope\nEl fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial.\nGratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera.",
+        "intro": true
+      },
+      {
+        "heading": null,
+        "text": "Herramienta gratuita Sin cuenta Experimental\nVectorscope\nEl fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial.\nVectorscope es un visor gratuito de fragmentado semántico: corta una URL en los pasajes que guardaría un sistema de recuperación, los agrupa por significado y muestra cuánto de la página no llega nunca al índice.\np. ej.\nUn límite gratuito por visitante, sin necesidad de cuenta.\nResultado\nlo que la máquina lee de verdad corte en h2, luego ventanas de 2000 caracteres máx. 26 fragmentos / página agrupado por significado sin cuenta\n1. Descargada\n2. Extraído\n3. Dividida\n4. Vectores\n5. Agrupado\npasajes leídos\nhuecos usados del límite de 26 pasajes\ntexto único en pasajes, caracteres\nen pasajes con solapamiento e introducción, caracteres\ncaracteres más allá del límite\nPega una URL arriba. La página se corta en pasajes por sus titulares h2; los que caben en el límite se leen, y lo que el límite deja fuera, no."
+      },
+      {
+        "heading": "¿Qué significa esto?",
+        "text": "La lectura muestra qué pasajes de tu página puede recibir un sistema de recuperación y cómo se agrupan por significado: la pregunta del fragmentado semántico, hecha a pasajes ya cortados. Es una vista previa de lo que ve la máquina, no una garantía de lo que hará con ella un asistente."
+      },
+      {
+        "heading": "¿Un pasaje importante fuera del límite?",
+        "text": "Súbelo en la página, o divide la página para que ese pasaje tenga su propio presupuesto. Esta lectura toma como máximo 26 pasajes de una página."
+      },
+      {
+        "heading": "Los modelos y los límites varían.",
+        "text": "Esto no demuestra que ningún asistente haya indexado la página. Cada sistema corta a su manera —ventanas fijas, titulares o fragmentado semántico— e incrusta y limita a su manera; esta es la cadena que ejecuta el producto. Fuentes y metodología"
+      },
+      {
+        "heading": "Cómo leer tu resultado",
+        "text": "Cuatro lecturas deciden si una página es legible para un sistema de recuperación. Esto es lo que significa cada una cuando va mal.\nFragmentos que nunca llegan al índice\nUn sistema de recuperación lee un número fijo de fragmentos de una página e ignora el resto, así que todo lo que queda por debajo de ese corte es invisible por bueno que sea. Vectorscope aplica el mismo límite que el producto y nombra los fragmentos que se quedaron fuera.\nSi tu respuesta, tu diferencia o tu FAQ están por debajo del corte, la solución no es más texto, y el fragmentado semántico tampoco lo arregla: un fragmento bien cortado más allá del límite sigue sin leerlo nadie. Sube ese fragmento, o divide la página para que tenga su propio presupuesto de fragmentos.\nLa proporción de extracción\nLa proporción de extracción es cuánto de la página se convirtió en texto legible; una baja significa que la mayor parte de lo que publicaste era navegación, plantilla o marcado que ningún modelo verá. Una página larga con una proporción baja es una página corta para la recuperación.\nLa extracción ocurre antes de cualquier corte, también antes del fragmentado semántico, así que el texto perdido aquí se pierde para cualquier estrategia. Causas habituales, por frecuencia: texto que solo dibuja JavaScript; un artículo envuelto en tanto armazón que el cuerpo es minoría del documento; e imágenes que llevan palabras que no existen en el HTML.\nGrupos, y qué significa un grupo apretado\nLos grupos son la parte semántica de esta lectura, lo más cerca que llega del fragmentado semántico: fragmentos que el embedding sitúa cerca por significado, bajo el titular que sea. Un grupo enorme suele significar que la página dice una cosa muchas veces, y eso se lee como pobre para un recuperador aunque se lea como exhaustivo para un editor.\nVarios grupos pequeños de un fragmento cada uno es el problema contrario: una página que cambia de tema constantemente no le da al recuperador nada completo que citar.\nEl fragmento que una pregunta recupera de verdad\nPreguntarle a la página devuelve los fragmentos que responden, ordenados, usando solo esa página — lo más cerca que se puede estar de ver a un modelo decidir para qué sirve tu página. Si el fragmento devuelto no es el que habrías elegido, la página no está organizada como crees.\nTambién es la forma más rápida de probar un titular reescrito: cambia el titular, vuelve a pasar la página, haz la misma pregunta."
+      },
+      {
+        "heading": "¿Qué es el fragmentado semántico?",
+        "text": "El fragmentado semántico es dividir una página en pasajes allí donde cambia su significado, en lugar de cada N caracteres o en cada titular. Vectorscope no corta así: corta en cada h2 y después en ventanas de longitud fija, y su paso semántico llega tras el corte, cuando los pasajes se agrupan por significado.\n01 Fragmentado de longitud fija\nEl fragmentado de longitud fija corta cada N caracteres y es el predeterminado en casi todos los pipelines porque es trivial de implementar. También corta en medio de una frase, separa un titular de la respuesta que lleva debajo y produce fragmentos que empiezan con media palabra.\nVectorscope lo usa solo dentro de una sección larga: una ventana de 2000 caracteres con 200 de solapamiento, que termina en un final de frase si hay uno lo bastante cerca.\n02 Fragmentado que respeta los titulares\nEl fragmentado que respeta los titulares usa los titulares de la página como líneas de corte, así que un fragmento llega con el titular que lo nombra. Es el primer corte de Vectorscope, y solo lo hace un h2: un h3 se queda dentro del pasaje de su h2, así que una sección con seis preguntas en h3 es un solo pasaje, o varias ventanas de uno.\nTambién significa que el texto de tus titulares trabaja para la recuperación. Una sección llamada «Resumen» no aporta nada al fragmento; una llamada «¿Puedo cancelar cuando quiera?» aporta la pregunta misma.\n03 Fragmentado semántico, y en qué se diferencia de agrupar\nEl fragmentado semántico compara frases vecinas y corta donde se desplaza el significado: da pasajes que se sostienen solos, pero exige pasar embeddings por toda la página antes de que exista un solo fragmento. Vectorscope no hace ese paso. Su parte semántica es el agrupamiento: cada pasaje recibe su embedding una vez cortado, y los pasajes cercanos en significado se dibujan como un grupo.\nAsí, el mapa hace la pregunta del fragmentado semántico —¿dónde termina una idea?— a los pasajes que ya cortaron tus titulares. Un grupo que cruza tres secciones h2 dice que los titulares partieron una idea; una sección larga cuyas ventanas caen en dos grupos dice que bajo un titular hay dos."
+      },
+      {
+        "heading": "¿Está mi contenido listo para la búsqueda con IA?",
+        "text": "Esta página responde a eso para una URL a la vez, con honestidad — lo que significa nombrar lo que no puede ver con la misma claridad que lo que sí.\nLo que esta herramienta puede decirte\nCuánto de tu página se convierte en texto legible, como proporción y no como adjetivo.\nQué fragmentos exactos recibiría un recuperador, en orden, con los que quedan fuera del límite marcados.\nQué pasajes comparten tema cuando se agrupan por significado: la pregunta del fragmentado semántico, hecha a tu propia página.\nSi tus fragmentos se sostienen solos o dependen del anterior para tener sentido.\nQué fragmento recupera una pregunta real de tu página, con los embeddings de la propia página.\nSi la página pide no ser indexada: una directiva noindex se informa, no se ignora.\nLo que no puede decirte\nSi un asistente concreto tiene tu página en su índice. Nadie fuera de esas empresas lo ve.\nCómo clasifica un modelo tu página frente a la de un competidor. Eso necesita un corpus de ambas, que es el producto y no la demo.\nSi te citan hoy en una respuesta. Eso es una medición en el tiempo sobre prompts que tú eliges, no una propiedad de una página."
+      },
+      {
+        "heading": "Usar Vectorscope para probar un pipeline RAG",
+        "text": "Si construyes recuperación en lugar de contenido, esta página es una implementación de referencia que puedes apuntar a cualquier URL en unos veinte segundos.\n1 Pasa una página que ya indexas y compara los límites de fragmento con los de tu fragmentador, sea de ventanas fijas, por titulares o de fragmentado semántico.\n2 Mira la proporción de extracción: si la tuya es menor en la misma URL, tu extractor está descartando cuerpo de texto, no armazón.\n3 Hazle a la página una pregunta cuya respuesta conoces y comprueba si el fragmento superior es el que la contiene.\n4 Pasa una página deliberadamente larguísima. Los fragmentos más allá del límite son los que tu propio top-k tampoco alcanzará.\nEl fragmentador (cortes en h2, después ventanas de 2000 caracteres con 200 de solapamiento), el modelo de embeddings y el límite aquí son los que el producto ejecuta en producción. Una demo con un pipeline simplificado halagaría al pipeline que existe para demostrar."
+      },
+      {
+        "heading": "¿Para quién es Vectorscope?",
+        "text": "Vectorscope es para cualquiera cuya página se lea por pasajes: quienes la escriben y quienes construyen la recuperación que la lee. Ambos reciben la misma lectura: el corte, el límite y la pregunta del fragmentado semántico sobre qué pasajes van juntos.\nEquipos de contenido y SEO\nPara comprobar que la respuesta que la página existe para dar cabe en un pasaje que un recuperador puede citar, dentro del límite y bajo un titular que la nombre.\nIngenieros que construyen RAG\nPara tener una lectura de referencia de cualquier URL con la que contrastar tu propio fragmentador, ya corte por ventanas fijas, por titulares o con fragmentado semántico.\nEditores que reorganizan una página\nPara decidir dónde va un titular: los grupos muestran qué secciones comparten tema y qué sección son en realidad dos.\nCuando los pasajes están en su sitio, toca mirar las palabras de dentro: PatternScope lee un borrador y señala las frases hechas y las estructuras repetidas que un lector nota."
+      },
+      {
+        "heading": "Palabras usadas en esta página",
+        "text": "Los términos en los que se apoya esta página, cada uno definido una vez, porque una página que los usa sin definirlos es una página que un asistente no puede explicarle a nadie.\nFragmentado semántico\nCortar un texto en pasajes allí donde cambia su significado, y no por longitud fija ni en cada titular. En esta página el paso basado en el significado es el agrupamiento de pasajes ya cortados, no el corte en sí.\nFragmento (chunk)\nUn pasaje de una página, cortado para poder leerse por sí solo. Los sistemas de recuperación guardan y devuelven fragmentos, nunca páginas completas, y por eso la estructura importa más que la longitud.\nEmbedding\nUna lista de números que representa el significado de un pasaje, de modo que dos pasajes sobre lo mismo quedan cerca. Comparar embeddings es cómo un recuperador encuentra un pasaje sin coincidencia de palabras.\nSimilitud coseno\nUna medida de cuánto apuntan dos embeddings en la misma dirección, de 1 para idénticos a 0 para no relacionados. Es el número detrás de toda afirmación de que dos pasajes tratan de lo mismo.\nGeneración aumentada por recuperación (RAG)\nResponder recuperando primero pasajes de una fuente y escribiendo después a partir de ellos, en vez de solo desde la memoria del modelo. Toda respuesta de IA que cita una página hizo esto, y la página que citó era un fragmento.\nExtracción\nConvertir un documento HTML descargado en el texto legible que recibe un modelo, descartando navegación, scripts y plantilla. Lo que la extracción descarta, ningún modelo lo ve."
+      },
+      {
+        "heading": "Seguir leyendo",
+        "text": "Respuestas más largas a las preguntas que esta página solo puede resumir.\nQué es el fragmentado semántico y a qué renuncia Las tres estrategias, lado a lado, en la misma página. Cómo optimizar contenido para la búsqueda con IA Lo que de verdad cambia las posibilidades de que un pasaje se recupere. Metodología Cada fórmula detrás de las lecturas de arriba, enunciada por completo. La skill Vectorscope para Claude Code La misma lectura, en local dentro de Claude Code, con fuentes."
+      },
+      {
+        "heading": "Preguntas que la gente hace sobre esto",
+        "text": "¿Cómo elige AI Mode las fuentes que cita?\nNadie fuera de Google puede afirmar el mecanismo, y esta página no va a fingirlo. Lo observable es que las páginas citadas suelen contener un pasaje que responde la consulta completa por sí solo, y que las páginas cuya respuesta se reparte entre varias secciones se citan menos de lo que su contenido merece. Vectorscope te muestra si tu página tiene tal pasaje.\n¿Cómo consigo que me citen en AI Overviews?\nDale a la respuesta su propio pasaje, bajo un titular que nombre la pregunta, lo bastante arriba para sobrevivir al límite de recuperación. No es un truco: es la forma que la recuperación premia, y puedes comprobar si tu página la tiene pasándola por aquí.\n¿Es una herramienta de visualización de embeddings?\nSí, para una página a la vez. Genera embeddings de cada pasaje de una URL y los agrupa por significado, así ves qué partes de la página están cerca y cuáles se sostienen solas. No dibuja un corpus de miles de documentos.\n¿Qué diferencia hay entre fragmentado por titulares y semántico?\nEl fragmentado por titulares corta en los titulares de la página; el fragmentado semántico corta donde cambia el significado, haya titular o no. El primero es barato y sigue al autor; el segundo necesita los embeddings de las frases antes del primer corte.\n¿Vectorscope usa fragmentado semántico?\nNo para cortar la página. Vectorscope corta en cada h2 —un h3 no abre un pasaje nuevo— y divide una sección larga en ventanas de 2000 caracteres con 200 de solapamiento. El paso semántico llega después: cada pasaje recibe su embedding y los pasajes cercanos en significado se agrupan, lo que muestra dónde el fragmentado semántico no estaría de acuerdo con tus titulares.\n¿Guardáis la página que pruebo?\nLa lectura se conserva brevemente para poder compartirla con un enlace, y la página descargada no se retiene después de producirla. No hace falta cuenta, así que no hay nada a lo que vincularla.\n¿Es gratis de verdad?\nSí, con un límite de frecuencia en lugar de un muro de pago. El límite existe porque cada lectura gasta una llamada de embeddings, y se reinicia en una ventana fija que la página te avisa antes de que la alcances."
+      },
+      {
+        "heading": "Otras herramientas SEO con IA gratis",
+        "text": "Voicescope Empieza con una palabra clave y explora las preguntas que alguien puede hacer a un asistente de IA en contextos reales.\nBrandscope Haz a tres asistentes de IA las preguntas de un comprador sobre una marca y compara sus respuestas con la propia página de la marca.\nReviewscope Pregunta a tres asistentes de IA qué dicen las reseñas de una marca, primero sin nombrar plataformas y luego nombrando las doce, y verás qué valoraciones dan sin ninguna fuente.\nPatternScope Pega una página y verás las frases hechas, las estructuras de frase repetidas y las afirmaciones sin respaldo. No es un detector de IA.\nVolatilidad de las respuestas de IA Una lectura diaria de cuánto se movieron las respuestas de los asistentes desde ayer, para poder leer una caída de tu visibilidad junto al día en que ocurrió.\nTodas las herramientas gratis"
+      },
+      {
+        "heading": "Lo que esto no puede enseñarte",
+        "text": "Una página aislada. Si esa página responde a lo que la gente pregunta de verdad a un asistente, cómo se sostiene frente a la página de un competidor sobre el mismo tema, y para qué temas no tienes página alguna: eso necesita el corpus del sitio entero, medido en el tiempo.\nPedir una invitación"
+      }
+    ]
+  },
+  "vs": {
+    "page": {
+      "url": "https://www.getlooploop.com/es/vectorscope",
+      "requestedUrl": "https://www.getlooploop.com/es/vectorscope",
+      "title": "Fragmentado semántico de tu página — Vectorscope",
+      "wordCount": 2562,
+      "chunksIndexed": 18,
+      "charsIndexed": 15455,
+      "charsUnread": 0,
+      "capReached": false,
+      "noindex": false,
+      "headings": 14,
+      "chunkCap": 26,
+      "bodyChars": 15076,
+      "h1": [
+        "El fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial."
+      ],
+      "metaDescription": "Gratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera."
+    },
+    "passages": [
+      {
+        "index": 0,
+        "heading": "Fragmentado semántico de tu página — Vectorscope",
+        "rawHeading": "Fragmentado semántico de tu página — Vectorscope",
+        "contentRole": "main",
+        "charCount": 283,
+        "text": "Fragmentado semántico de tu página — Vectorscope\nEl fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial.\nGratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera."
+      },
+      {
+        "index": 1,
+        "heading": null,
+        "rawHeading": null,
+        "contentRole": "main",
+        "charCount": 957,
+        "text": "Herramienta gratuita Sin cuenta Experimental\nVectorscope\nEl fragmentado semántico, a la vista: mira qué sobrevive el viaje al espacio vectorial.\nVectorscope es un visor gratuito de fragmentado semántico: corta una URL en los pasajes que guardaría un sistema de recuperación, los agrupa por significado y muestra cuánto de la página no llega nunca al índice.\np. ej.\nUn límite gratuito por visitante, sin necesidad de cuenta.\nResultado\nlo que la máquina lee de verdad corte en h2, luego ventanas de 2000 caracteres máx. 26 fragmentos / página agrupado por significado sin cuenta\n1. Descargada\n2. Extraído\n3. Dividida\n4. Vectores\n5. Agrupado\npasajes leídos\nhuecos usados del límite de 26 pasajes\ntexto único en pasajes, caracteres\nen pasajes con solapamiento e introducción, caracteres\ncaracteres más allá del límite\nPega una URL arriba. La página se corta en pasajes por sus titulares h2; los que caben en el límite se leen, y lo que el límite deja fuera, no."
+      },
+      {
+        "index": 2,
+        "heading": "¿Qué significa esto?",
+        "rawHeading": "¿Qué significa esto?",
+        "contentRole": "main",
+        "charCount": 286,
+        "text": "La lectura muestra qué pasajes de tu página puede recibir un sistema de recuperación y cómo se agrupan por significado: la pregunta del fragmentado semántico, hecha a pasajes ya cortados. Es una vista previa de lo que ve la máquina, no una garantía de lo que hará con ella un asistente."
+      },
+      {
+        "index": 3,
+        "heading": "¿Un pasaje importante fuera del límite?",
+        "rawHeading": "¿Un pasaje importante fuera del límite?",
+        "contentRole": "main",
+        "charCount": 144,
+        "text": "Súbelo en la página, o divide la página para que ese pasaje tenga su propio presupuesto. Esta lectura toma como máximo 26 pasajes de una página."
+      },
+      {
+        "index": 4,
+        "heading": "Los modelos y los límites varían.",
+        "rawHeading": "Los modelos y los límites varían.",
+        "contentRole": "main",
+        "charCount": 244,
+        "text": "Esto no demuestra que ningún asistente haya indexado la página. Cada sistema corta a su manera —ventanas fijas, titulares o fragmentado semántico— e incrusta y limita a su manera; esta es la cadena que ejecuta el producto. Fuentes y metodología"
+      },
+      {
+        "index": 5,
+        "heading": "Cómo leer tu resultado",
+        "rawHeading": "Cómo leer tu resultado",
+        "contentRole": "main",
+        "charCount": 1997,
+        "text": "Cuatro lecturas deciden si una página es legible para un sistema de recuperación. Esto es lo que significa cada una cuando va mal. Fragmentos que nunca llegan al índice Un sistema de recuperación lee un número fijo de fragmentos de una página e ignora el resto, así que todo lo que queda por debajo de ese corte es invisible por bueno que sea. Vectorscope aplica el mismo límite que el producto y nombra los fragmentos que se quedaron fuera. Si tu respuesta, tu diferencia o tu FAQ están por debajo del corte, la solución no es más texto, y el fragmentado semántico tampoco lo arregla: un fragmento bien cortado más allá del límite sigue sin leerlo nadie. Sube ese fragmento, o divide la página para que tenga su propio presupuesto de fragmentos. La proporción de extracción La proporción de extracción es cuánto de la página se convirtió en texto legible; una baja significa que la mayor parte de lo que publicaste era navegación, plantilla o marcado que ningún modelo verá. Una página larga con una proporción baja es una página corta para la recuperación. La extracción ocurre antes de cualquier corte, también antes del fragmentado semántico, así que el texto perdido aquí se pierde para cualquier estrategia. Causas habituales, por frecuencia: texto que solo dibuja JavaScript; un artículo envuelto en tanto armazón que el cuerpo es minoría del documento; e imágenes que llevan palabras que no existen en el HTML. Grupos, y qué significa un grupo apretado Los grupos son la parte semántica de esta lectura, lo más cerca que llega del fragmentado semántico: fragmentos que el embedding sitúa cerca por significado, bajo el titular que sea. Un grupo enorme suele significar que la página dice una cosa muchas veces, y eso se lee como pobre para un recuperador aunque se lea como exhaustivo para un editor. Varios grupos pequeños de un fragmento cada uno es el problema contrario: una página que cambia de tema constantemente no le da al recuperador nada completo que citar. El fragmento que una"
+      },
+      {
+        "index": 6,
+        "heading": "Cómo leer tu resultado",
+        "rawHeading": "Cómo leer tu resultado",
+        "contentRole": "main",
+        "charCount": 635,
+        "text": "editor. Varios grupos pequeños de un fragmento cada uno es el problema contrario: una página que cambia de tema constantemente no le da al recuperador nada completo que citar. El fragmento que una pregunta recupera de verdad Preguntarle a la página devuelve los fragmentos que responden, ordenados, usando solo esa página — lo más cerca que se puede estar de ver a un modelo decidir para qué sirve tu página. Si el fragmento devuelto no es el que habrías elegido, la página no está organizada como crees. También es la forma más rápida de probar un titular reescrito: cambia el titular, vuelve a pasar la página, haz la misma pregunta."
+      },
+      {
+        "index": 7,
+        "heading": "¿Qué es el fragmentado semántico?",
+        "rawHeading": "¿Qué es el fragmentado semántico?",
+        "contentRole": "main",
+        "charCount": 1992,
+        "text": "El fragmentado semántico es dividir una página en pasajes allí donde cambia su significado, en lugar de cada N caracteres o en cada titular. Vectorscope no corta así: corta en cada h2 y después en ventanas de longitud fija, y su paso semántico llega tras el corte, cuando los pasajes se agrupan por significado. 01 Fragmentado de longitud fija El fragmentado de longitud fija corta cada N caracteres y es el predeterminado en casi todos los pipelines porque es trivial de implementar. También corta en medio de una frase, separa un titular de la respuesta que lleva debajo y produce fragmentos que empiezan con media palabra. Vectorscope lo usa solo dentro de una sección larga: una ventana de 2000 caracteres con 200 de solapamiento, que termina en un final de frase si hay uno lo bastante cerca. 02 Fragmentado que respeta los titulares El fragmentado que respeta los titulares usa los titulares de la página como líneas de corte, así que un fragmento llega con el titular que lo nombra. Es el primer corte de Vectorscope, y solo lo hace un h2: un h3 se queda dentro del pasaje de su h2, así que una sección con seis preguntas en h3 es un solo pasaje, o varias ventanas de uno. También significa que el texto de tus titulares trabaja para la recuperación. Una sección llamada «Resumen» no aporta nada al fragmento; una llamada «¿Puedo cancelar cuando quiera?» aporta la pregunta misma. 03 Fragmentado semántico, y en qué se diferencia de agrupar El fragmentado semántico compara frases vecinas y corta donde se desplaza el significado: da pasajes que se sostienen solos, pero exige pasar embeddings por toda la página antes de que exista un solo fragmento. Vectorscope no hace ese paso. Su parte semántica es el agrupamiento: cada pasaje recibe su embedding una vez cortado, y los pasajes cercanos en significado se dibujan como un grupo. Así, el mapa hace la pregunta del fragmentado semántico —¿dónde termina una idea?— a los pasajes que ya cortaron tus titulares. Un grupo que cruza tres"
+      },
+      {
+        "index": 8,
+        "heading": "¿Qué es el fragmentado semántico?",
+        "rawHeading": "¿Qué es el fragmentado semántico?",
+        "contentRole": "main",
+        "charCount": 334,
+        "text": "en significado se dibujan como un grupo. Así, el mapa hace la pregunta del fragmentado semántico —¿dónde termina una idea?— a los pasajes que ya cortaron tus titulares. Un grupo que cruza tres secciones h2 dice que los titulares partieron una idea; una sección larga cuyas ventanas caen en dos grupos dice que bajo un titular hay dos."
+      },
+      {
+        "index": 9,
+        "heading": "¿Está mi contenido listo para la búsqueda con IA?",
+        "rawHeading": "¿Está mi contenido listo para la búsqueda con IA?",
+        "contentRole": "main",
+        "charCount": 1138,
+        "text": "Esta página responde a eso para una URL a la vez, con honestidad — lo que significa nombrar lo que no puede ver con la misma claridad que lo que sí.\nLo que esta herramienta puede decirte\nCuánto de tu página se convierte en texto legible, como proporción y no como adjetivo.\nQué fragmentos exactos recibiría un recuperador, en orden, con los que quedan fuera del límite marcados.\nQué pasajes comparten tema cuando se agrupan por significado: la pregunta del fragmentado semántico, hecha a tu propia página.\nSi tus fragmentos se sostienen solos o dependen del anterior para tener sentido.\nQué fragmento recupera una pregunta real de tu página, con los embeddings de la propia página.\nSi la página pide no ser indexada: una directiva noindex se informa, no se ignora.\nLo que no puede decirte\nSi un asistente concreto tiene tu página en su índice. Nadie fuera de esas empresas lo ve.\nCómo clasifica un modelo tu página frente a la de un competidor. Eso necesita un corpus de ambas, que es el producto y no la demo.\nSi te citan hoy en una respuesta. Eso es una medición en el tiempo sobre prompts que tú eliges, no una propiedad de una página."
+      },
+      {
+        "index": 10,
+        "heading": "Usar Vectorscope para probar un pipeline RAG",
+        "rawHeading": "Usar Vectorscope para probar un pipeline RAG",
+        "contentRole": "main",
+        "charCount": 962,
+        "text": "Si construyes recuperación en lugar de contenido, esta página es una implementación de referencia que puedes apuntar a cualquier URL en unos veinte segundos.\n1 Pasa una página que ya indexas y compara los límites de fragmento con los de tu fragmentador, sea de ventanas fijas, por titulares o de fragmentado semántico.\n2 Mira la proporción de extracción: si la tuya es menor en la misma URL, tu extractor está descartando cuerpo de texto, no armazón.\n3 Hazle a la página una pregunta cuya respuesta conoces y comprueba si el fragmento superior es el que la contiene.\n4 Pasa una página deliberadamente larguísima. Los fragmentos más allá del límite son los que tu propio top-k tampoco alcanzará.\nEl fragmentador (cortes en h2, después ventanas de 2000 caracteres con 200 de solapamiento), el modelo de embeddings y el límite aquí son los que el producto ejecuta en producción. Una demo con un pipeline simplificado halagaría al pipeline que existe para demostrar."
+      },
+      {
+        "index": 11,
+        "heading": "¿Para quién es Vectorscope?",
+        "rawHeading": "¿Para quién es Vectorscope?",
+        "contentRole": "main",
+        "charCount": 976,
+        "text": "Vectorscope es para cualquiera cuya página se lea por pasajes: quienes la escriben y quienes construyen la recuperación que la lee. Ambos reciben la misma lectura: el corte, el límite y la pregunta del fragmentado semántico sobre qué pasajes van juntos.\nEquipos de contenido y SEO\nPara comprobar que la respuesta que la página existe para dar cabe en un pasaje que un recuperador puede citar, dentro del límite y bajo un titular que la nombre.\nIngenieros que construyen RAG\nPara tener una lectura de referencia de cualquier URL con la que contrastar tu propio fragmentador, ya corte por ventanas fijas, por titulares o con fragmentado semántico.\nEditores que reorganizan una página\nPara decidir dónde va un titular: los grupos muestran qué secciones comparten tema y qué sección son en realidad dos.\nCuando los pasajes están en su sitio, toca mirar las palabras de dentro: PatternScope lee un borrador y señala las frases hechas y las estructuras repetidas que un lector nota."
+      },
+      {
+        "index": 12,
+        "heading": "Palabras usadas en esta página",
+        "rawHeading": "Palabras usadas en esta página",
+        "contentRole": "main",
+        "charCount": 1524,
+        "text": "Los términos en los que se apoya esta página, cada uno definido una vez, porque una página que los usa sin definirlos es una página que un asistente no puede explicarle a nadie.\nFragmentado semántico\nCortar un texto en pasajes allí donde cambia su significado, y no por longitud fija ni en cada titular. En esta página el paso basado en el significado es el agrupamiento de pasajes ya cortados, no el corte en sí.\nFragmento (chunk)\nUn pasaje de una página, cortado para poder leerse por sí solo. Los sistemas de recuperación guardan y devuelven fragmentos, nunca páginas completas, y por eso la estructura importa más que la longitud.\nEmbedding\nUna lista de números que representa el significado de un pasaje, de modo que dos pasajes sobre lo mismo quedan cerca. Comparar embeddings es cómo un recuperador encuentra un pasaje sin coincidencia de palabras.\nSimilitud coseno\nUna medida de cuánto apuntan dos embeddings en la misma dirección, de 1 para idénticos a 0 para no relacionados. Es el número detrás de toda afirmación de que dos pasajes tratan de lo mismo.\nGeneración aumentada por recuperación (RAG)\nResponder recuperando primero pasajes de una fuente y escribiendo después a partir de ellos, en vez de solo desde la memoria del modelo. Toda respuesta de IA que cita una página hizo esto, y la página que citó era un fragmento.\nExtracción\nConvertir un documento HTML descargado en el texto legible que recibe un modelo, descartando navegación, scripts y plantilla. Lo que la extracción descarta, ningún modelo lo ve."
+      },
+      {
+        "index": 13,
+        "heading": "Seguir leyendo",
+        "rawHeading": "Seguir leyendo",
+        "contentRole": "main",
+        "charCount": 482,
+        "text": "Respuestas más largas a las preguntas que esta página solo puede resumir.\nQué es el fragmentado semántico y a qué renuncia Las tres estrategias, lado a lado, en la misma página. Cómo optimizar contenido para la búsqueda con IA Lo que de verdad cambia las posibilidades de que un pasaje se recupere. Metodología Cada fórmula detrás de las lecturas de arriba, enunciada por completo. La skill Vectorscope para Claude Code La misma lectura, en local dentro de Claude Code, con fuentes."
+      },
+      {
+        "index": 14,
+        "heading": "Preguntas que la gente hace sobre esto",
+        "rawHeading": "Preguntas que la gente hace sobre esto",
+        "contentRole": "main",
+        "charCount": 1996,
+        "text": "¿Cómo elige AI Mode las fuentes que cita? Nadie fuera de Google puede afirmar el mecanismo, y esta página no va a fingirlo. Lo observable es que las páginas citadas suelen contener un pasaje que responde la consulta completa por sí solo, y que las páginas cuya respuesta se reparte entre varias secciones se citan menos de lo que su contenido merece. Vectorscope te muestra si tu página tiene tal pasaje. ¿Cómo consigo que me citen en AI Overviews? Dale a la respuesta su propio pasaje, bajo un titular que nombre la pregunta, lo bastante arriba para sobrevivir al límite de recuperación. No es un truco: es la forma que la recuperación premia, y puedes comprobar si tu página la tiene pasándola por aquí. ¿Es una herramienta de visualización de embeddings? Sí, para una página a la vez. Genera embeddings de cada pasaje de una URL y los agrupa por significado, así ves qué partes de la página están cerca y cuáles se sostienen solas. No dibuja un corpus de miles de documentos. ¿Qué diferencia hay entre fragmentado por titulares y semántico? El fragmentado por titulares corta en los titulares de la página; el fragmentado semántico corta donde cambia el significado, haya titular o no. El primero es barato y sigue al autor; el segundo necesita los embeddings de las frases antes del primer corte. ¿Vectorscope usa fragmentado semántico? No para cortar la página. Vectorscope corta en cada h2 —un h3 no abre un pasaje nuevo— y divide una sección larga en ventanas de 2000 caracteres con 200 de solapamiento. El paso semántico llega después: cada pasaje recibe su embedding y los pasajes cercanos en significado se agrupan, lo que muestra dónde el fragmentado semántico no estaría de acuerdo con tus titulares. ¿Guardáis la página que pruebo? La lectura se conserva brevemente para poder compartirla con un enlace, y la página descargada no se retiene después de producirla. No hace falta cuenta, así que no hay nada a lo que vincularla. ¿Es gratis de verdad? Sí, con un límite de frecuencia en"
+      },
+      {
+        "index": 15,
+        "heading": "Preguntas que la gente hace sobre esto",
+        "rawHeading": "Preguntas que la gente hace sobre esto",
+        "contentRole": "main",
+        "charCount": 373,
+        "text": "con un enlace, y la página descargada no se retiene después de producirla. No hace falta cuenta, así que no hay nada a lo que vincularla. ¿Es gratis de verdad? Sí, con un límite de frecuencia en lugar de un muro de pago. El límite existe porque cada lectura gasta una llamada de embeddings, y se reinicia en una ventana fija que la página te avisa antes de que la alcances."
+      },
+      {
+        "index": 16,
+        "heading": "Otras herramientas SEO con IA gratis",
+        "rawHeading": "Otras herramientas SEO con IA gratis",
+        "contentRole": "main",
+        "charCount": 838,
+        "text": "Voicescope Empieza con una palabra clave y explora las preguntas que alguien puede hacer a un asistente de IA en contextos reales.\nBrandscope Haz a tres asistentes de IA las preguntas de un comprador sobre una marca y compara sus respuestas con la propia página de la marca.\nReviewscope Pregunta a tres asistentes de IA qué dicen las reseñas de una marca, primero sin nombrar plataformas y luego nombrando las doce, y verás qué valoraciones dan sin ninguna fuente.\nPatternScope Pega una página y verás las frases hechas, las estructuras de frase repetidas y las afirmaciones sin respaldo. No es un detector de IA.\nVolatilidad de las respuestas de IA Una lectura diaria de cuánto se movieron las respuestas de los asistentes desde ayer, para poder leer una caída de tu visibilidad junto al día en que ocurrió.\nTodas las herramientas gratis"
+      },
+      {
+        "index": 17,
+        "heading": "Lo que esto no puede enseñarte",
+        "rawHeading": "Lo que esto no puede enseñarte",
+        "contentRole": "main",
+        "charCount": 294,
+        "text": "Una página aislada. Si esa página responde a lo que la gente pregunta de verdad a un asistente, cómo se sostiene frente a la página de un competidor sobre el mismo tema, y para qué temas no tienes página alguna: eso necesita el corpus del sitio entero, medido en el tiempo.\nPedir una invitación"
+      }
+    ],
+    "technical": {
+      "jsonLd": {
+        "blocks": 7,
+        "invalid": 0,
+        "types": [
+          "Answer",
+          "BreadcrumbList",
+          "DefinedTerm",
+          "DefinedTermSet",
+          "FAQPage",
+          "HowTo",
+          "HowToStep",
+          "ListItem",
+          "Offer",
+          "Organization",
+          "Person",
+          "Question",
+          "SoftwareApplication",
+          "Thing",
+          "WebPage",
+          "WebSite"
+        ]
+      },
+      "canonical": {
+        "present": true,
+        "count": 1,
+        "href": "https://www.getlooploop.com/es/vectorscope",
+        "absolute": true,
+        "resolved": "https://www.getlooploop.com/es/vectorscope",
+        "self": true
+      },
+      "metaDescription": {
+        "present": true,
+        "length": 146
+      },
+      "lang": "es"
+    },
+    "losses": {
+      "unit": "characters, whitespace runs folded to one space",
+      "consistent": true,
+      "waterfall": {
+        "raw": 50441,
+        "removed": 35410,
+        "kept": 15031,
+        "inPassagesUnique": 14590,
+        "notInPassages": 441,
+        "pastCap": 0
+      },
+      "passages": {
+        "unique": 14590,
+        "total": 15455,
+        "overlap": 582,
+        "intro": 283,
+        "unlocated": 0
+      },
+      "notInPassages": {
+        "headingLines": 358,
+        "whitespace": 83,
+        "other": 0
+      },
+      "removals": {
+        "elementsMatched": 134,
+        "elementsWithText": 47,
+        "chars": 35410,
+        "byReason": [
+          {
+            "reason": "script_style",
+            "elements": 29,
+            "chars": 33686
+          },
+          {
+            "reason": "embedded",
+            "elements": 1,
+            "chars": 35
+          },
+          {
+            "reason": "head_meta",
+            "elements": 1,
+            "chars": 48
+          },
+          {
+            "reason": "hidden",
+            "elements": 7,
+            "chars": 285
+          },
+          {
+            "reason": "header_chrome",
+            "elements": 1,
+            "chars": 68
+          },
+          {
+            "reason": "nav",
+            "elements": 1,
+            "chars": 18
+          },
+          {
+            "reason": "footer",
+            "elements": 1,
+            "chars": 749
+          },
+          {
+            "reason": "aside",
+            "elements": 1,
+            "chars": 398
+          },
+          {
+            "reason": "form_control",
+            "elements": 5,
+            "chars": 123
+          }
+        ],
+        "items": [
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 3652,
+            "sample": "self.__next_f.push([1,\"c:[[\\\"$\\\",\\\"title\\\",\\\"0\\\",{\\\"children\\\":\\\"Fragmentado sem"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 3010,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"FAQPage\\"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 2840,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"@id\":\"https://www.getlooploo"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 2418,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"DefinedT"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 2396,
+            "sample": "self.__next_f.push([1,\"2:[\\\"$\\\",\\\"html\\\",null,{\\\"lang\\\":\\\"es\\\",\\\"suppressHydrati"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 2274,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"DefinedTermSet\",\"@id\":\"https://www.get"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1619,
+            "sample": "self.__next_f.push([1,\"1:\\\"$Sreact.fragment\\\"\\n6:I[24431,[],\\\"OutletBoundary\\\"]\\"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1564,
+            "sample": "self.__next_f.push([1,\"0:{\\\"P\\\":null,\\\"b\\\":\\\"fkzy1nCbDRIrD2d-zUkkJ\\\",\\\"p\\\":\\\"\\\","
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1338,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"HowTo\\\","
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1282,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Software"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1256,
+            "sample": "self.__next_f.push([1,\"19:[\\\"$\\\",\\\"script\\\",\\\"5\\\",{\\\"type\\\":\\\"application/ld+jso"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1239,
+            "sample": "self.__next_f.push([1,\"1b:I[94831,[\\\"2619\\\",\\\"static/chunks/2619-3285f830dd579a0"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 1222,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"HowTo\",\"@id\":\"https://www.getlooploop."
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1184,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@graph\\\":[{\\\"@type"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 1174,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"SoftwareApplication\",\"@id\":\"https://ww"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1070,
+            "sample": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 956,
+            "sample": "self.__next_f.push([1,\"4:[[[\\\"$\\\",\\\"script\\\",\\\"0\\\",{\\\"type\\\":\\\"application/ld+js"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 856,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"@id\":\"https://www.getlooploo"
+          },
+          {
+            "reason": "footer",
+            "tag": "footer",
+            "id": null,
+            "classes": [
+              "border-t",
+              "border-white/10",
+              "px-4",
+              "py-14"
+            ],
+            "element": "footer.border-t.border-white/10",
+            "path": "div.contents > div.marketing-root > footer.border-t.border-white/10",
+            "chars": 749,
+            "sample": "GetLoopLoop Find where a brand loses AI-search conversations. Close the gap. Pro"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 540,
+            "sample": "self.__next_f.push([1,\"1a:[\\\"$\\\",\\\"$L11\\\",null,{\\\"parallelRouterKey\\\":\\\"children"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 459,
+            "sample": "self.__next_f.push([1,\"3:[\\\"$\\\",\\\"div\\\",null,{\\\"lang\\\":\\\"es\\\",\\\"className\\\":\\\"co"
+          },
+          {
+            "reason": "aside",
+            "tag": "div",
+            "id": null,
+            "classes": [
+              "pt-card",
+              "pt-card--active",
+              "mt-8",
+              "flex"
+            ],
+            "element": "div.pt-card.pt-card--active",
+            "path": "… > div.pt-16 > div.pt > div.mx-auto > div.pt-card.pt-card--active",
+            "chars": 398,
+            "sample": "Nuevo · gratis · código abierto Ejecuta Vectorscope dentro de tu agente de códig"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 343,
+            "sample": "self.__next_f.push([1,\"1d:I[80622,[],\\\"IconMark\\\"]\\n:HL[\\\"/_next/static/css/3fbc"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 337,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"@id\":\"https://www.get"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 312,
+            "sample": "(function(){try{var t=localStorage.getItem(\"gll_theme\");if(t===\"dark\"||t===\"atla"
+          },
+          {
+            "reason": "hidden",
+            "tag": "ol",
+            "id": null,
+            "classes": [
+              "mt-3",
+              "grid",
+              "gap-3",
+              "sm:grid-cols-3"
+            ],
+            "element": "ol.mt-3.grid",
+            "path": "… > div.mx-auto > section.mt-12 > div.[&>div]:mt-0 > ol.mt-3.grid",
+            "chars": 161,
+            "sample": "1. EscaneoLa página se descarga y se corta en pasajes.2. IncrustaciónCada pasaje"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 139,
+            "sample": "self.__next_f.push([1,\"18:[\\\"$\\\",\\\"script\\\",\\\"4\\\",{\\\"type\\\":\\\"application/ld+jso"
+          },
+          {
+            "reason": "hidden",
+            "tag": "div",
+            "id": null,
+            "classes": [
+              "flex",
+              "min-w-0",
+              "flex-1",
+              "flex-wrap"
+            ],
+            "element": "div.flex.min-w-0",
+            "path": "… > section.mt-12 > div.[&>div]:mt-0 > div.mt-6 > div.flex.min-w-0",
+            "chars": 98,
+            "sample": "La página fluye hacia sus grupos·Un paso que late sigue en curso·El mapa crece u"
+          },
+          {
+            "reason": "header_chrome",
+            "tag": "header",
+            "id": null,
+            "classes": [
+              "fixed",
+              "inset-x-0",
+              "top-0",
+              "z-50"
+            ],
+            "element": "header.fixed.inset-x-0",
+            "path": "div.contents > div.marketing-root > header.fixed.inset-x-0",
+            "chars": 68,
+            "sample": "GetLoopLoop Free tools Glossary Skills News Notes Dark Light Console"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 62,
+            "sample": "self.__next_f.push([1,\"5:[\\\"$\\\",\\\"$L1b\\\",null,{}]\\n1c:T8fe,\"])"
+          },
+          {
+            "reason": "head_meta",
+            "tag": "head",
+            "id": null,
+            "classes": [],
+            "element": "head",
+            "path": "head",
+            "chars": 48,
+            "sample": "Fragmentado semántico de tu página — Vectorscope"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 43,
+            "sample": "(self.__next_f=self.__next_f||[]).push([0])"
+          },
+          {
+            "reason": "embedded",
+            "tag": "svg",
+            "id": null,
+            "classes": [
+              "h-auto",
+              "w-full",
+              "max-w-[420px]",
+              "text-gll-cyan"
+            ],
+            "element": "svg.h-auto.w-full",
+            "path": "… > div.mt-4 > div.flex > span.w-full > svg.h-auto.w-full",
+            "chars": 35,
+            "sample": "dentro del límitemás allá, sin leer"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "hover:text-[var(--pt-accent)]",
+              "disabled:opacity-40"
+            ],
+            "element": "button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "path": "… > div.flex > span.flex > span.flex > button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "chars": 34,
+            "sample": "signnow.com / electronic-signature"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 34,
+            "sample": "self.__next_f.push([1,\"16:T4d8,\"])"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 34,
+            "sample": "self.__next_f.push([1,\"17:Tb4d,\"])"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 33,
+            "sample": "self.__next_f.push([1,\"e:T42e,\"])"
+          },
+          {
+            "reason": "form_control",
+            "tag": "form",
+            "id": "run",
+            "classes": [
+              "flex",
+              "scroll-mt-20",
+              "flex-col",
+              "gap-3"
+            ],
+            "element": "form#run.flex.scroll-mt-20",
+            "path": "… > div.mx-auto > section.grid > div.flex > form#run.flex.scroll-mt-20",
+            "chars": 31,
+            "sample": "URL de la página Leer la página"
+          },
+          {
+            "reason": "hidden",
+            "tag": "div",
+            "id": null,
+            "classes": [
+              "pt-art",
+              "min-w-0"
+            ],
+            "element": "div.pt-art.min-w-0",
+            "path": "… > div.pt > div.mx-auto > section.grid > div.pt-art.min-w-0",
+            "chars": 22,
+            "sample": "ProductoPreciosSoporte"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "hover:text-[var(--pt-accent)]",
+              "disabled:opacity-40"
+            ],
+            "element": "button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "path": "… > div.flex > span.flex > span.flex > button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "chars": 21,
+            "sample": "tipalti.com / w9-form"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "pt-btn",
+              "pt-btn--ghost",
+              "pt-btn--sm",
+              "shrink-0"
+            ],
+            "element": "button.pt-btn.pt-btn--ghost",
+            "path": "… > section.mt-12 > div.[&>div]:mt-0 > div.mt-6 > button.pt-btn.pt-btn--ghost",
+            "chars": 20,
+            "sample": "Pausar el movimiento"
+          },
+          {
+            "reason": "nav",
+            "tag": "nav",
+            "id": null,
+            "classes": [
+              "mb-6"
+            ],
+            "element": "nav.mb-6",
+            "path": "… > div.pt-16 > div.pt > div.mx-auto > nav.mb-6",
+            "chars": 18,
+            "sample": "Inicio Vectorscope"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "pt-btn",
+              "pt-btn--ghost",
+              "disabled:cursor-not-allowed",
+              "disabled:opacity-50"
+            ],
+            "element": "button.pt-btn.pt-btn--ghost",
+            "path": "… > section.grid > div.flex > div.flex > button.pt-btn.pt-btn--ghost",
+            "chars": 17,
+            "sample": "Probar un ejemplo"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [],
+            "element": "span",
+            "path": "… > div.flex > div.pt-eyebrow > span.flex > span",
+            "chars": 1,
+            "sample": "·"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [
+              "text-[var(--pt-faint)]"
+            ],
+            "element": "span.text-[var(--pt-faint)]",
+            "path": "… > div.flex > span.flex > span.flex > span.text-[var(--pt-faint)]",
+            "chars": 1,
+            "sample": "/"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [],
+            "element": "span",
+            "path": "… > nav.mb-6 > ol.flex > li.flex > span",
+            "chars": 1,
+            "sample": "/"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [],
+            "element": "span",
+            "path": "… > section.grid > div.flex > div.pt-eyebrow > span",
+            "chars": 1,
+            "sample": "·"
+          }
+        ],
+        "omitted": {
+          "elements": 0,
+          "chars": 0
+        }
+      },
+      "sections": {
+        "mode": "h2",
+        "rows": [
+          {
+            "kind": "intro",
+            "heading": null,
+            "chars": 283,
+            "inPassages": 283,
+            "located": true
+          },
+          {
+            "kind": "before_first_h2",
+            "heading": null,
+            "chars": 957,
+            "inPassages": 957,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "¿Qué significa esto?",
+            "chars": 286,
+            "inPassages": 286,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "¿Un pasaje importante fuera del límite?",
+            "chars": 144,
+            "inPassages": 144,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Los modelos y los límites varían.",
+            "chars": 244,
+            "inPassages": 244,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Cómo leer tu resultado",
+            "chars": 2436,
+            "inPassages": 2436,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "¿Qué es el fragmentado semántico?",
+            "chars": 2134,
+            "inPassages": 2134,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "¿Está mi contenido listo para la búsqueda con IA?",
+            "chars": 1138,
+            "inPassages": 1138,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Usar Vectorscope para probar un pipeline RAG",
+            "chars": 962,
+            "inPassages": 962,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "¿Para quién es Vectorscope?",
+            "chars": 976,
+            "inPassages": 976,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Palabras usadas en esta página",
+            "chars": 1524,
+            "inPassages": 1524,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Seguir leyendo",
+            "chars": 482,
+            "inPassages": 482,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Preguntas que la gente hace sobre esto",
+            "chars": 2175,
+            "inPassages": 2175,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Otras herramientas SEO con IA gratis",
+            "chars": 838,
+            "inPassages": 838,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Lo que esto no puede enseñarte",
+            "chars": 294,
+            "inPassages": 294,
+            "located": true
+          }
+        ]
+      },
+      "placement": [
+        {
+          "index": 0,
+          "start": null,
+          "end": null,
+          "intro": 283
+        },
+        {
+          "index": 1,
+          "start": 0,
+          "end": 957,
+          "intro": 0
+        },
+        {
+          "index": 2,
+          "start": 979,
+          "end": 1265,
+          "intro": 0
+        },
+        {
+          "index": 3,
+          "start": 1306,
+          "end": 1450,
+          "intro": 0
+        },
+        {
+          "index": 4,
+          "start": 1485,
+          "end": 1729,
+          "intro": 0
+        },
+        {
+          "index": 5,
+          "start": 1753,
+          "end": 3750,
+          "intro": 0
+        },
+        {
+          "index": 6,
+          "start": 3554,
+          "end": 4189,
+          "intro": 0
+        },
+        {
+          "index": 7,
+          "start": 4224,
+          "end": 6216,
+          "intro": 0
+        },
+        {
+          "index": 8,
+          "start": 6024,
+          "end": 6358,
+          "intro": 0
+        },
+        {
+          "index": 9,
+          "start": 6409,
+          "end": 7547,
+          "intro": 0
+        },
+        {
+          "index": 10,
+          "start": 7593,
+          "end": 8555,
+          "intro": 0
+        },
+        {
+          "index": 11,
+          "start": 8584,
+          "end": 9560,
+          "intro": 0
+        },
+        {
+          "index": 12,
+          "start": 9592,
+          "end": 11116,
+          "intro": 0
+        },
+        {
+          "index": 13,
+          "start": 11132,
+          "end": 11614,
+          "intro": 0
+        },
+        {
+          "index": 14,
+          "start": 11654,
+          "end": 13650,
+          "intro": 0
+        },
+        {
+          "index": 15,
+          "start": 13456,
+          "end": 13829,
+          "intro": 0
+        },
+        {
+          "index": 16,
+          "start": 13867,
+          "end": 14705,
+          "intro": 0
+        },
+        {
+          "index": 17,
+          "start": 14737,
+          "end": 15031,
+          "intro": 0
+        }
+      ]
+    },
+    "layout": {
+      "shortLineRuns": [
+        {
+          "lines": [
+            "1. Descargada",
+            "2. Extraído",
+            "3. Dividida",
+            "4. Vectores",
+            "5. Agrupado",
+            "pasajes leídos"
+          ],
+          "count": 6,
+          "passages": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "robots": {
+    "url": "https://www.getlooploop.com/robots.txt",
+    "status": "ok",
+    "httpStatus": 200,
+    "bots": [
+      {
+        "token": "OAI-SearchBot",
+        "vendor": "OpenAI",
+        "kind": "search",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "ChatGPT-User",
+        "vendor": "OpenAI",
+        "kind": "user",
+        "honours": false,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "GPTBot",
+        "vendor": "OpenAI",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "Claude-SearchBot",
+        "vendor": "Anthropic",
+        "kind": "search",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "Claude-User",
+        "vendor": "Anthropic",
+        "kind": "user",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "ClaudeBot",
+        "vendor": "Anthropic",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "PerplexityBot",
+        "vendor": "Perplexity",
+        "kind": "search",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "Perplexity-User",
+        "vendor": "Perplexity",
+        "kind": "user",
+        "honours": false,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "Google-Extended",
+        "vendor": "Google",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "Googlebot",
+        "vendor": "Google",
+        "kind": "index",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "Bingbot",
+        "vendor": "Microsoft",
+        "kind": "index",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      },
+      {
+        "token": "CCBot",
+        "vendor": "Common Crawl",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /es",
+        "group": "*"
+      }
+    ],
+    "sitemaps": [
+      "https://www.getlooploop.com/sitemap.xml"
+    ]
+  },
+  "sitemap": {
+    "source": "robots",
+    "declared": [
+      "https://www.getlooploop.com/sitemap.xml"
+    ],
+    "offSite": [],
+    "fetched": [
+      {
+        "url": "https://www.getlooploop.com/sitemap.xml",
+        "from": "robots",
+        "status": 200,
+        "kind": "urlset",
+        "count": 1911,
+        "read": true,
+        "lastmod": {
+          "total": 1911,
+          "invalid": 0,
+          "future": 0,
+          "samples": []
+        }
+      }
+    ],
+    "found": true,
+    "listsPage": true,
+    "matchedIn": "https://www.getlooploop.com/sitemap.xml",
+    "children": {
+      "total": 0,
+      "read": 0,
+      "unread": 0,
+      "cap": 5
+    },
+    "candidatesUnread": 0
+  },
+  "llms": {
+    "url": "https://www.getlooploop.com/llms.txt",
+    "status": 200,
+    "present": true,
+    "softNotFound": false,
+    "bytes": 34176,
+    "links": 32,
+    "sample": [
+      "https://www.getlooploop.com/free-tools",
+      "https://www.getlooploop.com/vectorscope",
+      "https://www.getlooploop.com/voicescope",
+      "https://www.getlooploop.com/brandscope",
+      "https://www.getlooploop.com/reviewscope",
+      "https://www.getlooploop.com/patternscope",
+      "https://www.getlooploop.com/ai-volatility",
+      "https://www.getlooploop.com/vectorscope/claude-skill",
+      "https://www.getlooploop.com/skills",
+      "https://www.getlooploop.com/skills?category=seo",
+      "https://www.getlooploop.com/skills?category=geo",
+      "https://www.getlooploop.com/skills?category=content",
+      "https://www.getlooploop.com/skills?category=analytics",
+      "https://www.getlooploop.com/skills?category=paid",
+      "https://www.getlooploop.com/skills?category=agent-workflows",
+      "https://www.getlooploop.com/glossary",
+      "https://www.getlooploop.com/glossary/",
+      "https://www.getlooploop.com/",
+      "https://www.getlooploop.com/glossary/llms.txt",
+      "https://www.getlooploop.com/glossary/category/seo",
+      "https://www.getlooploop.com/glossary/category/ai-search",
+      "https://www.getlooploop.com/glossary/category/trust",
+      "https://www.getlooploop.com/glossary/category/measurement",
+      "https://www.getlooploop.com/glossary/category/marketing",
+      "https://www.getlooploop.com/about",
+      "https://www.getlooploop.com/methodology",
+      "https://www.getlooploop.com/ai-model-usage",
+      "https://www.getlooploop.com/news",
+      "https://www.getlooploop.com/news/rss.xml",
+      "https://www.getlooploop.com/notes",
+      "https://www.getlooploop.com/notes/rss.xml",
+      "https://www.getlooploop.com/questions"
+    ]
+  },
+  "alternates": {
+    "total": 2,
+    "checked": 2,
+    "unchecked": [],
+    "cap": 10,
+    "results": [
+      {
+        "hreflang": "en",
+        "href": "https://www.getlooploop.com/vectorscope",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/vectorscope",
+        "redirected": false,
+        "title": "Semantic Chunking Visualizer for Any URL — Vectorscope",
+        "description": "Free semantic chunking visualizer: paste a URL and see the passages a retriever cuts, how they group by meaning, and what falls past the 26-passage cap.",
+        "lang": "en",
+        "noindex": false,
+        "hreflangSet": [
+          {
+            "hreflang": "en",
+            "href": "https://www.getlooploop.com/vectorscope"
+          },
+          {
+            "hreflang": "uk",
+            "href": "https://www.getlooploop.com/uk/vectorscope"
+          },
+          {
+            "hreflang": "es",
+            "href": "https://www.getlooploop.com/es/vectorscope"
+          },
+          {
+            "hreflang": "x-default",
+            "href": "https://www.getlooploop.com/vectorscope"
+          }
+        ],
+        "sections": [
+          {
+            "position": 0,
+            "heading": "What does this mean?",
+            "numbers": []
+          },
+          {
+            "position": 1,
+            "heading": "Important passage outside the cap?",
+            "numbers": [
+              {
+                "value": 26,
+                "raw": "26",
+                "context": "n. This reading takes at most 26 passages from a page."
+              }
+            ]
+          },
+          {
+            "position": 2,
+            "heading": "Models and retrieval caps vary.",
+            "numbers": []
+          },
+          {
+            "position": 3,
+            "heading": "How to read your result",
+            "numbers": []
+          },
+          {
+            "position": 4,
+            "heading": "What is semantic chunking?",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "01",
+                "context": "sages are grouped by meaning. 01 Fixed-length chunking Fixed-l"
+              },
+              {
+                "value": 2000,
+                "raw": "2,000",
+                "context": "e a long section: a window of 2,000 characters with 200 character"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "ndow of 2,000 characters with 200 characters of overlap, ending"
+              },
+              {
+                "value": 2,
+                "raw": "02",
+                "context": "ak where one is close enough. 02 Heading-aware chunking Headin"
+              },
+              {
+                "value": 3,
+                "raw": "03",
+                "context": "tributes the question itself. 03 Semantic chunking, and how it"
+              }
+            ]
+          },
+          {
+            "position": 5,
+            "heading": "Is my content ready for AI search?",
+            "numbers": []
+          },
+          {
+            "position": 6,
+            "heading": "Using Vectorscope to test a RAG pipeline",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "URL in about twenty seconds. 1 Run a page you already index,"
+              },
+              {
+                "value": 2,
+                "raw": "2",
+                "context": "eadings or semantic chunking. 2 Note the extraction ratio: if"
+              },
+              {
+                "value": 3,
+                "raw": "3",
+                "context": "g body text, not boilerplate. 3 Ask the page a question you k"
+              },
+              {
+                "value": 4,
+                "raw": "4",
+                "context": "is the one that contains it. 4 Run a page that is far too lo"
+              },
+              {
+                "value": 2000,
+                "raw": "2,000",
+                "context": "h. The chunker (h2 cuts, then 2,000-character windows with 200 of"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "2,000-character windows with 200 of overlap), the embedding mo"
+              }
+            ]
+          },
+          {
+            "position": 7,
+            "heading": "Who is Vectorscope for?",
+            "numbers": []
+          },
+          {
+            "position": 8,
+            "heading": "Words used on this page",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "t in the same direction, from 1 for identical to 0 for unrela"
+              },
+              {
+                "value": 0,
+                "raw": "0",
+                "context": "tion, from 1 for identical to 0 for unrelated. It is the numb"
+              }
+            ]
+          },
+          {
+            "position": 9,
+            "heading": "Keep reading",
+            "numbers": []
+          },
+          {
+            "position": 10,
+            "heading": "Questions people ask about this",
+            "numbers": [
+              {
+                "value": 2000,
+                "raw": "2,000",
+                "context": "nd splits a long section into 2,000-character windows with 200 ch"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "2,000-character windows with 200 characters of overlap. The se"
+              }
+            ]
+          },
+          {
+            "position": 11,
+            "heading": "Other free AI search tools",
+            "numbers": []
+          },
+          {
+            "position": 12,
+            "heading": "What this cannot show you",
+            "numbers": []
+          }
+        ]
+      },
+      {
+        "hreflang": "uk",
+        "href": "https://www.getlooploop.com/uk/vectorscope",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/uk/vectorscope",
+        "redirected": false,
+        "title": "Семантичне розбиття сторінки — Vectorscope",
+        "description": "Безкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26.",
+        "lang": "uk",
+        "noindex": false,
+        "hreflangSet": [
+          {
+            "hreflang": "en",
+            "href": "https://www.getlooploop.com/vectorscope"
+          },
+          {
+            "hreflang": "uk",
+            "href": "https://www.getlooploop.com/uk/vectorscope"
+          },
+          {
+            "hreflang": "es",
+            "href": "https://www.getlooploop.com/es/vectorscope"
+          },
+          {
+            "hreflang": "x-default",
+            "href": "https://www.getlooploop.com/vectorscope"
+          }
+        ],
+        "sections": [
+          {
+            "position": 0,
+            "heading": "Що це означає?",
+            "numbers": []
+          },
+          {
+            "position": 1,
+            "heading": "Важливий фрагмент за лімітом?",
+            "numbers": [
+              {
+                "value": 26,
+                "raw": "26",
+                "context": "ня бере зі сторінки не більше 26 фрагментів."
+              }
+            ]
+          },
+          {
+            "position": 2,
+            "heading": "Моделі й ліміти пошуку різняться.",
+            "numbers": []
+          },
+          {
+            "position": 3,
+            "heading": "Як читати свій результат",
+            "numbers": []
+          },
+          {
+            "position": 4,
+            "heading": "Що таке семантичне розбиття на фрагменти?",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "01",
+                "context": "гменти групуються за змістом. 01 Розбиття фіксованої довжини Р"
+              },
+              {
+                "value": 2000,
+                "raw": "2000",
+                "context": "дині довгого розділу: вікно у 2000 символів із перекриттям у 200"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "000 символів із перекриттям у 200, яке закінчується на межі реч"
+              },
+              {
+                "value": 2,
+                "raw": "02",
+                "context": "ня, якщо вона досить близько. 02 Розбиття з урахуванням заголо"
+              },
+              {
+                "value": 3,
+                "raw": "03",
+                "context": "дь-коли?» додає саме питання. 03 Семантичне розбиття і чим вон"
+              }
+            ]
+          },
+          {
+            "position": 5,
+            "heading": "Чи готовий мій контент до пошуку з ШІ?",
+            "numbers": []
+          },
+          {
+            "position": 6,
+            "heading": "Як перевірити RAG-конвеєр за допомогою Vectorscope",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "-який URL секунд за двадцять. 1 Прогоніть сторінку, яку вже і"
+              },
+              {
+                "value": 2,
+                "raw": "2",
+                "context": "ловки чи семантичне розбиття. 2 Подивіться на коефіцієнт видо"
+              },
+              {
+                "value": 3,
+                "raw": "3",
+                "context": "є тіло тексту, а не обв’язку. 3 Задайте сторінці питання, від"
+              },
+              {
+                "value": 4,
+                "raw": "4",
+                "context": "фрагмент той, що її містить. 4 Прогоніть завідомо задовгу ст"
+              },
+              {
+                "value": 2000,
+                "raw": "2000",
+                "context": "(розрізи по h2, далі вікна у 2000 символів із перекриттям у 200"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "000 символів із перекриттям у 200), модель ембедингів і межа ту"
+              }
+            ]
+          },
+          {
+            "position": 7,
+            "heading": "Для кого Vectorscope?",
+            "numbers": []
+          },
+          {
+            "position": 8,
+            "heading": "Слова, вжиті на цій сторінці",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "бединги дивляться в один бік: 1 — тотожні, 0 — не пов’язані."
+              },
+              {
+                "value": 0,
+                "raw": "0",
+                "context": "ться в один бік: 1 — тотожні, 0 — не пов’язані. Це число за к"
+              }
+            ]
+          },
+          {
+            "position": 9,
+            "heading": "Читати далі",
+            "numbers": []
+          },
+          {
+            "position": 10,
+            "heading": "Питання, які про це ставлять",
+            "numbers": [
+              {
+                "value": 2000,
+                "raw": "2000",
+                "context": "лить довгий розділ на вікна у 2000 символів із перекриттям у 200"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "000 символів із перекриттям у 200. Семантичний крок іде після:"
+              }
+            ]
+          },
+          {
+            "position": 11,
+            "heading": "Інші безкоштовні AI SEO інструменти",
+            "numbers": []
+          },
+          {
+            "position": 12,
+            "heading": "Чого це показати не може",
+            "numbers": []
+          }
+        ]
+      }
+    ]
+  },
+  "links": {
+    "total": 27,
+    "checked": 27,
+    "unchecked": 0,
+    "cap": 30,
+    "results": [
+      {
+        "url": "https://www.getlooploop.com/es",
+        "internal": true,
+        "zone": 0,
+        "path": "div.marketing-root.min-h-screen > header.fixed.inset-x-0 > div.mx-auto.flex > a.flex.items-center",
+        "text": "GetLoopLoop",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/free-tools",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Free tools",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/glossary",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Glossary",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/skills",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Skills",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/news",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "News",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/notes",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Notes",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--primary",
+        "text": "Leer sobre la skill",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://github.com/Olexan-art/getlooploop-skills",
+        "internal": false,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--ghost",
+        "text": "Código en GitHub",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/methodology",
+        "internal": true,
+        "zone": 5,
+        "path": "div.flex.gap-4 > div.min-w-0 > div.pt-body > a.mt-1.inline-flex",
+        "text": "Fuentes y metodología",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/patternscope",
+        "internal": true,
+        "zone": 10,
+        "path": "div.mt-12.space-y-14 > section#who > p.pt-body.mt-5 > a.font-semibold.text-[var(--pt-accent)]",
+        "text": "PatternScope",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/notes/what-is-semantic-chunking",
+        "internal": true,
+        "zone": 12,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "text": "Qué es el fragmentado semántico y a qué renunciaLas tres es…",
+        "status": 404,
+        "verdict": "broken"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/notes/optimise-content-for-ai-search",
+        "internal": true,
+        "zone": 12,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "text": "Cómo optimizar contenido para la búsqueda con IALo que de v…",
+        "status": 404,
+        "verdict": "broken"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/voicescope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Voicescope Empieza con una palabra clave y explora las preg…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/brandscope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Brandscope Haz a tres asistentes de IA las preguntas de un …",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/reviewscope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Reviewscope Pregunta a tres asistentes de IA qué dicen las …",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/es/ai-volatility",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Volatilidad de las respuestas de IA Una lectura diaria de c…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/invite",
+        "internal": true,
+        "zone": 12,
+        "path": "div.pt > div.mx-auto.w-full > div#limits > a.mt-4.inline-flex",
+        "text": "Pedir una invitación",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://x.com/Looploopnow",
+        "internal": false,
+        "zone": 13,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "text": "X",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://discord.gg/Z6cRuhprMa",
+        "internal": false,
+        "zone": 13,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "text": "Discord",
+        "status": 200,
+        "verdict": "ok",
+        "finalUrl": "https://discord.com/invite/Z6cRuhprMa"
+      },
+      {
+        "url": "https://www.getlooploop.com/questions",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Questions",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/ai-model-usage",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "AI model usage",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Legal hub",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/privacy",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Privacy Policy",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/terms",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Terms of Service",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/dpa",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Data Processing Agreement",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "text": "llms.txt",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/glossary/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "text": "glossary/llms.txt",
+        "status": 200,
+        "verdict": "ok"
+      }
+    ]
+  },
+  "images": {
+    "total": 0,
+    "checked": 0,
+    "unchecked": 0,
+    "cap": 20,
+    "results": []
+  },
+  "site": {
+    "favicon": {
+      "url": "https://www.getlooploop.com/favicon.ico",
+      "declared": true,
+      "status": 200,
+      "ok": true,
+      "reason": null
+    },
+    "soft404": {
+      "url": "https://www.getlooploop.com/getlooploop-audit-missing-mvcelob0-page",
+      "status": 404,
+      "finalUrl": "https://www.getlooploop.com/getlooploop-audit-missing-mvcelob0-page",
+      "reason": null
+    },
+    "variants": [
+      {
+        "kind": "http",
+        "url": "http://www.getlooploop.com/es/vectorscope",
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/es/vectorscope",
+        "ends": true,
+        "reason": null
+      },
+      {
+        "kind": "www",
+        "url": "https://getlooploop.com/es/vectorscope",
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/es/vectorscope",
+        "ends": true,
+        "reason": null
+      },
+      {
+        "kind": "slash",
+        "url": "https://www.getlooploop.com/es/vectorscope/",
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/es/vectorscope",
+        "ends": true,
+        "reason": null
+      }
+    ],
+    "markdown": {
+      "url": "https://www.getlooploop.com/es/vectorscope.md",
+      "declared": false,
+      "status": 404,
+      "ok": false,
+      "contentType": "text/html; charset=utf-8",
+      "reason": null
+    },
+    "aiCatalog": {
+      "url": "https://www.getlooploop.com/ai-catalog.json",
+      "status": 404,
+      "present": false,
+      "valid": null
+    },
+    "indexnow": null,
+    "ogImage": {
+      "url": "https://www.getlooploop.com/images/social/looploop-x.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "ok": true,
+      "unverified": false,
+      "reason": null
+    },
+    "requests": 9
+  },
+  "shell": {
+    "detected": false,
+    "roots": [],
+    "words": 2562,
+    "scripts": 42
+  },
+  "render": null
+}

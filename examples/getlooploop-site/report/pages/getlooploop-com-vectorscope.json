@@ -1,0 +1,4388 @@
+{
+  "schema": "getlooploop/ai-search-audit@1",
+  "skillVersion": "2.101",
+  "producedBy": "ai-search-audit-full skill (local; deterministic checks, and the agent's own judgement where marked; the scripts call no model)",
+  "createdAt": "2026-10-17T12:59:27.061Z",
+  "edition": "full",
+  "page": {
+    "url": "https://www.getlooploop.com/vectorscope",
+    "requestedUrl": "https://www.getlooploop.com/vectorscope",
+    "title": "Semantic Chunking Visualizer for Any URL — Vectorscope",
+    "saved": false,
+    "redirects": [
+      {
+        "url": "https://www.getlooploop.com/vectorscope",
+        "status": 200
+      }
+    ]
+  },
+  "verdict": {
+    "en": "Nothing hides text from AI",
+    "uk": "Ніщо не ховає текст від ШІ"
+  },
+  "counts": {
+    "total": 19,
+    "blocking": 0,
+    "high": 0,
+    "medium": 7,
+    "low": 12
+  },
+  "tiles": [
+    {
+      "id": "classic",
+      "question": {
+        "en": "Shown well in search?",
+        "uk": "Добре видно в пошуку?"
+      },
+      "state": "prob",
+      "problems": 7
+    },
+    {
+      "id": "find",
+      "question": {
+        "en": "AI finds it?",
+        "uk": "ШІ знаходить?"
+      },
+      "state": "ok",
+      "problems": 0
+    },
+    {
+      "id": "read",
+      "question": {
+        "en": "AI reads all of it?",
+        "uk": "ШІ читає все?"
+      },
+      "state": "prob",
+      "problems": 2
+    },
+    {
+      "id": "quote",
+      "question": {
+        "en": "AI quotes it right?",
+        "uk": "ШІ цитує правильно?"
+      },
+      "state": "prob",
+      "problems": 8
+    },
+    {
+      "id": "brand",
+      "question": {
+        "en": "AI gets the brand right?",
+        "uk": "ШІ правильно описує бренд?"
+      },
+      "state": "prob",
+      "problems": 1
+    },
+    {
+      "id": "lang",
+      "question": {
+        "en": "Languages in order?",
+        "uk": "Мови гаразд?"
+      },
+      "state": "ok",
+      "problems": 1
+    }
+  ],
+  "findings": [
+    {
+      "id": "broken_links",
+      "pin": 1,
+      "big": true,
+      "code": "broken_links",
+      "severity": "medium",
+      "area": "classic",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "2 broken links",
+        "uk": "2 неробочі посилання"
+      },
+      "where": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card, div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+      "map": {
+        "zones": [
+          12
+        ],
+        "strip": null
+      },
+      "passages": [],
+      "evidence": {
+        "count": 2,
+        "checked": 27,
+        "unchecked": 0,
+        "samples": [
+          "404 https://www.getlooploop.com/notes/what-is-semantic-chunking",
+          "404 https://www.getlooploop.com/notes/optimise-content-for-ai-search"
+        ]
+      },
+      "rules": [
+        {
+          "name": "Google Crawling Infrastructure: HTTP status codes",
+          "url": "https://developers.google.com/crawling/docs/troubleshooting/http-status-codes"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Broken links",
+          "uk": "Неробочі посилання"
+        },
+        "description": {
+          "en": "Links on the page lead to an error page. People who follow them hit a dead end, and search engines drop such addresses from their index.",
+          "uk": "Посилання на сторінці ведуть на сторінку помилки. Люди, які переходять за ними, потрапляють у глухий кут, а пошукові системи вилучають такі адреси зі свого індексу."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "In the case of Google Search, Google doesn't index URLs that return a 4xx status code, and URLs that are already indexed and return a 4xx status code are removed from the index.",
+          "source": {
+            "name": "Google Crawling Infrastructure: HTTP status codes",
+            "url": "https://developers.google.com/crawling/docs/troubleshooting/http-status-codes"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Update or remove hrefs that return 4xx or 5xx; 301 moved targets to their new URL.",
+          "uk": "Оновіть або приберіть href, що повертають 4xx чи 5xx; для перенесених цілей налаштуйте 301 на нову адресу.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "schema_required_missing",
+      "pin": 2,
+      "big": true,
+      "code": "schema_required_missing",
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "hidesText": false,
+      "informational": false,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "Required schema fields missing",
+        "uk": "Бракує обов’язкових полів схеми"
+      },
+      "where": "JSON-LD #2 $",
+      "map": {
+        "zones": [],
+        "strip": {
+          "side": "head",
+          "rows": [
+            "jsonld"
+          ]
+        }
+      },
+      "passages": [],
+      "evidence": {
+        "types": [
+          "SoftwareApplication"
+        ],
+        "items": [
+          "SoftwareApplication: aggregateRating | review"
+        ]
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: introduction to structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data"
+        },
+        {
+          "name": "Google Search Central: software app structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/software-app"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Required schema fields missing",
+          "uk": "Бракує обов’язкових полів схеми"
+        },
+        "description": {
+          "en": "Structured data on the page leaves out properties that Google lists as required for its type. Without them the markup is not eligible for the rich result it was written for.",
+          "uk": "Структуровані дані на сторінці пропускають властивості, які Google називає обов’язковими для цього типу. Без них розмітка не може дати розширеного результату, заради якого її написали."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "You must include all the required properties for an object to be eligible for appearance in Google Search with enhanced display.",
+          "source": {
+            "name": "Google Search Central: introduction to structured data",
+            "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Add each listed required property as the type's Google page names it, then re-test.",
+          "uk": "Додайте кожну названу обов’язкову властивість так, як її описує сторінка Google для цього типу, і перевірте знову.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "mid_sentence_start",
+      "pin": 3,
+      "big": true,
+      "code": "mid_sentence_start",
+      "severity": "medium",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "derived",
+      "judgement": null,
+      "label": {
+        "en": "2 passages start mid-sentence",
+        "uk": "2 уривки із середини речення"
+      },
+      "where": "passages #6, #14",
+      "map": {
+        "zones": [
+          6,
+          12
+        ],
+        "strip": null
+      },
+      "passages": [
+        6,
+        14
+      ],
+      "evidence": {
+        "samples": [
+          {
+            "passage": 6,
+            "text": "to quote. The passage a question actually retrieves Asking the page a question …"
+          },
+          {
+            "passage": 14,
+            "text": "after the reading is produced. No account is needed, so there is nothing to att…"
+          }
+        ],
+        "count": 2
+      },
+      "rules": [
+        {
+          "name": "This skill: the Vectorscope reading (h2 sections, 2,000-character windows, a 26-passage cap)",
+          "url": "https://github.com/Olexan-art/getlooploop-skills/blob/main/skills/vectorscope/SKILL.md"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Passages start mid-sentence",
+          "uk": "Уривки з середини речення"
+        },
+        "description": {
+          "en": "Some passages begin in the middle of a sentence, because a long section was cut into pieces. Read on its own, such a passage makes little sense, and AI answers quote passages on their own.",
+          "uk": "Деякі уривки починаються з середини речення, бо довгий розділ розрізали на частини. Окремо такий уривок мало що означає, а ШІ-відповіді цитують уривки саме окремо."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The Vectorscope reading cuts the kept text at h2 sections, then into 2,000-character windows; a passage that opens inside a sentence is flagged. This is this skill's rule.",
+            "uk": "Читання Vectorscope ріже збережений текст за розділами h2, а потім на вікна по 2 000 символів; уривок, що відкривається всередині речення, позначається. Це правило цієї навички."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Break long sections with more h2 or h3 headings so that cuts fall at headings; keep sections under about 2,000 characters.",
+          "uk": "Розбийте довгі розділи додатковими заголовками h2 чи h3, щоб розрізи припадали на заголовки; тримайте розділи коротшими за приблизно 2 000 символів.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "question_missing-q11",
+      "pin": 4,
+      "big": true,
+      "code": "question_missing",
+      "severity": "medium",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "judgement",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "label": {
+        "en": "No answer: “Can I paste a link to a PDF instead o…”",
+        "uk": "Без відповіді: “Can I paste a link to a PDF instead o…”"
+      },
+      "where": "question 11 · no passage",
+      "map": {
+        "zones": [],
+        "strip": null
+      },
+      "passages": [],
+      "evidence": {
+        "id": "q11",
+        "n": 11,
+        "question": "Can I paste a link to a PDF instead of a web page?",
+        "axes": [
+          "object"
+        ],
+        "passage": null,
+        "quote": null,
+        "citable": false
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: AI features and your website",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question with no answer",
+          "uk": "Запитання без відповіді"
+        },
+        "description": {
+          "en": "A question people would ask about this topic has no answer anywhere in the page's passages. An assistant asked it has nothing on this page to quote, so it answers from somewhere else.",
+          "uk": "Запитання, яке люди поставили б на цю тему, не має відповіді в жодному уривку сторінки. Асистент, якого про це спитають, не має на цій сторінці що цитувати, тож відповідає з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent writes the questions people ask and judges each against the passages; one that no passage answers is flagged. The questions and verdicts are the agent's judgement, and the quote is checked against the passage.",
+            "uk": "Агент пише запитання, які ставлять люди, і оцінює кожне за уривками; запитання, на яке не відповідає жоден уривок, позначається. Запитання й вердикти — судження агента, а цитату перевіряють за уривком."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Add a passage, ideally under its own h2 or h3, that answers the question directly in its first two sentences.",
+          "uk": "Додайте уривок, бажано під власним h2 чи h3, що прямо відповідає на запитання в перших двох реченнях.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "question_missing-q12",
+      "pin": 5,
+      "big": true,
+      "code": "question_missing",
+      "severity": "medium",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "judgement",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "label": {
+        "en": "No answer: “The page I need is behind a login on …”",
+        "uk": "Без відповіді: “The page I need is behind a login on …”"
+      },
+      "where": "question 12 · no passage",
+      "map": {
+        "zones": [],
+        "strip": null
+      },
+      "passages": [],
+      "evidence": {
+        "id": "q12",
+        "n": 12,
+        "question": "The page I need is behind a login on my laptop. Can it read that?",
+        "axes": [
+          "device",
+          "obstacle"
+        ],
+        "passage": null,
+        "quote": null,
+        "citable": false
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: AI features and your website",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question with no answer",
+          "uk": "Запитання без відповіді"
+        },
+        "description": {
+          "en": "A question people would ask about this topic has no answer anywhere in the page's passages. An assistant asked it has nothing on this page to quote, so it answers from somewhere else.",
+          "uk": "Запитання, яке люди поставили б на цю тему, не має відповіді в жодному уривку сторінки. Асистент, якого про це спитають, не має на цій сторінці що цитувати, тож відповідає з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent writes the questions people ask and judges each against the passages; one that no passage answers is flagged. The questions and verdicts are the agent's judgement, and the quote is checked against the passage.",
+            "uk": "Агент пише запитання, які ставлять люди, і оцінює кожне за уривками; запитання, на яке не відповідає жоден уривок, позначається. Запитання й вердикти — судження агента, а цитату перевіряють за уривком."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Add a passage, ideally under its own h2 or h3, that answers the question directly in its first two sentences.",
+          "uk": "Додайте уривок, бажано під власним h2 чи h3, що прямо відповідає на запитання в перших двох реченнях.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "nav_in_content",
+      "pin": 6,
+      "big": false,
+      "code": "nav_in_content",
+      "severity": "medium",
+      "area": "read",
+      "owner": "dev",
+      "hidesText": false,
+      "informational": false,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "Menu lines inside the text",
+        "uk": "Рядки меню всередині тексту"
+      },
+      "where": "passage #1",
+      "map": {
+        "zones": [
+          1
+        ],
+        "strip": null
+      },
+      "passages": [
+        1
+      ],
+      "evidence": {
+        "runs": 1,
+        "samples": [
+          {
+            "passage": 1,
+            "lines": [
+              "1. Fetched",
+              "2. Extracted",
+              "3. Chunked",
+              "4. Embedded",
+              "5. Grouped",
+              "passages read"
+            ],
+            "count": 6
+          }
+        ]
+      },
+      "rules": [
+        {
+          "name": "HTML Standard: the nav element",
+          "url": "https://html.spec.whatwg.org/multipage/sections.html#the-nav-element"
+        },
+        {
+          "name": "This skill: the Vectorscope reading (h2 sections, 2,000-character windows, a 26-passage cap)",
+          "url": "https://github.com/Olexan-art/getlooploop-skills/blob/main/skills/vectorscope/SKILL.md"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Menu lines inside the text",
+          "uk": "Рядки меню всередині тексту"
+        },
+        "description": {
+          "en": "A run of short, menu-like lines sits inside the main text. AI readers keep it as content, and it breaks up the passage around it.",
+          "uk": "Низка коротких рядків, схожих на меню, стоїть усередині основного тексту. ШІ-читачі зберігають її як вміст, і вона розриває уривок навколо себе."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "The nav element represents a section of a page that links to other pages or to parts within the page: a section with navigation links.",
+          "source": {
+            "name": "HTML Standard: the nav element",
+            "url": "https://html.spec.whatwg.org/multipage/sections.html#the-nav-element"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Wrap link lists in <nav> (or <aside>) outside the main text flow.",
+          "uk": "Обгорніть списки посилань у <nav> (або <aside>) поза основним потоком тексту.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "brand_unknown",
+      "pin": 7,
+      "big": false,
+      "code": "brand_unknown",
+      "severity": "medium",
+      "area": "brand",
+      "owner": "seo",
+      "hidesText": false,
+      "informational": false,
+      "layer": "judgement",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "label": {
+        "en": "AI doesn't know the brand",
+        "uk": "ШІ не знає бренду"
+      },
+      "where": "brand questions 1–5",
+      "map": {
+        "zones": [],
+        "strip": null
+      },
+      "passages": [],
+      "evidence": {
+        "brand": "GetLoopLoop",
+        "known": 0,
+        "asked": 5
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: AI features and your website",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "AI doesn't know the brand",
+          "uk": "ШІ не знає бренду"
+        },
+        "description": {
+          "en": "The model does not know the brand at all. An assistant answering from memory cannot describe it and depends entirely on what it can find and read.",
+          "uk": "Модель зовсім не знає бренду. Асистент, що відповідає з пам’яті, не може його описати й цілком залежить від того, що зможе знайти й прочитати."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "When all five of the model's answers say it does not know the brand, the brand is unknown to that model. One model's judgement; fixed rules from Brandscope.",
+            "uk": "Коли всі п’ять відповідей моделі кажуть, що вона не знає бренду, бренд цій моделі невідомий. Судження однієї моделі; фіксовані правила з Brandscope."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Make the basics explicit on key pages (what it is, for whom, the price) and earn mentions on independent sources.",
+          "uk": "Чітко викладіть основне на ключових сторінках (що це, для кого, ціна) і здобувайте згадки в незалежних джерелах.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "question_partial-q4",
+      "pin": 8,
+      "big": false,
+      "code": "question_partial",
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "judgement",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "label": {
+        "en": "Answered in part: “Can I check a page from my phone with…”",
+        "uk": "Частково: “Can I check a page from my phone with…”"
+      },
+      "where": "question 4 · passage #1",
+      "map": {
+        "zones": [
+          1
+        ],
+        "strip": null
+      },
+      "passages": [
+        1
+      ],
+      "evidence": {
+        "id": "q4",
+        "n": 4,
+        "question": "Can I check a page from my phone without installing anything?",
+        "axes": [
+          "device"
+        ],
+        "passage": 1,
+        "quote": "A free allowance per visitor, no account needed.",
+        "citable": false
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: AI features and your website",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question answered in part",
+          "uk": "Запитання з частковою відповіддю"
+        },
+        "description": {
+          "en": "A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.",
+          "uk": "На запитання, яке поставили б люди, найкращий уривок відповідає лише частково. Асистент може його процитувати, але решту мусить брати з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent judges each question against the passages; a passage that helps but leaves part of the answer out is a partial answer. The verdict is the agent's judgement.",
+            "uk": "Агент оцінює кожне запитання за уривками; уривок, що допомагає, але пропускає частину відповіді, — часткова відповідь. Вердикт — судження агента."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.",
+          "uk": "Доповніть уривок частиною відповіді, якої бракує (числа, кроки, умови), у тому самому розділі.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "thin_section",
+      "pin": 9,
+      "big": false,
+      "code": "thin_section",
+      "severity": "low",
+      "area": "read",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "1 very short section",
+        "uk": "1 надто короткий розділ"
+      },
+      "where": "h2 “Important passage outside the cap?”",
+      "map": {
+        "zones": [
+          4
+        ],
+        "strip": null
+      },
+      "passages": [
+        3
+      ],
+      "evidence": {
+        "samples": [
+          {
+            "passage": 3,
+            "heading": "Important passage outside the cap?",
+            "chars": 139
+          }
+        ],
+        "count": 1
+      },
+      "rules": [
+        {
+          "name": "This skill: the Vectorscope reading (h2 sections, 2,000-character windows, a 26-passage cap)",
+          "url": "https://github.com/Olexan-art/getlooploop-skills/blob/main/skills/vectorscope/SKILL.md"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Very short sections",
+          "uk": "Надто короткі розділи"
+        },
+        "description": {
+          "en": "Some sections have a heading and almost no text. They promise a topic and give a reader, or an AI, nothing to quote about it.",
+          "uk": "Деякі розділи мають заголовок і майже не мають тексту. Вони обіцяють тему й не дають читачеві чи ШІ нічого для цитати про неї."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "An h2 section with fewer than 150 characters of text is flagged. This is this skill's rule (the Vectorscope reading).",
+            "uk": "Розділ h2, що має менше ніж 150 символів тексту, позначається. Це правило цієї навички (читання Vectorscope)."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Expand the section with substance, or merge it into a neighbouring one.",
+          "uk": "Наповніть розділ змістом або об’єднайте із сусіднім.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "question_partial-q1",
+      "pin": 10,
+      "big": false,
+      "code": "question_partial",
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "judgement",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "label": {
+        "en": "Answered in part: “My launch page goes live tomorrow: wi…”",
+        "uk": "Частково: “My launch page goes live tomorrow: wi…”"
+      },
+      "where": "question 1 · passage #5",
+      "map": {
+        "zones": [
+          6
+        ],
+        "strip": null
+      },
+      "passages": [
+        5
+      ],
+      "evidence": {
+        "id": "q1",
+        "n": 1,
+        "question": "My launch page goes live tomorrow: will an assistant even see the FAQ at the bottom?",
+        "axes": [
+          "urgency",
+          "object"
+        ],
+        "passage": 5,
+        "quote": "If your answer, your differentiator or your FAQ sits below the cut, the fix is not more words",
+        "citable": false
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: AI features and your website",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question answered in part",
+          "uk": "Запитання з частковою відповіддю"
+        },
+        "description": {
+          "en": "A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.",
+          "uk": "На запитання, яке поставили б люди, найкращий уривок відповідає лише частково. Асистент може його процитувати, але решту мусить брати з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent judges each question against the passages; a passage that helps but leaves part of the answer out is a partial answer. The verdict is the agent's judgement.",
+            "uk": "Агент оцінює кожне запитання за уривками; уривок, що допомагає, але пропускає частину відповіді, — часткова відповідь. Вердикт — судження агента."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.",
+          "uk": "Доповніть уривок частиною відповіді, якої бракує (числа, кроки, умови), у тому самому розділі.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "question_partial-q9",
+      "pin": 11,
+      "big": false,
+      "code": "question_partial",
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "judgement",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "label": {
+        "en": "Answered in part: “Our site is a React app. Will the tex…”",
+        "uk": "Частково: “Our site is a React app. Will the tex…”"
+      },
+      "where": "question 9 · passage #5",
+      "map": {
+        "zones": [
+          6
+        ],
+        "strip": null
+      },
+      "passages": [
+        5
+      ],
+      "evidence": {
+        "id": "q9",
+        "n": 9,
+        "question": "Our site is a React app. Will the text that loads later be read at all?",
+        "axes": [
+          "obstacle",
+          "object"
+        ],
+        "passage": 5,
+        "quote": "Common causes, in the order we see them: text rendered only by JavaScript",
+        "citable": false
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: AI features and your website",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question answered in part",
+          "uk": "Запитання з частковою відповіддю"
+        },
+        "description": {
+          "en": "A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.",
+          "uk": "На запитання, яке поставили б люди, найкращий уривок відповідає лише частково. Асистент може його процитувати, але решту мусить брати з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent judges each question against the passages; a passage that helps but leaves part of the answer out is a partial answer. The verdict is the agent's judgement.",
+            "uk": "Агент оцінює кожне запитання за уривками; уривок, що допомагає, але пропускає частину відповіді, — часткова відповідь. Вердикт — судження агента."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.",
+          "uk": "Доповніть уривок частиною відповіді, якої бракує (числа, кроки, умови), у тому самому розділі.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "repeated_sentence_shape",
+      "pin": 12,
+      "big": false,
+      "code": "repeated_sentence_shape",
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "2 sentences of one shape",
+        "uk": "2 речення однієї форми"
+      },
+      "where": "passage #7 · word 892, passage #15 · word 2303",
+      "map": {
+        "zones": [
+          7,
+          12
+        ],
+        "strip": null
+      },
+      "passages": [
+        7,
+        15
+      ],
+      "evidence": {
+        "count": 2,
+        "words": 2393,
+        "per1k": 0.84,
+        "threshold": null,
+        "language": "en",
+        "score": {
+          "value": 1,
+          "band": "low",
+          "perThousand": 2.51
+        },
+        "items": [
+          {
+            "text": "\" contributes the question itself.",
+            "passage": 7,
+            "word": 892,
+            "heading": "What is semantic chunking?",
+            "occurrences": 2
+          },
+          {
+            "text": "Not an AI detector.",
+            "passage": 15,
+            "word": 2303,
+            "heading": "Other free AI search tools",
+            "occurrences": 2
+          }
+        ],
+        "note": "signals about worn writing, not an AI detector"
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: creating helpful, reliable, people-first content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Sentences of one shape",
+          "uk": "Речення однієї форми"
+        },
+        "description": {
+          "en": "Many sentences follow the same shape. Text like that reads as templated, and the repetition hides which sentence carries the point.",
+          "uk": "Багато речень мають однакову будову. Такий текст читається як шаблонний, а повтор приховує, яке речення несе суть."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The PatternScope's detectors flag sentences that repeat one structure. A signal about worn writing, not an AI detector; this skill's rule.",
+            "uk": "Детектори PatternScope позначають речення, що повторюють одну будову. Це сигнал про зношене письмо, а не детектор ШІ; правило цієї навички."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Vary the sentence structure; merge or cut the templated sentences.",
+          "uk": "Урізноманітніть будову речень; об’єднайте або скоротіть шаблонні речення.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "question_partial-q10",
+      "pin": 13,
+      "big": false,
+      "code": "question_partial",
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "judgement",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "label": {
+        "en": "Answered in part: “I have twenty pages to check before F…”",
+        "uk": "Частково: “I have twenty pages to check before F…”"
+      },
+      "where": "question 10 · passage #14",
+      "map": {
+        "zones": [
+          12
+        ],
+        "strip": null
+      },
+      "passages": [
+        14
+      ],
+      "evidence": {
+        "id": "q10",
+        "n": 10,
+        "question": "I have twenty pages to check before Friday. Is there a limit?",
+        "axes": [
+          "urgency"
+        ],
+        "passage": 14,
+        "quote": "Yes, with a rate limit rather than a paywall.",
+        "citable": false
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: AI features and your website",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question answered in part",
+          "uk": "Запитання з частковою відповіддю"
+        },
+        "description": {
+          "en": "A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.",
+          "uk": "На запитання, яке поставили б люди, найкращий уривок відповідає лише частково. Асистент може його процитувати, але решту мусить брати з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent judges each question against the passages; a passage that helps but leaves part of the answer out is a partial answer. The verdict is the agent's judgement.",
+            "uk": "Агент оцінює кожне запитання за уривками; уривок, що допомагає, але пропускає частину відповіді, — часткова відповідь. Вердикт — судження агента."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.",
+          "uk": "Доповніть уривок частиною відповіді, якої бракує (числа, кроки, умови), у тому самому розділі.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "faq_rich_result_retired",
+      "pin": 14,
+      "big": false,
+      "code": "faq_rich_result_retired",
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "hidesText": false,
+      "informational": true,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "FAQ rich result retired",
+        "uk": "Розширеного FAQ більше немає"
+      },
+      "where": "FAQPage",
+      "map": {
+        "zones": [],
+        "strip": {
+          "side": "head",
+          "rows": [
+            "jsonld"
+          ]
+        }
+      },
+      "passages": [],
+      "evidence": {
+        "date": "2026-05-07"
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: documentation updates (FAQ rich result, 7 May 2026)",
+          "url": "https://developers.google.com/search/updates"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "FAQ rich result retired",
+          "uk": "Розширеного FAQ більше немає"
+        },
+        "description": {
+          "en": "The page has FAQPage markup, and Google no longer shows FAQ rich results. The markup does no harm, but it no longer earns the expanded result it was once added for.",
+          "uk": "Сторінка має розмітку FAQPage, а Google більше не показує розширених результатів FAQ. Розмітка не шкодить, але вже не дає розширеного результату, заради якого її колись додали."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "The FAQ rich result feature is no longer shown in Google Search results",
+          "source": {
+            "name": "Google Search Central: documentation updates (FAQ rich result, 7 May 2026)",
+            "url": "https://developers.google.com/search/updates"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Nothing required for Google; keep it if another consumer reads it, or remove it to lighten the page.",
+          "uk": "Для Google нічого не потрібно; залиште, якщо її читає інший споживач, або приберіть, щоб полегшити сторінку.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "rich_result_retired",
+      "pin": 15,
+      "big": false,
+      "code": "rich_result_retired",
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "hidesText": false,
+      "informational": true,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "How-to: no rich result any more",
+        "uk": "How-to: розширеного результату більше немає"
+      },
+      "where": "HowTo",
+      "map": {
+        "zones": [],
+        "strip": {
+          "side": "head",
+          "rows": [
+            "jsonld"
+          ]
+        }
+      },
+      "passages": [],
+      "evidence": {
+        "items": [
+          {
+            "type": "HowTo",
+            "feature": "How-to",
+            "date": "2023-09-14",
+            "block": 3
+          }
+        ]
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: documentation updates (FAQ rich result, 7 May 2026)",
+          "url": "https://developers.google.com/search/updates"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Retired rich result",
+          "uk": "Розширеного результату більше немає"
+        },
+        "description": {
+          "en": "The page carries markup for a rich result that Google has retired. The markup is not an error, but it no longer produces a special result in Google Search.",
+          "uk": "Сторінка містить розмітку для розширеного результату, який Google припинив показувати. Розмітка не є помилкою, але більше не дає особливого результату в Google Search."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "Removed the How-to structured data documentation, as this rich result is no longer shown in search results, on both desktop and mobile devices.",
+          "source": {
+            "name": "Google Search Central: documentation updates (FAQ rich result, 7 May 2026)",
+            "url": "https://developers.google.com/search/updates"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Optional clean-up: drop the retired type unless another consumer needs it.",
+          "uk": "Необов’язкове прибирання: приберіть застарілий тип, якщо він не потрібен іншому споживачеві.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "page_weight_heavy",
+      "pin": 16,
+      "big": false,
+      "code": "page_weight_heavy",
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "hidesText": false,
+      "informational": false,
+      "layer": "derived",
+      "judgement": null,
+      "label": {
+        "en": "131 KB, 40 scripts",
+        "uk": "131 КБ, 40 скриптів"
+      },
+      "where": "HTML",
+      "map": {
+        "zones": [],
+        "strip": {
+          "side": "head",
+          "rows": [
+            "scripts"
+          ]
+        }
+      },
+      "passages": [],
+      "evidence": {
+        "htmlBytes": 134426,
+        "scripts": 40,
+        "blocking": 1,
+        "maxBytes": 500000,
+        "maxScripts": 30
+      },
+      "rules": [
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Heavy page",
+          "uk": "Важка сторінка"
+        },
+        "description": {
+          "en": "The page's HTML is very large, or it loads many scripts. All of it has to be downloaded and parsed before the text is ready, which is slow on phones and costly for crawlers.",
+          "uk": "HTML сторінки дуже великий або вона завантажує багато скриптів. Усе це треба завантажити й розібрати, перш ніж текст буде готовий, а це повільно на телефонах і дорого для краулерів."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "HTML over 500 KB, or more than 30 scripts, is a heavy page. The threshold is this skill's; speed for real visitors is what Core Web Vitals measure, and this check does not read them.",
+            "uk": "HTML понад 500 КБ або понад 30 скриптів — важка сторінка. Поріг — цієї навички; швидкість для реальних відвідувачів вимірюють Core Web Vitals, і ця перевірка їх не читає."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Cut inline JSON, SVG and CSS bulk; defer, async or drop scripts; lazy-load widgets below the fold.",
+          "uk": "Зменште вбудовані JSON, SVG і CSS; застосуйте defer чи async або приберіть скрипти; віджети нижче першого екрана завантажуйте ліниво.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "llms_txt_one_language",
+      "pin": 17,
+      "big": false,
+      "code": "llms_txt_one_language",
+      "severity": "low",
+      "area": "lang",
+      "owner": "seo",
+      "hidesText": false,
+      "informational": true,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "llms.txt: one language only",
+        "uk": "llms.txt: лише одна мова"
+      },
+      "where": "/llms.txt",
+      "map": {
+        "zones": [],
+        "strip": {
+          "side": "robots",
+          "rows": [
+            "llms"
+          ]
+        }
+      },
+      "passages": [],
+      "evidence": {
+        "versions": 3,
+        "mentioned": [
+          "en"
+        ],
+        "links": 32
+      },
+      "rules": [
+        {
+          "name": "The llms.txt proposal",
+          "url": "https://llmstxt.org/"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "llms.txt in one language only",
+          "uk": "llms.txt лише однією мовою"
+        },
+        "description": {
+          "en": "The site's llms.txt points only to pages in one language, though this page has other language versions. Agents that start from llms.txt see the site in one language.",
+          "uk": "llms.txt сайту вказує лише на сторінки однією мовою, хоча ця сторінка має інші мовні версії. Агенти, що починають з llms.txt, бачать сайт однією мовою."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "On a site with several language versions, llms.txt is expected to point to more than one of them. The llms.txt proposal says nothing about languages; this is this skill's rule.",
+            "uk": "На сайті з кількома мовними версіями llms.txt має вказувати більше ніж на одну з них. Пропозиція llms.txt нічого не каже про мови; це правило цієї навички."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "List each language's key pages in llms.txt, or publish one llms.txt per locale and link them.",
+          "uk": "Перелічіть у llms.txt ключові сторінки кожної мови або опублікуйте окремий llms.txt для кожної локалі й пов’яжіть їх.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "security_headers_missing",
+      "pin": 18,
+      "big": false,
+      "code": "security_headers_missing",
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "hidesText": false,
+      "informational": true,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "3 security headers missing",
+        "uk": "Бракує 3 заголовків безпеки"
+      },
+      "where": "Content-Security-Policy, X-Content-Type-Options, frame-ancestors",
+      "map": {
+        "zones": [],
+        "strip": null
+      },
+      "passages": [],
+      "evidence": {
+        "missing": [
+          "Content-Security-Policy",
+          "X-Content-Type-Options",
+          "frame-ancestors"
+        ]
+      },
+      "rules": [
+        {
+          "name": "MDN: CSP frame-ancestors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors"
+        },
+        {
+          "name": "MDN: X-Content-Type-Options",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Content-Type-Options"
+        },
+        {
+          "name": "MDN: Referrer-Policy",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Referrer-Policy"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "Security headers missing",
+          "uk": "Бракує заголовків безпеки"
+        },
+        "description": {
+          "en": "The answer lacks one or more common security headers: framing control, X-Content-Type-Options or Referrer-Policy. This does not hide the page from search; it leaves the browser's protections at their defaults.",
+          "uk": "Відповідь не має одного чи кількох поширених заголовків безпеки: контролю вбудовування у фрейми, X-Content-Type-Options чи Referrer-Policy. Від пошуку це сторінку не ховає; захист браузера лишається на типових налаштуваннях."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "The header allows you to avoid MIME type sniffing by specifying that the MIME types are deliberately configured.",
+          "source": {
+            "name": "MDN: X-Content-Type-Options",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Content-Type-Options"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Send Content-Security-Policy: frame-ancestors 'self' (or X-Frame-Options), X-Content-Type-Options: nosniff and a Referrer-Policy such as strict-origin-when-cross-origin.",
+          "uk": "Надсилайте Content-Security-Policy: frame-ancestors 'self' (або X-Frame-Options), X-Content-Type-Options: nosniff і Referrer-Policy, наприклад strict-origin-when-cross-origin.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "id": "about_contact_missing",
+      "pin": 19,
+      "big": false,
+      "code": "about_contact_missing",
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "hidesText": false,
+      "informational": false,
+      "layer": "measured",
+      "judgement": null,
+      "label": {
+        "en": "No contact link",
+        "uk": "Немає посилання «Контакти»"
+      },
+      "where": "contact link",
+      "map": {
+        "zones": [],
+        "strip": null
+      },
+      "passages": [],
+      "evidence": {
+        "missing": [
+          "contact"
+        ]
+      },
+      "rules": [
+        {
+          "name": "Google Search Central: creating helpful, reliable, people-first content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        },
+        {
+          "name": "This skill's rule (README, the thresholds)",
+          "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+        }
+      ],
+      "explanation": {
+        "title": {
+          "en": "No About or Contact link",
+          "uk": "Немає посилання «Про нас» чи «Контакти»"
+        },
+        "description": {
+          "en": "The page has no link to an About or a Contact page. Readers and search engines look for who stands behind a site, and these pages are where they find it.",
+          "uk": "Сторінка не має посилання на сторінку «Про нас» чи «Контакти». Читачі й пошукові системи шукають, хто стоїть за сайтом, і саме там це знаходять."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "background about the author or the site that publishes it, such as through links to an author page or a site's About page",
+          "source": {
+            "name": "Google Search Central: creating helpful, reliable, people-first content",
+            "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Link About and Contact from the header or the footer of every page.",
+          "uk": "Додайте посилання «Про нас» і «Контакти» в шапку або підвал кожної сторінки.",
+          "audience": "specialists"
+        }
+      }
+    }
+  ],
+  "rulesChecked": "2026-10-17",
+  "state": {
+    "title": "Semantic Chunking Visualizer for Any URL — Vectorscope",
+    "description": "Free semantic chunking visualizer: paste a URL and see the passages a retriever cuts, how they group by meaning, and what falls past the 26-passage cap.",
+    "canonical": "https://www.getlooploop.com/vectorscope",
+    "h1": [
+      "Semantic chunking, made visible: see what survives the trip into vector space."
+    ],
+    "wordCount": 2469,
+    "schemaTypes": [
+      "Answer",
+      "BreadcrumbList",
+      "DefinedTerm",
+      "DefinedTermSet",
+      "FAQPage",
+      "HowTo",
+      "HowToStep",
+      "ListItem",
+      "Offer",
+      "Organization",
+      "Person",
+      "Question",
+      "SoftwareApplication",
+      "Thing",
+      "WebPage",
+      "WebSite"
+    ],
+    "robots": {
+      "status": "ok",
+      "bots": {
+        "OAI-SearchBot": true,
+        "ChatGPT-User": true,
+        "GPTBot": true,
+        "Claude-SearchBot": true,
+        "Claude-User": true,
+        "ClaudeBot": true,
+        "PerplexityBot": true,
+        "Perplexity-User": true,
+        "Google-Extended": true,
+        "Googlebot": true,
+        "Bingbot": true,
+        "CCBot": true
+      }
+    },
+    "hreflang": [
+      "en https://www.getlooploop.com/vectorscope",
+      "es https://www.getlooploop.com/es/vectorscope",
+      "uk https://www.getlooploop.com/uk/vectorscope",
+      "x-default https://www.getlooploop.com/vectorscope"
+    ],
+    "passages": [
+      {
+        "index": 0,
+        "heading": "Semantic Chunking Visualizer for Any URL — Vectorscope",
+        "hash": "9ed2b8862d370d66",
+        "head": "Semantic Chunking Visualizer for Any URL — Vectorscope Semantic chunking, made visible: se",
+        "text": "Semantic Chunking Visualizer for Any URL — Vectorscope Semantic chunking, made visible: see what survives the trip into vector space. Free semantic chunking visualizer: paste a URL and see the passages a retriever cuts, how they group by meaning, and what falls past the 26-passage cap."
+      },
+      {
+        "index": 1,
+        "heading": null,
+        "hash": "dd42a57285e5d199",
+        "head": "Free tool No account Experimental Vectorscope Semantic chunking, made visible: see what su",
+        "text": "Free tool No account Experimental Vectorscope Semantic chunking, made visible: see what survives the trip into vector space. Vectorscope is a free semantic chunking visualizer: it cuts one URL into the passages a retrieval system would store, groups them by meaning, and shows how much of the page never reaches the index at all. e.g. A free allowance per visitor, no account needed. Result what the machine actually reads cut at h2, then 2,000-char windows max 26 chunks / page grouped by meaning no account 1. Fetched 2. Extracted 3. Chunked 4. Embedded 5. Grouped passages read slots used of the 26-passage cap unique text in passages, chars in passages incl. overlap and intro, chars characters past the cap Paste a URL above. The page is cut into passages at its h2 headings; the ones inside the cap are read, and anything the cap cuts off is not."
+      },
+      {
+        "index": 2,
+        "heading": "What does this mean?",
+        "hash": "342b822d91961f6b",
+        "head": "The reading shows which passages of your page a retriever can receive, and how they group ",
+        "text": "The reading shows which passages of your page a retriever can receive, and how they group by meaning — the question semantic chunking asks, put to passages already cut. It is a preview of the machine's view, not a guarantee of what any assistant does with it."
+      },
+      {
+        "index": 3,
+        "heading": "Important passage outside the cap?",
+        "hash": "bf237218336e425d",
+        "head": "Move it earlier on the page, or split the page so that passage has a budget of its own. Th",
+        "text": "Move it earlier on the page, or split the page so that passage has a budget of its own. This reading takes at most 26 passages from a page."
+      },
+      {
+        "index": 4,
+        "heading": "Models and retrieval caps vary.",
+        "hash": "74ff9afa1bd117bf",
+        "head": "This does not establish that any assistant has indexed the page. Each system does its own ",
+        "text": "This does not establish that any assistant has indexed the page. Each system does its own chunking — fixed windows, headings or semantic chunking — and embeds and caps in its own way; this is the pipeline the product runs. Sources and methodology"
+      },
+      {
+        "index": 5,
+        "heading": "How to read your result",
+        "hash": "b4b6e97a591a129b",
+        "head": "Four readings decide whether a page is legible to a retrieval system. Here is what each on",
+        "text": "Four readings decide whether a page is legible to a retrieval system. Here is what each one means when it is bad. Chunks that never reach the index A retrieval system reads a fixed number of passages from a page and ignores the rest, so anything below that cut is invisible no matter how good it is. Vectorscope applies the same cap the product applies and names the passages that fell outside it. If your answer, your differentiator or your FAQ sits below the cut, the fix is not more words, and semantic chunking will not rescue it either: a well-cut passage past the cap is still a passage nobody reads. Move that passage up, or split the page so it has a passage budget of its own. The extraction ratio The extraction ratio is how much of the page turned into readable text — a low one means most of what you shipped was navigation, boilerplate or markup that no model will ever see. A long page with a low ratio is a short page as far as retrieval is concerned. Extraction happens before any chunking, semantic chunking included, so text lost here is lost to every strategy. Common causes, in the order we see them: text rendered only by JavaScript, an article wrapped in so much chrome that the body is a minority of the document, and images carrying words that exist nowhere in the HTML. Groups, and what a tight group means Groups are the semantic part of this reading, the nearest it comes to semantic chunking: passages the embedding places close together in meaning, whatever heading they sit under. One enormous group usually means the page says one thing many times, which reads as thin to a retriever even when it reads as thorough to an editor. Several small groups with one passage each is the opposite problem: a page that changes subject constantly gives a retriever nothing complete to quote. The passage a question actually retrieves Asking the page a question returns the passages that answer it, ranked, using only that page — which is the closest thing to watching a model"
+      },
+      {
+        "index": 6,
+        "heading": "How to read your result",
+        "hash": "5025012069974cad",
+        "head": "to quote. The passage a question actually retrieves Asking the page a question returns the",
+        "text": "to quote. The passage a question actually retrieves Asking the page a question returns the passages that answer it, ranked, using only that page — which is the closest thing to watching a model decide what your page is for. If the returned passage is not the one you would have chosen, the page is not organised the way you think it is. This is also the fastest way to test a heading rewrite: change the heading, run the page again, ask the same question."
+      },
+      {
+        "index": 7,
+        "heading": "What is semantic chunking?",
+        "hash": "6e963b6c7ef7ae4d",
+        "head": "Semantic chunking is splitting a page into passages where its meaning changes, instead of ",
+        "text": "Semantic chunking is splitting a page into passages where its meaning changes, instead of every fixed number of characters or at every heading. Vectorscope does not cut that way: it cuts at each h2 and then in fixed windows, and its semantic step comes after the cut, when the passages are grouped by meaning. 01 Fixed-length chunking Fixed-length chunking cuts every N characters and is the default in most pipelines because it is trivial to implement. It also cuts through the middle of a sentence, separates a heading from the answer under it, and produces passages that begin with half a word. Vectorscope uses it only inside a long section: a window of 2,000 characters with 200 characters of overlap, ending at a sentence break where one is close enough. 02 Heading-aware chunking Heading-aware chunking uses the page's own headings as the cut lines, so a passage arrives with the heading that names it. This is Vectorscope's first cut, and only an h2 makes one: an h3 stays inside the passage of the h2 above it, so a section of six h3 questions is one passage, or several windows of one. It also means your heading text is doing retrieval work. A section called \"Overview\" contributes nothing to the passage; a section called \"Can I cancel at any time?\" contributes the question itself. 03 Semantic chunking, and how it differs from grouping Semantic chunking compares neighbouring sentences and cuts where the meaning shifts, which gives passages that stand alone but needs an embedding pass over the page before a single chunk exists. Vectorscope does not do that step. Its semantic part is the grouping: every passage is embedded once it is cut, and passages that sit close in meaning are drawn as one group. So the map asks the question semantic chunking asks — where does one idea end? — of the passages your headings already made. A group spanning three h2 sections says the headings split one idea; a long section whose windows land in two groups says a single heading holds two."
+      },
+      {
+        "index": 8,
+        "heading": "Is my content ready for AI search?",
+        "hash": "e89d0884d0e72cd7",
+        "head": "This page answers that question for one URL at a time, honestly, which means naming what i",
+        "text": "This page answers that question for one URL at a time, honestly, which means naming what it cannot see as clearly as what it can. What this tool can tell you How much of your page becomes readable text at all, as a ratio and not an adjective. Exactly which passages a retriever would receive, in order, with the ones beyond the cap marked. Which passages share a subject once they are grouped by meaning — the question semantic chunking asks, put to your own page. Whether your passages stand alone, or lean on the passage before them to make sense. Which passage a real question retrieves from your page, using the page's own embeddings. Whether the page asks to be left out of an index at all — a noindex directive is reported rather than ignored. What it cannot tell you Whether any specific assistant has your page in its index. Nobody outside those companies can see that. How a model ranks your page against a competitor's. That needs a corpus of both, which is the product rather than the demo. Whether you are cited in an answer today. That is a measurement over time on prompts you choose, not a property of one page."
+      },
+      {
+        "index": 9,
+        "heading": "Using Vectorscope to test a RAG pipeline",
+        "hash": "171538f485935d3e",
+        "head": "If you build retrieval rather than content, this page is a reference implementation you ca",
+        "text": "If you build retrieval rather than content, this page is a reference implementation you can point at any URL in about twenty seconds. 1 Run a page you already index, and compare the passage boundaries with your own chunker's — fixed windows, headings or semantic chunking. 2 Note the extraction ratio: if yours is lower on the same URL, your extractor is discarding body text, not boilerplate. 3 Ask the page a question you know the answer to, and check whether the top passage is the one that contains it. 4 Run a page that is far too long. The passages beyond the cap are the ones your own top-k will also never reach. The chunker (h2 cuts, then 2,000-character windows with 200 of overlap), the embedding model and the cap here are the ones the product runs in production. A demo using a simplified pipeline would flatter the pipeline it exists to demonstrate."
+      },
+      {
+        "index": 10,
+        "heading": "Who is Vectorscope for?",
+        "hash": "378b34c6f6b6afc0",
+        "head": "Vectorscope is for anyone whose page has to be read in passages: the people who write it, ",
+        "text": "Vectorscope is for anyone whose page has to be read in passages: the people who write it, and the people who build the retrieval that reads it. Both get the same reading — the cut, the cap, and the semantic chunking question of which passages belong together. Content and SEO teams For checking that the answer a page exists to give survives into one passage a retriever can quote, above the cap, under a heading that names it. Engineers building RAG For a reference reading of any URL to hold your own chunker against, whether it cuts on fixed windows, headings or semantic chunking. Editors restructuring a page For deciding where a heading belongs: the groups show which sections share a subject and which section is really two. Once the passages are right, the words inside them are next: PatternScope reads a draft for the stock phrases and repeated sentence shapes a reader reacts to."
+      },
+      {
+        "index": 11,
+        "heading": "Words used on this page",
+        "hash": "fd8928d6bff5c169",
+        "head": "The terms this page relies on, each defined once, because a page that uses them without de",
+        "text": "The terms this page relies on, each defined once, because a page that uses them without defining them is a page an assistant cannot explain to anybody. Semantic chunking Cutting text into passages where its meaning changes, rather than at a fixed length or at a heading. On this page the meaning-based step is the grouping of passages that are already cut, not the cut itself. Chunk A passage of a page, cut so it can be read on its own. Retrieval systems store and return chunks, never whole pages, which is why a page's structure matters more than its length. Embedding A list of numbers that stands for the meaning of a passage, so that two passages about the same thing sit near each other. Comparing embeddings is how a retriever finds a passage without matching words. Cosine similarity A measure of how close two embeddings point in the same direction, from 1 for identical to 0 for unrelated. It is the number behind every claim that two passages are about the same thing. Retrieval-augmented generation Answering a question by first retrieving passages from a source and then writing from them, rather than from the model's memory alone. Every AI answer that cites a page did this, and the page it cited was a chunk. Extraction Turning a fetched HTML document into the readable text a model receives, discarding navigation, scripts and boilerplate. What extraction drops, no model ever sees."
+      },
+      {
+        "index": 12,
+        "heading": "Keep reading",
+        "hash": "67019f30160fb286",
+        "head": "Longer answers to the questions this page can only summarise. What semantic chunking is, a",
+        "text": "Longer answers to the questions this page can only summarise. What semantic chunking is, and what it trades away The three strategies, side by side, on the same page. How to optimise content for AI search What actually changes a passage's chances of being retrieved. Methodology Every formula behind the readings above, stated in full. The Vectorscope skill for Claude Code The same reading, run locally inside Claude Code, with sources."
+      },
+      {
+        "index": 13,
+        "heading": "Questions people ask about this",
+        "hash": "2abac5cb1e5afb80",
+        "head": "How does AI Mode choose which sources to cite? Nobody outside Google can state the mechani",
+        "text": "How does AI Mode choose which sources to cite? Nobody outside Google can state the mechanism, and this page will not pretend to. What is observable is that cited pages tend to contain a passage that answers the query completely on its own, and that pages whose answer is spread across several sections are cited less often than their content deserves. Vectorscope shows you whether your page has such a passage. How do I get cited in AI Overviews? Give the answer its own passage, under a heading that names the question, high enough on the page to survive the retrieval cap. That is not a trick — it is the shape retrieval rewards, and you can check whether your page has it by running it here. Is this an embedding visualization tool? Yes, for one page at a time. It embeds every passage of a URL and groups them by meaning, so you can see which parts of the page are near each other and which stand alone. It does not plot a corpus of thousands of documents. What is the difference between heading-aware and semantic chunking? Heading-aware chunking cuts at the page's own headings; semantic chunking cuts where the meaning changes, whether or not there is a heading there. The first is cheap and follows the author; the second needs every sentence embedded before a single cut is made. Does Vectorscope use semantic chunking? Not to cut the page. Vectorscope cuts at every h2 — an h3 does not start a passage — and splits a long section into 2,000-character windows with 200 characters of overlap. The semantic step comes after: each passage is embedded and passages close in meaning are grouped, which shows where semantic chunking would disagree with your headings. Do you store the page I test? The reading is kept briefly so it can be shared with a link, and the fetched page itself is not retained after the reading is produced. No account is needed, so there is nothing to attach it to. Is it really free? Yes, with a rate limit rather than a paywall. The limit exists because every"
+      },
+      {
+        "index": 14,
+        "heading": "Questions people ask about this",
+        "hash": "9fb223537ebb323e",
+        "head": "after the reading is produced. No account is needed, so there is nothing to attach it to. ",
+        "text": "after the reading is produced. No account is needed, so there is nothing to attach it to. Is it really free? Yes, with a rate limit rather than a paywall. The limit exists because every reading spends an embedding call, and it resets on a fixed window that the page tells you about before you hit it."
+      },
+      {
+        "index": 15,
+        "heading": "Other free AI search tools",
+        "hash": "86887c3f96dbeabc",
+        "head": "Voicescope Start with one keyword and explore the questions a person may ask an AI assista",
+        "text": "Voicescope Start with one keyword and explore the questions a person may ask an AI assistant across real-life contexts. Brandscope Ask three AI assistants the buyer questions around a brand, then compare their answers with the brand's own page. Reviewscope Ask three AI assistants what reviews say about a brand — first without naming a platform, then naming all twelve — and see which ratings they state without a source. PatternScope Paste a page to see the stock phrases, repeated sentence shapes and unchecked claims a reader reacts to. Not an AI detector. AI answer volatility A daily reading of how far AI assistants' answers moved since yesterday, so a drop in your own visibility can be read against the day it happened on. All free tools"
+      },
+      {
+        "index": 16,
+        "heading": "What this cannot show you",
+        "hash": "d7fc22bd2745279f",
+        "head": "One page on its own. Whether that page answers the questions people actually ask an assist",
+        "text": "One page on its own. Whether that page answers the questions people actually ask an assistant, how it stands against a rival page on the same subject, and which topics your site has no page for at all — those need a corpus of the whole site, measured over time. Ask for an invite"
+      }
+    ],
+    "saved": false
+  },
+  "site": {
+    "current": "getlooploop-com-vectorscope",
+    "evaluated": 3,
+    "total": 3,
+    "leftOut": 0,
+    "pages": [
+      {
+        "slug": "getlooploop-com-vectorscope",
+        "url": "https://www.getlooploop.com/vectorscope",
+        "ok": true
+      },
+      {
+        "slug": "getlooploop-com-uk-vectorscope",
+        "url": "https://www.getlooploop.com/uk/vectorscope",
+        "ok": true
+      },
+      {
+        "slug": "getlooploop-com-es-vectorscope",
+        "url": "https://www.getlooploop.com/es/vectorscope",
+        "ok": true
+      }
+    ]
+  },
+  "history": {
+    "folder": "history\\www.getlooploop.com\\vectorscope",
+    "total": 2,
+    "older": 0,
+    "runs": [
+      {
+        "createdAt": "2026-10-16T18:39:14.000Z",
+        "total": 18,
+        "blocking": 0,
+        "high": 0,
+        "medium": 7,
+        "low": 11,
+        "saved": true,
+        "edition": "full",
+        "current": false
+      },
+      {
+        "createdAt": "2026-10-17T12:59:27.061Z",
+        "total": 19,
+        "blocking": 0,
+        "high": 0,
+        "medium": 7,
+        "low": 12,
+        "saved": false,
+        "edition": "full",
+        "current": true
+      }
+    ],
+    "previous": {
+      "createdAt": "2026-10-16T18:39:14.000Z",
+      "file": "2026-10-16T18-39-14.000Z.json"
+    },
+    "drift": {
+      "since": "2026-10-16T18:39:14.000Z",
+      "comparable": true,
+      "fields": [
+        {
+          "field": "wordCount",
+          "before": 2463,
+          "after": 2469
+        },
+        {
+          "field": "source",
+          "before": "saved copy",
+          "after": "live"
+        }
+      ],
+      "bots": [],
+      "hreflang": {
+        "added": [],
+        "removed": []
+      },
+      "passages": {
+        "before": 17,
+        "after": 17,
+        "added": 1,
+        "lost": 1,
+        "unchanged": 16,
+        "addedItems": [
+          {
+            "index": 1,
+            "heading": null,
+            "hash": "dd42a57285e5d199",
+            "head": "Free tool No account Experimental Vectorscope Semantic chunking, made visible: see what su"
+          }
+        ],
+        "lostItems": [
+          {
+            "index": 1,
+            "heading": null,
+            "hash": "714e65bc10ce7d4a",
+            "head": "Free tool No account Experimental Vectorscope Semantic chunking, made visible: see what su"
+          }
+        ],
+        "changedItems": [
+          {
+            "index": 1,
+            "heading": null,
+            "at": 614,
+            "before": "…passages read slots used of the 26-passage cap characters the cap cut off (0 when the page fits) Paste a URL…",
+            "after": "…passages read slots used of the 26-passage cap unique text in passages, chars in passages incl. overlap and i…"
+          }
+        ],
+        "listCap": 8
+      },
+      "findings": {
+        "fixed": [],
+        "new": [
+          {
+            "id": "security_headers_missing",
+            "code": "security_headers_missing",
+            "severity": "low",
+            "label": {
+              "en": "3 security headers missing",
+              "uk": "Бракує 3 заголовків безпеки"
+            },
+            "where": "Content-Security-Policy, X-Content-Type-Options, frame-ancestors"
+          }
+        ],
+        "unchanged": [
+          {
+            "id": "broken_links",
+            "code": "broken_links",
+            "severity": "medium",
+            "label": {
+              "en": "2 broken links",
+              "uk": "2 неробочі посилання"
+            },
+            "where": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card, div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+            "severityBefore": "medium"
+          },
+          {
+            "id": "schema_required_missing",
+            "code": "schema_required_missing",
+            "severity": "medium",
+            "label": {
+              "en": "Required schema fields missing",
+              "uk": "Бракує обов’язкових полів схеми"
+            },
+            "where": "JSON-LD #2 $",
+            "severityBefore": "medium"
+          },
+          {
+            "id": "mid_sentence_start",
+            "code": "mid_sentence_start",
+            "severity": "medium",
+            "label": {
+              "en": "2 passages start mid-sentence",
+              "uk": "2 уривки із середини речення"
+            },
+            "where": "passages #6, #14",
+            "severityBefore": "medium"
+          },
+          {
+            "id": "question_missing-q11",
+            "code": "question_missing",
+            "severity": "medium",
+            "label": {
+              "en": "No answer: “Can I paste a link to a PDF instead o…”",
+              "uk": "Без відповіді: “Can I paste a link to a PDF instead o…”"
+            },
+            "where": "question 11 · no passage",
+            "severityBefore": "medium"
+          },
+          {
+            "id": "question_missing-q12",
+            "code": "question_missing",
+            "severity": "medium",
+            "label": {
+              "en": "No answer: “The page I need is behind a login on …”",
+              "uk": "Без відповіді: “The page I need is behind a login on …”"
+            },
+            "where": "question 12 · no passage",
+            "severityBefore": "medium"
+          },
+          {
+            "id": "nav_in_content",
+            "code": "nav_in_content",
+            "severity": "medium",
+            "label": {
+              "en": "Menu lines inside the text",
+              "uk": "Рядки меню всередині тексту"
+            },
+            "where": "passage #1",
+            "severityBefore": "medium"
+          },
+          {
+            "id": "brand_unknown",
+            "code": "brand_unknown",
+            "severity": "medium",
+            "label": {
+              "en": "AI doesn't know the brand",
+              "uk": "ШІ не знає бренду"
+            },
+            "where": "brand questions 1–5",
+            "severityBefore": "medium"
+          },
+          {
+            "id": "question_partial-q4",
+            "code": "question_partial",
+            "severity": "low",
+            "label": {
+              "en": "Answered in part: “Can I check a page from my phone with…”",
+              "uk": "Частково: “Can I check a page from my phone with…”"
+            },
+            "where": "question 4 · passage #1",
+            "severityBefore": "low"
+          },
+          {
+            "id": "thin_section",
+            "code": "thin_section",
+            "severity": "low",
+            "label": {
+              "en": "1 very short section",
+              "uk": "1 надто короткий розділ"
+            },
+            "where": "h2 “Important passage outside the cap?”",
+            "severityBefore": "low"
+          },
+          {
+            "id": "question_partial-q1",
+            "code": "question_partial",
+            "severity": "low",
+            "label": {
+              "en": "Answered in part: “My launch page goes live tomorrow: wi…”",
+              "uk": "Частково: “My launch page goes live tomorrow: wi…”"
+            },
+            "where": "question 1 · passage #5",
+            "severityBefore": "low"
+          },
+          {
+            "id": "question_partial-q9",
+            "code": "question_partial",
+            "severity": "low",
+            "label": {
+              "en": "Answered in part: “Our site is a React app. Will the tex…”",
+              "uk": "Частково: “Our site is a React app. Will the tex…”"
+            },
+            "where": "question 9 · passage #5",
+            "severityBefore": "low"
+          },
+          {
+            "id": "repeated_sentence_shape",
+            "code": "repeated_sentence_shape",
+            "severity": "low",
+            "label": {
+              "en": "2 sentences of one shape",
+              "uk": "2 речення однієї форми"
+            },
+            "where": "passage #7 · word 892, passage #15 · word 2303",
+            "severityBefore": "low"
+          },
+          {
+            "id": "question_partial-q10",
+            "code": "question_partial",
+            "severity": "low",
+            "label": {
+              "en": "Answered in part: “I have twenty pages to check before F…”",
+              "uk": "Частково: “I have twenty pages to check before F…”"
+            },
+            "where": "question 10 · passage #14",
+            "severityBefore": "low"
+          },
+          {
+            "id": "faq_rich_result_retired",
+            "code": "faq_rich_result_retired",
+            "severity": "low",
+            "label": {
+              "en": "FAQ rich result retired",
+              "uk": "Розширеного FAQ більше немає"
+            },
+            "where": "FAQPage",
+            "severityBefore": "low"
+          },
+          {
+            "id": "rich_result_retired",
+            "code": "rich_result_retired",
+            "severity": "low",
+            "label": {
+              "en": "How-to: no rich result any more",
+              "uk": "How-to: розширеного результату більше немає"
+            },
+            "where": "HowTo",
+            "severityBefore": "low"
+          },
+          {
+            "id": "page_weight_heavy",
+            "code": "page_weight_heavy",
+            "severity": "low",
+            "label": {
+              "en": "131 KB, 40 scripts",
+              "uk": "131 КБ, 40 скриптів"
+            },
+            "where": "HTML",
+            "severityBefore": "low"
+          },
+          {
+            "id": "llms_txt_one_language",
+            "code": "llms_txt_one_language",
+            "severity": "low",
+            "label": {
+              "en": "llms.txt: one language only",
+              "uk": "llms.txt: лише одна мова"
+            },
+            "where": "/llms.txt",
+            "severityBefore": "low"
+          },
+          {
+            "id": "about_contact_missing",
+            "code": "about_contact_missing",
+            "severity": "low",
+            "label": {
+              "en": "No contact link",
+              "uk": "Немає посилання «Контакти»"
+            },
+            "where": "contact link",
+            "severityBefore": "low"
+          }
+        ],
+        "counts": {
+          "fixed": 0,
+          "new": 1,
+          "unchanged": 18
+        }
+      },
+      "notCompared": [],
+      "changed": 4
+    }
+  },
+  "codes": {
+    "robots_unreachable": {
+      "severity": "blocking",
+      "area": "find",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "search_engine_blocked": {
+      "severity": "blocking",
+      "area": "find",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "ai_search_blocked": {
+      "severity": "blocking",
+      "area": "find",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "noindex": {
+      "severity": "blocking",
+      "area": "find",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "ai_training_blocked": {
+      "severity": "low",
+      "area": "find",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "llms_txt_missing": {
+      "severity": "low",
+      "area": "find",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "snippet_blocked": {
+      "severity": "high",
+      "area": "find",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "markdown_alternate_broken": {
+      "severity": "low",
+      "area": "find",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "ai_catalog_invalid": {
+      "severity": "low",
+      "area": "find",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "indexnow_key_broken": {
+      "severity": "low",
+      "area": "find",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "not_https": {
+      "severity": "high",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "redirect_chain": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "sitemap_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "sitemap_not_listed": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "title_missing": {
+      "severity": "high",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "title_too_long": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "title_too_short": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "meta_description_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "meta_description_short": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "meta_description_long": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "h1_missing": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "h1_multiple": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "heading_order_skip": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "canonical_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "canonical_relative": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "canonical_other": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "canonical_multiple": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "internal_links_none": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "broken_links": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "image_alt_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "viewport_missing": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "html_lang_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "social_tags_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "page_weight_heavy": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "derived"
+    },
+    "url_unreadable": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "html_not_compressed": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "html_no_cache_control": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "security_headers_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "html_lang_invalid": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "link_text_generic": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "fragment_link_broken": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "internal_nofollow": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "robots_no_sitemap": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "sitemap_lastmod_invalid": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "og_image_broken": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "jsonld_invalid": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "structured_data_none": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "schema_required_missing": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "schema_recommended_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "faq_rich_result_retired": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "rich_result_retired": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "image_dimensions_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "image_lcp_lazy": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "image_not_lazy": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "image_legacy_format": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "image_oversized": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "image_no_srcset": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "image_link_alt_empty": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "image_alt_repeated": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "favicon_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "site_name_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "mixed_content": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "soft_404": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "url_variants_inconsistent": {
+      "severity": "medium",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "hsts_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "author_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "about_contact_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "organization_details_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "article_date_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "privacy_terms_missing": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "date_mismatch": {
+      "severity": "low",
+      "area": "classic",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "faq_schema_not_visible": {
+      "severity": "high",
+      "area": "quote",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "lost_faq_questions": {
+      "severity": "high",
+      "area": "quote",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "mid_sentence_start": {
+      "severity": "medium",
+      "area": "quote",
+      "owner": "content",
+      "layer": "derived"
+    },
+    "truncated_teaser": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "repeated_claim": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "derived"
+    },
+    "question_missing": {
+      "severity": "medium",
+      "area": "quote",
+      "owner": "content",
+      "layer": "judgement"
+    },
+    "question_partial": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "judgement"
+    },
+    "stock_phrases": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "derived"
+    },
+    "repeated_sentence_shape": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "uniform_openings": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "unchecked_claims": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "keyword_not_in_title": {
+      "severity": "medium",
+      "area": "quote",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "keyword_variant_split": {
+      "severity": "medium",
+      "area": "quote",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "keyword_one_section": {
+      "severity": "medium",
+      "area": "quote",
+      "owner": "content",
+      "layer": "derived"
+    },
+    "off_keyword_share": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "derived"
+    },
+    "promise_without_number": {
+      "severity": "low",
+      "area": "quote",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "brand_contradiction": {
+      "severity": "high",
+      "area": "brand",
+      "owner": "seo",
+      "layer": "judgement"
+    },
+    "brand_fact_absent": {
+      "severity": "medium",
+      "area": "brand",
+      "owner": "content",
+      "layer": "judgement"
+    },
+    "brand_unknown": {
+      "severity": "medium",
+      "area": "brand",
+      "owner": "seo",
+      "layer": "judgement"
+    },
+    "review_rating_unbacked": {
+      "severity": "high",
+      "area": "brand",
+      "owner": "seo",
+      "layer": "judgement"
+    },
+    "review_control_hallucination": {
+      "severity": "high",
+      "area": "brand",
+      "owner": "seo",
+      "layer": "judgement"
+    },
+    "reviews_without_markup": {
+      "severity": "medium",
+      "area": "brand",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "cap_overflow": {
+      "severity": "high",
+      "area": "read",
+      "owner": "content",
+      "layer": "derived"
+    },
+    "js_dependent": {
+      "severity": "high",
+      "area": "read",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "hero_lede_dropped": {
+      "severity": "high",
+      "area": "read",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "hidden_headings": {
+      "severity": "high",
+      "area": "read",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "ssr_placeholder_text": {
+      "severity": "medium",
+      "area": "read",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "spa_shell": {
+      "severity": "high",
+      "area": "read",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "h1_glued_words": {
+      "severity": "medium",
+      "area": "read",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "nav_in_content": {
+      "severity": "medium",
+      "area": "read",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "dominant_heading": {
+      "severity": "medium",
+      "area": "read",
+      "owner": "content",
+      "layer": "derived"
+    },
+    "thin_section": {
+      "severity": "low",
+      "area": "read",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "hreflang_no_return": {
+      "severity": "high",
+      "area": "lang",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "hreflang_invalid_code": {
+      "severity": "medium",
+      "area": "lang",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "hreflang_no_self": {
+      "severity": "medium",
+      "area": "lang",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "hreflang_alternate_broken": {
+      "severity": "medium",
+      "area": "lang",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "title_duplicate_locales": {
+      "severity": "medium",
+      "area": "lang",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "description_duplicate_locales": {
+      "severity": "low",
+      "area": "lang",
+      "owner": "content",
+      "layer": "measured"
+    },
+    "hreflang_lang_mismatch": {
+      "severity": "low",
+      "area": "lang",
+      "owner": "dev",
+      "layer": "measured"
+    },
+    "hreflang_no_x_default": {
+      "severity": "low",
+      "area": "lang",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "llms_txt_one_language": {
+      "severity": "low",
+      "area": "lang",
+      "owner": "seo",
+      "layer": "measured"
+    },
+    "locale_facts_differ": {
+      "severity": "medium",
+      "area": "lang",
+      "owner": "content",
+      "layer": "measured"
+    }
+  },
+  "layers": {
+    "measured": "what a script counted on the page; any agent gets the same value",
+    "derived": "computed from measured values by a fixed formula",
+    "judgement": "the agent's model read or answered it; another model may judge differently"
+  },
+  "judgement": {
+    "files": {
+      "questions": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "brand": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "reviews": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      }
+    },
+    "model": "Claude Opus 5.5",
+    "agent": "Claude Code",
+    "any": true,
+    "questions": {
+      "questions": [
+        {
+          "id": "q1",
+          "question": "My launch page goes live tomorrow: will an assistant even see the FAQ at the bottom?",
+          "axes": [
+            "urgency",
+            "object"
+          ],
+          "passage": 5,
+          "verdict": "partial",
+          "citable": false,
+          "quote": "If your answer, your differentiator or your FAQ sits below the cut, the fix is not more words"
+        },
+        {
+          "id": "q2",
+          "question": "How many passages does it read from one page?",
+          "axes": [
+            "object"
+          ],
+          "passage": 3,
+          "verdict": "complete",
+          "citable": true,
+          "quote": "This reading takes at most 26 passages from a page."
+        },
+        {
+          "id": "q3",
+          "question": "I wrote a long guide and nobody ever quotes the last sections. Why?",
+          "axes": [
+            "obstacle"
+          ],
+          "passage": 5,
+          "verdict": "complete",
+          "citable": true,
+          "quote": "A retrieval system reads a fixed number of passages from a page and ignores the rest, so anything below that cut is invisible no matter how good it is."
+        },
+        {
+          "id": "q4",
+          "question": "Can I check a page from my phone without installing anything?",
+          "axes": [
+            "device"
+          ],
+          "passage": 1,
+          "verdict": "partial",
+          "citable": false,
+          "quote": "A free allowance per visitor, no account needed."
+        },
+        {
+          "id": "q5",
+          "question": "Does it keep a copy of the page I paste in?",
+          "axes": [
+            "obstacle",
+            "object"
+          ],
+          "passage": 13,
+          "verdict": "complete",
+          "citable": true,
+          "quote": "The reading is kept briefly so it can be shared with a link, and the fetched page itself is not retained after the reading is produced."
+        },
+        {
+          "id": "q6",
+          "question": "What's the difference between cutting at headings and cutting by meaning?",
+          "axes": [
+            "object"
+          ],
+          "passage": 13,
+          "verdict": "complete",
+          "citable": true,
+          "quote": "Heading-aware chunking cuts at the page's own headings; semantic chunking cuts where the meaning changes, whether or not there is a heading there."
+        },
+        {
+          "id": "q7",
+          "question": "A client is asking right now why their page isn't in ChatGPT. Can this tell me if it's indexed?",
+          "axes": [
+            "urgency",
+            "obstacle"
+          ],
+          "passage": 4,
+          "verdict": "complete",
+          "citable": true,
+          "quote": "This does not establish that any assistant has indexed the page."
+        },
+        {
+          "id": "q8",
+          "question": "I'm comparing it with our own RAG chunker: what window size and overlap does it use?",
+          "axes": [
+            "device",
+            "object"
+          ],
+          "passage": 9,
+          "verdict": "complete",
+          "citable": true,
+          "quote": "The chunker (h2 cuts, then 2,000-character windows with 200 of overlap), the embedding model and the cap here are the ones the product runs in production."
+        },
+        {
+          "id": "q9",
+          "question": "Our site is a React app. Will the text that loads later be read at all?",
+          "axes": [
+            "obstacle",
+            "object"
+          ],
+          "passage": 5,
+          "verdict": "partial",
+          "citable": false,
+          "quote": "Common causes, in the order we see them: text rendered only by JavaScript"
+        },
+        {
+          "id": "q10",
+          "question": "I have twenty pages to check before Friday. Is there a limit?",
+          "axes": [
+            "urgency"
+          ],
+          "passage": 14,
+          "verdict": "partial",
+          "citable": false,
+          "quote": "Yes, with a rate limit rather than a paywall."
+        },
+        {
+          "id": "q11",
+          "question": "Can I paste a link to a PDF instead of a web page?",
+          "axes": [
+            "object"
+          ],
+          "passage": null,
+          "verdict": "missing",
+          "citable": false,
+          "quote": null
+        },
+        {
+          "id": "q12",
+          "question": "The page I need is behind a login on my laptop. Can it read that?",
+          "axes": [
+            "device",
+            "obstacle"
+          ],
+          "passage": null,
+          "verdict": "missing",
+          "citable": false,
+          "quote": null
+        }
+      ],
+      "topic": "seeing how an AI retriever cuts a page into passages",
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      },
+      "warnings": []
+    },
+    "brand": {
+      "brand": "GetLoopLoop",
+      "answers": [
+        {
+          "question": "what_is",
+          "knows": false,
+          "text": "I don't know GetLoopLoop from my own knowledge."
+        },
+        {
+          "question": "pricing",
+          "knows": false,
+          "text": "I don't know its plans or prices."
+        },
+        {
+          "question": "integrations",
+          "knows": false,
+          "text": "I don't know what it integrates with."
+        },
+        {
+          "question": "weaknesses",
+          "knows": false,
+          "text": "I don't know of complaints about it."
+        },
+        {
+          "question": "alternatives",
+          "knows": false,
+          "text": "I don't know it well enough to name its alternatives."
+        }
+      ],
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      }
+    },
+    "reviews": {
+      "brand": "GetLoopLoop",
+      "platforms": [
+        {
+          "platform": "g2",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "capterra",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "getapp",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "software_advice",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "gartner_peer_insights",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "trustradius",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "trustpilot",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "producthunt",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "clutch",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "goodfirms",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "app_store",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "google_play",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        },
+        {
+          "platform": "vetteral",
+          "knows": false,
+          "rating": null,
+          "reviews": null
+        }
+      ],
+      "judgement": {
+        "agent": "Claude Code",
+        "model": "Claude Opus 5.5"
+      }
+    }
+  },
+  "keyword": {
+    "keyword": "Semantic chunking",
+    "source": "h1",
+    "exact": {
+      "count": 26,
+      "fields": [
+        "title",
+        "h1",
+        "description"
+      ]
+    },
+    "variants": [
+      {
+        "form": "Semantic-chunking",
+        "count": 0,
+        "fields": []
+      },
+      {
+        "form": "Semanticchunking",
+        "count": 0,
+        "fields": []
+      }
+    ],
+    "sections": {
+      "reached": 12,
+      "total": 15,
+      "spread": 0.8
+    },
+    "chars": {
+      "onKeyword": 12340,
+      "indexed": 14259,
+      "share": 0.865
+    },
+    "promiseChecked": true,
+    "findings": []
+  },
+  "writingPatterns": {
+    "language": "en",
+    "wordCount": 2393,
+    "score": {
+      "scoreModelVersion": "score-1",
+      "band": "low",
+      "value": 1,
+      "wordCount": 2393,
+      "perThousand": 2.51,
+      "points": 6,
+      "capped": false,
+      "contributions": [
+        {
+          "family": "repetition",
+          "counted": 2,
+          "suppressed": 0,
+          "points": 6
+        }
+      ]
+    },
+    "detectors": "det-1",
+    "findings": [
+      {
+        "family": "repetition",
+        "detector": "sentence_template",
+        "severity": "medium",
+        "evidence": "\" contributes the question itself.",
+        "passage": 7,
+        "word": 892,
+        "heading": "What is semantic chunking?",
+        "occurrences": 2
+      },
+      {
+        "family": "repetition",
+        "detector": "sentence_template",
+        "severity": "medium",
+        "evidence": "Not an AI detector.",
+        "passage": 15,
+        "word": 2303,
+        "heading": "Other free AI search tools",
+        "occurrences": 2
+      }
+    ],
+    "note": "signals about worn writing, not an AI detector"
+  },
+  "localeFacts": {
+    "method": "h2 sections aligned by order when both versions have the same count; numbers compared as sets",
+    "compared": [
+      {
+        "hreflang": "uk",
+        "aligned": true,
+        "sections": [
+          13,
+          13
+        ],
+        "differ": 0
+      },
+      {
+        "hreflang": "es",
+        "aligned": true,
+        "sections": [
+          13,
+          13
+        ],
+        "differ": 0
+      }
+    ],
+    "differ": [],
+    "limits": [
+      "versions whose sections do not line up are not compared",
+      "numbers written as words are not read",
+      "a number may differ on purpose (a local price or phone number)"
+    ]
+  },
+  "checklist": [
+    {
+      "id": "http_status",
+      "name": {
+        "en": "HTTP status and redirects",
+        "uk": "HTTP-статус і переадресації"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "https",
+      "name": {
+        "en": "Served over HTTPS",
+        "uk": "Віддається через HTTPS"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "robots_search_bots",
+      "name": {
+        "en": "Googlebot and Bingbot may fetch the page",
+        "uk": "Googlebot і Bingbot можуть завантажити сторінку"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "noindex",
+      "name": {
+        "en": "Not marked noindex",
+        "uk": "Не позначено noindex"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "canonical",
+      "name": {
+        "en": "One absolute canonical to the page itself",
+        "uk": "Один абсолютний canonical на саму сторінку"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "in_sitemap",
+      "name": {
+        "en": "Listed in the sitemap",
+        "uk": "Є в sitemap"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "indexed",
+      "name": {
+        "en": "In Google's index",
+        "uk": "В індексі Google"
+      },
+      "state": "na",
+      "codes": []
+    },
+    {
+      "id": "title_length",
+      "name": {
+        "en": "Title present, 10–60 characters",
+        "uk": "Title є, 10–60 символів"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "title_unique",
+      "name": {
+        "en": "A different title per language version",
+        "uk": "Різний title у кожній мовній версії"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "meta_description",
+      "name": {
+        "en": "Description present, 70–160 characters",
+        "uk": "Опис є, 70–160 символів"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "social_preview",
+      "name": {
+        "en": "Open Graph and Twitter card tags",
+        "uk": "Теги Open Graph і Twitter card"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "h1",
+      "name": {
+        "en": "One h1",
+        "uk": "Один h1"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "heading_order",
+      "name": {
+        "en": "No skipped heading levels",
+        "uk": "Без пропущених рівнів заголовків"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "image_alt",
+      "name": {
+        "en": "Images carry alt",
+        "uk": "Зображення мають alt"
+      },
+      "state": "none",
+      "codes": []
+    },
+    {
+      "id": "html_lang",
+      "name": {
+        "en": "html lang declared",
+        "uk": "html lang оголошено"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "url_readable",
+      "name": {
+        "en": "A readable URL",
+        "uk": "Зручна адреса"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "internal_links",
+      "name": {
+        "en": "Internal links present",
+        "uk": "Є внутрішні посилання"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "link_text",
+      "name": {
+        "en": "Links say where they lead, #links have a target, no nofollow inside the site",
+        "uk": "Посилання кажуть, куди ведуть, # мають ціль, без nofollow усередині сайту"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "broken_links",
+      "name": {
+        "en": "Links answer without errors",
+        "uk": "Посилання відповідають без помилок"
+      },
+      "state": "fail",
+      "codes": [
+        "broken_links"
+      ]
+    },
+    {
+      "id": "viewport",
+      "name": {
+        "en": "A mobile viewport",
+        "uk": "Мобільний viewport"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "page_weight",
+      "name": {
+        "en": "HTML size and scripts",
+        "uk": "Розмір HTML і скрипти"
+      },
+      "state": "warn",
+      "codes": [
+        "page_weight_heavy"
+      ]
+    },
+    {
+      "id": "core_web_vitals",
+      "name": {
+        "en": "Core Web Vitals from real users",
+        "uk": "Core Web Vitals від реальних користувачів"
+      },
+      "state": "na",
+      "codes": []
+    },
+    {
+      "id": "hreflang_pairs",
+      "name": {
+        "en": "hreflang versions link back",
+        "uk": "Мовні версії hreflang посилаються взаємно"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "rich_faqpage",
+      "name": {
+        "en": "FAQPage markup",
+        "uk": "Розмітка FAQPage"
+      },
+      "state": "warn",
+      "codes": [
+        "faq_rich_result_retired"
+      ]
+    },
+    {
+      "id": "rich_breadcrumb",
+      "name": {
+        "en": "BreadcrumbList markup",
+        "uk": "Розмітка BreadcrumbList"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "images",
+      "name": {
+        "en": "Image sizes, formats, lazy loading, srcset",
+        "uk": "Розміри, формати, lazy і srcset зображень"
+      },
+      "state": "none",
+      "codes": []
+    },
+    {
+      "id": "snippet",
+      "name": {
+        "en": "Eligible for a snippet (no nosnippet, max-snippet:0)",
+        "uk": "Може мати сніпет (без nosnippet, max-snippet:0)"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "favicon",
+      "name": {
+        "en": "A favicon that loads",
+        "uk": "Favicon завантажується"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "site_name",
+      "name": {
+        "en": "WebSite name markup on the home page",
+        "uk": "Назва сайту в розмітці WebSite на головній"
+      },
+      "state": "none",
+      "codes": []
+    },
+    {
+      "id": "mixed",
+      "name": {
+        "en": "No http:// resources on https",
+        "uk": "Без ресурсів http:// на https"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "soft404",
+      "name": {
+        "en": "A missing page answers 404",
+        "uk": "Неіснуюча сторінка відповідає 404"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "variants",
+      "name": {
+        "en": "http, www and slash variants end at the page",
+        "uk": "Варіанти http, www і слеш ведуть на сторінку"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "hsts",
+      "name": {
+        "en": "Strict-Transport-Security header",
+        "uk": "Заголовок Strict-Transport-Security"
+      },
+      "state": "pass",
+      "codes": []
+    },
+    {
+      "id": "response",
+      "name": {
+        "en": "Compression, Cache-Control and security headers",
+        "uk": "Стиснення, Cache-Control і заголовки безпеки"
+      },
+      "state": "warn",
+      "codes": [
+        "security_headers_missing"
+      ]
+    },
+    {
+      "id": "trust",
+      "name": {
+        "en": "Author, About, Contact, organisation, dates, privacy and terms",
+        "uk": "Автор, «Про нас», контакти, організація, дати, конфіденційність і умови"
+      },
+      "state": "warn",
+      "codes": [
+        "about_contact_missing"
+      ]
+    }
+  ],
+  "pageMap": {
+    "zones": [
+      {
+        "id": 0,
+        "kind": "header",
+        "label": null,
+        "headings": [],
+        "chars": 90,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": null,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 1,
+        "kind": "hero",
+        "label": "Semantic chunking, made visible: see what survives the trip into vector space.",
+        "headings": [
+          "Semantic chunking, made visible: see what survives the trip into vector space."
+        ],
+        "chars": 1015,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": [
+          6,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "kind": "aside",
+        "label": null,
+        "headings": [
+          "Run Vectorscope inside your coding agent"
+        ],
+        "chars": 340,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": null,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 3,
+        "kind": "section",
+        "label": "What does this mean?",
+        "headings": [
+          "What does this mean?"
+        ],
+        "chars": 281,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 4,
+        "kind": "section",
+        "label": "Important passage outside the cap?",
+        "headings": [
+          "Important passage outside the cap?"
+        ],
+        "chars": 175,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": [
+          9
+        ]
+      },
+      {
+        "id": 5,
+        "kind": "section",
+        "label": "Models and retrieval caps vary.",
+        "headings": [
+          "Models and retrieval caps vary."
+        ],
+        "chars": 279,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 6,
+        "kind": "section",
+        "label": "How to read your result",
+        "headings": [
+          "How to read your result"
+        ],
+        "chars": 2282,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": [
+          3,
+          10,
+          11
+        ]
+      },
+      {
+        "id": 7,
+        "kind": "section",
+        "label": "What is semantic chunking?",
+        "headings": [
+          "What is semantic chunking?"
+        ],
+        "chars": 2022,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": [
+          12
+        ]
+      },
+      {
+        "id": 8,
+        "kind": "section",
+        "label": "Is my content ready for AI search?",
+        "headings": [
+          "Is my content ready for AI search?"
+        ],
+        "chars": 1162,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 9,
+        "kind": "section",
+        "label": "Using Vectorscope to test a RAG pipeline",
+        "headings": [
+          "Using Vectorscope to test a RAG pipeline"
+        ],
+        "chars": 905,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 10,
+        "kind": "section",
+        "label": "Who is Vectorscope for?",
+        "headings": [
+          "Who is Vectorscope for?"
+        ],
+        "chars": 915,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 11,
+        "kind": "section",
+        "label": "Words used on this page",
+        "headings": [
+          "Words used on this page"
+        ],
+        "chars": 1425,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 0,
+        "problems": []
+      },
+      {
+        "id": 12,
+        "kind": "more",
+        "label": "Keep reading",
+        "headings": [
+          "Keep reading",
+          "Questions people ask about this",
+          "Other free AI search tools",
+          "What this cannot show you"
+        ],
+        "chars": 3954,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": 1,
+        "merged": 4,
+        "problems": [
+          1,
+          3,
+          12,
+          13
+        ]
+      },
+      {
+        "id": 13,
+        "kind": "footer",
+        "label": null,
+        "headings": [],
+        "chars": 752,
+        "hidden": false,
+        "panels": 0,
+        "seenShare": null,
+        "merged": 0,
+        "problems": []
+      }
+    ],
+    "head": [
+      {
+        "id": "title",
+        "value": {
+          "en": "54 characters",
+          "uk": "54 символи"
+        },
+        "problems": []
+      },
+      {
+        "id": "description",
+        "value": {
+          "en": "152 characters",
+          "uk": "152 символи"
+        },
+        "problems": []
+      },
+      {
+        "id": "canonical",
+        "value": {
+          "en": "/vectorscope",
+          "uk": "/vectorscope"
+        },
+        "problems": []
+      },
+      {
+        "id": "robots",
+        "value": {
+          "en": "index, follow · index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+          "uk": "index, follow · index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        },
+        "problems": []
+      },
+      {
+        "id": "hreflang",
+        "value": {
+          "en": "en · uk · es · x-default",
+          "uk": "en · uk · es · x-default"
+        },
+        "problems": []
+      },
+      {
+        "id": "lang",
+        "value": {
+          "en": "en",
+          "uk": "en"
+        },
+        "problems": []
+      },
+      {
+        "id": "jsonld",
+        "value": {
+          "en": "Organization, WebSite +6",
+          "uk": "Organization, WebSite +6"
+        },
+        "problems": [
+          2,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "social",
+        "value": {
+          "en": "4 of 4 tags",
+          "uk": "4 з 4 тегів"
+        },
+        "problems": []
+      },
+      {
+        "id": "viewport",
+        "value": {
+          "en": "set",
+          "uk": "задано"
+        },
+        "problems": []
+      },
+      {
+        "id": "scripts",
+        "value": {
+          "en": "40 · 1 blocking",
+          "uk": "40 · 1 блокують"
+        },
+        "problems": [
+          16
+        ]
+      },
+      {
+        "id": "favicon",
+        "value": {
+          "en": "loads",
+          "uk": "завантажується"
+        },
+        "problems": []
+      }
+    ],
+    "robots": [
+      {
+        "id": "search",
+        "value": {
+          "en": "allowed",
+          "uk": "дозволено"
+        },
+        "problems": []
+      },
+      {
+        "id": "ai_search",
+        "value": {
+          "en": "allowed",
+          "uk": "дозволено"
+        },
+        "problems": []
+      },
+      {
+        "id": "ai_training",
+        "value": {
+          "en": "allowed",
+          "uk": "дозволено"
+        },
+        "problems": []
+      },
+      {
+        "id": "sitemap",
+        "value": {
+          "en": "lists the page",
+          "uk": "сторінка є"
+        },
+        "problems": []
+      },
+      {
+        "id": "llms",
+        "value": {
+          "en": "present · 32 links",
+          "uk": "є · 32 посилання"
+        },
+        "problems": [
+          17
+        ]
+      },
+      {
+        "id": "markdown",
+        "value": {
+          "en": "none",
+          "uk": "немає"
+        },
+        "problems": []
+      },
+      {
+        "id": "ai_catalog",
+        "value": {
+          "en": "none",
+          "uk": "немає"
+        },
+        "problems": []
+      }
+    ]
+  },
+  "robots": {
+    "url": "https://www.getlooploop.com/robots.txt",
+    "status": "ok",
+    "httpStatus": 200,
+    "path": "/vectorscope",
+    "sitemaps": [
+      "https://www.getlooploop.com/sitemap.xml"
+    ],
+    "bots": [
+      {
+        "token": "OAI-SearchBot",
+        "vendor": "OpenAI",
+        "kind": "search",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "ChatGPT-User",
+        "vendor": "OpenAI",
+        "kind": "user",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "GPTBot",
+        "vendor": "OpenAI",
+        "kind": "training",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "Claude-SearchBot",
+        "vendor": "Anthropic",
+        "kind": "search",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "Claude-User",
+        "vendor": "Anthropic",
+        "kind": "user",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "ClaudeBot",
+        "vendor": "Anthropic",
+        "kind": "training",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "PerplexityBot",
+        "vendor": "Perplexity",
+        "kind": "search",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "Perplexity-User",
+        "vendor": "Perplexity",
+        "kind": "user",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "Google-Extended",
+        "vendor": "Google",
+        "kind": "training",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "Googlebot",
+        "vendor": "Google",
+        "kind": "index",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "Bingbot",
+        "vendor": "Microsoft",
+        "kind": "index",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      },
+      {
+        "token": "CCBot",
+        "vendor": "Common Crawl",
+        "kind": "training",
+        "allowed": true,
+        "rule": "Allow: /vectorscope",
+        "group": "*"
+      }
+    ]
+  },
+  "sitemap": {
+    "source": "robots",
+    "declared": [
+      "https://www.getlooploop.com/sitemap.xml"
+    ],
+    "offSite": [],
+    "fetched": [
+      {
+        "url": "https://www.getlooploop.com/sitemap.xml",
+        "from": "robots",
+        "status": 200,
+        "kind": "urlset",
+        "count": 1911,
+        "read": true,
+        "lastmod": {
+          "total": 1911,
+          "invalid": 0,
+          "future": 0,
+          "samples": []
+        }
+      }
+    ],
+    "found": true,
+    "listsPage": true,
+    "matchedIn": "https://www.getlooploop.com/sitemap.xml",
+    "children": {
+      "total": 0,
+      "read": 0,
+      "unread": 0,
+      "cap": 5
+    },
+    "candidatesUnread": 0
+  },
+  "llms": {
+    "url": "https://www.getlooploop.com/llms.txt",
+    "status": 200,
+    "present": true,
+    "links": 32
+  },
+  "languages": {
+    "rows": [
+      {
+        "hreflang": "en",
+        "self": true,
+        "cells": [
+          "pass",
+          "pass",
+          "pass",
+          "pass"
+        ]
+      },
+      {
+        "hreflang": "uk",
+        "cells": [
+          "pass",
+          "pass",
+          "pass",
+          "pass"
+        ]
+      },
+      {
+        "hreflang": "es",
+        "cells": [
+          "pass",
+          "pass",
+          "pass",
+          "pass"
+        ]
+      }
+    ],
+    "xDefault": true,
+    "declared": 4,
+    "unread": 0,
+    "cap": 10,
+    "measured": true
+  },
+  "alternates": {
+    "total": 2,
+    "checked": 2,
+    "unchecked": [],
+    "cap": 10,
+    "results": [
+      {
+        "hreflang": "uk",
+        "href": "https://www.getlooploop.com/uk/vectorscope",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/uk/vectorscope",
+        "redirected": false,
+        "title": "Семантичне розбиття сторінки — Vectorscope",
+        "lang": "uk",
+        "noindex": false
+      },
+      {
+        "hreflang": "es",
+        "href": "https://www.getlooploop.com/es/vectorscope",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/es/vectorscope",
+        "redirected": false,
+        "title": "Fragmentado semántico de tu página — Vectorscope",
+        "lang": "es",
+        "noindex": false
+      }
+    ]
+  },
+  "links": {
+    "total": 27,
+    "checked": 27,
+    "unchecked": 0,
+    "cap": 30,
+    "results": [
+      {
+        "url": "https://www.getlooploop.com/",
+        "internal": true,
+        "zone": 0,
+        "path": "div.marketing-root.min-h-screen > header.fixed.inset-x-0 > div.mx-auto.flex > a.flex.items-center",
+        "text": "GetLoopLoop",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/free-tools",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Free tools",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/glossary",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Glossary",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/skills",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Skills",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/news",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "News",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/notes",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Notes",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--primary",
+        "text": "Read about the skill",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://github.com/Olexan-art/getlooploop-skills",
+        "internal": false,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--ghost",
+        "text": "Code on GitHub",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/methodology",
+        "internal": true,
+        "zone": 5,
+        "path": "div.flex.gap-4 > div.min-w-0 > div.pt-body > a.mt-1.inline-flex",
+        "text": "Sources and methodology",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/patternscope",
+        "internal": true,
+        "zone": 10,
+        "path": "div.mt-12.space-y-14 > section#who > p.pt-body.mt-5 > a.font-semibold.text-[var(--pt-accent)]",
+        "text": "PatternScope",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/notes/what-is-semantic-chunking",
+        "internal": true,
+        "zone": 12,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "text": "What semantic chunking is, and what it trades awayThe three…",
+        "status": 404,
+        "verdict": "broken"
+      },
+      {
+        "url": "https://www.getlooploop.com/notes/optimise-content-for-ai-search",
+        "internal": true,
+        "zone": 12,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "text": "How to optimise content for AI searchWhat actually changes …",
+        "status": 404,
+        "verdict": "broken"
+      },
+      {
+        "url": "https://www.getlooploop.com/voicescope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Voicescope Start with one keyword and explore the questions…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/brandscope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Brandscope Ask three AI assistants the buyer questions arou…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/reviewscope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Reviewscope Ask three AI assistants what reviews say about …",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/ai-volatility",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "AI answer volatility A daily reading of how far AI assistan…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/invite",
+        "internal": true,
+        "zone": 12,
+        "path": "div.pt > div.mx-auto.w-full > div#limits > a.mt-4.inline-flex",
+        "text": "Ask for an invite",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://x.com/Looploopnow",
+        "internal": false,
+        "zone": 13,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "text": "X",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://discord.gg/Z6cRuhprMa",
+        "internal": false,
+        "zone": 13,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "text": "Discord",
+        "status": 200,
+        "verdict": "ok",
+        "finalUrl": "https://discord.com/invite/Z6cRuhprMa"
+      },
+      {
+        "url": "https://www.getlooploop.com/questions",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Questions",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/ai-model-usage",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "AI model usage",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Legal hub",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/privacy",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Privacy Policy",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/terms",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Terms of Service",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/dpa",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Data Processing Agreement",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "text": "llms.txt",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/glossary/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "text": "glossary/llms.txt",
+        "status": 200,
+        "verdict": "ok"
+      }
+    ]
+  },
+  "structuredData": {
+    "jsonLd": [
+      {
+        "index": 1,
+        "ok": true,
+        "types": [
+          "Organization",
+          "Person",
+          "WebSite"
+        ],
+        "top": [
+          "Organization",
+          "WebSite"
+        ]
+      },
+      {
+        "index": 2,
+        "ok": true,
+        "types": [
+          "SoftwareApplication",
+          "Offer"
+        ],
+        "top": [
+          "SoftwareApplication"
+        ]
+      },
+      {
+        "index": 3,
+        "ok": true,
+        "types": [
+          "HowTo",
+          "HowToStep"
+        ],
+        "top": [
+          "HowTo"
+        ]
+      },
+      {
+        "index": 4,
+        "ok": true,
+        "types": [
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "top": [
+          "BreadcrumbList"
+        ]
+      },
+      {
+        "index": 5,
+        "ok": true,
+        "types": [
+          "FAQPage",
+          "Question",
+          "Answer"
+        ],
+        "top": [
+          "FAQPage"
+        ]
+      },
+      {
+        "index": 6,
+        "ok": true,
+        "types": [
+          "DefinedTermSet",
+          "DefinedTerm"
+        ],
+        "top": [
+          "DefinedTermSet"
+        ]
+      },
+      {
+        "index": 7,
+        "ok": true,
+        "types": [
+          "WebPage",
+          "WebSite",
+          "Thing"
+        ],
+        "top": [
+          "WebPage"
+        ]
+      }
+    ],
+    "microdata": [],
+    "rdfa": []
+  },
+  "reading": {
+    "passages": 17,
+    "cap": 26,
+    "waterfall": {
+      "raw": 48146,
+      "removed": 34177,
+      "kept": 13969,
+      "inPassagesUnique": 13595,
+      "notInPassages": 374,
+      "pastCap": 0
+    },
+    "render": null
+  },
+  "notChecked": [
+    {
+      "id": "zones",
+      "count": 4,
+      "cap": null,
+      "en": "4 sections drawn as one zone on the map",
+      "uk": "4 розділи на мапі показано однією зоною"
+    }
+  ],
+  "notMeasured": [
+    "core_web_vitals",
+    "google_index"
+  ],
+  "cannotSee": [
+    {
+      "en": "What real assistants (ChatGPT, Gemini, Perplexity) say about your brand and reviews",
+      "uk": "Що справжні асистенти (ChatGPT, Gemini, Perplexity) кажуть про ваш бренд і відгуки",
+      "links": [
+        {
+          "en": "Brandscope",
+          "uk": "Brandscope",
+          "href": "https://www.getlooploop.com/brandscope"
+        },
+        {
+          "en": "Reviewscope",
+          "uk": "Reviewscope",
+          "href": "https://www.getlooploop.com/reviewscope"
+        }
+      ]
+    },
+    {
+      "en": "How their answers change from day to day",
+      "uk": "Як їхні відповіді змінюються з дня на день",
+      "links": [
+        {
+          "en": "AI answer volatility",
+          "uk": "Мінливість відповідей ШІ",
+          "href": "https://www.getlooploop.com/ai-volatility"
+        }
+      ]
+    },
+    {
+      "en": "How AI groups your text by meaning (embeddings)",
+      "uk": "Як ШІ групує ваш текст за змістом (ембединги)",
+      "links": [
+        {
+          "en": "Vectorscope",
+          "uk": "Vectorscope",
+          "href": "https://www.getlooploop.com/vectorscope"
+        }
+      ]
+    },
+    {
+      "en": "Search Console data, real-user speed, sites over 50 pages",
+      "uk": "Дані Search Console, швидкість у реальних користувачів, сайти понад 50 сторінок",
+      "links": [
+        {
+          "en": "GetLoopLoop",
+          "uk": "GetLoopLoop",
+          "href": "https://www.getlooploop.com"
+        }
+      ]
+    }
+  ]
+}

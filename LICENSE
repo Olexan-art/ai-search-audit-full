@@ -1,0 +1,17 @@
+Copyright (c) 2026 Olexandr Tsyrkin. All rights reserved.
+
+This software and its documentation are proprietary. No part of it may be copied,
+modified, distributed, sublicensed or used to create derivative works without the
+prior written permission of the copyright holder.
+
+Third-party components keep their own licences:
+
+- skills/ai-search-audit-full/scripts/vendor/vectorscope/ is the Vectorscope skill's
+  code, under the MIT licence in that folder's LICENSE file (shipped in the release
+  zip as LICENSE-vectorscope).
+- The bundled dist/ scripts include cheerio and its dependencies, each under its own
+  licence, kept inline in the bundle.
+- The vendor favicons in skills/ai-search-audit-full/assets/favicons/ are described
+  in that folder's NOTICE.txt.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.

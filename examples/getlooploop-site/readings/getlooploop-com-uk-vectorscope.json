@@ -1,0 +1,3558 @@
+{
+  "schema": "getlooploop/ai-search-audit-reading@1",
+  "skillVersion": "2.101",
+  "createdAt": "2026-10-17T12:59:37.535Z",
+  "requestedInput": "https://www.getlooploop.com/uk/vectorscope",
+  "ok": true,
+  "reasonCode": "ok",
+  "fetch": {
+    "requestedUrl": "https://www.getlooploop.com/uk/vectorscope",
+    "finalUrl": "https://www.getlooploop.com/uk/vectorscope",
+    "saved": false,
+    "chain": [
+      {
+        "url": "https://www.getlooploop.com/uk/vectorscope",
+        "status": 200
+      }
+    ],
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "xRobotsTag": null,
+    "hsts": "max-age=63072000",
+    "contentLanguage": null,
+    "csp": null,
+    "xContentTypeOptions": null,
+    "referrerPolicy": null,
+    "xFrameOptions": null,
+    "contentEncoding": "br",
+    "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate",
+    "gzipBytes": 33632
+  },
+  "facts": {
+    "pageUrl": "https://www.getlooploop.com/uk/vectorscope",
+    "htmlBytes": 155022,
+    "head": {
+      "title": "Семантичне розбиття сторінки — Vectorscope",
+      "titleCount": 1,
+      "metaDescriptions": [
+        "Безкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26."
+      ],
+      "cspMeta": null,
+      "referrerMeta": "origin-when-cross-origin",
+      "robotsMeta": [
+        {
+          "name": "robots",
+          "content": "index, follow"
+        },
+        {
+          "name": "googlebot",
+          "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        }
+      ],
+      "viewport": "width=device-width, initial-scale=1",
+      "lang": "uk",
+      "hreflang": [
+        {
+          "hreflang": "en",
+          "href": "https://www.getlooploop.com/vectorscope",
+          "raw": "https://www.getlooploop.com/vectorscope"
+        },
+        {
+          "hreflang": "uk",
+          "href": "https://www.getlooploop.com/uk/vectorscope",
+          "raw": "https://www.getlooploop.com/uk/vectorscope"
+        },
+        {
+          "hreflang": "es",
+          "href": "https://www.getlooploop.com/es/vectorscope",
+          "raw": "https://www.getlooploop.com/es/vectorscope"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://www.getlooploop.com/vectorscope",
+          "raw": "https://www.getlooploop.com/vectorscope"
+        }
+      ],
+      "og": {
+        "og:title": "Семантичне розбиття сторінки — Vectorscope",
+        "og:description": "Безкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26.",
+        "og:url": "https://www.getlooploop.com/uk/vectorscope",
+        "og:site_name": "GetLoopLoop",
+        "og:locale": "uk_UA",
+        "og:image": "https://www.getlooploop.com/images/social/looploop-x.jpg",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Семантичне розбиття сторінки — Vectorscope | GetLoopLoop",
+        "og:type": "website"
+      },
+      "twitter": {
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Семантичне розбиття сторінки — Vectorscope",
+        "twitter:description": "Безкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26.",
+        "twitter:image": "https://www.getlooploop.com/images/social/looploop-x.jpg"
+      },
+      "scripts": {
+        "total": 42,
+        "external": 20,
+        "inline": 22,
+        "blocking": 1
+      }
+    },
+    "structured": {
+      "jsonLd": [
+        {
+          "index": 1,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://www.getlooploop.com/#organization",
+                "name": "GetLoopLoop",
+                "url": "https://www.getlooploop.com",
+                "logo": "https://www.getlooploop.com/brand/getlooploop-logo.jpg",
+                "description": "See which brands ChatGPT, Gemini, Claude and Perplexity name for your buyers' questions. Every answer stored as evidence, re-checked after each fix.",
+                "sameAs": [
+                  "https://x.com/Looploopnow",
+                  "https://discord.gg/Z6cRuhprMa"
+                ],
+                "founder": {
+                  "@type": "Person",
+                  "@id": "https://www.getlooploop.com/about#author",
+                  "name": "Olexandr",
+                  "url": "https://www.linkedin.com/in/olexandr-tsyrkin-07460539",
+                  "sameAs": [
+                    "https://www.linkedin.com/in/olexandr-tsyrkin-07460539"
+                  ]
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://www.getlooploop.com/#website",
+                "url": "https://www.getlooploop.com",
+                "name": "GetLoopLoop",
+                "description": "See which brands ChatGPT, Gemini, Claude and Perplexity name for your buyers' questions. Every answer stored as evidence, re-checked after each fix.",
+                "publisher": {
+                  "@id": "https://www.getlooploop.com/#organization"
+                },
+                "inLanguage": "en"
+              }
+            ]
+          },
+          "types": [
+            "Organization",
+            "Person",
+            "WebSite"
+          ],
+          "top": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        {
+          "index": 2,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "@id": "https://www.getlooploop.com/uk/vectorscope#tool",
+            "name": "Vectorscope",
+            "alternateName": "перевірка готовності контенту для ШІ",
+            "applicationCategory": "DeveloperApplication",
+            "applicationSubCategory": "SEO and retrieval analysis",
+            "operatingSystem": "Any (browser)",
+            "url": "https://www.getlooploop.com/uk/vectorscope",
+            "inLanguage": "uk",
+            "description": "Безкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26.",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "featureList": [
+              "Витягує читабельний текст URL і повідомляє, яку частину сторінки він становить",
+              "Розрізає текст на фрагменти за кожним h2, далі вікнами по 2000 символів із перекриттям 200",
+              "Векторизує кожен фрагмент і групує їх за змістом",
+              "Показує фрагменти, що не вміщуються в ліміт добування і не читаються ніколи",
+              "Відповідає на питання лише за фрагментами самої сторінки"
+            ],
+            "publisher": {
+              "@id": "https://www.getlooploop.com/#organization"
+            }
+          },
+          "types": [
+            "SoftwareApplication",
+            "Offer"
+          ],
+          "top": [
+            "SoftwareApplication"
+          ]
+        },
+        {
+          "index": 3,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "@id": "https://www.getlooploop.com/uk/vectorscope#howto",
+            "name": "Як перевірити, чи може ШІ-асистент прочитати вашу сторінку",
+            "description": "Проведіть один URL через ті самі витягування, чанкінг і векторизацію, які використовує система добування, і прочитайте результат.",
+            "inLanguage": "uk",
+            "totalTime": "PT1M",
+            "tool": {
+              "@id": "https://www.getlooploop.com/uk/vectorscope#tool"
+            },
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Вставте URL",
+                "text": "Вставте будь-яку публічну сторінку. Реєстрація не потрібна, і нічого не зберігається, крім самого зчитування.",
+                "url": "https://www.getlooploop.com/uk/vectorscope#run"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Прочитайте п’ять кроків",
+                "text": "Завантажено, витягнуто, поділено, векторизовано, згруповано. Кожен крок звітує про свій результат, тож сторінка, яка не проходить, зупиняється на названому кроці, а не «взагалі».",
+                "url": "https://www.getlooploop.com/uk/vectorscope#steps"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Виправте фрагменти, яких ніхто не читає",
+                "text": "Фрагменти за межами ліміту добування не доходять до моделі. Підніміть головне вище відсічення або розділіть сторінку.",
+                "url": "https://www.getlooploop.com/uk/vectorscope#reading"
+              }
+            ]
+          },
+          "types": [
+            "HowTo",
+            "HowToStep"
+          ],
+          "top": [
+            "HowTo"
+          ]
+        },
+        {
+          "index": 4,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "@id": "https://www.getlooploop.com/uk/vectorscope#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Головна",
+                "item": "https://www.getlooploop.com/uk"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Vectorscope",
+                "item": "https://www.getlooploop.com/uk/vectorscope"
+              }
+            ]
+          },
+          "types": [
+            "BreadcrumbList",
+            "ListItem"
+          ],
+          "top": [
+            "BreadcrumbList"
+          ]
+        },
+        {
+          "index": 5,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": "https://www.getlooploop.com/uk/vectorscope#faq",
+            "inLanguage": "uk",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Як AI Mode вибирає, які джерела цитувати?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ніхто поза Google не може назвати механізм, і ця сторінка не вдаватиме, що може. Спостережуване таке: цитовані сторінки зазвичай містять уривок, який відповідає на запит повністю й самотужки, а сторінки, чия відповідь розтягнута на кілька розділів, цитуються рідше, ніж заслуговує їхній зміст. Vectorscope показує, чи є такий уривок у вас."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Як потрапити в цитування AI Overviews?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Дайте відповіді власний уривок, під заголовком, який називає питання, достатньо високо на сторінці, щоб він пережив межу вибірки. Це не трюк — це форма, яку пошук винагороджує, і чи має її ваша сторінка, можна перевірити тут."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Це інструмент візуалізації ембедингів?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Так, для однієї сторінки за раз. Він ембедить кожен уривок URL і групує їх за змістом, тож видно, які частини сторінки поруч, а які стоять окремо. Він не малює корпус із тисяч документів."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Чим розбиття за заголовками відрізняється від семантичного?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Розбиття за заголовками ріже по власних заголовках сторінки; семантичне ріже там, де змінюється зміст, є там заголовок чи ні. Перше дешеве й іде за автором; друге вимагає ембедингу речень ще до першого розрізу."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Чи використовує Vectorscope семантичне розбиття?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Не для того, щоб різати сторінку. Vectorscope ріже по кожному h2 — h3 нового фрагмента не починає — і ділить довгий розділ на вікна у 2000 символів із перекриттям у 200. Семантичний крок іде після: кожен фрагмент отримує ембединг, близькі за змістом фрагменти групуються, і видно, де семантичне розбиття не погодилося б із вашими заголовками."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Ви зберігаєте сторінку, яку я перевіряю?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Прочитане тримається недовго, щоб ним можна було поділитися посиланням, а сама завантажена сторінка після формування звіту не зберігається. Акаунт не потрібен, тож і прив’язати це ні до чого."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Це справді безкоштовно?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Так, з обмеженням частоти, а не з платною стіною. Обмеження існує, бо кожне читання витрачає виклик ембедингів, і воно скидається у фіксованому вікні, про яке сторінка попереджає до того, як ви в нього впиретеся."
+                }
+              }
+            ]
+          },
+          "types": [
+            "FAQPage",
+            "Question",
+            "Answer"
+          ],
+          "top": [
+            "FAQPage"
+          ]
+        },
+        {
+          "index": 6,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "DefinedTermSet",
+            "@id": "https://www.getlooploop.com/uk/vectorscope#glossary",
+            "name": "Слова, вжиті на цій сторінці",
+            "inLanguage": "uk",
+            "hasDefinedTerm": [
+              {
+                "@type": "DefinedTerm",
+                "name": "Семантичне розбиття",
+                "description": "Поділ тексту на фрагменти там, де змінюється зміст, а не через рівну кількість символів чи на кожному заголовку. На цій сторінці крок за змістом — це групування вже вирізаних фрагментів, а не сам розріз.",
+                "inDefinedTermSet": "https://www.getlooploop.com/uk/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Фрагмент (chunk)",
+                "description": "Уривок сторінки, вирізаний так, щоб його можна було читати окремо. Системи пошуку зберігають і повертають фрагменти, а не цілі сторінки — тому структура сторінки важливіша за її довжину.",
+                "inDefinedTermSet": "https://www.getlooploop.com/uk/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Ембединг",
+                "description": "Список чисел, який стоїть за змістом уривка, так що два уривки про одне й те саме опиняються поруч. Порівняння ембедингів — це те, як пошук знаходить уривок без збігу слів.",
+                "inDefinedTermSet": "https://www.getlooploop.com/uk/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Косинусна близькість",
+                "description": "Міра того, наскільки два ембединги дивляться в один бік: 1 — тотожні, 0 — не пов’язані. Це число за кожним твердженням, що два уривки про одне й те саме.",
+                "inDefinedTermSet": "https://www.getlooploop.com/uk/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "RAG (пошук плюс генерація)",
+                "description": "Відповідь на питання спершу пошуком уривків у джерелі, а вже потім написанням із них, а не з пам’яті моделі. Кожна відповідь ШІ, що цитує сторінку, зробила це — і сторінкою, яку вона процитувала, був фрагмент.",
+                "inDefinedTermSet": "https://www.getlooploop.com/uk/vectorscope#glossary"
+              },
+              {
+                "@type": "DefinedTerm",
+                "name": "Видобуток (extraction)",
+                "description": "Перетворення завантаженого HTML на читабельний текст, який отримує модель, з відкиданням навігації, скриптів і шаблону. Того, що видобуток викинув, жодна модель не побачить.",
+                "inDefinedTermSet": "https://www.getlooploop.com/uk/vectorscope#glossary"
+              }
+            ]
+          },
+          "types": [
+            "DefinedTermSet",
+            "DefinedTerm"
+          ],
+          "top": [
+            "DefinedTermSet"
+          ]
+        },
+        {
+          "index": 7,
+          "ok": true,
+          "value": {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://www.getlooploop.com/uk/vectorscope",
+            "url": "https://www.getlooploop.com/uk/vectorscope",
+            "name": "Семантичне розбиття сторінки — Vectorscope",
+            "description": "Безкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26.",
+            "inLanguage": "uk",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "GetLoopLoop",
+              "url": "https://www.getlooploop.com"
+            },
+            "mainEntity": {
+              "@id": "https://www.getlooploop.com/uk/vectorscope#tool"
+            },
+            "about": [
+              {
+                "@type": "Thing",
+                "name": "Semantic chunking"
+              },
+              {
+                "@type": "Thing",
+                "name": "Text embeddings"
+              },
+              {
+                "@type": "Thing",
+                "name": "Retrieval-augmented generation"
+              },
+              {
+                "@type": "Thing",
+                "name": "AI search visibility"
+              }
+            ],
+            "significantLink": [
+              "https://www.getlooploop.com/uk/methodology",
+              "https://www.getlooploop.com/notes"
+            ]
+          },
+          "types": [
+            "WebPage",
+            "WebSite",
+            "Thing"
+          ],
+          "top": [
+            "WebPage"
+          ]
+        }
+      ],
+      "microdata": [],
+      "rdfa": []
+    },
+    "headings": [
+      {
+        "level": 1,
+        "text": "Семантичне розбиття наочно: подивіться, що переживе подорож у векторний простір.",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 1,
+        "path": "div.mx-auto.w-full > section.grid.items-center > div.flex.min-w-0 > h1.pt-h1",
+        "glued": [],
+        "textContent": "Семантичне розбиття наочно: подивіться, що переживе подорож у векторний простір."
+      },
+      {
+        "level": 2,
+        "text": "Запускайте Vectorscope у своєму агенті для коду",
+        "hidden": false,
+        "furniture": "aside",
+        "overlay": false,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.min-w-0.flex-1 > h2#skill-banner"
+      },
+      {
+        "level": 2,
+        "text": "Що це означає?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 3,
+        "path": "div.md:pr-6 > div.flex.gap-4 > div.min-w-0 > h2.pt-h2.mb-1.5"
+      },
+      {
+        "level": 2,
+        "text": "Важливий фрагмент за лімітом?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 4,
+        "path": "div.md:px-6 > div.flex.gap-4 > div.min-w-0 > h2.pt-h2.mb-1.5"
+      },
+      {
+        "level": 2,
+        "text": "Моделі й ліміти пошуку різняться.",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 5,
+        "path": "div.md:pl-6 > div.flex.gap-4 > div.min-w-0 > h2.pt-h2.mb-1.5"
+      },
+      {
+        "level": 2,
+        "text": "Як читати свій результат",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#reading > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Фрагменти, які не доходять до індексу",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Коефіцієнт видобутку",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Групи, і що означає щільна група",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Фрагмент, який справді дістає питання",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 6,
+        "path": "section#reading > div.mt-8.grid > article > h3.text-[15px].font-semibold"
+      },
+      {
+        "level": 2,
+        "text": "Що таке семантичне розбиття на фрагменти?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#semantic-chunking > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Розбиття фіксованої довжини",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "section#semantic-chunking > div.mt-8.grid > article.pt-card.p-4 > h3.mt-1.text-[14.5px]"
+      },
+      {
+        "level": 3,
+        "text": "Розбиття з урахуванням заголовків",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "section#semantic-chunking > div.mt-8.grid > article.pt-card.p-4 > h3.mt-1.text-[14.5px]"
+      },
+      {
+        "level": 3,
+        "text": "Семантичне розбиття і чим воно відрізняється від групування",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 7,
+        "path": "section#semantic-chunking > div.mt-8.grid > article.pt-card.p-4 > h3.mt-1.text-[14.5px]"
+      },
+      {
+        "level": 2,
+        "text": "Чи готовий мій контент до пошуку з ШІ?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 8,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#readiness > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Що цей інструмент може вам сказати",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 8,
+        "path": "section#readiness > div.mt-8.grid > div.pt-card.pt-card--tone > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Чого він сказати не може",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 8,
+        "path": "section#readiness > div.mt-8.grid > div.pt-card.p-5 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 2,
+        "text": "Як перевірити RAG-конвеєр за допомогою Vectorscope",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 9,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#rag > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 2,
+        "text": "Для кого Vectorscope?",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#who > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 3,
+        "text": "Контент- і SEO-команди",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "section#who > div.mt-7.grid > article.pt-card.p-4 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Інженери, які будують RAG",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "section#who > div.mt-7.grid > article.pt-card.p-4 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 3,
+        "text": "Редактори, які перебудовують сторінку",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 10,
+        "path": "section#who > div.mt-7.grid > article.pt-card.p-4 > h3.text-[14.5px].font-semibold"
+      },
+      {
+        "level": 2,
+        "text": "Слова, вжиті на цій сторінці",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 11,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#glossary > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 2,
+        "text": "Читати далі",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "div.mx-auto.w-full > div.mt-12.space-y-14 > section#more > h2.max-w-3xl.text-balance"
+      },
+      {
+        "level": 2,
+        "text": "Питання, які про це ставлять",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "section.mt-12.grid > section#faq > div > h2.pt-h2.mb-3"
+      },
+      {
+        "level": 2,
+        "text": "Інші безкоштовні AI SEO інструменти",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "div.pt > div.mx-auto.w-full > section.mt-12.border-t > h2#other-tools"
+      },
+      {
+        "level": 2,
+        "text": "Чого це показати не може",
+        "hidden": false,
+        "furniture": null,
+        "overlay": false,
+        "zone": 12,
+        "path": "div.pt > div.mx-auto.w-full > div#limits > h2.pt-h2"
+      }
+    ],
+    "images": [],
+    "links": [
+      {
+        "url": "https://www.getlooploop.com/uk",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "GetLoopLoop",
+        "name": "Get Loop Loop",
+        "rel": "",
+        "imgs": 1,
+        "imgsEmptyAlt": 1,
+        "path": "div.marketing-root.min-h-screen > header.fixed.inset-x-0 > div.mx-auto.flex > a.flex.items-center",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/free-tools",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Free tools",
+        "name": "Free tools",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/glossary",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Glossary",
+        "name": "Glossary",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/skills",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Skills",
+        "name": "Skills",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/news",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "News",
+        "name": "News",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/notes",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Notes",
+        "name": "Notes",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk",
+        "internal": true,
+        "zone": 0,
+        "hidden": false,
+        "text": "Головна",
+        "name": "Головна",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "nav.mb-6 > ol.flex.flex-wrap > li.flex.items-center > a.transition.hover:text-gll-cyan",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 2,
+        "hidden": false,
+        "text": "Докладніше про скіл",
+        "name": "Докладніше про скіл",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--primary",
+        "self": false
+      },
+      {
+        "url": "https://github.com/Olexan-art/getlooploop-skills",
+        "internal": false,
+        "zone": 2,
+        "hidden": false,
+        "text": "Код на GitHub",
+        "name": "Код на GitHub",
+        "rel": "noopener noreferrer",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--ghost",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/methodology",
+        "internal": true,
+        "zone": 5,
+        "hidden": false,
+        "text": "Джерела й методологія",
+        "name": "Джерела й методологія",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.flex.gap-4 > div.min-w-0 > div.pt-body > a.mt-1.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/patternscope",
+        "internal": true,
+        "zone": 10,
+        "hidden": false,
+        "text": "PatternScope",
+        "name": "PatternScope",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#who > p.pt-body.mt-5 > a.font-semibold.text-[var(--pt-accent)]",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/notes/what-is-semantic-chunking",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Що таке семантичне розбиття і чим воно жертвуєТри стратегії…",
+        "name": "Що таке семантичне розбиття і чим воно жертвує Три стратегі…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/notes/optimise-content-for-ai-search",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Як оптимізувати контент під пошук із ШІЩо справді змінює ша…",
+        "name": "Як оптимізувати контент під пошук із ШІ Що справді змінює ш…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/methodology",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "МетодологіяКожна формула за показниками вище, названа повні…",
+        "name": "Методологія Кожна формула за показниками вище, названа повн…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Скіл Vectorscope для Claude CodeТе саме прочитання локально…",
+        "name": "Скіл Vectorscope для Claude Code Те саме прочитання локальн…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/voicescope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Voicescope Почніть з одного ключа й дослідіть запитання, як…",
+        "name": "Voicescope Почніть з одного ключа й дослідіть запитання, як…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/brandscope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Brandscope Поставте трьом ШІ-асистентам запитання покупця п…",
+        "name": "Brandscope Поставте трьом ШІ-асистентам запитання покупця п…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/reviewscope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Reviewscope Запитайте трьох ШІ-асистентів, що кажуть відгук…",
+        "name": "Reviewscope Запитайте трьох ШІ-асистентів, що кажуть відгук…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/patternscope",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "PatternScope Вставте сторінку й побачте шаблонні звороти, п…",
+        "name": "PatternScope Вставте сторінку й побачте шаблонні звороти, п…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/ai-volatility",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Волатильність відповідей ШІ Щоденне зчитування того, наскіл…",
+        "name": "Волатильність відповідей ШІ Щоденне зчитування того, наскіл…",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/free-tools",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Усі безкоштовні інструменти",
+        "name": "Усі безкоштовні інструменти",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/invite",
+        "internal": true,
+        "zone": 12,
+        "hidden": false,
+        "text": "Попросити запрошення",
+        "name": "Попросити запрошення",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.pt > div.mx-auto.w-full > div#limits > a.mt-4.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://x.com/Looploopnow",
+        "internal": false,
+        "zone": 13,
+        "hidden": false,
+        "text": "X",
+        "name": "X",
+        "rel": "noreferrer",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://discord.gg/Z6cRuhprMa",
+        "internal": false,
+        "zone": 13,
+        "hidden": false,
+        "text": "Discord",
+        "name": "Discord",
+        "rel": "noreferrer",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/free-tools",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "All free toolsChoose a page, keyword or brand reading",
+        "name": "All free tools Choose a page, keyword or brand reading",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/vectorscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "VectorscopeSee a page as an assistant reads it",
+        "name": "Vectorscope See a page as an assistant reads it",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": true
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Vectorscope skillThe same reading inside Claude Code",
+        "name": "Vectorscope skill The same reading inside Claude Code",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/voicescope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "VoicescopeSee how a keyword is asked out loud",
+        "name": "Voicescope See how a keyword is asked out loud",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/brandscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "BrandscopeSee what assistants say about a brand",
+        "name": "Brandscope See what assistants say about a brand",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/patternscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "PatternScopeSee where writing reads like a template",
+        "name": "PatternScope See where writing reads like a template",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/reviewscope",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "ReviewscopeSee what assistants say about your reviews",
+        "name": "Reviewscope See what assistants say about your reviews",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div.lg:col-span-2 > ul.mt-4.grid > li > a.group.block",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/questions",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Questions",
+        "name": "Questions",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/methodology",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Methodology",
+        "name": "Methodology",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/ai-model-usage",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "AI model usage",
+        "name": "AI model usage",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/ai-volatility",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "AI answer volatility",
+        "name": "AI answer volatility",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/skills",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Skills",
+        "name": "Skills",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/glossary",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Glossary",
+        "name": "Glossary",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/news",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "News",
+        "name": "News",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/notes",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Notes",
+        "name": "Notes",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/free-tools",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Free tools",
+        "name": "Free tools",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Legal hub",
+        "name": "Legal hub",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/privacy",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Privacy Policy",
+        "name": "Privacy Policy",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/terms",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Terms of Service",
+        "name": "Terms of Service",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/dpa",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "Data Processing Agreement",
+        "name": "Data Processing Agreement",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "llms.txt",
+        "name": "llms.txt",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "self": false
+      },
+      {
+        "url": "https://www.getlooploop.com/glossary/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "hidden": false,
+        "text": "glossary/llms.txt",
+        "name": "glossary/llms.txt",
+        "rel": "",
+        "imgs": 0,
+        "imgsEmptyAlt": 0,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "self": false
+      }
+    ],
+    "fragments": [],
+    "fragmentTotal": 0,
+    "fragmentCap": 5000,
+    "placeholders": [],
+    "removedHeaders": [
+      {
+        "path": "div.contents > div.marketing-root.min-h-screen > header.fixed.inset-x-0",
+        "hasH1": false,
+        "hasNav": true,
+        "banner": false,
+        "chars": 60,
+        "ledes": [],
+        "ledeCount": 0,
+        "ledeChars": 0,
+        "zone": 0
+      }
+    ],
+    "hiddenHeadings": [],
+    "hiddenChars": 0,
+    "visibleText": "Get Loop Loop Free tools Glossary Skills News Notes Dark Light Console Головна Vectorscope Безкоштовний інструмент Без акаунта Експериментальне Vectorscope Семантичне розбиття наочно: подивіться, що переживе подорож у векторний простір. Vectorscope — безкоштовний інструмент, що показує семантичне розбиття сторінки: він ріже один URL на фрагменти, які зберегла б пошукова система, групує їх за змістом і показує, скільки сторінки взагалі не доходить до індексу. Адреса сторінки Прочитати сторінку Спробувати приклад напр. signnow.com / electronic-signature tipalti.com / w9-form Безкоштовний ліміт на відвідувача, акаунт не потрібен. Нове · безкоштовно · відкритий код Запускайте Vectorscope у своєму агенті для коду Скіл Vectorscope дає Claude Code, Codex, opencode чи Hermes те саме розрізання і той самий ліміт у 26 уривків, а також дванадцять автоматичних перевірок, план переписування, тест запитами й порівняння сторінок — локально, без власних викликів моделей. Докладніше про скіл Код на GitHub Результат що машина справді читає розріз по h2, далі вікна по 2000 символів до 26 фрагментів / сторінку групування за змістом без акаунта 1 . Завантажено 2 . Вилучено 3 . Поділено 4 . Вектори 5 . Згруповано фрагментів прочитано місць зайнято з ліміту в 26 фрагментів унікального тексту в уривках, символів в уривках з перекриттям і вступом, символів символів за лімітом у межах ліміту за ним, не прочитано Вставте адресу вище. Сторінку розрізають на фрагменти по заголовках h2; ті, що в межах ліміту, прочитано, а те, що ліміт відрізав, — ні. Що це означає? Прочитання показує, які фрагменти вашої сторінки може отримати пошукова система і як вони групуються за змістом, — питання, яке ставить семантичне розбиття, поставлене вже вирізаним фрагментам. Це попередній погляд машини, а не гарантія того, що з ним зробить будь-який асистент. Важливий фрагмент за лімітом? Перенесіть його вище на сторінці або розділіть сторінку, щоб цей фрагмент мав власний бюджет. Це прочитання бере зі сторінки не більше 26 фрагментів. Моделі й ліміти пошуку різняться. Це не доводить, що будь-який асистент проіндексував сторінку. Кожна система ріже по-своєму — фіксованими вікнами, за заголовками чи через семантичне розбиття — і по-своєму вбудовує й обмежує; тут — конвеєр, яким працює продукт. Джерела й методологія Як читати свій результат Чотири показники вирішують, чи є сторінка читабельною для системи пошуку. Ось що кожен із них означає, коли він поганий. Фрагменти, які не доходять до індексу Система пошуку читає зі сторінки фіксовану кількість фрагментів, а решту ігнорує, тож усе нижче цієї межі невидиме, яким би добрим воно не було. Vectorscope застосовує ту саму межу, що й продукт, і називає фрагменти, які за неї вийшли. Якщо ваша відповідь, відмінність або FAQ лежать нижче межі, лікується це не додаванням слів, і семантичне розбиття тут теж не врятує: добре вирізаний фрагмент за межею однаково ніхто не читає. Підніміть цей фрагмент вище або розділіть сторінку, щоб він мав власний бюджет фрагментів. Коефіцієнт видобутку Коефіцієнт видобутку — це те, яка частина сторінки перетворилася на читабельний текст; низький означає, що більшість того, що ви випустили, була навігацією, шаблоном або розміткою, якої жодна модель не побачить. Довга сторінка з низьким коефіцієнтом — це коротка сторінка з погляду пошуку. Видобуток відбувається до будь-якого розбиття, і семантичне розбиття не виняток, тож утрачений тут текст утрачено для кожної стратегії. Типові причини, у порядку частоти: текст, який малює лише JavaScript; стаття, обгорнута такою кількістю обв’язки, що тіло становить меншість документа; і зображення, які несуть слова, відсутні в HTML. Групи, і що означає щільна група Групи — це семантична частина прочитання, найближча до того, що робить семантичне розбиття: фрагменти, які ембединг ставить поруч за змістом, під яким би заголовком вони не стояли. Одна велика група зазвичай означає, що сторінка каже одну річ багато разів. Для пошуку це читається як тонко, навіть якщо для редактора читається як ґрунтовно. Кілька дрібних груп по одному фрагменту — протилежна проблема: сторінка, що постійно змінює тему, не дає пошуку нічого цілісного для цитування. Фрагмент, який справді дістає питання Питання до сторінки повертає фрагменти, які на нього відповідають, за рангом, і лише з цієї сторінки — це найближче до того, щоб побачити, як модель вирішує, для чого ваша сторінка. Якщо повернений фрагмент не той, який ви б вибрали, сторінка організована не так, як ви думаєте. Це ще й найшвидший спосіб перевірити переписаний заголовок: змініть заголовок, прогоніть сторінку знову, задайте те саме питання. Що таке семантичне розбиття на фрагменти? Семантичне розбиття — це поділ сторінки на фрагменти там, де змінюється її зміст, а не кожні N символів чи на кожному заголовку. Vectorscope ріже інакше: по кожному h2, а далі вікнами фіксованої довжини; його семантичний крок іде після розрізу, коли фрагменти групуються за змістом. 01 Розбиття фіксованої довжини Розбиття фіксованої довжини ріже кожні N символів і є типовим у більшості конвеєрів, бо його тривіально написати. Воно ж ріже посередині речення, відділяє заголовок від відповіді під ним і робить фрагменти, які починаються з половини слова. Vectorscope застосовує його лише всередині довгого розділу: вікно у 2000 символів із перекриттям у 200, яке закінчується на межі речення, якщо вона досить близько. 02 Розбиття з урахуванням заголовків Розбиття з урахуванням заголовків використовує заголовки сторінки як лінії розрізу, тож фрагмент приходить разом із заголовком, який його називає. Це перший розріз Vectorscope, і робить його лише h2: h3 лишається всередині фрагмента свого h2, тож розділ із шести питань під h3 — це один фрагмент або кілька вікон одного. Це також означає, що текст ваших заголовків працює на пошук. Розділ «Огляд» не додає фрагменту нічого; розділ «Чи можна скасувати будь-коли?» додає саме питання. 03 Семантичне розбиття і чим воно відрізняється від групування Семантичне розбиття порівнює сусідні речення й ріже там, де зміст зсувається: фрагменти виходять самодостатніми, але спершу треба пройти ембедингом усю сторінку, ще до першого фрагмента. Vectorscope цього кроку не робить. Його семантична частина — групування: кожен фрагмент після розрізу отримує ембединг, а близькі за змістом фрагменти малюються однією групою. Тож карта ставить те саме питання, що й семантичне розбиття, — де закінчується одна думка? — але фрагментам, які вже вирізали ваші заголовки. Група через три розділи h2 каже, що заголовки розірвали одну думку; довгий розділ, чиї вікна потрапили у дві групи, каже, що під одним заголовком їх дві. Чи готовий мій контент до пошуку з ШІ? Ця сторінка відповідає на це питання для одного URL за раз, чесно — а це означає називати те, чого вона не бачить, так само ясно, як те, що бачить. Що цей інструмент може вам сказати Яка частина вашої сторінки взагалі стає читабельним текстом — коефіцієнтом, а не прикметником. Які саме фрагменти отримав би пошук, у порядку, з позначкою тих, що за межею. Які фрагменти мають спільну тему, коли їх згрупувати за змістом, — питання, яке ставить семантичне розбиття, поставлене вашій сторінці. Чи ваші фрагменти самодостатні, чи спираються на попередній, щоб мати сенс. Який фрагмент дістає справжнє питання з вашої сторінки, за її власними ембедингами. Чи сторінка сама просить не індексувати її — директива noindex повідомляється, а не ігнорується. Чого він сказати не може Чи має конкретний асистент вашу сторінку у своєму індексі. Цього не бачить ніхто поза тими компаніями. Як модель ранжує вашу сторінку проти сторінки конкурента. Для цього потрібен корпус обох — а це продукт, не демо. Чи вас цитують у відповіді сьогодні. Це вимір у часі за промтами, які ви вибрали, а не властивість однієї сторінки. Як перевірити RAG-конвеєр за допомогою Vectorscope Якщо ви будуєте пошук, а не контент, ця сторінка — референсна реалізація, яку можна навести на будь-який URL секунд за двадцять. 1 Прогоніть сторінку, яку вже індексуєте, і порівняйте межі фрагментів зі своїм чанкером — хай то фіксовані вікна, заголовки чи семантичне розбиття. 2 Подивіться на коефіцієнт видобутку: якщо ваш нижчий на тому ж URL, ваш екстрактор викидає тіло тексту, а не обв’язку. 3 Задайте сторінці питання, відповідь на яке знаєте, і перевірте, чи верхній фрагмент той, що її містить. 4 Прогоніть завідомо задовгу сторінку. Фрагменти за межею — це ті, до яких ваш власний top-k теж не дійде. Чанкер (розрізи по h2, далі вікна у 2000 символів із перекриттям у 200), модель ембедингів і межа тут — ті самі, що продукт запускає у продакшені. Демо на спрощеному конвеєрі лестило б тому конвеєру, який воно існує демонструвати. Для кого Vectorscope? Vectorscope — для всіх, чию сторінку читатимуть фрагментами: для тих, хто її пише, і для тих, хто будує пошук, що її читає. Обидва отримують те саме прочитання: розріз, ліміт і питання, яке ставить семантичне розбиття, — які фрагменти належать одне до одного. Контент- і SEO-команди Щоб перевірити, що відповідь, заради якої існує сторінка, потрапляє в один фрагмент, який пошук може процитувати, — у межах ліміту й під заголовком, що її називає. Інженери, які будують RAG Щоб мати еталонне прочитання будь-якого URL і звірити з ним свій чанкер — хай він ріже фіксованими вікнами, за заголовками чи робить семантичне розбиття. Редактори, які перебудовують сторінку Щоб вирішити, де має стояти заголовок: групи показують, які розділи мають спільну тему, а який розділ насправді два. Коли фрагменти на місці, далі — слова всередині них: PatternScope читає чернетку й показує шаблонні звороти та повторювані форми речень, на які реагує читач. Слова, вжиті на цій сторінці Терміни, на які спирається ця сторінка, кожен визначений один раз, бо сторінка, яка вживає їх без визначення, — це сторінка, яку асистент нікому не пояснить. Семантичне розбиття Поділ тексту на фрагменти там, де змінюється зміст, а не через рівну кількість символів чи на кожному заголовку. На цій сторінці крок за змістом — це групування вже вирізаних фрагментів, а не сам розріз. Фрагмент (chunk) Уривок сторінки, вирізаний так, щоб його можна було читати окремо. Системи пошуку зберігають і повертають фрагменти, а не цілі сторінки — тому структура сторінки важливіша за її довжину. Ембединг Список чисел, який стоїть за змістом уривка, так що два уривки про одне й те саме опиняються поруч. Порівняння ембедингів — це те, як пошук знаходить уривок без збігу слів. Косинусна близькість Міра того, наскільки два ембединги дивляться в один бік: 1 — тотожні, 0 — не пов’язані. Це число за кожним твердженням, що два уривки про одне й те саме. RAG (пошук плюс генерація) Відповідь на питання спершу пошуком уривків у джерелі, а вже потім написанням із них, а не з пам’яті моделі. Кожна відповідь ШІ, що цитує сторінку, зробила це — і сторінкою, яку вона процитувала, був фрагмент. Видобуток (extraction) Перетворення завантаженого HTML на читабельний текст, який отримує модель, з відкиданням навігації, скриптів і шаблону. Того, що видобуток викинув, жодна модель не побачить. Читати далі Довші відповіді на питання, які ця сторінка може лише підсумувати. Що таке семантичне розбиття і чим воно жертвує Три стратегії поруч, на одній сторінці. Як оптимізувати контент під пошук із ШІ Що справді змінює шанси уривка бути знайденим. Методологія Кожна формула за показниками вище, названа повністю. Скіл Vectorscope для Claude Code Те саме прочитання локально в Claude Code, із джерелами. Питання, які про це ставлять Як AI Mode вибирає, які джерела цитувати? Ніхто поза Google не може назвати механізм, і ця сторінка не вдаватиме, що може. Спостережуване таке: цитовані сторінки зазвичай містять уривок, який відповідає на запит повністю й самотужки, а сторінки, чия відповідь розтягнута на кілька розділів, цитуються рідше, ніж заслуговує їхній зміст. Vectorscope показує, чи є такий уривок у вас. Як потрапити в цитування AI Overviews? Дайте відповіді власний уривок, під заголовком, який називає питання, достатньо високо на сторінці, щоб він пережив межу вибірки. Це не трюк — це форма, яку пошук винагороджує, і чи має її ваша сторінка, можна перевірити тут. Це інструмент візуалізації ембедингів? Так, для однієї сторінки за раз. Він ембедить кожен уривок URL і групує їх за змістом, тож видно, які частини сторінки поруч, а які стоять окремо. Він не малює корпус із тисяч документів. Чим розбиття за заголовками відрізняється від семантичного? Розбиття за заголовками ріже по власних заголовках сторінки; семантичне ріже там, де змінюється зміст, є там заголовок чи ні. Перше дешеве й іде за автором; друге вимагає ембедингу речень ще до першого розрізу. Чи використовує Vectorscope семантичне розбиття? Не для того, щоб різати сторінку. Vectorscope ріже по кожному h2 — h3 нового фрагмента не починає — і ділить довгий розділ на вікна у 2000 символів із перекриттям у 200. Семантичний крок іде після: кожен фрагмент отримує ембединг, близькі за змістом фрагменти групуються, і видно, де семантичне розбиття не погодилося б із вашими заголовками. Ви зберігаєте сторінку, яку я перевіряю? Прочитане тримається недовго, щоб ним можна було поділитися посиланням, а сама завантажена сторінка після формування звіту не зберігається. Акаунт не потрібен, тож і прив’язати це ні до чого. Це справді безкоштовно? Так, з обмеженням частоти, а не з платною стіною. Обмеження існує, бо кожне читання витрачає виклик ембедингів, і воно скидається у фіксованому вікні, про яке сторінка попереджає до того, як ви в нього впиретеся. Зупинити рух Інші безкоштовні AI SEO інструменти Voicescope Почніть з одного ключа й дослідіть запитання, які людина може поставити ШІ-асистенту в реальних контекстах. Brandscope Поставте трьом ШІ-асистентам запитання покупця про бренд і зіставте відповіді з власною сторінкою бренду. Reviewscope Запитайте трьох ШІ-асистентів, що кажуть відгуки про бренд — спершу не називаючи платформи, потім називаючи всі дванадцять — і побачте, які рейтинги вони називають без джерела. PatternScope Вставте сторінку й побачте шаблонні звороти, повторені форми речень і непідкріплені заявки. Це не детектор ШІ. Волатильність відповідей ШІ Щоденне зчитування того, наскільки відповіді асистентів зсунулися з учора, щоб падіння вашої видимості можна було читати разом із днем, у який воно сталося. Усі безкоштовні інструменти Чого це показати не може Одна сторінка сама по собі. Чи відповідає вона на питання, які люди справді ставлять асистентам, як вона стоїть проти сторінки конкурента на ту саму тему, і для яких тем у вас сторінки немає взагалі — для цього потрібен корпус усього сайту, зміряний у часі. Попросити запрошення Get Loop Loop Find where a brand loses AI-search conversations. Close the gap. Prove it worked. X Discord Free tools All free tools Choose a page, keyword or brand reading Vectorscope See a page as an assistant reads it Vectorscope skill The same reading inside Claude Code Voicescope See how a keyword is asked out loud Brandscope See what assistants say about a brand PatternScope See where writing reads like a template Reviewscope See what assistants say about your reviews Read Questions Methodology AI model usage AI answer volatility Explore Skills Glossary News Notes Free tools Legal Legal hub Privacy Policy Terms of Service Data Processing Agreement © 2026 GetLoopLoop llms.txt glossary/llms.txt English Українська Español signal over noise",
+    "extras": {
+      "roots": [],
+      "nosnippet": {
+        "elements": 4,
+        "chars": 301
+      },
+      "icons": [
+        "https://www.getlooploop.com/favicon.ico",
+        "https://www.getlooploop.com/icon.png?c69525945aef8c93",
+        "https://www.getlooploop.com/apple-icon.png?99def00d99b8e227"
+      ],
+      "markdown": [],
+      "indexnow": [],
+      "mixed": [],
+      "mixedTotal": 0,
+      "trust": {
+        "about": true,
+        "contact": false,
+        "privacy": true,
+        "terms": true
+      },
+      "byline": false,
+      "visibleDates": [],
+      "hasArticleElement": true
+    },
+    "zones": [
+      {
+        "id": 0,
+        "kind": "header",
+        "label": null,
+        "headings": [],
+        "chars": 93,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": true,
+        "hasNav": true,
+        "merged": 0
+      },
+      {
+        "id": 1,
+        "kind": "hero",
+        "label": "Семантичне розбиття наочно: подивіться, що переживе подорож у векторний простір.",
+        "headings": [
+          "Семантичне розбиття наочно: подивіться, що переживе подорож у векторний простір."
+        ],
+        "chars": 1116,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 2,
+        "kind": "aside",
+        "label": null,
+        "headings": [
+          "Запускайте Vectorscope у своєму агенті для коду"
+        ],
+        "chars": 369,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 3,
+        "kind": "section",
+        "label": "Що це означає?",
+        "headings": [
+          "Що це означає?"
+        ],
+        "chars": 295,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 4,
+        "kind": "section",
+        "label": "Важливий фрагмент за лімітом?",
+        "headings": [
+          "Важливий фрагмент за лімітом?"
+        ],
+        "chars": 180,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 5,
+        "kind": "section",
+        "label": "Моделі й ліміти пошуку різняться.",
+        "headings": [
+          "Моделі й ліміти пошуку різняться."
+        ],
+        "chars": 284,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 6,
+        "kind": "section",
+        "label": "Як читати свій результат",
+        "headings": [
+          "Як читати свій результат"
+        ],
+        "chars": 2317,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 7,
+        "kind": "section",
+        "label": "Що таке семантичне розбиття на фрагменти?",
+        "headings": [
+          "Що таке семантичне розбиття на фрагменти?"
+        ],
+        "chars": 2003,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 8,
+        "kind": "section",
+        "label": "Чи готовий мій контент до пошуку з ШІ?",
+        "headings": [
+          "Чи готовий мій контент до пошуку з ШІ?"
+        ],
+        "chars": 1146,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 9,
+        "kind": "section",
+        "label": "Як перевірити RAG-конвеєр за допомогою Vectorscope",
+        "headings": [
+          "Як перевірити RAG-конвеєр за допомогою Vectorscope"
+        ],
+        "chars": 893,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 10,
+        "kind": "section",
+        "label": "Для кого Vectorscope?",
+        "headings": [
+          "Для кого Vectorscope?"
+        ],
+        "chars": 962,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 11,
+        "kind": "section",
+        "label": "Слова, вжиті на цій сторінці",
+        "headings": [
+          "Слова, вжиті на цій сторінці"
+        ],
+        "chars": 1406,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      },
+      {
+        "id": 12,
+        "kind": "more",
+        "label": "Читати далі",
+        "headings": [
+          "Читати далі",
+          "Питання, які про це ставлять",
+          "Інші безкоштовні AI SEO інструменти",
+          "Чого це показати не може"
+        ],
+        "chars": 3837,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 4
+      },
+      {
+        "id": 13,
+        "kind": "footer",
+        "label": null,
+        "headings": [],
+        "chars": 752,
+        "hidden": false,
+        "panels": 0,
+        "inHeader": false,
+        "removedByCleaner": false,
+        "hasNav": false,
+        "merged": 0
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Семантичне розбиття сторінки — Vectorscope",
+        "text": "Семантичне розбиття сторінки — Vectorscope\nСемантичне розбиття наочно: подивіться, що переживе подорож у векторний простір.\nБезкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26.",
+        "intro": true
+      },
+      {
+        "heading": null,
+        "text": "Безкоштовний інструмент Без акаунта Експериментальне\nVectorscope\nСемантичне розбиття наочно: подивіться, що переживе подорож у векторний простір.\nVectorscope — безкоштовний інструмент, що показує семантичне розбиття сторінки: він ріже один URL на фрагменти, які зберегла б пошукова система, групує їх за змістом і показує, скільки сторінки взагалі не доходить до індексу.\nнапр.\nБезкоштовний ліміт на відвідувача, акаунт не потрібен.\nРезультат\nщо машина справді читає розріз по h2, далі вікна по 2000 символів до 26 фрагментів / сторінку групування за змістом без акаунта\n1. Завантажено\n2. Вилучено\n3. Поділено\n4. Вектори\n5. Згруповано\nфрагментів прочитано\nмісць зайнято з ліміту в 26 фрагментів\nунікального тексту в уривках, символів\nв уривках з перекриттям і вступом, символів\nсимволів за лімітом\nВставте адресу вище. Сторінку розрізають на фрагменти по заголовках h2; ті, що в межах ліміту, прочитано, а те, що ліміт відрізав, — ні."
+      },
+      {
+        "heading": "Що це означає?",
+        "text": "Прочитання показує, які фрагменти вашої сторінки може отримати пошукова система і як вони групуються за змістом, — питання, яке ставить семантичне розбиття, поставлене вже вирізаним фрагментам. Це попередній погляд машини, а не гарантія того, що з ним зробить будь-який асистент."
+      },
+      {
+        "heading": "Важливий фрагмент за лімітом?",
+        "text": "Перенесіть його вище на сторінці або розділіть сторінку, щоб цей фрагмент мав власний бюджет. Це прочитання бере зі сторінки не більше 26 фрагментів."
+      },
+      {
+        "heading": "Моделі й ліміти пошуку різняться.",
+        "text": "Це не доводить, що будь-який асистент проіндексував сторінку. Кожна система ріже по-своєму — фіксованими вікнами, за заголовками чи через семантичне розбиття — і по-своєму вбудовує й обмежує; тут — конвеєр, яким працює продукт. Джерела й методологія"
+      },
+      {
+        "heading": "Як читати свій результат",
+        "text": "Чотири показники вирішують, чи є сторінка читабельною для системи пошуку. Ось що кожен із них означає, коли він поганий.\nФрагменти, які не доходять до індексу\nСистема пошуку читає зі сторінки фіксовану кількість фрагментів, а решту ігнорує, тож усе нижче цієї межі невидиме, яким би добрим воно не було. Vectorscope застосовує ту саму межу, що й продукт, і називає фрагменти, які за неї вийшли.\nЯкщо ваша відповідь, відмінність або FAQ лежать нижче межі, лікується це не додаванням слів, і семантичне розбиття тут теж не врятує: добре вирізаний фрагмент за межею однаково ніхто не читає. Підніміть цей фрагмент вище або розділіть сторінку, щоб він мав власний бюджет фрагментів.\nКоефіцієнт видобутку\nКоефіцієнт видобутку — це те, яка частина сторінки перетворилася на читабельний текст; низький означає, що більшість того, що ви випустили, була навігацією, шаблоном або розміткою, якої жодна модель не побачить. Довга сторінка з низьким коефіцієнтом — це коротка сторінка з погляду пошуку.\nВидобуток відбувається до будь-якого розбиття, і семантичне розбиття не виняток, тож утрачений тут текст утрачено для кожної стратегії. Типові причини, у порядку частоти: текст, який малює лише JavaScript; стаття, обгорнута такою кількістю обв’язки, що тіло становить меншість документа; і зображення, які несуть слова, відсутні в HTML.\nГрупи, і що означає щільна група\nГрупи — це семантична частина прочитання, найближча до того, що робить семантичне розбиття: фрагменти, які ембединг ставить поруч за змістом, під яким би заголовком вони не стояли. Одна велика група зазвичай означає, що сторінка каже одну річ багато разів. Для пошуку це читається як тонко, навіть якщо для редактора читається як ґрунтовно.\nКілька дрібних груп по одному фрагменту — протилежна проблема: сторінка, що постійно змінює тему, не дає пошуку нічого цілісного для цитування.\nФрагмент, який справді дістає питання\nПитання до сторінки повертає фрагменти, які на нього відповідають, за рангом, і лише з цієї сторінки — це найближче до того, щоб побачити, як модель вирішує, для чого ваша сторінка. Якщо повернений фрагмент не той, який ви б вибрали, сторінка організована не так, як ви думаєте.\nЦе ще й найшвидший спосіб перевірити переписаний заголовок: змініть заголовок, прогоніть сторінку знову, задайте те саме питання."
+      },
+      {
+        "heading": "Що таке семантичне розбиття на фрагменти?",
+        "text": "Семантичне розбиття — це поділ сторінки на фрагменти там, де змінюється її зміст, а не кожні N символів чи на кожному заголовку. Vectorscope ріже інакше: по кожному h2, а далі вікнами фіксованої довжини; його семантичний крок іде після розрізу, коли фрагменти групуються за змістом.\n01 Розбиття фіксованої довжини\nРозбиття фіксованої довжини ріже кожні N символів і є типовим у більшості конвеєрів, бо його тривіально написати. Воно ж ріже посередині речення, відділяє заголовок від відповіді під ним і робить фрагменти, які починаються з половини слова.\nVectorscope застосовує його лише всередині довгого розділу: вікно у 2000 символів із перекриттям у 200, яке закінчується на межі речення, якщо вона досить близько.\n02 Розбиття з урахуванням заголовків\nРозбиття з урахуванням заголовків використовує заголовки сторінки як лінії розрізу, тож фрагмент приходить разом із заголовком, який його називає. Це перший розріз Vectorscope, і робить його лише h2: h3 лишається всередині фрагмента свого h2, тож розділ із шести питань під h3 — це один фрагмент або кілька вікон одного.\nЦе також означає, що текст ваших заголовків працює на пошук. Розділ «Огляд» не додає фрагменту нічого; розділ «Чи можна скасувати будь-коли?» додає саме питання.\n03 Семантичне розбиття і чим воно відрізняється від групування\nСемантичне розбиття порівнює сусідні речення й ріже там, де зміст зсувається: фрагменти виходять самодостатніми, але спершу треба пройти ембедингом усю сторінку, ще до першого фрагмента. Vectorscope цього кроку не робить. Його семантична частина — групування: кожен фрагмент після розрізу отримує ембединг, а близькі за змістом фрагменти малюються однією групою.\nТож карта ставить те саме питання, що й семантичне розбиття, — де закінчується одна думка? — але фрагментам, які вже вирізали ваші заголовки. Група через три розділи h2 каже, що заголовки розірвали одну думку; довгий розділ, чиї вікна потрапили у дві групи, каже, що під одним заголовком їх дві."
+      },
+      {
+        "heading": "Чи готовий мій контент до пошуку з ШІ?",
+        "text": "Ця сторінка відповідає на це питання для одного URL за раз, чесно — а це означає називати те, чого вона не бачить, так само ясно, як те, що бачить.\nЩо цей інструмент може вам сказати\nЯка частина вашої сторінки взагалі стає читабельним текстом — коефіцієнтом, а не прикметником.\nЯкі саме фрагменти отримав би пошук, у порядку, з позначкою тих, що за межею.\nЯкі фрагменти мають спільну тему, коли їх згрупувати за змістом, — питання, яке ставить семантичне розбиття, поставлене вашій сторінці.\nЧи ваші фрагменти самодостатні, чи спираються на попередній, щоб мати сенс.\nЯкий фрагмент дістає справжнє питання з вашої сторінки, за її власними ембедингами.\nЧи сторінка сама просить не індексувати її — директива noindex повідомляється, а не ігнорується.\nЧого він сказати не може\nЧи має конкретний асистент вашу сторінку у своєму індексі. Цього не бачить ніхто поза тими компаніями.\nЯк модель ранжує вашу сторінку проти сторінки конкурента. Для цього потрібен корпус обох — а це продукт, не демо.\nЧи вас цитують у відповіді сьогодні. Це вимір у часі за промтами, які ви вибрали, а не властивість однієї сторінки."
+      },
+      {
+        "heading": "Як перевірити RAG-конвеєр за допомогою Vectorscope",
+        "text": "Якщо ви будуєте пошук, а не контент, ця сторінка — референсна реалізація, яку можна навести на будь-який URL секунд за двадцять.\n1 Прогоніть сторінку, яку вже індексуєте, і порівняйте межі фрагментів зі своїм чанкером — хай то фіксовані вікна, заголовки чи семантичне розбиття.\n2 Подивіться на коефіцієнт видобутку: якщо ваш нижчий на тому ж URL, ваш екстрактор викидає тіло тексту, а не обв’язку.\n3 Задайте сторінці питання, відповідь на яке знаєте, і перевірте, чи верхній фрагмент той, що її містить.\n4 Прогоніть завідомо задовгу сторінку. Фрагменти за межею — це ті, до яких ваш власний top-k теж не дійде.\nЧанкер (розрізи по h2, далі вікна у 2000 символів із перекриттям у 200), модель ембедингів і межа тут — ті самі, що продукт запускає у продакшені. Демо на спрощеному конвеєрі лестило б тому конвеєру, який воно існує демонструвати."
+      },
+      {
+        "heading": "Для кого Vectorscope?",
+        "text": "Vectorscope — для всіх, чию сторінку читатимуть фрагментами: для тих, хто її пише, і для тих, хто будує пошук, що її читає. Обидва отримують те саме прочитання: розріз, ліміт і питання, яке ставить семантичне розбиття, — які фрагменти належать одне до одного.\nКонтент- і SEO-команди\nЩоб перевірити, що відповідь, заради якої існує сторінка, потрапляє в один фрагмент, який пошук може процитувати, — у межах ліміту й під заголовком, що її називає.\nІнженери, які будують RAG\nЩоб мати еталонне прочитання будь-якого URL і звірити з ним свій чанкер — хай він ріже фіксованими вікнами, за заголовками чи робить семантичне розбиття.\nРедактори, які перебудовують сторінку\nЩоб вирішити, де має стояти заголовок: групи показують, які розділи мають спільну тему, а який розділ насправді два.\nКоли фрагменти на місці, далі — слова всередині них: PatternScope читає чернетку й показує шаблонні звороти та повторювані форми речень, на які реагує читач."
+      },
+      {
+        "heading": "Слова, вжиті на цій сторінці",
+        "text": "Терміни, на які спирається ця сторінка, кожен визначений один раз, бо сторінка, яка вживає їх без визначення, — це сторінка, яку асистент нікому не пояснить.\nСемантичне розбиття\nПоділ тексту на фрагменти там, де змінюється зміст, а не через рівну кількість символів чи на кожному заголовку. На цій сторінці крок за змістом — це групування вже вирізаних фрагментів, а не сам розріз.\nФрагмент (chunk)\nУривок сторінки, вирізаний так, щоб його можна було читати окремо. Системи пошуку зберігають і повертають фрагменти, а не цілі сторінки — тому структура сторінки важливіша за її довжину.\nЕмбединг\nСписок чисел, який стоїть за змістом уривка, так що два уривки про одне й те саме опиняються поруч. Порівняння ембедингів — це те, як пошук знаходить уривок без збігу слів.\nКосинусна близькість\nМіра того, наскільки два ембединги дивляться в один бік: 1 — тотожні, 0 — не пов’язані. Це число за кожним твердженням, що два уривки про одне й те саме.\nRAG (пошук плюс генерація)\nВідповідь на питання спершу пошуком уривків у джерелі, а вже потім написанням із них, а не з пам’яті моделі. Кожна відповідь ШІ, що цитує сторінку, зробила це — і сторінкою, яку вона процитувала, був фрагмент.\nВидобуток (extraction)\nПеретворення завантаженого HTML на читабельний текст, який отримує модель, з відкиданням навігації, скриптів і шаблону. Того, що видобуток викинув, жодна модель не побачить."
+      },
+      {
+        "heading": "Читати далі",
+        "text": "Довші відповіді на питання, які ця сторінка може лише підсумувати.\nЩо таке семантичне розбиття і чим воно жертвує Три стратегії поруч, на одній сторінці. Як оптимізувати контент під пошук із ШІ Що справді змінює шанси уривка бути знайденим. Методологія Кожна формула за показниками вище, названа повністю. Скіл Vectorscope для Claude Code Те саме прочитання локально в Claude Code, із джерелами."
+      },
+      {
+        "heading": "Питання, які про це ставлять",
+        "text": "Як AI Mode вибирає, які джерела цитувати?\nНіхто поза Google не може назвати механізм, і ця сторінка не вдаватиме, що може. Спостережуване таке: цитовані сторінки зазвичай містять уривок, який відповідає на запит повністю й самотужки, а сторінки, чия відповідь розтягнута на кілька розділів, цитуються рідше, ніж заслуговує їхній зміст. Vectorscope показує, чи є такий уривок у вас.\nЯк потрапити в цитування AI Overviews?\nДайте відповіді власний уривок, під заголовком, який називає питання, достатньо високо на сторінці, щоб він пережив межу вибірки. Це не трюк — це форма, яку пошук винагороджує, і чи має її ваша сторінка, можна перевірити тут.\nЦе інструмент візуалізації ембедингів?\nТак, для однієї сторінки за раз. Він ембедить кожен уривок URL і групує їх за змістом, тож видно, які частини сторінки поруч, а які стоять окремо. Він не малює корпус із тисяч документів.\nЧим розбиття за заголовками відрізняється від семантичного?\nРозбиття за заголовками ріже по власних заголовках сторінки; семантичне ріже там, де змінюється зміст, є там заголовок чи ні. Перше дешеве й іде за автором; друге вимагає ембедингу речень ще до першого розрізу.\nЧи використовує Vectorscope семантичне розбиття?\nНе для того, щоб різати сторінку. Vectorscope ріже по кожному h2 — h3 нового фрагмента не починає — і ділить довгий розділ на вікна у 2000 символів із перекриттям у 200. Семантичний крок іде після: кожен фрагмент отримує ембединг, близькі за змістом фрагменти групуються, і видно, де семантичне розбиття не погодилося б із вашими заголовками.\nВи зберігаєте сторінку, яку я перевіряю?\nПрочитане тримається недовго, щоб ним можна було поділитися посиланням, а сама завантажена сторінка після формування звіту не зберігається. Акаунт не потрібен, тож і прив’язати це ні до чого.\nЦе справді безкоштовно?\nТак, з обмеженням частоти, а не з платною стіною. Обмеження існує, бо кожне читання витрачає виклик ембедингів, і воно скидається у фіксованому вікні, про яке сторінка попереджає до того, як ви в нього впиретеся."
+      },
+      {
+        "heading": "Інші безкоштовні AI SEO інструменти",
+        "text": "Voicescope Почніть з одного ключа й дослідіть запитання, які людина може поставити ШІ-асистенту в реальних контекстах.\nBrandscope Поставте трьом ШІ-асистентам запитання покупця про бренд і зіставте відповіді з власною сторінкою бренду.\nReviewscope Запитайте трьох ШІ-асистентів, що кажуть відгуки про бренд — спершу не називаючи платформи, потім називаючи всі дванадцять — і побачте, які рейтинги вони називають без джерела.\nPatternScope Вставте сторінку й побачте шаблонні звороти, повторені форми речень і непідкріплені заявки. Це не детектор ШІ.\nВолатильність відповідей ШІ Щоденне зчитування того, наскільки відповіді асистентів зсунулися з учора, щоб падіння вашої видимості можна було читати разом із днем, у який воно сталося.\nУсі безкоштовні інструменти"
+      },
+      {
+        "heading": "Чого це показати не може",
+        "text": "Одна сторінка сама по собі. Чи відповідає вона на питання, які люди справді ставлять асистентам, як вона стоїть проти сторінки конкурента на ту саму тему, і для яких тем у вас сторінки немає взагалі — для цього потрібен корпус усього сайту, зміряний у часі.\nПопросити запрошення"
+      }
+    ]
+  },
+  "vs": {
+    "page": {
+      "url": "https://www.getlooploop.com/uk/vectorscope",
+      "requestedUrl": "https://www.getlooploop.com/uk/vectorscope",
+      "title": "Семантичне розбиття сторінки — Vectorscope",
+      "wordCount": 2127,
+      "chunksIndexed": 17,
+      "charsIndexed": 14223,
+      "charsUnread": 0,
+      "capReached": false,
+      "noindex": false,
+      "headings": 14,
+      "chunkCap": 26,
+      "bodyChars": 14011,
+      "h1": [
+        "Семантичне розбиття наочно: подивіться, що переживе подорож у векторний простір."
+      ],
+      "metaDescription": "Безкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26."
+    },
+    "passages": [
+      {
+        "index": 0,
+        "heading": "Семантичне розбиття сторінки — Vectorscope",
+        "rawHeading": "Семантичне розбиття сторінки — Vectorscope",
+        "contentRole": "main",
+        "charCount": 269,
+        "text": "Семантичне розбиття сторінки — Vectorscope\nСемантичне розбиття наочно: подивіться, що переживе подорож у векторний простір.\nБезкоштовно: вставте URL і побачте семантичне розбиття сторінки — уривки, які бере ретривер, їхні групи за змістом і що не вміщується в ліміт 26."
+      },
+      {
+        "index": 1,
+        "heading": null,
+        "rawHeading": null,
+        "contentRole": "main",
+        "charCount": 934,
+        "text": "Безкоштовний інструмент Без акаунта Експериментальне\nVectorscope\nСемантичне розбиття наочно: подивіться, що переживе подорож у векторний простір.\nVectorscope — безкоштовний інструмент, що показує семантичне розбиття сторінки: він ріже один URL на фрагменти, які зберегла б пошукова система, групує їх за змістом і показує, скільки сторінки взагалі не доходить до індексу.\nнапр.\nБезкоштовний ліміт на відвідувача, акаунт не потрібен.\nРезультат\nщо машина справді читає розріз по h2, далі вікна по 2000 символів до 26 фрагментів / сторінку групування за змістом без акаунта\n1. Завантажено\n2. Вилучено\n3. Поділено\n4. Вектори\n5. Згруповано\nфрагментів прочитано\nмісць зайнято з ліміту в 26 фрагментів\nунікального тексту в уривках, символів\nв уривках з перекриттям і вступом, символів\nсимволів за лімітом\nВставте адресу вище. Сторінку розрізають на фрагменти по заголовках h2; ті, що в межах ліміту, прочитано, а те, що ліміт відрізав, — ні."
+      },
+      {
+        "index": 2,
+        "heading": "Що це означає?",
+        "rawHeading": "Що це означає?",
+        "contentRole": "main",
+        "charCount": 279,
+        "text": "Прочитання показує, які фрагменти вашої сторінки може отримати пошукова система і як вони групуються за змістом, — питання, яке ставить семантичне розбиття, поставлене вже вирізаним фрагментам. Це попередній погляд машини, а не гарантія того, що з ним зробить будь-який асистент."
+      },
+      {
+        "index": 3,
+        "heading": "Важливий фрагмент за лімітом?",
+        "rawHeading": "Важливий фрагмент за лімітом?",
+        "contentRole": "main",
+        "charCount": 149,
+        "text": "Перенесіть його вище на сторінці або розділіть сторінку, щоб цей фрагмент мав власний бюджет. Це прочитання бере зі сторінки не більше 26 фрагментів."
+      },
+      {
+        "index": 4,
+        "heading": "Моделі й ліміти пошуку різняться.",
+        "rawHeading": "Моделі й ліміти пошуку різняться.",
+        "contentRole": "main",
+        "charCount": 249,
+        "text": "Це не доводить, що будь-який асистент проіндексував сторінку. Кожна система ріже по-своєму — фіксованими вікнами, за заголовками чи через семантичне розбиття — і по-своєму вбудовує й обмежує; тут — конвеєр, яким працює продукт. Джерела й методологія"
+      },
+      {
+        "index": 5,
+        "heading": "Як читати свій результат",
+        "rawHeading": "Як читати свій результат",
+        "contentRole": "main",
+        "charCount": 1998,
+        "text": "Чотири показники вирішують, чи є сторінка читабельною для системи пошуку. Ось що кожен із них означає, коли він поганий. Фрагменти, які не доходять до індексу Система пошуку читає зі сторінки фіксовану кількість фрагментів, а решту ігнорує, тож усе нижче цієї межі невидиме, яким би добрим воно не було. Vectorscope застосовує ту саму межу, що й продукт, і називає фрагменти, які за неї вийшли. Якщо ваша відповідь, відмінність або FAQ лежать нижче межі, лікується це не додаванням слів, і семантичне розбиття тут теж не врятує: добре вирізаний фрагмент за межею однаково ніхто не читає. Підніміть цей фрагмент вище або розділіть сторінку, щоб він мав власний бюджет фрагментів. Коефіцієнт видобутку Коефіцієнт видобутку — це те, яка частина сторінки перетворилася на читабельний текст; низький означає, що більшість того, що ви випустили, була навігацією, шаблоном або розміткою, якої жодна модель не побачить. Довга сторінка з низьким коефіцієнтом — це коротка сторінка з погляду пошуку. Видобуток відбувається до будь-якого розбиття, і семантичне розбиття не виняток, тож утрачений тут текст утрачено для кожної стратегії. Типові причини, у порядку частоти: текст, який малює лише JavaScript; стаття, обгорнута такою кількістю обв’язки, що тіло становить меншість документа; і зображення, які несуть слова, відсутні в HTML. Групи, і що означає щільна група Групи — це семантична частина прочитання, найближча до того, що робить семантичне розбиття: фрагменти, які ембединг ставить поруч за змістом, під яким би заголовком вони не стояли. Одна велика група зазвичай означає, що сторінка каже одну річ багато разів. Для пошуку це читається як тонко, навіть якщо для редактора читається як ґрунтовно. Кілька дрібних груп по одному фрагменту — протилежна проблема: сторінка, що постійно змінює тему, не дає пошуку нічого цілісного для цитування. Фрагмент, який справді дістає питання Питання до сторінки повертає фрагменти, які на нього відповідають, за рангом, і лише з цієї сторінки — це найближче"
+      },
+      {
+        "index": 6,
+        "heading": "Як читати свій результат",
+        "rawHeading": "Як читати свій результат",
+        "contentRole": "main",
+        "charCount": 489,
+        "text": "дає пошуку нічого цілісного для цитування. Фрагмент, який справді дістає питання Питання до сторінки повертає фрагменти, які на нього відповідають, за рангом, і лише з цієї сторінки — це найближче до того, щоб побачити, як модель вирішує, для чого ваша сторінка. Якщо повернений фрагмент не той, який ви б вибрали, сторінка організована не так, як ви думаєте. Це ще й найшвидший спосіб перевірити переписаний заголовок: змініть заголовок, прогоніть сторінку знову, задайте те саме питання."
+      },
+      {
+        "index": 7,
+        "heading": "Що таке семантичне розбиття на фрагменти?",
+        "rawHeading": "Що таке семантичне розбиття на фрагменти?",
+        "contentRole": "main",
+        "charCount": 1960,
+        "text": "Семантичне розбиття — це поділ сторінки на фрагменти там, де змінюється її зміст, а не кожні N символів чи на кожному заголовку. Vectorscope ріже інакше: по кожному h2, а далі вікнами фіксованої довжини; його семантичний крок іде після розрізу, коли фрагменти групуються за змістом.\n01 Розбиття фіксованої довжини\nРозбиття фіксованої довжини ріже кожні N символів і є типовим у більшості конвеєрів, бо його тривіально написати. Воно ж ріже посередині речення, відділяє заголовок від відповіді під ним і робить фрагменти, які починаються з половини слова.\nVectorscope застосовує його лише всередині довгого розділу: вікно у 2000 символів із перекриттям у 200, яке закінчується на межі речення, якщо вона досить близько.\n02 Розбиття з урахуванням заголовків\nРозбиття з урахуванням заголовків використовує заголовки сторінки як лінії розрізу, тож фрагмент приходить разом із заголовком, який його називає. Це перший розріз Vectorscope, і робить його лише h2: h3 лишається всередині фрагмента свого h2, тож розділ із шести питань під h3 — це один фрагмент або кілька вікон одного.\nЦе також означає, що текст ваших заголовків працює на пошук. Розділ «Огляд» не додає фрагменту нічого; розділ «Чи можна скасувати будь-коли?» додає саме питання.\n03 Семантичне розбиття і чим воно відрізняється від групування\nСемантичне розбиття порівнює сусідні речення й ріже там, де зміст зсувається: фрагменти виходять самодостатніми, але спершу треба пройти ембедингом усю сторінку, ще до першого фрагмента. Vectorscope цього кроку не робить. Його семантична частина — групування: кожен фрагмент після розрізу отримує ембединг, а близькі за змістом фрагменти малюються однією групою.\nТож карта ставить те саме питання, що й семантичне розбиття, — де закінчується одна думка? — але фрагментам, які вже вирізали ваші заголовки. Група через три розділи h2 каже, що заголовки розірвали одну думку; довгий розділ, чиї вікна потрапили у дві групи, каже, що під одним заголовком їх дві."
+      },
+      {
+        "index": 8,
+        "heading": "Чи готовий мій контент до пошуку з ШІ?",
+        "rawHeading": "Чи готовий мій контент до пошуку з ШІ?",
+        "contentRole": "main",
+        "charCount": 1106,
+        "text": "Ця сторінка відповідає на це питання для одного URL за раз, чесно — а це означає називати те, чого вона не бачить, так само ясно, як те, що бачить.\nЩо цей інструмент може вам сказати\nЯка частина вашої сторінки взагалі стає читабельним текстом — коефіцієнтом, а не прикметником.\nЯкі саме фрагменти отримав би пошук, у порядку, з позначкою тих, що за межею.\nЯкі фрагменти мають спільну тему, коли їх згрупувати за змістом, — питання, яке ставить семантичне розбиття, поставлене вашій сторінці.\nЧи ваші фрагменти самодостатні, чи спираються на попередній, щоб мати сенс.\nЯкий фрагмент дістає справжнє питання з вашої сторінки, за її власними ембедингами.\nЧи сторінка сама просить не індексувати її — директива noindex повідомляється, а не ігнорується.\nЧого він сказати не може\nЧи має конкретний асистент вашу сторінку у своєму індексі. Цього не бачить ніхто поза тими компаніями.\nЯк модель ранжує вашу сторінку проти сторінки конкурента. Для цього потрібен корпус обох — а це продукт, не демо.\nЧи вас цитують у відповіді сьогодні. Це вимір у часі за промтами, які ви вибрали, а не властивість однієї сторінки."
+      },
+      {
+        "index": 9,
+        "heading": "Як перевірити RAG-конвеєр за допомогою Vectorscope",
+        "rawHeading": "Як перевірити RAG-конвеєр за допомогою Vectorscope",
+        "contentRole": "main",
+        "charCount": 841,
+        "text": "Якщо ви будуєте пошук, а не контент, ця сторінка — референсна реалізація, яку можна навести на будь-який URL секунд за двадцять.\n1 Прогоніть сторінку, яку вже індексуєте, і порівняйте межі фрагментів зі своїм чанкером — хай то фіксовані вікна, заголовки чи семантичне розбиття.\n2 Подивіться на коефіцієнт видобутку: якщо ваш нижчий на тому ж URL, ваш екстрактор викидає тіло тексту, а не обв’язку.\n3 Задайте сторінці питання, відповідь на яке знаєте, і перевірте, чи верхній фрагмент той, що її містить.\n4 Прогоніть завідомо задовгу сторінку. Фрагменти за межею — це ті, до яких ваш власний top-k теж не дійде.\nЧанкер (розрізи по h2, далі вікна у 2000 символів із перекриттям у 200), модель ембедингів і межа тут — ті самі, що продукт запускає у продакшені. Демо на спрощеному конвеєрі лестило б тому конвеєру, який воно існує демонструвати."
+      },
+      {
+        "index": 10,
+        "heading": "Для кого Vectorscope?",
+        "rawHeading": "Для кого Vectorscope?",
+        "contentRole": "main",
+        "charCount": 939,
+        "text": "Vectorscope — для всіх, чию сторінку читатимуть фрагментами: для тих, хто її пише, і для тих, хто будує пошук, що її читає. Обидва отримують те саме прочитання: розріз, ліміт і питання, яке ставить семантичне розбиття, — які фрагменти належать одне до одного.\nКонтент- і SEO-команди\nЩоб перевірити, що відповідь, заради якої існує сторінка, потрапляє в один фрагмент, який пошук може процитувати, — у межах ліміту й під заголовком, що її називає.\nІнженери, які будують RAG\nЩоб мати еталонне прочитання будь-якого URL і звірити з ним свій чанкер — хай він ріже фіксованими вікнами, за заголовками чи робить семантичне розбиття.\nРедактори, які перебудовують сторінку\nЩоб вирішити, де має стояти заголовок: групи показують, які розділи мають спільну тему, а який розділ насправді два.\nКоли фрагменти на місці, далі — слова всередині них: PatternScope читає чернетку й показує шаблонні звороти та повторювані форми речень, на які реагує читач."
+      },
+      {
+        "index": 11,
+        "heading": "Слова, вжиті на цій сторінці",
+        "rawHeading": "Слова, вжиті на цій сторінці",
+        "contentRole": "main",
+        "charCount": 1376,
+        "text": "Терміни, на які спирається ця сторінка, кожен визначений один раз, бо сторінка, яка вживає їх без визначення, — це сторінка, яку асистент нікому не пояснить.\nСемантичне розбиття\nПоділ тексту на фрагменти там, де змінюється зміст, а не через рівну кількість символів чи на кожному заголовку. На цій сторінці крок за змістом — це групування вже вирізаних фрагментів, а не сам розріз.\nФрагмент (chunk)\nУривок сторінки, вирізаний так, щоб його можна було читати окремо. Системи пошуку зберігають і повертають фрагменти, а не цілі сторінки — тому структура сторінки важливіша за її довжину.\nЕмбединг\nСписок чисел, який стоїть за змістом уривка, так що два уривки про одне й те саме опиняються поруч. Порівняння ембедингів — це те, як пошук знаходить уривок без збігу слів.\nКосинусна близькість\nМіра того, наскільки два ембединги дивляться в один бік: 1 — тотожні, 0 — не пов’язані. Це число за кожним твердженням, що два уривки про одне й те саме.\nRAG (пошук плюс генерація)\nВідповідь на питання спершу пошуком уривків у джерелі, а вже потім написанням із них, а не з пам’яті моделі. Кожна відповідь ШІ, що цитує сторінку, зробила це — і сторінкою, яку вона процитувала, був фрагмент.\nВидобуток (extraction)\nПеретворення завантаженого HTML на читабельний текст, який отримує модель, з відкиданням навігації, скриптів і шаблону. Того, що видобуток викинув, жодна модель не побачить."
+      },
+      {
+        "index": 12,
+        "heading": "Читати далі",
+        "rawHeading": "Читати далі",
+        "contentRole": "main",
+        "charCount": 395,
+        "text": "Довші відповіді на питання, які ця сторінка може лише підсумувати.\nЩо таке семантичне розбиття і чим воно жертвує Три стратегії поруч, на одній сторінці. Як оптимізувати контент під пошук із ШІ Що справді змінює шанси уривка бути знайденим. Методологія Кожна формула за показниками вище, названа повністю. Скіл Vectorscope для Claude Code Те саме прочитання локально в Claude Code, із джерелами."
+      },
+      {
+        "index": 13,
+        "heading": "Питання, які про це ставлять",
+        "rawHeading": "Питання, які про це ставлять",
+        "contentRole": "main",
+        "charCount": 1995,
+        "text": "Як AI Mode вибирає, які джерела цитувати? Ніхто поза Google не може назвати механізм, і ця сторінка не вдаватиме, що може. Спостережуване таке: цитовані сторінки зазвичай містять уривок, який відповідає на запит повністю й самотужки, а сторінки, чия відповідь розтягнута на кілька розділів, цитуються рідше, ніж заслуговує їхній зміст. Vectorscope показує, чи є такий уривок у вас. Як потрапити в цитування AI Overviews? Дайте відповіді власний уривок, під заголовком, який називає питання, достатньо високо на сторінці, щоб він пережив межу вибірки. Це не трюк — це форма, яку пошук винагороджує, і чи має її ваша сторінка, можна перевірити тут. Це інструмент візуалізації ембедингів? Так, для однієї сторінки за раз. Він ембедить кожен уривок URL і групує їх за змістом, тож видно, які частини сторінки поруч, а які стоять окремо. Він не малює корпус із тисяч документів. Чим розбиття за заголовками відрізняється від семантичного? Розбиття за заголовками ріже по власних заголовках сторінки; семантичне ріже там, де змінюється зміст, є там заголовок чи ні. Перше дешеве й іде за автором; друге вимагає ембедингу речень ще до першого розрізу. Чи використовує Vectorscope семантичне розбиття? Не для того, щоб різати сторінку. Vectorscope ріже по кожному h2 — h3 нового фрагмента не починає — і ділить довгий розділ на вікна у 2000 символів із перекриттям у 200. Семантичний крок іде після: кожен фрагмент отримує ембединг, близькі за змістом фрагменти групуються, і видно, де семантичне розбиття не погодилося б із вашими заголовками. Ви зберігаєте сторінку, яку я перевіряю? Прочитане тримається недовго, щоб ним можна було поділитися посиланням, а сама завантажена сторінка після формування звіту не зберігається. Акаунт не потрібен, тож і прив’язати це ні до чого. Це справді безкоштовно? Так, з обмеженням частоти, а не з платною стіною. Обмеження існує, бо кожне читання витрачає виклик ембедингів, і воно скидається у фіксованому вікні, про яке сторінка попереджає до того, як ви в нього"
+      },
+      {
+        "index": 14,
+        "heading": "Питання, які про це ставлять",
+        "rawHeading": "Питання, які про це ставлять",
+        "contentRole": "main",
+        "charCount": 205,
+        "text": "обмеженням частоти, а не з платною стіною. Обмеження існує, бо кожне читання витрачає виклик ембедингів, і воно скидається у фіксованому вікні, про яке сторінка попереджає до того, як ви в нього впиретеся."
+      },
+      {
+        "index": 15,
+        "heading": "Інші безкоштовні AI SEO інструменти",
+        "rawHeading": "Інші безкоштовні AI SEO інструменти",
+        "contentRole": "main",
+        "charCount": 761,
+        "text": "Voicescope Почніть з одного ключа й дослідіть запитання, які людина може поставити ШІ-асистенту в реальних контекстах.\nBrandscope Поставте трьом ШІ-асистентам запитання покупця про бренд і зіставте відповіді з власною сторінкою бренду.\nReviewscope Запитайте трьох ШІ-асистентів, що кажуть відгуки про бренд — спершу не називаючи платформи, потім називаючи всі дванадцять — і побачте, які рейтинги вони називають без джерела.\nPatternScope Вставте сторінку й побачте шаблонні звороти, повторені форми речень і непідкріплені заявки. Це не детектор ШІ.\nВолатильність відповідей ШІ Щоденне зчитування того, наскільки відповіді асистентів зсунулися з учора, щоб падіння вашої видимості можна було читати разом із днем, у який воно сталося.\nУсі безкоштовні інструменти"
+      },
+      {
+        "index": 16,
+        "heading": "Чого це показати не може",
+        "rawHeading": "Чого це показати не може",
+        "contentRole": "main",
+        "charCount": 278,
+        "text": "Одна сторінка сама по собі. Чи відповідає вона на питання, які люди справді ставлять асистентам, як вона стоїть проти сторінки конкурента на ту саму тему, і для яких тем у вас сторінки немає взагалі — для цього потрібен корпус усього сайту, зміряний у часі.\nПопросити запрошення"
+      }
+    ],
+    "technical": {
+      "jsonLd": {
+        "blocks": 7,
+        "invalid": 0,
+        "types": [
+          "Answer",
+          "BreadcrumbList",
+          "DefinedTerm",
+          "DefinedTermSet",
+          "FAQPage",
+          "HowTo",
+          "HowToStep",
+          "ListItem",
+          "Offer",
+          "Organization",
+          "Person",
+          "Question",
+          "SoftwareApplication",
+          "Thing",
+          "WebPage",
+          "WebSite"
+        ]
+      },
+      "canonical": {
+        "present": true,
+        "count": 1,
+        "href": "https://www.getlooploop.com/uk/vectorscope",
+        "absolute": true,
+        "resolved": "https://www.getlooploop.com/uk/vectorscope",
+        "self": true
+      },
+      "metaDescription": {
+        "present": true,
+        "length": 145
+      },
+      "lang": "uk"
+    },
+    "losses": {
+      "unit": "characters, whitespace runs folded to one space",
+      "consistent": true,
+      "waterfall": {
+        "raw": 48668,
+        "removed": 34702,
+        "kept": 13966,
+        "inPassagesUnique": 13564,
+        "notInPassages": 402,
+        "pastCap": 0
+      },
+      "passages": {
+        "unique": 13564,
+        "total": 14223,
+        "overlap": 390,
+        "intro": 269,
+        "unlocated": 0
+      },
+      "notInPassages": {
+        "headingLines": 328,
+        "whitespace": 74,
+        "other": 0
+      },
+      "removals": {
+        "elementsMatched": 134,
+        "elementsWithText": 47,
+        "chars": 34702,
+        "byReason": [
+          {
+            "reason": "script_style",
+            "elements": 29,
+            "chars": 33012
+          },
+          {
+            "reason": "embedded",
+            "elements": 1,
+            "chars": 34
+          },
+          {
+            "reason": "head_meta",
+            "elements": 1,
+            "chars": 42
+          },
+          {
+            "reason": "hidden",
+            "elements": 7,
+            "chars": 291
+          },
+          {
+            "reason": "header_chrome",
+            "elements": 1,
+            "chars": 68
+          },
+          {
+            "reason": "nav",
+            "elements": 1,
+            "chars": 19
+          },
+          {
+            "reason": "footer",
+            "elements": 1,
+            "chars": 749
+          },
+          {
+            "reason": "aside",
+            "elements": 1,
+            "chars": 368
+          },
+          {
+            "reason": "form_control",
+            "elements": 5,
+            "chars": 119
+          }
+        ],
+        "items": [
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 3625,
+            "sample": "self.__next_f.push([1,\"c:[[\\\"$\\\",\\\"title\\\",\\\"0\\\",{\\\"children\\\":\\\"Семантичне розб"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 2841,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"FAQPage\\"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 2671,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"@id\":\"https://www.getlooploo"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 2396,
+            "sample": "self.__next_f.push([1,\"2:[\\\"$\\\",\\\"html\\\",null,{\\\"lang\\\":\\\"uk\\\",\\\"suppressHydrati"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 2288,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"DefinedT"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 2144,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"DefinedTermSet\",\"@id\":\"https://www.get"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1619,
+            "sample": "self.__next_f.push([1,\"1:\\\"$Sreact.fragment\\\"\\n6:I[24431,[],\\\"OutletBoundary\\\"]\\"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1564,
+            "sample": "self.__next_f.push([1,\"0:{\\\"P\\\":null,\\\"b\\\":\\\"fkzy1nCbDRIrD2d-zUkkJ\\\",\\\"p\\\":\\\"\\\","
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1360,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"HowTo\\\","
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1249,
+            "sample": "self.__next_f.push([1,\"19:[\\\"$\\\",\\\"script\\\",\\\"5\\\",{\\\"type\\\":\\\"application/ld+jso"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 1244,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"HowTo\",\"@id\":\"https://www.getlooploop."
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1241,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Software"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1239,
+            "sample": "self.__next_f.push([1,\"1b:I[94831,[\\\"2619\\\",\\\"static/chunks/2619-3285f830dd579a0"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1184,
+            "sample": "self.__next_f.push([1,\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@graph\\\":[{\\\"@type"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 1133,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"SoftwareApplication\",\"@id\":\"https://ww"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 1070,
+            "sample": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 957,
+            "sample": "self.__next_f.push([1,\"4:[[[\\\"$\\\",\\\"script\\\",\\\"0\\\",{\\\"type\\\":\\\"application/ld+js"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 849,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"@id\":\"https://www.getlooploo"
+          },
+          {
+            "reason": "footer",
+            "tag": "footer",
+            "id": null,
+            "classes": [
+              "border-t",
+              "border-white/10",
+              "px-4",
+              "py-14"
+            ],
+            "element": "footer.border-t.border-white/10",
+            "path": "div.contents > div.marketing-root > footer.border-t.border-white/10",
+            "chars": 749,
+            "sample": "GetLoopLoop Find where a brand loses AI-search conversations. Close the gap. Pro"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 540,
+            "sample": "self.__next_f.push([1,\"1a:[\\\"$\\\",\\\"$L11\\\",null,{\\\"parallelRouterKey\\\":\\\"children"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 459,
+            "sample": "self.__next_f.push([1,\"3:[\\\"$\\\",\\\"div\\\",null,{\\\"lang\\\":\\\"uk\\\",\\\"className\\\":\\\"co"
+          },
+          {
+            "reason": "aside",
+            "tag": "div",
+            "id": null,
+            "classes": [
+              "pt-card",
+              "pt-card--active",
+              "mt-8",
+              "flex"
+            ],
+            "element": "div.pt-card.pt-card--active",
+            "path": "… > div.pt-16 > div.pt > div.mx-auto > div.pt-card.pt-card--active",
+            "chars": 368,
+            "sample": "Нове · безкоштовно · відкритий код Запускайте Vectorscope у своєму агенті для ко"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 343,
+            "sample": "self.__next_f.push([1,\"1d:I[80622,[],\\\"IconMark\\\"]\\n:HL[\\\"/_next/static/css/3fbc"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "div.contents > script",
+            "chars": 338,
+            "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"@id\":\"https://www.get"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 312,
+            "sample": "(function(){try{var t=localStorage.getItem(\"gll_theme\");if(t===\"dark\"||t===\"atla"
+          },
+          {
+            "reason": "hidden",
+            "tag": "ol",
+            "id": null,
+            "classes": [
+              "mt-3",
+              "grid",
+              "gap-3",
+              "sm:grid-cols-3"
+            ],
+            "element": "ol.mt-3.grid",
+            "path": "… > div.mx-auto > section.mt-12 > div.[&>div]:mt-0 > ol.mt-3.grid",
+            "chars": 175,
+            "sample": "1. СкануванняСторінку завантажено й розрізано на фрагменти.2. ВбудовуванняКожен "
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 139,
+            "sample": "self.__next_f.push([1,\"18:[\\\"$\\\",\\\"script\\\",\\\"4\\\",{\\\"type\\\":\\\"application/ld+jso"
+          },
+          {
+            "reason": "hidden",
+            "tag": "div",
+            "id": null,
+            "classes": [
+              "flex",
+              "min-w-0",
+              "flex-1",
+              "flex-wrap"
+            ],
+            "element": "div.flex.min-w-0",
+            "path": "… > section.mt-12 > div.[&>div]:mt-0 > div.mt-6 > div.flex.min-w-0",
+            "chars": 92,
+            "sample": "Сторінка перетікає у свої групи·Крок, що пульсує, ще триває·Карта виростає раз н"
+          },
+          {
+            "reason": "header_chrome",
+            "tag": "header",
+            "id": null,
+            "classes": [
+              "fixed",
+              "inset-x-0",
+              "top-0",
+              "z-50"
+            ],
+            "element": "header.fixed.inset-x-0",
+            "path": "div.contents > div.marketing-root > header.fixed.inset-x-0",
+            "chars": 68,
+            "sample": "GetLoopLoop Free tools Glossary Skills News Notes Dark Light Console"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 62,
+            "sample": "self.__next_f.push([1,\"5:[\\\"$\\\",\\\"$L1b\\\",null,{}]\\n1c:Tc40,\"])"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 43,
+            "sample": "(self.__next_f=self.__next_f||[]).push([0])"
+          },
+          {
+            "reason": "head_meta",
+            "tag": "head",
+            "id": null,
+            "classes": [],
+            "element": "head",
+            "path": "head",
+            "chars": 42,
+            "sample": "Семантичне розбиття сторінки — Vectorscope"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 35,
+            "sample": "self.__next_f.push([1,\"17:T1091,\"])"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "hover:text-[var(--pt-accent)]",
+              "disabled:opacity-40"
+            ],
+            "element": "button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "path": "… > div.flex > span.flex > span.flex > button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "chars": 34,
+            "sample": "signnow.com / electronic-signature"
+          },
+          {
+            "reason": "embedded",
+            "tag": "svg",
+            "id": null,
+            "classes": [
+              "h-auto",
+              "w-full",
+              "max-w-[420px]",
+              "text-gll-cyan"
+            ],
+            "element": "svg.h-auto.w-full",
+            "path": "… > div.mt-4 > div.flex > span.w-full > svg.h-auto.w-full",
+            "chars": 34,
+            "sample": "у межах лімітуза ним, не прочитано"
+          },
+          {
+            "reason": "form_control",
+            "tag": "form",
+            "id": "run",
+            "classes": [
+              "flex",
+              "scroll-mt-20",
+              "flex-col",
+              "gap-3"
+            ],
+            "element": "form#run.flex.scroll-mt-20",
+            "path": "… > div.mx-auto > section.grid > div.flex > form#run.flex.scroll-mt-20",
+            "chars": 34,
+            "sample": "Адреса сторінки Прочитати сторінку"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 34,
+            "sample": "self.__next_f.push([1,\"16:T706,\"])"
+          },
+          {
+            "reason": "script_style",
+            "tag": "script",
+            "id": null,
+            "classes": [],
+            "element": "script",
+            "path": "script",
+            "chars": 33,
+            "sample": "self.__next_f.push([1,\"e:T42e,\"])"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "hover:text-[var(--pt-accent)]",
+              "disabled:opacity-40"
+            ],
+            "element": "button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "path": "… > div.flex > span.flex > span.flex > button.hover:text-[var(--pt-accent)].disabled:opacity-40",
+            "chars": 21,
+            "sample": "tipalti.com / w9-form"
+          },
+          {
+            "reason": "hidden",
+            "tag": "div",
+            "id": null,
+            "classes": [
+              "pt-art",
+              "min-w-0"
+            ],
+            "element": "div.pt-art.min-w-0",
+            "path": "… > div.pt > div.mx-auto > section.grid > div.pt-art.min-w-0",
+            "chars": 20,
+            "sample": "ПродуктЦіниПідтримка"
+          },
+          {
+            "reason": "nav",
+            "tag": "nav",
+            "id": null,
+            "classes": [
+              "mb-6"
+            ],
+            "element": "nav.mb-6",
+            "path": "… > div.pt-16 > div.pt > div.mx-auto > nav.mb-6",
+            "chars": 19,
+            "sample": "Головна Vectorscope"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "pt-btn",
+              "pt-btn--ghost",
+              "disabled:cursor-not-allowed",
+              "disabled:opacity-50"
+            ],
+            "element": "button.pt-btn.pt-btn--ghost",
+            "path": "… > section.grid > div.flex > div.flex > button.pt-btn.pt-btn--ghost",
+            "chars": 18,
+            "sample": "Спробувати приклад"
+          },
+          {
+            "reason": "form_control",
+            "tag": "button",
+            "id": null,
+            "classes": [
+              "pt-btn",
+              "pt-btn--ghost",
+              "pt-btn--sm",
+              "shrink-0"
+            ],
+            "element": "button.pt-btn.pt-btn--ghost",
+            "path": "… > section.mt-12 > div.[&>div]:mt-0 > div.mt-6 > button.pt-btn.pt-btn--ghost",
+            "chars": 12,
+            "sample": "Зупинити рух"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [],
+            "element": "span",
+            "path": "… > div.flex > div.pt-eyebrow > span.flex > span",
+            "chars": 1,
+            "sample": "·"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [
+              "text-[var(--pt-faint)]"
+            ],
+            "element": "span.text-[var(--pt-faint)]",
+            "path": "… > div.flex > span.flex > span.flex > span.text-[var(--pt-faint)]",
+            "chars": 1,
+            "sample": "/"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [],
+            "element": "span",
+            "path": "… > nav.mb-6 > ol.flex > li.flex > span",
+            "chars": 1,
+            "sample": "/"
+          },
+          {
+            "reason": "hidden",
+            "tag": "span",
+            "id": null,
+            "classes": [],
+            "element": "span",
+            "path": "… > section.grid > div.flex > div.pt-eyebrow > span",
+            "chars": 1,
+            "sample": "·"
+          }
+        ],
+        "omitted": {
+          "elements": 0,
+          "chars": 0
+        }
+      },
+      "sections": {
+        "mode": "h2",
+        "rows": [
+          {
+            "kind": "intro",
+            "heading": null,
+            "chars": 269,
+            "inPassages": 269,
+            "located": true
+          },
+          {
+            "kind": "before_first_h2",
+            "heading": null,
+            "chars": 934,
+            "inPassages": 934,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Що це означає?",
+            "chars": 279,
+            "inPassages": 279,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Важливий фрагмент за лімітом?",
+            "chars": 149,
+            "inPassages": 149,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Моделі й ліміти пошуку різняться.",
+            "chars": 249,
+            "inPassages": 249,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Як читати свій результат",
+            "chars": 2291,
+            "inPassages": 2291,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Що таке семантичне розбиття на фрагменти?",
+            "chars": 1960,
+            "inPassages": 1960,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Чи готовий мій контент до пошуку з ШІ?",
+            "chars": 1106,
+            "inPassages": 1106,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Як перевірити RAG-конвеєр за допомогою Vectorscope",
+            "chars": 841,
+            "inPassages": 841,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Для кого Vectorscope?",
+            "chars": 939,
+            "inPassages": 939,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Слова, вжиті на цій сторінці",
+            "chars": 1376,
+            "inPassages": 1376,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Читати далі",
+            "chars": 395,
+            "inPassages": 395,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Питання, які про це ставлять",
+            "chars": 2006,
+            "inPassages": 2006,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Інші безкоштовні AI SEO інструменти",
+            "chars": 761,
+            "inPassages": 761,
+            "located": true
+          },
+          {
+            "kind": "h2",
+            "heading": "Чого це показати не може",
+            "chars": 278,
+            "inPassages": 278,
+            "located": true
+          }
+        ]
+      },
+      "placement": [
+        {
+          "index": 0,
+          "start": null,
+          "end": null,
+          "intro": 269
+        },
+        {
+          "index": 1,
+          "start": 0,
+          "end": 934,
+          "intro": 0
+        },
+        {
+          "index": 2,
+          "start": 950,
+          "end": 1229,
+          "intro": 0
+        },
+        {
+          "index": 3,
+          "start": 1260,
+          "end": 1409,
+          "intro": 0
+        },
+        {
+          "index": 4,
+          "start": 1444,
+          "end": 1693,
+          "intro": 0
+        },
+        {
+          "index": 5,
+          "start": 1719,
+          "end": 3717,
+          "intro": 0
+        },
+        {
+          "index": 6,
+          "start": 3521,
+          "end": 4010,
+          "intro": 0
+        },
+        {
+          "index": 7,
+          "start": 4053,
+          "end": 6013,
+          "intro": 0
+        },
+        {
+          "index": 8,
+          "start": 6053,
+          "end": 7159,
+          "intro": 0
+        },
+        {
+          "index": 9,
+          "start": 7211,
+          "end": 8052,
+          "intro": 0
+        },
+        {
+          "index": 10,
+          "start": 8075,
+          "end": 9014,
+          "intro": 0
+        },
+        {
+          "index": 11,
+          "start": 9044,
+          "end": 10420,
+          "intro": 0
+        },
+        {
+          "index": 12,
+          "start": 10433,
+          "end": 10828,
+          "intro": 0
+        },
+        {
+          "index": 13,
+          "start": 10858,
+          "end": 12853,
+          "intro": 0
+        },
+        {
+          "index": 14,
+          "start": 12659,
+          "end": 12864,
+          "intro": 0
+        },
+        {
+          "index": 15,
+          "start": 12901,
+          "end": 13662,
+          "intro": 0
+        },
+        {
+          "index": 16,
+          "start": 13688,
+          "end": 13966,
+          "intro": 0
+        }
+      ]
+    },
+    "layout": {
+      "shortLineRuns": [
+        {
+          "lines": [
+            "1. Завантажено",
+            "2. Вилучено",
+            "3. Поділено",
+            "4. Вектори",
+            "5. Згруповано",
+            "фрагментів прочитано"
+          ],
+          "count": 6,
+          "passages": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "robots": {
+    "url": "https://www.getlooploop.com/robots.txt",
+    "status": "ok",
+    "httpStatus": 200,
+    "bots": [
+      {
+        "token": "OAI-SearchBot",
+        "vendor": "OpenAI",
+        "kind": "search",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "ChatGPT-User",
+        "vendor": "OpenAI",
+        "kind": "user",
+        "honours": false,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "GPTBot",
+        "vendor": "OpenAI",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "Claude-SearchBot",
+        "vendor": "Anthropic",
+        "kind": "search",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "Claude-User",
+        "vendor": "Anthropic",
+        "kind": "user",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "ClaudeBot",
+        "vendor": "Anthropic",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "PerplexityBot",
+        "vendor": "Perplexity",
+        "kind": "search",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "Perplexity-User",
+        "vendor": "Perplexity",
+        "kind": "user",
+        "honours": false,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "Google-Extended",
+        "vendor": "Google",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "Googlebot",
+        "vendor": "Google",
+        "kind": "index",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "Bingbot",
+        "vendor": "Microsoft",
+        "kind": "index",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      },
+      {
+        "token": "CCBot",
+        "vendor": "Common Crawl",
+        "kind": "training",
+        "honours": true,
+        "allowed": true,
+        "rule": "Allow: /uk",
+        "group": "*"
+      }
+    ],
+    "sitemaps": [
+      "https://www.getlooploop.com/sitemap.xml"
+    ]
+  },
+  "sitemap": {
+    "source": "robots",
+    "declared": [
+      "https://www.getlooploop.com/sitemap.xml"
+    ],
+    "offSite": [],
+    "fetched": [
+      {
+        "url": "https://www.getlooploop.com/sitemap.xml",
+        "from": "robots",
+        "status": 200,
+        "kind": "urlset",
+        "count": 1911,
+        "read": true,
+        "lastmod": {
+          "total": 1911,
+          "invalid": 0,
+          "future": 0,
+          "samples": []
+        }
+      }
+    ],
+    "found": true,
+    "listsPage": true,
+    "matchedIn": "https://www.getlooploop.com/sitemap.xml",
+    "children": {
+      "total": 0,
+      "read": 0,
+      "unread": 0,
+      "cap": 5
+    },
+    "candidatesUnread": 0
+  },
+  "llms": {
+    "url": "https://www.getlooploop.com/llms.txt",
+    "status": 200,
+    "present": true,
+    "softNotFound": false,
+    "bytes": 34176,
+    "links": 32,
+    "sample": [
+      "https://www.getlooploop.com/free-tools",
+      "https://www.getlooploop.com/vectorscope",
+      "https://www.getlooploop.com/voicescope",
+      "https://www.getlooploop.com/brandscope",
+      "https://www.getlooploop.com/reviewscope",
+      "https://www.getlooploop.com/patternscope",
+      "https://www.getlooploop.com/ai-volatility",
+      "https://www.getlooploop.com/vectorscope/claude-skill",
+      "https://www.getlooploop.com/skills",
+      "https://www.getlooploop.com/skills?category=seo",
+      "https://www.getlooploop.com/skills?category=geo",
+      "https://www.getlooploop.com/skills?category=content",
+      "https://www.getlooploop.com/skills?category=analytics",
+      "https://www.getlooploop.com/skills?category=paid",
+      "https://www.getlooploop.com/skills?category=agent-workflows",
+      "https://www.getlooploop.com/glossary",
+      "https://www.getlooploop.com/glossary/",
+      "https://www.getlooploop.com/",
+      "https://www.getlooploop.com/glossary/llms.txt",
+      "https://www.getlooploop.com/glossary/category/seo",
+      "https://www.getlooploop.com/glossary/category/ai-search",
+      "https://www.getlooploop.com/glossary/category/trust",
+      "https://www.getlooploop.com/glossary/category/measurement",
+      "https://www.getlooploop.com/glossary/category/marketing",
+      "https://www.getlooploop.com/about",
+      "https://www.getlooploop.com/methodology",
+      "https://www.getlooploop.com/ai-model-usage",
+      "https://www.getlooploop.com/news",
+      "https://www.getlooploop.com/news/rss.xml",
+      "https://www.getlooploop.com/notes",
+      "https://www.getlooploop.com/notes/rss.xml",
+      "https://www.getlooploop.com/questions"
+    ]
+  },
+  "alternates": {
+    "total": 2,
+    "checked": 2,
+    "unchecked": [],
+    "cap": 10,
+    "results": [
+      {
+        "hreflang": "en",
+        "href": "https://www.getlooploop.com/vectorscope",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/vectorscope",
+        "redirected": false,
+        "title": "Semantic Chunking Visualizer for Any URL — Vectorscope",
+        "description": "Free semantic chunking visualizer: paste a URL and see the passages a retriever cuts, how they group by meaning, and what falls past the 26-passage cap.",
+        "lang": "en",
+        "noindex": false,
+        "hreflangSet": [
+          {
+            "hreflang": "en",
+            "href": "https://www.getlooploop.com/vectorscope"
+          },
+          {
+            "hreflang": "uk",
+            "href": "https://www.getlooploop.com/uk/vectorscope"
+          },
+          {
+            "hreflang": "es",
+            "href": "https://www.getlooploop.com/es/vectorscope"
+          },
+          {
+            "hreflang": "x-default",
+            "href": "https://www.getlooploop.com/vectorscope"
+          }
+        ],
+        "sections": [
+          {
+            "position": 0,
+            "heading": "What does this mean?",
+            "numbers": []
+          },
+          {
+            "position": 1,
+            "heading": "Important passage outside the cap?",
+            "numbers": [
+              {
+                "value": 26,
+                "raw": "26",
+                "context": "n. This reading takes at most 26 passages from a page."
+              }
+            ]
+          },
+          {
+            "position": 2,
+            "heading": "Models and retrieval caps vary.",
+            "numbers": []
+          },
+          {
+            "position": 3,
+            "heading": "How to read your result",
+            "numbers": []
+          },
+          {
+            "position": 4,
+            "heading": "What is semantic chunking?",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "01",
+                "context": "sages are grouped by meaning. 01 Fixed-length chunking Fixed-l"
+              },
+              {
+                "value": 2000,
+                "raw": "2,000",
+                "context": "e a long section: a window of 2,000 characters with 200 character"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "ndow of 2,000 characters with 200 characters of overlap, ending"
+              },
+              {
+                "value": 2,
+                "raw": "02",
+                "context": "ak where one is close enough. 02 Heading-aware chunking Headin"
+              },
+              {
+                "value": 3,
+                "raw": "03",
+                "context": "tributes the question itself. 03 Semantic chunking, and how it"
+              }
+            ]
+          },
+          {
+            "position": 5,
+            "heading": "Is my content ready for AI search?",
+            "numbers": []
+          },
+          {
+            "position": 6,
+            "heading": "Using Vectorscope to test a RAG pipeline",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "URL in about twenty seconds. 1 Run a page you already index,"
+              },
+              {
+                "value": 2,
+                "raw": "2",
+                "context": "eadings or semantic chunking. 2 Note the extraction ratio: if"
+              },
+              {
+                "value": 3,
+                "raw": "3",
+                "context": "g body text, not boilerplate. 3 Ask the page a question you k"
+              },
+              {
+                "value": 4,
+                "raw": "4",
+                "context": "is the one that contains it. 4 Run a page that is far too lo"
+              },
+              {
+                "value": 2000,
+                "raw": "2,000",
+                "context": "h. The chunker (h2 cuts, then 2,000-character windows with 200 of"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "2,000-character windows with 200 of overlap), the embedding mo"
+              }
+            ]
+          },
+          {
+            "position": 7,
+            "heading": "Who is Vectorscope for?",
+            "numbers": []
+          },
+          {
+            "position": 8,
+            "heading": "Words used on this page",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "t in the same direction, from 1 for identical to 0 for unrela"
+              },
+              {
+                "value": 0,
+                "raw": "0",
+                "context": "tion, from 1 for identical to 0 for unrelated. It is the numb"
+              }
+            ]
+          },
+          {
+            "position": 9,
+            "heading": "Keep reading",
+            "numbers": []
+          },
+          {
+            "position": 10,
+            "heading": "Questions people ask about this",
+            "numbers": [
+              {
+                "value": 2000,
+                "raw": "2,000",
+                "context": "nd splits a long section into 2,000-character windows with 200 ch"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "2,000-character windows with 200 characters of overlap. The se"
+              }
+            ]
+          },
+          {
+            "position": 11,
+            "heading": "Other free AI search tools",
+            "numbers": []
+          },
+          {
+            "position": 12,
+            "heading": "What this cannot show you",
+            "numbers": []
+          }
+        ]
+      },
+      {
+        "hreflang": "es",
+        "href": "https://www.getlooploop.com/es/vectorscope",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/es/vectorscope",
+        "redirected": false,
+        "title": "Fragmentado semántico de tu página — Vectorscope",
+        "description": "Gratis: pega una URL y verás el fragmentado semántico de tu página: los pasajes que toma un recuperador, sus grupos por tema y lo que queda fuera.",
+        "lang": "es",
+        "noindex": false,
+        "hreflangSet": [
+          {
+            "hreflang": "en",
+            "href": "https://www.getlooploop.com/vectorscope"
+          },
+          {
+            "hreflang": "uk",
+            "href": "https://www.getlooploop.com/uk/vectorscope"
+          },
+          {
+            "hreflang": "es",
+            "href": "https://www.getlooploop.com/es/vectorscope"
+          },
+          {
+            "hreflang": "x-default",
+            "href": "https://www.getlooploop.com/vectorscope"
+          }
+        ],
+        "sections": [
+          {
+            "position": 0,
+            "heading": "¿Qué significa esto?",
+            "numbers": []
+          },
+          {
+            "position": 1,
+            "heading": "¿Un pasaje importante fuera del límite?",
+            "numbers": [
+              {
+                "value": 26,
+                "raw": "26",
+                "context": "Esta lectura toma como máximo 26 pasajes de una página."
+              }
+            ]
+          },
+          {
+            "position": 2,
+            "heading": "Los modelos y los límites varían.",
+            "numbers": []
+          },
+          {
+            "position": 3,
+            "heading": "Cómo leer tu resultado",
+            "numbers": []
+          },
+          {
+            "position": 4,
+            "heading": "¿Qué es el fragmentado semántico?",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "01",
+                "context": "s se agrupan por significado. 01 Fragmentado de longitud fija"
+              },
+              {
+                "value": 2000,
+                "raw": "2000",
+                "context": "sección larga: una ventana de 2000 caracteres con 200 de solapam"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "entana de 2000 caracteres con 200 de solapamiento, que termina"
+              },
+              {
+                "value": 2,
+                "raw": "02",
+                "context": "si hay uno lo bastante cerca. 02 Fragmentado que respeta los t"
+              },
+              {
+                "value": 3,
+                "raw": "03",
+                "context": "a?» aporta la pregunta misma. 03 Fragmentado semántico, y en q"
+              }
+            ]
+          },
+          {
+            "position": 5,
+            "heading": "¿Está mi contenido listo para la búsqueda con IA?",
+            "numbers": []
+          },
+          {
+            "position": 6,
+            "heading": "Usar Vectorscope para probar un pipeline RAG",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "URL en unos veinte segundos. 1 Pasa una página que ya indexa"
+              },
+              {
+                "value": 2,
+                "raw": "2",
+                "context": "s o de fragmentado semántico. 2 Mira la proporción de extracc"
+              },
+              {
+                "value": 3,
+                "raw": "3",
+                "context": "cuerpo de texto, no armazón. 3 Hazle a la página una pregunt"
+              },
+              {
+                "value": 4,
+                "raw": "4",
+                "context": "perior es el que la contiene. 4 Pasa una página deliberadamen"
+              },
+              {
+                "value": 2000,
+                "raw": "2000",
+                "context": "es en h2, después ventanas de 2000 caracteres con 200 de solapam"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "ntanas de 2000 caracteres con 200 de solapamiento), el modelo d"
+              }
+            ]
+          },
+          {
+            "position": 7,
+            "heading": "¿Para quién es Vectorscope?",
+            "numbers": []
+          },
+          {
+            "position": 8,
+            "heading": "Palabras usadas en esta página",
+            "numbers": [
+              {
+                "value": 1,
+                "raw": "1",
+                "context": "ngs en la misma dirección, de 1 para idénticos a 0 para no re"
+              },
+              {
+                "value": 0,
+                "raw": "0",
+                "context": "ección, de 1 para idénticos a 0 para no relacionados. Es el n"
+              }
+            ]
+          },
+          {
+            "position": 9,
+            "heading": "Seguir leyendo",
+            "numbers": []
+          },
+          {
+            "position": 10,
+            "heading": "Preguntas que la gente hace sobre esto",
+            "numbers": [
+              {
+                "value": 2000,
+                "raw": "2000",
+                "context": "sección larga en ventanas de 2000 caracteres con 200 de solapam"
+              },
+              {
+                "value": 200,
+                "raw": "200",
+                "context": "ntanas de 2000 caracteres con 200 de solapamiento. El paso semá"
+              }
+            ]
+          },
+          {
+            "position": 11,
+            "heading": "Otras herramientas SEO con IA gratis",
+            "numbers": []
+          },
+          {
+            "position": 12,
+            "heading": "Lo que esto no puede enseñarte",
+            "numbers": []
+          }
+        ]
+      }
+    ]
+  },
+  "links": {
+    "total": 27,
+    "checked": 27,
+    "unchecked": 0,
+    "cap": 30,
+    "results": [
+      {
+        "url": "https://www.getlooploop.com/uk",
+        "internal": true,
+        "zone": 0,
+        "path": "div.marketing-root.min-h-screen > header.fixed.inset-x-0 > div.mx-auto.flex > a.flex.items-center",
+        "text": "GetLoopLoop",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/free-tools",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Free tools",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/glossary",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Glossary",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/skills",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Skills",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/news",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "News",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/notes",
+        "internal": true,
+        "zone": 0,
+        "path": "header.fixed.inset-x-0 > div.mx-auto.flex > nav.hidden.items-center > a.rounded-lg.px-3",
+        "text": "Notes",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/vectorscope/claude-skill",
+        "internal": true,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--primary",
+        "text": "Докладніше про скіл",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://github.com/Olexan-art/getlooploop-skills",
+        "internal": false,
+        "zone": 2,
+        "path": "div.mx-auto.w-full > div.pt-card.pt-card--active > div.flex.shrink-0 > a.pt-btn.pt-btn--ghost",
+        "text": "Код на GitHub",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/methodology",
+        "internal": true,
+        "zone": 5,
+        "path": "div.flex.gap-4 > div.min-w-0 > div.pt-body > a.mt-1.inline-flex",
+        "text": "Джерела й методологія",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/patternscope",
+        "internal": true,
+        "zone": 10,
+        "path": "div.mt-12.space-y-14 > section#who > p.pt-body.mt-5 > a.font-semibold.text-[var(--pt-accent)]",
+        "text": "PatternScope",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/notes/what-is-semantic-chunking",
+        "internal": true,
+        "zone": 12,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "text": "Що таке семантичне розбиття і чим воно жертвуєТри стратегії…",
+        "status": 404,
+        "verdict": "broken"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/notes/optimise-content-for-ai-search",
+        "internal": true,
+        "zone": 12,
+        "path": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card",
+        "text": "Як оптимізувати контент під пошук із ШІЩо справді змінює ша…",
+        "status": 404,
+        "verdict": "broken"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/voicescope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Voicescope Почніть з одного ключа й дослідіть запитання, як…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/brandscope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Brandscope Поставте трьом ШІ-асистентам запитання покупця п…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/reviewscope",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Reviewscope Запитайте трьох ШІ-асистентів, що кажуть відгук…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/ai-volatility",
+        "internal": true,
+        "zone": 12,
+        "path": "section.mt-12.border-t > ul.grid.gap-3 > li > a.pt-card.flex",
+        "text": "Волатильність відповідей ШІ Щоденне зчитування того, наскіл…",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/invite",
+        "internal": true,
+        "zone": 12,
+        "path": "div.pt > div.mx-auto.w-full > div#limits > a.mt-4.inline-flex",
+        "text": "Попросити запрошення",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://x.com/Looploopnow",
+        "internal": false,
+        "zone": 13,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "text": "X",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://discord.gg/Z6cRuhprMa",
+        "internal": false,
+        "zone": 13,
+        "path": "div > ul.mt-5.flex > li > a.group.inline-flex",
+        "text": "Discord",
+        "status": 200,
+        "verdict": "ok",
+        "finalUrl": "https://discord.com/invite/Z6cRuhprMa"
+      },
+      {
+        "url": "https://www.getlooploop.com/questions",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Questions",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/ai-model-usage",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "AI model usage",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Legal hub",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/privacy",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Privacy Policy",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/terms",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Terms of Service",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/legal/dpa",
+        "internal": true,
+        "zone": 13,
+        "path": "div > ul.mt-4.space-y-2.5 > li > a.text-sm.text-gll-gray-400",
+        "text": "Data Processing Agreement",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "text": "llms.txt",
+        "status": 200,
+        "verdict": "ok"
+      },
+      {
+        "url": "https://www.getlooploop.com/glossary/llms.txt",
+        "internal": true,
+        "zone": 13,
+        "path": "footer.border-t.border-white/10 > div.mx-auto.mt-12 > div.flex.flex-wrap > a.font-mono.transition",
+        "text": "glossary/llms.txt",
+        "status": 200,
+        "verdict": "ok"
+      }
+    ]
+  },
+  "images": {
+    "total": 0,
+    "checked": 0,
+    "unchecked": 0,
+    "cap": 20,
+    "results": []
+  },
+  "site": {
+    "favicon": {
+      "url": "https://www.getlooploop.com/favicon.ico",
+      "declared": true,
+      "status": 200,
+      "ok": true,
+      "reason": null
+    },
+    "soft404": {
+      "url": "https://www.getlooploop.com/getlooploop-audit-missing-mvcelkfz-page",
+      "status": 404,
+      "finalUrl": "https://www.getlooploop.com/getlooploop-audit-missing-mvcelkfz-page",
+      "reason": null
+    },
+    "variants": [
+      {
+        "kind": "http",
+        "url": "http://www.getlooploop.com/uk/vectorscope",
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/uk/vectorscope",
+        "ends": true,
+        "reason": null
+      },
+      {
+        "kind": "www",
+        "url": "https://getlooploop.com/uk/vectorscope",
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/uk/vectorscope",
+        "ends": true,
+        "reason": null
+      },
+      {
+        "kind": "slash",
+        "url": "https://www.getlooploop.com/uk/vectorscope/",
+        "status": 200,
+        "finalUrl": "https://www.getlooploop.com/uk/vectorscope",
+        "ends": true,
+        "reason": null
+      }
+    ],
+    "markdown": {
+      "url": "https://www.getlooploop.com/uk/vectorscope.md",
+      "declared": false,
+      "status": 404,
+      "ok": false,
+      "contentType": "text/html; charset=utf-8",
+      "reason": null
+    },
+    "aiCatalog": {
+      "url": "https://www.getlooploop.com/ai-catalog.json",
+      "status": 404,
+      "present": false,
+      "valid": null
+    },
+    "indexnow": null,
+    "ogImage": {
+      "url": "https://www.getlooploop.com/images/social/looploop-x.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "ok": true,
+      "unverified": false,
+      "reason": null
+    },
+    "requests": 9
+  },
+  "shell": {
+    "detected": false,
+    "roots": [],
+    "words": 2127,
+    "scripts": 42
+  },
+  "render": null
+}

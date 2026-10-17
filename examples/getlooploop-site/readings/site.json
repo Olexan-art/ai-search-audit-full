@@ -1,0 +1,59 @@
+{
+  "schema": "getlooploop/ai-search-audit-site-reading@1",
+  "createdAt": "2026-10-17T12:59:46.029Z",
+  "source": {
+    "kind": "urls",
+    "input": "getlooploop-site/urls.txt",
+    "listed": 3
+  },
+  "cap": 50,
+  "total": 3,
+  "rejected": 0,
+  "evaluated": 3,
+  "pages": [
+    {
+      "url": "https://www.getlooploop.com/vectorscope",
+      "slug": "getlooploop-com-vectorscope",
+      "ok": true,
+      "reasonCode": "ok",
+      "finalUrl": "https://www.getlooploop.com/vectorscope",
+      "reading": "getlooploop-com-vectorscope.json"
+    },
+    {
+      "url": "https://www.getlooploop.com/uk/vectorscope",
+      "slug": "getlooploop-com-uk-vectorscope",
+      "ok": true,
+      "reasonCode": "ok",
+      "finalUrl": "https://www.getlooploop.com/uk/vectorscope",
+      "reading": "getlooploop-com-uk-vectorscope.json"
+    },
+    {
+      "url": "https://www.getlooploop.com/es/vectorscope",
+      "slug": "getlooploop-com-es-vectorscope",
+      "ok": true,
+      "reasonCode": "ok",
+      "finalUrl": "https://www.getlooploop.com/es/vectorscope",
+      "reading": "getlooploop-com-es-vectorscope.json"
+    }
+  ],
+  "leftOut": {
+    "count": 0,
+    "byReason": {},
+    "items": [],
+    "listCap": 200,
+    "listed": 0
+  },
+  "politeness": {
+    "sequential": true,
+    "delayMs": 1000,
+    "crawlDelay": {},
+    "crawlDelayCappedAt": 10,
+    "longDelays": [],
+    "crawler": "GetLoopLoop",
+    "requestCache": {
+      "hits": 39,
+      "misses": 81,
+      "entries": 81
+    }
+  }
+}

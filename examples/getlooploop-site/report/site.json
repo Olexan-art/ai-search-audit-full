@@ -1,0 +1,1404 @@
+{
+  "schema": "getlooploop/ai-search-audit-site@1",
+  "pageSchema": "getlooploop/ai-search-audit@1",
+  "skillVersion": "2.101",
+  "producedBy": "ai-search-audit-full skill (local; deterministic checks, and the agent's own judgement where marked; the scripts call no model)",
+  "edition": "full",
+  "createdAt": "2026-10-17T12:59:46.029Z",
+  "rulesChecked": "2026-10-17",
+  "source": {
+    "kind": "urls",
+    "input": "getlooploop-site/urls.txt",
+    "listed": 3
+  },
+  "cap": 50,
+  "total": 3,
+  "evaluated": 3,
+  "leftOut": {
+    "count": 0,
+    "byReason": {},
+    "items": [],
+    "listCap": 200,
+    "listed": 0
+  },
+  "politeness": {
+    "sequential": true,
+    "delayMs": 1000,
+    "crawlDelay": {},
+    "crawlDelayCappedAt": 10,
+    "longDelays": [],
+    "crawler": "GetLoopLoop",
+    "requestCache": {
+      "hits": 39,
+      "misses": 81,
+      "entries": 81
+    }
+  },
+  "verdict": {
+    "en": "No page has a blocking problem or hides text from AI",
+    "uk": "Жодна сторінка не має блокувальної проблеми й не ховає текст від ШІ"
+  },
+  "totals": {
+    "blocking": 0,
+    "high": 0,
+    "medium": 23,
+    "low": 35
+  },
+  "pages": [
+    {
+      "slug": "getlooploop-com-vectorscope",
+      "url": "https://www.getlooploop.com/vectorscope",
+      "title": "Semantic Chunking Visualizer for Any URL — Vectorscope",
+      "ok": true,
+      "reasonCode": "ok",
+      "createdAt": "2026-10-17T12:59:27.061Z",
+      "counts": {
+        "blocking": 0,
+        "high": 0,
+        "medium": 7,
+        "low": 12
+      },
+      "total": 19,
+      "report": "pages/getlooploop-com-vectorscope.html",
+      "export": "pages/getlooploop-com-vectorscope.json",
+      "findings": [
+        {
+          "id": "broken_links",
+          "code": "broken_links",
+          "severity": "medium",
+          "label": {
+            "en": "2 broken links",
+            "uk": "2 неробочі посилання"
+          },
+          "where": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card, div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card"
+        },
+        {
+          "id": "schema_required_missing",
+          "code": "schema_required_missing",
+          "severity": "medium",
+          "label": {
+            "en": "Required schema fields missing",
+            "uk": "Бракує обов’язкових полів схеми"
+          },
+          "where": "JSON-LD #2 $"
+        },
+        {
+          "id": "mid_sentence_start",
+          "code": "mid_sentence_start",
+          "severity": "medium",
+          "label": {
+            "en": "2 passages start mid-sentence",
+            "uk": "2 уривки із середини речення"
+          },
+          "where": "passages #6, #14"
+        },
+        {
+          "id": "question_missing-q11",
+          "code": "question_missing",
+          "severity": "medium",
+          "label": {
+            "en": "No answer: “Can I paste a link to a PDF instead o…”",
+            "uk": "Без відповіді: “Can I paste a link to a PDF instead o…”"
+          },
+          "where": "question 11 · no passage"
+        },
+        {
+          "id": "question_missing-q12",
+          "code": "question_missing",
+          "severity": "medium",
+          "label": {
+            "en": "No answer: “The page I need is behind a login on …”",
+            "uk": "Без відповіді: “The page I need is behind a login on …”"
+          },
+          "where": "question 12 · no passage"
+        },
+        {
+          "id": "nav_in_content",
+          "code": "nav_in_content",
+          "severity": "medium",
+          "label": {
+            "en": "Menu lines inside the text",
+            "uk": "Рядки меню всередині тексту"
+          },
+          "where": "passage #1"
+        },
+        {
+          "id": "brand_unknown",
+          "code": "brand_unknown",
+          "severity": "medium",
+          "label": {
+            "en": "AI doesn't know the brand",
+            "uk": "ШІ не знає бренду"
+          },
+          "where": "brand questions 1–5"
+        },
+        {
+          "id": "question_partial-q4",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Can I check a page from my phone with…”",
+            "uk": "Частково: “Can I check a page from my phone with…”"
+          },
+          "where": "question 4 · passage #1"
+        },
+        {
+          "id": "thin_section",
+          "code": "thin_section",
+          "severity": "low",
+          "label": {
+            "en": "1 very short section",
+            "uk": "1 надто короткий розділ"
+          },
+          "where": "h2 “Important passage outside the cap?”"
+        },
+        {
+          "id": "question_partial-q1",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “My launch page goes live tomorrow: wi…”",
+            "uk": "Частково: “My launch page goes live tomorrow: wi…”"
+          },
+          "where": "question 1 · passage #5"
+        },
+        {
+          "id": "question_partial-q9",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Our site is a React app. Will the tex…”",
+            "uk": "Частково: “Our site is a React app. Will the tex…”"
+          },
+          "where": "question 9 · passage #5"
+        },
+        {
+          "id": "repeated_sentence_shape",
+          "code": "repeated_sentence_shape",
+          "severity": "low",
+          "label": {
+            "en": "2 sentences of one shape",
+            "uk": "2 речення однієї форми"
+          },
+          "where": "passage #7 · word 892, passage #15 · word 2303"
+        },
+        {
+          "id": "question_partial-q10",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “I have twenty pages to check before F…”",
+            "uk": "Частково: “I have twenty pages to check before F…”"
+          },
+          "where": "question 10 · passage #14"
+        },
+        {
+          "id": "faq_rich_result_retired",
+          "code": "faq_rich_result_retired",
+          "severity": "low",
+          "label": {
+            "en": "FAQ rich result retired",
+            "uk": "Розширеного FAQ більше немає"
+          },
+          "where": "FAQPage"
+        },
+        {
+          "id": "rich_result_retired",
+          "code": "rich_result_retired",
+          "severity": "low",
+          "label": {
+            "en": "How-to: no rich result any more",
+            "uk": "How-to: розширеного результату більше немає"
+          },
+          "where": "HowTo"
+        },
+        {
+          "id": "page_weight_heavy",
+          "code": "page_weight_heavy",
+          "severity": "low",
+          "label": {
+            "en": "131 KB, 40 scripts",
+            "uk": "131 КБ, 40 скриптів"
+          },
+          "where": "HTML"
+        },
+        {
+          "id": "llms_txt_one_language",
+          "code": "llms_txt_one_language",
+          "severity": "low",
+          "label": {
+            "en": "llms.txt: one language only",
+            "uk": "llms.txt: лише одна мова"
+          },
+          "where": "/llms.txt"
+        },
+        {
+          "id": "security_headers_missing",
+          "code": "security_headers_missing",
+          "severity": "low",
+          "label": {
+            "en": "3 security headers missing",
+            "uk": "Бракує 3 заголовків безпеки"
+          },
+          "where": "Content-Security-Policy, X-Content-Type-Options, frame-ancestors"
+        },
+        {
+          "id": "about_contact_missing",
+          "code": "about_contact_missing",
+          "severity": "low",
+          "label": {
+            "en": "No contact link",
+            "uk": "Немає посилання «Контакти»"
+          },
+          "where": "contact link"
+        }
+      ],
+      "drift": {
+        "since": "2026-10-16T18:39:14.000Z",
+        "changed": 4
+      },
+      "compare": null
+    },
+    {
+      "slug": "getlooploop-com-uk-vectorscope",
+      "url": "https://www.getlooploop.com/uk/vectorscope",
+      "title": "Семантичне розбиття сторінки — Vectorscope",
+      "ok": true,
+      "reasonCode": "ok",
+      "createdAt": "2026-10-17T12:59:37.535Z",
+      "counts": {
+        "blocking": 0,
+        "high": 0,
+        "medium": 9,
+        "low": 12
+      },
+      "total": 21,
+      "report": "pages/getlooploop-com-uk-vectorscope.html",
+      "export": "pages/getlooploop-com-uk-vectorscope.json",
+      "findings": [
+        {
+          "id": "broken_links",
+          "code": "broken_links",
+          "severity": "medium",
+          "label": {
+            "en": "2 broken links",
+            "uk": "2 неробочі посилання"
+          },
+          "where": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card, div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card"
+        },
+        {
+          "id": "schema_required_missing",
+          "code": "schema_required_missing",
+          "severity": "medium",
+          "label": {
+            "en": "Required schema fields missing",
+            "uk": "Бракує обов’язкових полів схеми"
+          },
+          "where": "JSON-LD #2 $"
+        },
+        {
+          "id": "mid_sentence_start",
+          "code": "mid_sentence_start",
+          "severity": "medium",
+          "label": {
+            "en": "2 passages start mid-sentence",
+            "uk": "2 уривки із середини речення"
+          },
+          "where": "passages #6, #14"
+        },
+        {
+          "id": "question_missing-q11",
+          "code": "question_missing",
+          "severity": "medium",
+          "label": {
+            "en": "No answer: “Можна вставити посилання на PDF заміс…”",
+            "uk": "Без відповіді: “Можна вставити посилання на PDF заміс…”"
+          },
+          "where": "question 11 · no passage"
+        },
+        {
+          "id": "question_missing-q12",
+          "code": "question_missing",
+          "severity": "medium",
+          "label": {
+            "en": "No answer: “Потрібна сторінка відкривається лише …”",
+            "uk": "Без відповіді: “Потрібна сторінка відкривається лише …”"
+          },
+          "where": "question 12 · no passage"
+        },
+        {
+          "id": "keyword_one_section",
+          "code": "keyword_one_section",
+          "severity": "medium",
+          "label": {
+            "en": "Main phrase in 2 of 15 sections",
+            "uk": "Головна фраза в 2 із 15 розділів"
+          },
+          "where": "2 of 15 h2 sections"
+        },
+        {
+          "id": "nav_in_content",
+          "code": "nav_in_content",
+          "severity": "medium",
+          "label": {
+            "en": "Menu lines inside the text",
+            "uk": "Рядки меню всередині тексту"
+          },
+          "where": "passage #1"
+        },
+        {
+          "id": "repeated_sentence_shape",
+          "code": "repeated_sentence_shape",
+          "severity": "medium",
+          "label": {
+            "en": "13 sentences of one shape",
+            "uk": "13 речень однієї форми"
+          },
+          "where": "passage #7 · word 786, passage #8 · word 916, passage #8 · word 984"
+        },
+        {
+          "id": "brand_unknown",
+          "code": "brand_unknown",
+          "severity": "medium",
+          "label": {
+            "en": "AI doesn't know the brand",
+            "uk": "ШІ не знає бренду"
+          },
+          "where": "brand questions 1–5"
+        },
+        {
+          "id": "question_partial-q4",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Чи можна перевірити сторінку з телефо…”",
+            "uk": "Частково: “Чи можна перевірити сторінку з телефо…”"
+          },
+          "where": "question 4 · passage #1"
+        },
+        {
+          "id": "thin_section",
+          "code": "thin_section",
+          "severity": "low",
+          "label": {
+            "en": "1 very short section",
+            "uk": "1 надто короткий розділ"
+          },
+          "where": "h2 “Важливий фрагмент за лімітом?”"
+        },
+        {
+          "id": "question_partial-q1",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Завтра запускаємо сторінку: чи асисте…”",
+            "uk": "Частково: “Завтра запускаємо сторінку: чи асисте…”"
+          },
+          "where": "question 1 · passage #5"
+        },
+        {
+          "id": "question_partial-q9",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Наш сайт — застосунок на React. Текст…”",
+            "uk": "Частково: “Наш сайт — застосунок на React. Текст…”"
+          },
+          "where": "question 9 · passage #5"
+        },
+        {
+          "id": "question_partial-q10",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “До п’ятниці треба перевірити двадцять…”",
+            "uk": "Частково: “До п’ятниці треба перевірити двадцять…”"
+          },
+          "where": "question 10 · passage #14"
+        },
+        {
+          "id": "faq_rich_result_retired",
+          "code": "faq_rich_result_retired",
+          "severity": "low",
+          "label": {
+            "en": "FAQ rich result retired",
+            "uk": "Розширеного FAQ більше немає"
+          },
+          "where": "FAQPage"
+        },
+        {
+          "id": "rich_result_retired",
+          "code": "rich_result_retired",
+          "severity": "low",
+          "label": {
+            "en": "How-to: no rich result any more",
+            "uk": "How-to: розширеного результату більше немає"
+          },
+          "where": "HowTo"
+        },
+        {
+          "id": "page_weight_heavy",
+          "code": "page_weight_heavy",
+          "severity": "low",
+          "label": {
+            "en": "151 KB, 42 scripts",
+            "uk": "151 КБ, 42 скрипти"
+          },
+          "where": "HTML"
+        },
+        {
+          "id": "llms_txt_one_language",
+          "code": "llms_txt_one_language",
+          "severity": "low",
+          "label": {
+            "en": "llms.txt: one language only",
+            "uk": "llms.txt: лише одна мова"
+          },
+          "where": "/llms.txt"
+        },
+        {
+          "id": "security_headers_missing",
+          "code": "security_headers_missing",
+          "severity": "low",
+          "label": {
+            "en": "3 security headers missing",
+            "uk": "Бракує 3 заголовків безпеки"
+          },
+          "where": "Content-Security-Policy, X-Content-Type-Options, frame-ancestors"
+        },
+        {
+          "id": "about_contact_missing",
+          "code": "about_contact_missing",
+          "severity": "low",
+          "label": {
+            "en": "No contact link",
+            "uk": "Немає посилання «Контакти»"
+          },
+          "where": "contact link"
+        },
+        {
+          "id": "off_keyword_share",
+          "code": "off_keyword_share",
+          "severity": "low",
+          "label": {
+            "en": "92% of the text off the phrase",
+            "uk": "92% тексту без головної фрази"
+          },
+          "where": "15 passages without the phrase"
+        }
+      ],
+      "drift": {
+        "since": "2026-10-16T18:39:14.000Z",
+        "changed": 4
+      },
+      "compare": null
+    },
+    {
+      "slug": "getlooploop-com-es-vectorscope",
+      "url": "https://www.getlooploop.com/es/vectorscope",
+      "title": "Fragmentado semántico de tu página — Vectorscope",
+      "ok": true,
+      "reasonCode": "ok",
+      "createdAt": "2026-10-17T12:59:42.540Z",
+      "counts": {
+        "blocking": 0,
+        "high": 0,
+        "medium": 7,
+        "low": 11
+      },
+      "total": 18,
+      "report": "pages/getlooploop-com-es-vectorscope.html",
+      "export": "pages/getlooploop-com-es-vectorscope.json",
+      "findings": [
+        {
+          "id": "broken_links",
+          "code": "broken_links",
+          "severity": "medium",
+          "label": {
+            "en": "2 broken links",
+            "uk": "2 неробочі посилання"
+          },
+          "where": "div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card, div.mt-12.space-y-14 > section#more > div.mt-7.grid > a.group.pt-card"
+        },
+        {
+          "id": "schema_required_missing",
+          "code": "schema_required_missing",
+          "severity": "medium",
+          "label": {
+            "en": "Required schema fields missing",
+            "uk": "Бракує обов’язкових полів схеми"
+          },
+          "where": "JSON-LD #2 $"
+        },
+        {
+          "id": "mid_sentence_start",
+          "code": "mid_sentence_start",
+          "severity": "medium",
+          "label": {
+            "en": "3 passages start mid-sentence",
+            "uk": "3 уривки із середини речення"
+          },
+          "where": "passages #6, #8, #15"
+        },
+        {
+          "id": "question_missing-q11",
+          "code": "question_missing",
+          "severity": "medium",
+          "label": {
+            "en": "No answer: “¿Puedo pegar el enlace de un PDF en l…”",
+            "uk": "Без відповіді: “¿Puedo pegar el enlace de un PDF en l…”"
+          },
+          "where": "question 11 · no passage"
+        },
+        {
+          "id": "question_missing-q12",
+          "code": "question_missing",
+          "severity": "medium",
+          "label": {
+            "en": "No answer: “La página que necesito solo se abre t…”",
+            "uk": "Без відповіді: “La página que necesito solo se abre t…”"
+          },
+          "where": "question 12 · no passage"
+        },
+        {
+          "id": "nav_in_content",
+          "code": "nav_in_content",
+          "severity": "medium",
+          "label": {
+            "en": "Menu lines inside the text",
+            "uk": "Рядки меню всередині тексту"
+          },
+          "where": "passage #1"
+        },
+        {
+          "id": "brand_unknown",
+          "code": "brand_unknown",
+          "severity": "medium",
+          "label": {
+            "en": "AI doesn't know the brand",
+            "uk": "ШІ не знає бренду"
+          },
+          "where": "brand questions 1–5"
+        },
+        {
+          "id": "question_partial-q4",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “¿Puedo revisar una página desde el mó…”",
+            "uk": "Частково: “¿Puedo revisar una página desde el mó…”"
+          },
+          "where": "question 4 · passage #1"
+        },
+        {
+          "id": "thin_section",
+          "code": "thin_section",
+          "severity": "low",
+          "label": {
+            "en": "1 very short section",
+            "uk": "1 надто короткий розділ"
+          },
+          "where": "h2 “¿Un pasaje importante fuera del límite?”"
+        },
+        {
+          "id": "question_partial-q1",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Mañana publicamos la página: ¿un asis…”",
+            "uk": "Частково: “Mañana publicamos la página: ¿un asis…”"
+          },
+          "where": "question 1 · passage #5"
+        },
+        {
+          "id": "question_partial-q9",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Nuestra web es una app de React. ¿Se …”",
+            "uk": "Частково: “Nuestra web es una app de React. ¿Se …”"
+          },
+          "where": "question 9 · passage #5"
+        },
+        {
+          "id": "question_partial-q10",
+          "code": "question_partial",
+          "severity": "low",
+          "label": {
+            "en": "Answered in part: “Tengo veinte páginas que revisar ante…”",
+            "uk": "Частково: “Tengo veinte páginas que revisar ante…”"
+          },
+          "where": "question 10 · passage #15"
+        },
+        {
+          "id": "faq_rich_result_retired",
+          "code": "faq_rich_result_retired",
+          "severity": "low",
+          "label": {
+            "en": "FAQ rich result retired",
+            "uk": "Розширеного FAQ більше немає"
+          },
+          "where": "FAQPage"
+        },
+        {
+          "id": "rich_result_retired",
+          "code": "rich_result_retired",
+          "severity": "low",
+          "label": {
+            "en": "How-to: no rich result any more",
+            "uk": "How-to: розширеного результату більше немає"
+          },
+          "where": "HowTo"
+        },
+        {
+          "id": "page_weight_heavy",
+          "code": "page_weight_heavy",
+          "severity": "low",
+          "label": {
+            "en": "134 KB, 42 scripts",
+            "uk": "134 КБ, 42 скрипти"
+          },
+          "where": "HTML"
+        },
+        {
+          "id": "llms_txt_one_language",
+          "code": "llms_txt_one_language",
+          "severity": "low",
+          "label": {
+            "en": "llms.txt: one language only",
+            "uk": "llms.txt: лише одна мова"
+          },
+          "where": "/llms.txt"
+        },
+        {
+          "id": "security_headers_missing",
+          "code": "security_headers_missing",
+          "severity": "low",
+          "label": {
+            "en": "3 security headers missing",
+            "uk": "Бракує 3 заголовків безпеки"
+          },
+          "where": "Content-Security-Policy, X-Content-Type-Options, frame-ancestors"
+        },
+        {
+          "id": "about_contact_missing",
+          "code": "about_contact_missing",
+          "severity": "low",
+          "label": {
+            "en": "No contact link",
+            "uk": "Немає посилання «Контакти»"
+          },
+          "where": "contact link"
+        }
+      ],
+      "drift": {
+        "since": "2026-10-17T12:59:06.055Z",
+        "changed": 0
+      },
+      "compare": null
+    }
+  ],
+  "repeated": [
+    {
+      "code": "brand_unknown",
+      "severity": "medium",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "AI doesn't know the brand",
+          "uk": "ШІ не знає бренду"
+        },
+        "description": {
+          "en": "The model does not know the brand at all. An assistant answering from memory cannot describe it and depends entirely on what it can find and read.",
+          "uk": "Модель зовсім не знає бренду. Асистент, що відповідає з пам’яті, не може його описати й цілком залежить від того, що зможе знайти й прочитати."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "When all five of the model's answers say it does not know the brand, the brand is unknown to that model. One model's judgement; fixed rules from Brandscope.",
+            "uk": "Коли всі п’ять відповідей моделі кажуть, що вона не знає бренду, бренд цій моделі невідомий. Судження однієї моделі; фіксовані правила з Brandscope."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Make the basics explicit on key pages (what it is, for whom, the price) and earn mentions on independent sources.",
+          "uk": "Чітко викладіть основне на ключових сторінках (що це, для кого, ціна) і здобувайте згадки в незалежних джерелах.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "broken_links",
+      "severity": "medium",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Broken links",
+          "uk": "Неробочі посилання"
+        },
+        "description": {
+          "en": "Links on the page lead to an error page. People who follow them hit a dead end, and search engines drop such addresses from their index.",
+          "uk": "Посилання на сторінці ведуть на сторінку помилки. Люди, які переходять за ними, потрапляють у глухий кут, а пошукові системи вилучають такі адреси зі свого індексу."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "In the case of Google Search, Google doesn't index URLs that return a 4xx status code, and URLs that are already indexed and return a 4xx status code are removed from the index.",
+          "source": {
+            "name": "Google Crawling Infrastructure: HTTP status codes",
+            "url": "https://developers.google.com/crawling/docs/troubleshooting/http-status-codes"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Update or remove hrefs that return 4xx or 5xx; 301 moved targets to their new URL.",
+          "uk": "Оновіть або приберіть href, що повертають 4xx чи 5xx; для перенесених цілей налаштуйте 301 на нову адресу.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "mid_sentence_start",
+      "severity": "medium",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Passages start mid-sentence",
+          "uk": "Уривки з середини речення"
+        },
+        "description": {
+          "en": "Some passages begin in the middle of a sentence, because a long section was cut into pieces. Read on its own, such a passage makes little sense, and AI answers quote passages on their own.",
+          "uk": "Деякі уривки починаються з середини речення, бо довгий розділ розрізали на частини. Окремо такий уривок мало що означає, а ШІ-відповіді цитують уривки саме окремо."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The Vectorscope reading cuts the kept text at h2 sections, then into 2,000-character windows; a passage that opens inside a sentence is flagged. This is this skill's rule.",
+            "uk": "Читання Vectorscope ріже збережений текст за розділами h2, а потім на вікна по 2 000 символів; уривок, що відкривається всередині речення, позначається. Це правило цієї навички."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Break long sections with more h2 or h3 headings so that cuts fall at headings; keep sections under about 2,000 characters.",
+          "uk": "Розбийте довгі розділи додатковими заголовками h2 чи h3, щоб розрізи припадали на заголовки; тримайте розділи коротшими за приблизно 2 000 символів.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "nav_in_content",
+      "severity": "medium",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Menu lines inside the text",
+          "uk": "Рядки меню всередині тексту"
+        },
+        "description": {
+          "en": "A run of short, menu-like lines sits inside the main text. AI readers keep it as content, and it breaks up the passage around it.",
+          "uk": "Низка коротких рядків, схожих на меню, стоїть усередині основного тексту. ШІ-читачі зберігають її як вміст, і вона розриває уривок навколо себе."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "The nav element represents a section of a page that links to other pages or to parts within the page: a section with navigation links.",
+          "source": {
+            "name": "HTML Standard: the nav element",
+            "url": "https://html.spec.whatwg.org/multipage/sections.html#the-nav-element"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Wrap link lists in <nav> (or <aside>) outside the main text flow.",
+          "uk": "Обгорніть списки посилань у <nav> (або <aside>) поза основним потоком тексту.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "question_missing",
+      "severity": "medium",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question with no answer",
+          "uk": "Запитання без відповіді"
+        },
+        "description": {
+          "en": "A question people would ask about this topic has no answer anywhere in the page's passages. An assistant asked it has nothing on this page to quote, so it answers from somewhere else.",
+          "uk": "Запитання, яке люди поставили б на цю тему, не має відповіді в жодному уривку сторінки. Асистент, якого про це спитають, не має на цій сторінці що цитувати, тож відповідає з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent writes the questions people ask and judges each against the passages; one that no passage answers is flagged. The questions and verdicts are the agent's judgement, and the quote is checked against the passage.",
+            "uk": "Агент пише запитання, які ставлять люди, і оцінює кожне за уривками; запитання, на яке не відповідає жоден уривок, позначається. Запитання й вердикти — судження агента, а цитату перевіряють за уривком."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Add a passage, ideally under its own h2 or h3, that answers the question directly in its first two sentences.",
+          "uk": "Додайте уривок, бажано під власним h2 чи h3, що прямо відповідає на запитання в перших двох реченнях.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "schema_required_missing",
+      "severity": "medium",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Required schema fields missing",
+          "uk": "Бракує обов’язкових полів схеми"
+        },
+        "description": {
+          "en": "Structured data on the page leaves out properties that Google lists as required for its type. Without them the markup is not eligible for the rich result it was written for.",
+          "uk": "Структуровані дані на сторінці пропускають властивості, які Google називає обов’язковими для цього типу. Без них розмітка не може дати розширеного результату, заради якого її написали."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "You must include all the required properties for an object to be eligible for appearance in Google Search with enhanced display.",
+          "source": {
+            "name": "Google Search Central: introduction to structured data",
+            "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Add each listed required property as the type's Google page names it, then re-test.",
+          "uk": "Додайте кожну названу обов’язкову властивість так, як її описує сторінка Google для цього типу, і перевірте знову.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "about_contact_missing",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "No About or Contact link",
+          "uk": "Немає посилання «Про нас» чи «Контакти»"
+        },
+        "description": {
+          "en": "The page has no link to an About or a Contact page. Readers and search engines look for who stands behind a site, and these pages are where they find it.",
+          "uk": "Сторінка не має посилання на сторінку «Про нас» чи «Контакти». Читачі й пошукові системи шукають, хто стоїть за сайтом, і саме там це знаходять."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "background about the author or the site that publishes it, such as through links to an author page or a site's About page",
+          "source": {
+            "name": "Google Search Central: creating helpful, reliable, people-first content",
+            "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Link About and Contact from the header or the footer of every page.",
+          "uk": "Додайте посилання «Про нас» і «Контакти» в шапку або підвал кожної сторінки.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "faq_rich_result_retired",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "FAQ rich result retired",
+          "uk": "Розширеного FAQ більше немає"
+        },
+        "description": {
+          "en": "The page has FAQPage markup, and Google no longer shows FAQ rich results. The markup does no harm, but it no longer earns the expanded result it was once added for.",
+          "uk": "Сторінка має розмітку FAQPage, а Google більше не показує розширених результатів FAQ. Розмітка не шкодить, але вже не дає розширеного результату, заради якого її колись додали."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "The FAQ rich result feature is no longer shown in Google Search results",
+          "source": {
+            "name": "Google Search Central: documentation updates (FAQ rich result, 7 May 2026)",
+            "url": "https://developers.google.com/search/updates"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Nothing required for Google; keep it if another consumer reads it, or remove it to lighten the page.",
+          "uk": "Для Google нічого не потрібно; залиште, якщо її читає інший споживач, або приберіть, щоб полегшити сторінку.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "llms_txt_one_language",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "llms.txt in one language only",
+          "uk": "llms.txt лише однією мовою"
+        },
+        "description": {
+          "en": "The site's llms.txt points only to pages in one language, though this page has other language versions. Agents that start from llms.txt see the site in one language.",
+          "uk": "llms.txt сайту вказує лише на сторінки однією мовою, хоча ця сторінка має інші мовні версії. Агенти, що починають з llms.txt, бачать сайт однією мовою."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "On a site with several language versions, llms.txt is expected to point to more than one of them. The llms.txt proposal says nothing about languages; this is this skill's rule.",
+            "uk": "На сайті з кількома мовними версіями llms.txt має вказувати більше ніж на одну з них. Пропозиція llms.txt нічого не каже про мови; це правило цієї навички."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "List each language's key pages in llms.txt, or publish one llms.txt per locale and link them.",
+          "uk": "Перелічіть у llms.txt ключові сторінки кожної мови або опублікуйте окремий llms.txt для кожної локалі й пов’яжіть їх.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "page_weight_heavy",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Heavy page",
+          "uk": "Важка сторінка"
+        },
+        "description": {
+          "en": "The page's HTML is very large, or it loads many scripts. All of it has to be downloaded and parsed before the text is ready, which is slow on phones and costly for crawlers.",
+          "uk": "HTML сторінки дуже великий або вона завантажує багато скриптів. Усе це треба завантажити й розібрати, перш ніж текст буде готовий, а це повільно на телефонах і дорого для краулерів."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "HTML over 500 KB, or more than 30 scripts, is a heavy page. The threshold is this skill's; speed for real visitors is what Core Web Vitals measure, and this check does not read them.",
+            "uk": "HTML понад 500 КБ або понад 30 скриптів — важка сторінка. Поріг — цієї навички; швидкість для реальних відвідувачів вимірюють Core Web Vitals, і ця перевірка їх не читає."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Cut inline JSON, SVG and CSS bulk; defer, async or drop scripts; lazy-load widgets below the fold.",
+          "uk": "Зменште вбудовані JSON, SVG і CSS; застосуйте defer чи async або приберіть скрипти; віджети нижче першого екрана завантажуйте ліниво.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "question_partial",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "A question answered in part",
+          "uk": "Запитання з частковою відповіддю"
+        },
+        "description": {
+          "en": "A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.",
+          "uk": "На запитання, яке поставили б люди, найкращий уривок відповідає лише частково. Асистент може його процитувати, але решту мусить брати з іншого джерела."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The agent judges each question against the passages; a passage that helps but leaves part of the answer out is a partial answer. The verdict is the agent's judgement.",
+            "uk": "Агент оцінює кожне запитання за уривками; уривок, що допомагає, але пропускає частину відповіді, — часткова відповідь. Вердикт — судження агента."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.",
+          "uk": "Доповніть уривок частиною відповіді, якої бракує (числа, кроки, умови), у тому самому розділі.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "rich_result_retired",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Retired rich result",
+          "uk": "Розширеного результату більше немає"
+        },
+        "description": {
+          "en": "The page carries markup for a rich result that Google has retired. The markup is not an error, but it no longer produces a special result in Google Search.",
+          "uk": "Сторінка містить розмітку для розширеного результату, який Google припинив показувати. Розмітка не є помилкою, але більше не дає особливого результату в Google Search."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "Removed the How-to structured data documentation, as this rich result is no longer shown in search results, on both desktop and mobile devices.",
+          "source": {
+            "name": "Google Search Central: documentation updates (FAQ rich result, 7 May 2026)",
+            "url": "https://developers.google.com/search/updates"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Optional clean-up: drop the retired type unless another consumer needs it.",
+          "uk": "Необов’язкове прибирання: приберіть застарілий тип, якщо він не потрібен іншому споживачеві.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "security_headers_missing",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Security headers missing",
+          "uk": "Бракує заголовків безпеки"
+        },
+        "description": {
+          "en": "The answer lacks one or more common security headers: framing control, X-Content-Type-Options or Referrer-Policy. This does not hide the page from search; it leaves the browser's protections at their defaults.",
+          "uk": "Відповідь не має одного чи кількох поширених заголовків безпеки: контролю вбудовування у фрейми, X-Content-Type-Options чи Referrer-Policy. Від пошуку це сторінку не ховає; захист браузера лишається на типових налаштуваннях."
+        },
+        "rule": {
+          "kind": "quote",
+          "quote": "The header allows you to avoid MIME type sniffing by specifying that the MIME types are deliberately configured.",
+          "source": {
+            "name": "MDN: X-Content-Type-Options",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Content-Type-Options"
+          },
+          "checked": "2026-10-17",
+          "language": "en"
+        },
+        "fixDirection": {
+          "en": "Send Content-Security-Policy: frame-ancestors 'self' (or X-Frame-Options), X-Content-Type-Options: nosniff and a Referrer-Policy such as strict-origin-when-cross-origin.",
+          "uk": "Надсилайте Content-Security-Policy: frame-ancestors 'self' (або X-Frame-Options), X-Content-Type-Options: nosniff і Referrer-Policy, наприклад strict-origin-when-cross-origin.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "thin_section",
+      "severity": "low",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope",
+        "getlooploop-com-es-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Very short sections",
+          "uk": "Надто короткі розділи"
+        },
+        "description": {
+          "en": "Some sections have a heading and almost no text. They promise a topic and give a reader, or an AI, nothing to quote about it.",
+          "uk": "Деякі розділи мають заголовок і майже не мають тексту. Вони обіцяють тему й не дають читачеві чи ШІ нічого для цитати про неї."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "An h2 section with fewer than 150 characters of text is flagged. This is this skill's rule (the Vectorscope reading).",
+            "uk": "Розділ h2, що має менше ніж 150 символів тексту, позначається. Це правило цієї навички (читання Vectorscope)."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Expand the section with substance, or merge it into a neighbouring one.",
+          "uk": "Наповніть розділ змістом або об’єднайте із сусіднім.",
+          "audience": "specialists"
+        }
+      }
+    },
+    {
+      "code": "repeated_sentence_shape",
+      "severity": "medium",
+      "pages": [
+        "getlooploop-com-vectorscope",
+        "getlooploop-com-uk-vectorscope"
+      ],
+      "explanation": {
+        "title": {
+          "en": "Sentences of one shape",
+          "uk": "Речення однієї форми"
+        },
+        "description": {
+          "en": "Many sentences follow the same shape. Text like that reads as templated, and the repetition hides which sentence carries the point.",
+          "uk": "Багато речень мають однакову будову. Такий текст читається як шаблонний, а повтор приховує, яке речення несе суть."
+        },
+        "rule": {
+          "kind": "skill",
+          "label": "This skill's rule",
+          "text": {
+            "en": "The PatternScope's detectors flag sentences that repeat one structure. A signal about worn writing, not an AI detector; this skill's rule.",
+            "uk": "Детектори PatternScope позначають речення, що повторюють одну будову. Це сигнал про зношене письмо, а не детектор ШІ; правило цієї навички."
+          },
+          "source": {
+            "name": "This skill's rule (README, the thresholds)",
+            "url": "https://github.com/Olexan-art/ai-search-audit#this-skills-own-thresholds"
+          }
+        },
+        "fixDirection": {
+          "en": "Vary the sentence structure; merge or cut the templated sentences.",
+          "uk": "Урізноманітніть будову речень; об’єднайте або скоротіть шаблонні речення.",
+          "audience": "specialists"
+        }
+      }
+    }
+  ],
+  "single": [
+    {
+      "code": "keyword_one_section",
+      "severity": "medium",
+      "page": "getlooploop-com-uk-vectorscope"
+    },
+    {
+      "code": "off_keyword_share",
+      "severity": "low",
+      "page": "getlooploop-com-uk-vectorscope"
+    }
+  ],
+  "siteWide": {
+    "findings": [
+      {
+        "code": "site_orphan_page",
+        "severity": "medium",
+        "owner": "seo",
+        "slugs": [
+          "getlooploop-com-vectorscope",
+          "getlooploop-com-uk-vectorscope",
+          "getlooploop-com-es-vectorscope"
+        ],
+        "evidence": {
+          "pages": 3,
+          "of": 3,
+          "note": "linked from no other audited page"
+        },
+        "explanation": {
+          "title": {
+            "en": "Pages no other audited page links to",
+            "uk": "Сторінки, на які не посилається жодна інша перевірена"
+          },
+          "description": {
+            "en": "No other page in this audit links to these pages. Crawlers find pages by following links, so a page reached by no link depends on the sitemap alone. Only the audited pages were looked at: a page outside the set may still link to it.",
+            "uk": "Жодна інша сторінка цього аудиту не посилається на ці сторінки. Краулери знаходять сторінки за посиланнями, тож сторінка, до якої не веде жодне посилання, залежить лише від sitemap. Розглянуто лише перевірені сторінки: сторінка поза набором ще може на неї посилатися."
+          },
+          "rule": {
+            "kind": "quote",
+            "src": "gLinks",
+            "quote": "so that Google can find other pages on your site via the links on your page",
+            "checked": "2026-10-17"
+          },
+          "fixDirection": {
+            "en": "Link the page from its parent section, navigation or related pages with a crawlable <a href>.",
+            "uk": "Додайте посилання на сторінку з її батьківського розділу, навігації чи пов’язаних сторінок через придатний для обходу <a href>."
+          }
+        }
+      }
+    ],
+    "notChecked": [
+      {
+        "code": "site_link_depth",
+        "reason": "no_home_page"
+      },
+      {
+        "code": "site_thin_page",
+        "reason": "fewer_pages",
+        "min": 4
+      }
+    ],
+    "scope": "the audited pages only"
+  },
+  "matrix": {
+    "codes": [
+      "brand_unknown",
+      "broken_links",
+      "mid_sentence_start",
+      "nav_in_content",
+      "question_missing",
+      "schema_required_missing",
+      "about_contact_missing",
+      "faq_rich_result_retired",
+      "llms_txt_one_language",
+      "page_weight_heavy",
+      "question_partial",
+      "rich_result_retired",
+      "security_headers_missing",
+      "thin_section",
+      "repeated_sentence_shape",
+      "keyword_one_section",
+      "off_keyword_share"
+    ],
+    "pages": [
+      "getlooploop-com-vectorscope",
+      "getlooploop-com-uk-vectorscope",
+      "getlooploop-com-es-vectorscope"
+    ],
+    "cells": [
+      [
+        "medium",
+        "medium",
+        "medium"
+      ],
+      [
+        "medium",
+        "medium",
+        "medium"
+      ],
+      [
+        "medium",
+        "medium",
+        "medium"
+      ],
+      [
+        "medium",
+        "medium",
+        "medium"
+      ],
+      [
+        "medium",
+        "medium",
+        "medium"
+      ],
+      [
+        "medium",
+        "medium",
+        "medium"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "low",
+        "low"
+      ],
+      [
+        "low",
+        "medium",
+        null
+      ],
+      [
+        null,
+        "medium",
+        null
+      ],
+      [
+        null,
+        "low",
+        null
+      ]
+    ]
+  }
+}

@@ -1,0 +1,327 @@
+// The site report: the pages of one site audit side by side. Pages × problems as a grid, the
+// problems that repeat across pages grouped once as "N pages", the ones found on a single page,
+// what was left out and why (evaluated / total), and a link to each page's own report. The same
+// design, tokens and footer as the page report; self-contained, no network requests.
+
+import { esc } from "../vendor/vectorscope/html.mjs";
+import { parts } from "./report.mjs";
+import { explain } from "./explain.mjs";
+import { SEV, UI, dateOf, fmtEn, fmtUk, nProblems, ukForm } from "./copy.mjs";
+import { SEVERITIES, SEVERITY_RANK } from "./checks.mjs";
+import { EDITION, TOOL_NAME } from "./report.mjs";
+import { EXPORT_SCHEMA, PRODUCED_BY, SKILL_VERSION } from "./version.mjs";
+import { RULES_CHECKED } from "./explain.mjs";
+import { explanationOf } from "./outputs.mjs";
+import { siteFindings } from "./siteChecks.mjs";
+import { siteWideBlock } from "./siteWideBlock.mjs";
+import { SITE_EXPLAIN } from "./siteExplain.mjs";
+
+export const SITE_EXPORT_SCHEMA = "getlooploop/ai-search-audit-site@1";
+
+const { P, pair, ext, call, clip, head, pinIcon, sevPill, ruleText, documentStart, documentEnd } = parts;
+const en = (n, one, many) => `${fmtEn(n)} ${n === 1 ? one : many}`;
+const uk = (n, a, b, c) => `${fmtUk(n)} ${ukForm(n, a, b, c)}`;
+
+const S = {
+  pagesN: [(n) => en(n, "page", "pages"), (n) => uk(n, "сторінка", "сторінки", "сторінок")],
+  onPages: [(n) => `on ${en(n, "page", "pages")}`, (n) => `на ${uk(n, "сторінці", "сторінках", "сторінках")}`],
+  coverage: ["What was audited", "Що перевірено"],
+  evaluated: [(e, t) => `${e} of ${t} pages evaluated`, (e, t) => `перевірено ${e} із ${t} сторінок`],
+  capLine: [(c) => `cap ${c} pages per audit`, (c) => `ліміт ${c} сторінок на аудит`],
+  leftOut: [(n) => `${en(n, "page", "pages")} left out`, (n) => `${uk(n, "сторінку", "сторінки", "сторінок")} пропущено`],
+  reason: {
+    cap: ["past the cap", "за лімітом"],
+    robots_disallowed: ["robots.txt closes it to this crawler", "robots.txt закриває її для цього краулера"],
+    robots_unreachable: ["robots.txt does not answer: assumed closed", "robots.txt не відповідає: вважається закритою"],
+    duplicate: ["listed twice", "указано двічі"],
+    invalid_url: ["not a web address", "не вебадреса"],
+    blocked_scheme: ["not http or https", "не http чи https"],
+    blocked_host: ["not a public host", "не публічний хост"],
+    blocked_address: ["not a public address", "не публічна адреса"],
+  },
+  listed: [(a, b) => `${a} of ${b} listed`, (a, b) => `перелічено ${a} із ${b}`],
+  sourceUrls: [(f) => `from the URL list ${f}`, (f) => `зі списку адрес ${f}`],
+  sourceSitemap: [(u) => `from the sitemap ${u}`, (u) => `із sitemap ${u}`],
+  childUnread: [(n, c) => `${en(n, "child sitemap", "child sitemaps")} not read (cap ${c})`, (n, c) => `${uk(n, "дочірній sitemap", "дочірні sitemap", "дочірніх sitemap")} не прочитано (ліміт ${c})`],
+  offHost: [(n) => `${en(n, "sitemap URL", "sitemap URLs")} on another host left out`, (n) => `${uk(n, "адресу", "адреси", "адрес")} sitemap на іншому хості пропущено`],
+  polite: [(d) => `Pages were read one at a time, ${d} ms apart (longer where robots.txt asks for a Crawl-delay), as GetLoopLoop/1.0; requests repeated across pages (robots.txt, the sitemap, shared links) were answered from this run's memory.`, (d) => `Сторінки читали по одній, з паузою ${d} мс (довшою, де robots.txt просить Crawl-delay), як GetLoopLoop/1.0; запити, що повторюються між сторінками (robots.txt, sitemap, спільні посилання), бралися з пам’яті цього запуску.`],
+  longDelay: [(o, d, u) => `${o} asks for a Crawl-delay of ${d} s; ${u} s was used.`, (o, d, u) => `${o} просить Crawl-delay ${d} с; використано ${u} с.`],
+  pages: ["Pages", "Сторінки"],
+  refused: ["not audited", "не перевірено"],
+  driftN: [(n) => (n ? `${en(n, "change", "changes")} since the last run` : "no change since the last run"), (n) => (n ? `${uk(n, "зміна", "зміни", "змін")} від попереднього запуску` : "без змін від попереднього запуску")],
+  firstRun: ["first run", "перший запуск"],
+  cmpN: [(f, n) => `${f} fixed · ${n} new`, (f, n) => `виправлено ${f} · нових ${n}`],
+  repeated: ["Problems repeated across pages", "Проблеми, що повторюються на сторінках"],
+  repeatedSub: ["each counted once, with the pages it is on", "кожна врахована один раз, зі сторінками, де вона є"],
+  noneRepeated: ["No problem is on more than one page.", "Жодна проблема не трапляється більше ніж на одній сторінці."],
+  matrix: ["Pages × problems", "Сторінки × проблеми"],
+  matrixSub: ["the marker is the problem's severity on that page; empty means not found there", "маркер — серйозність проблеми на цій сторінці; порожньо — там її не знайдено"],
+  problem: ["Problem", "Проблема"],
+  total: ["Pages", "Сторінок"],
+  single: ["Problems on one page only", "Проблеми лише на одній сторінці"],
+  verdictBlock: [(b, n) => `${b} of ${n} pages have a problem that blocks search or AI`, (b, n) => `${b} із ${n} сторінок мають проблему, що блокує пошук або ШІ`],
+  verdictHide: [(b, n) => `${b} of ${n} pages hide text from AI`, (b, n) => `${b} із ${n} сторінок ховають текст від ШІ`],
+  verdictOk: ["No page has a blocking problem or hides text from AI", "Жодна сторінка не має блокувальної проблеми й не ховає текст від ШІ"],
+  verdictNone: ["No problems found on any page", "На жодній сторінці проблем не знайдено"],
+  eyebrow: ["AI search audit · Full · site", "Аудит для ШІ-пошуку · Full · сайт"],
+  findingsN: [(n) => en(n, "finding", "findings"), (n) => uk(n, "знахідка", "знахідки", "знахідок")],
+  sevTotals: ["Findings by severity, all pages", "Знахідки за серйозністю, усі сторінки"],
+  checked: [(d) => `checked ${d}`, (d) => `перевірено ${d}`],
+  openPage: ["page report", "звіт сторінки"],
+  cannotSite: ["Each page report lists what one page's check cannot see; the site audit adds one limit: at most 50 pages, every page left out listed above.", "Кожен звіт сторінки перелічує, чого не бачить перевірка однієї сторінки; аудит сайту додає одне обмеження: щонайбільше 50 сторінок, і кожну пропущену перелічено вище."],
+};
+
+const pathOf = (url) => {
+  try {
+    const u = new URL(url);
+    return `${u.pathname}${u.search}` || "/";
+  } catch {
+    return String(url);
+  }
+};
+
+/**
+ * The site model from the pages read. `entries`: [{ slug, url, reading, model (ok pages), exp, history, compare }].
+ * `manifest`: the site reading (site.json from read.mjs).
+ */
+export function buildSiteModel(manifest, entries) {
+  const pages = entries.map((e, i) => {
+    const counts = e.model ? Object.fromEntries(SEVERITIES.map((s) => [s, e.model.counts[s]])) : null;
+    return {
+      i: i + 1,
+      slug: e.slug,
+      url: e.reading.fetch?.finalUrl || e.url,
+      path: pathOf(e.reading.fetch?.finalUrl || e.url),
+      title: e.reading.facts?.head?.title || "",
+      ok: Boolean(e.model),
+      reasonCode: e.reading.reasonCode,
+      counts,
+      total: e.model ? e.model.findings.length : 0,
+      hides: e.model ? e.model.findings.some((f) => f.hides) : false,
+      blocking: e.model ? e.model.counts.blocking > 0 : false,
+      drift: e.history?.drift ? e.history.drift.changed ?? null : undefined,
+      hasHistory: Boolean(e.history),
+      compare: e.compare ? e.compare.counts : null,
+      createdAt: e.reading.createdAt,
+    };
+  });
+  const byCode = new Map();
+  for (const e of entries) {
+    if (!e.model) continue;
+    for (const f of e.model.findings) {
+      if (!byCode.has(f.code)) byCode.set(f.code, { code: f.code, worst: f.severity, area: f.area, owner: f.owner, layer: f.layer, pages: new Map(), rules: f.rules, sample: f });
+      const c = byCode.get(f.code);
+      if (SEVERITY_RANK[f.severity] > SEVERITY_RANK[c.worst]) c.worst = f.severity;
+      // A code can occur more than once on a page (one finding per question): count the page once, keep the worst.
+      const had = c.pages.get(e.slug);
+      if (!had || SEVERITY_RANK[f.severity] > SEVERITY_RANK[had.severity]) c.pages.set(e.slug, { slug: e.slug, id: f.id, pin: f.pin, big: f.big, severity: f.severity, label: f.label, n: (had?.n || 0) + 1 });
+      else had.n++;
+    }
+  }
+  const codes = [...byCode.values()].sort((a, b) => b.pages.size - a.pages.size || SEVERITY_RANK[b.worst] - SEVERITY_RANK[a.worst] || a.code.localeCompare(b.code));
+  const totals = Object.fromEntries(SEVERITIES.map((s) => [s, entries.reduce((n, e) => n + (e.model ? e.model.counts[s] : 0), 0)]));
+  const siteWide = siteFindings(entries.filter((e) => e.model).map((e) => ({ slug: e.slug, reading: e.reading })));
+  return { manifest, pages, codes, repeated: codes.filter((c) => c.pages.size >= 2), single: codes.filter((c) => c.pages.size === 1), totals, okPages: pages.filter((p) => p.ok).length, siteWide };
+}
+
+function siteVerdict(sm) {
+  const n = sm.pages.length;
+  const b = sm.pages.filter((p) => p.blocking).length;
+  const h = sm.pages.filter((p) => p.hides).length;
+  if (b) return call(S.verdictBlock, b, n);
+  if (h) return call(S.verdictHide, h, n);
+  return sm.codes.length ? S.verdictOk : S.verdictNone;
+}
+
+const pageLink = (p, hash = "") => `pages/${esc(p.slug)}.html${hash}`;
+
+function coverageBlock(sm) {
+  const m = sm.manifest;
+  const o = [`<section class="panel" id="coverage" aria-labelledby="h-coverage">${head("h-coverage", S.coverage, call(S.capLine, m.cap))}`];
+  const src = m.source.kind === "sitemap" ? call(S.sourceSitemap, m.source.input) : call(S.sourceUrls, m.source.input);
+  o.push(`<p class="cov"><b>${P(call(S.evaluated, m.evaluated, m.total))}</b> · ${P(src)}</p>`);
+  const caps = [];
+  if (m.leftOut.count) caps.push(`<li>${P(call(S.leftOut, m.leftOut.count))}: ${Object.entries(m.leftOut.byReason).map(([r, n]) => `${n} ${P(S.reason[r] || [r, r])}`).join(" · ")}</li>`);
+  if (m.source.children?.unread) caps.push(`<li>${P(call(S.childUnread, m.source.children.unread, m.source.children.cap))}</li>`);
+  if (m.source.offHost) caps.push(`<li>${P(call(S.offHost, m.source.offHost))}</li>`);
+  for (const d of m.politeness.longDelays || []) caps.push(`<li>${P(call(S.longDelay, d.origin, d.crawlDelay, d.used))}</li>`);
+  if (caps.length) o.push(`<ul class="caps" id="site-caps">${caps.join("")}</ul>`);
+  if (m.leftOut.items.length) {
+    o.push(`<details class="cmp-more" id="left-out"><summary>${P(call(S.listed, m.leftOut.listed, m.leftOut.count))}</summary><ol class="left-list">${m.leftOut.items.map((x) => `<li><span class="mono">${esc(clip(x.url, 140))}</span> · ${P(S.reason[x.reason] || [x.reason, x.reason])}${x.rule ? ` · <span class="mono">${esc(x.rule)}</span>` : ""}</li>`).join("")}</ol></details>`);
+  }
+  o.push(`<p class="capnote">${P(call(S.polite, m.politeness.delayMs))}</p></section>`);
+  return o.join("\n");
+}
+
+function pagesBlock(sm) {
+  const items = sm.pages.map((p) => {
+    const counts = p.ok ? `${P(nProblems(p.total))} ${SEVERITIES.filter((s) => p.counts[s]).map((s) => `<span class="pc" ${parts.attrPair("title", SEV[s][0], SEV[s][1])}>${pinIcon(s, p.counts[s], 26)}</span>`).join("")}` : P(S.refused);
+    const drift = typeof p.drift === "number" ? ` · <a href="${pageLink(p, "#history")}">${P(call(S.driftN, p.drift))}</a>` : "";
+    const first = p.hasHistory && p.drift === undefined && p.ok ? ` · ${P(S.firstRun)}` : "";
+    const cmp = p.compare ? ` · <a href="${pageLink(p, "#compare")}">${P(call(S.cmpN, p.compare.fixed, p.compare.new))}</a>` : "";
+    return `<li id="page-${esc(p.slug)}"><span class="i">${p.i}</span><span><a href="${pageLink(p)}">${esc(p.url)}</a>${p.title ? `<span class="pt">${esc(clip(p.title, 120))}</span>` : ""}${!p.ok ? `<span class="pt mono">${esc(p.reasonCode)}</span>` : ""}</span><span class="cnts">${counts}${drift}${first}${cmp}</span></li>`;
+  });
+  return `<section class="panel" id="pages" aria-labelledby="h-pages">${head("h-pages", S.pages, call(S.pagesN, sm.pages.length))}<ol class="pages-list">${items.join("")}</ol></section>`;
+}
+
+const codeTitle = (code) => explain(code).t;
+
+function repeatedBlock(sm) {
+  const o = [`<section class="panel" id="repeated" aria-labelledby="h-repeated">${head("h-repeated", S.repeated, S.repeatedSub)}`];
+  if (!sm.repeated.length) {
+    o.push(`<p class="none-found">${P(S.noneRepeated)}</p></section>`);
+    return o.join("\n");
+  }
+  o.push('<ul class="rep">');
+  for (const c of sm.repeated) {
+    const e = explain(c.code);
+    const chips = [...c.pages.values()].map((x) => {
+      const p = sm.pages.find((y) => y.slug === x.slug);
+      return `<a class="chip mapchip" href="${pageLink(p, `#${x.big ? "big" : "p"}-${esc(x.id)}`)}">${p.i} · ${esc(clip(p.path, 40))}</a>`;
+    });
+    o.push(
+      `<li id="rep-${esc(c.code)}"><span class="sev ${c.worst}">${P(SEV[c.worst])}</span><div class="prow-main"><span class="prow-t"><span>${P(e.t)}</span><span class="np">${P(call(S.onPages, c.pages.size))}</span></span><p class="prow-w">${P(e.d)}</p><div class="pg">${chips.join("")}</div><p class="rule"><span class="lbl">${P(UI.ruleSays)}</span> ${ruleText(c.sample)}</p>${siteSpec(c)}</div></li>`,
+    );
+  }
+  o.push("</ul></section>");
+  return o.join("\n");
+}
+
+/** The details for specialists of a code across the site: the code, the rule sources and the fix direction. */
+function siteSpec(c) {
+  const e = explain(c.code);
+  const srcs = c.rules.map((s) => ext(s.url, `${esc(s.name)} ↗`)).join("<br>");
+  return `<details class="spec" id="spec-rep-${esc(c.code)}"><summary>${P(UI.forSpecialists)}</summary><div class="spec-body"><div class="fmeta"><span class="code">${esc(c.code)}</span></div><dl class="fdl"><dt>${P(UI.ruleSources)}</dt><dd class="srcs">${srcs}</dd></dl><p class="fixdir"><span class="k">${P(UI.fixDir)}</span><code>${P(e.x)}</code></p></div></details>`;
+}
+
+function matrixBlock(sm) {
+  const ok = sm.pages.filter((p) => p.ok);
+  if (!sm.codes.length || !ok.length) return "";
+  const headCells = ok.map((p) => `<th scope="col"><a href="${pageLink(p)}" title="${esc(p.url)}">${p.i}</a></th>`).join("");
+  const rows = sm.codes.map((c) => {
+    const cells = ok.map((p) => {
+      const x = c.pages.get(p.slug);
+      return x ? `<td><a href="${pageLink(p, `#${x.big ? "big" : "p"}-${esc(x.id)}`)}" aria-label="${esc(`${p.path}: ${SEV[x.severity][0]}`)}">${pinIcon(x.severity, x.n > 1 ? x.n : null, 20)}</a></td>` : `<td class="none" aria-label="—">·</td>`;
+    });
+    return `<tr><th scope="row"><a href="#${c.pages.size >= 2 ? "rep" : "one"}-${esc(c.code)}">${P(codeTitle(c.code))}</a></th>${cells.join("")}<td class="n">${c.pages.size}</td></tr>`;
+  });
+  return `<section class="panel" id="matrix" aria-labelledby="h-matrix">${head("h-matrix", S.matrix, S.matrixSub)}<div class="tablewrap"><table class="mx"><thead><tr><th scope="col">${P(S.problem)}</th>${headCells}<th scope="col">${P(S.total)}</th></tr></thead><tbody>${rows.join("")}</tbody></table></div><ul class="left-list mx-key">${ok.map((p) => `<li><span class="mono">${p.i}</span> ${esc(p.url)}</li>`).join("")}</ul></section>`;
+}
+
+function singleBlock(sm) {
+  if (!sm.single.length) return "";
+  const items = sm.single.map((c) => {
+    const x = [...c.pages.values()][0];
+    const p = sm.pages.find((y) => y.slug === x.slug);
+    return `<li id="one-${esc(c.code)}"><span class="sev ${c.worst}">${P(SEV[c.worst])}</span><div class="prow-main"><span class="prow-t"><span>${P(x.label)}</span></span><p class="prow-p">${P(codeTitle(c.code))} · <a class="chip mapchip" href="${pageLink(p, `#${x.big ? "big" : "p"}-${esc(x.id)}`)}">${p.i} · ${esc(clip(p.path, 40))}</a></p></div></li>`;
+  });
+  return `<section class="panel" id="single" aria-labelledby="h-single">${head("h-single", S.single, call(S.findingsN, sm.single.length))}<ul class="rep">${items.join("")}</ul></section>`;
+}
+
+function totalsBlock(sm) {
+  const max = Math.max(1, ...SEVERITIES.map((s) => sm.totals[s]));
+  const C = { blocking: "--red", high: "--amber", medium: "--amber", low: "--pin-low" };
+  const rows = SEVERITIES.map((s) => `<li><span class="sl">${pinIcon(s, null, 18)}${P(SEV[s])}</span><span class="st"><span class="sb ${s}" style="width:${((sm.totals[s] / max) * 100).toFixed(1)}%;--c:var(${C[s]})"></span></span><span class="sn">${sm.totals[s]}</span></li>`).join("");
+  return `<section class="panel wide" id="site-severity" aria-labelledby="h-site-sev">${head("h-site-sev", S.sevTotals)}<ul class="sbars">${rows}</ul></section>`;
+}
+
+/** The site report HTML (index.html of the output folder). */
+export function renderSiteReport(sm) {
+  const m = sm.manifest;
+  let host = "";
+  try {
+    host = new URL(sm.pages[0]?.url || m.source.input).hostname;
+  } catch {}
+  const o = documentStart(`${TOOL_NAME} ${EDITION}: ${host} · ${sm.pages.length} pages`);
+  o[o.findIndex((l) => l.includes('class="eyebrow"'))] = `<div class="top-l"><span class="eyebrow">${P(S.eyebrow)}</span></div>`;
+  o.push('<header class="verdict lite-verdict" id="verdict">');
+  o.push(`<div class="pageid"><span class="url mono">${esc(host)}</span></div>`);
+  o.push(`<h1>${P(siteVerdict(sm))}</h1>`);
+  const d = dateOf(m.createdAt);
+  const total = SEVERITIES.reduce((n, s) => n + sm.totals[s], 0);
+  o.push(`<p class="lite-meta"><span>${P(call(S.evaluated, m.evaluated, m.total))}</span><span aria-hidden="true">·</span><a href="#repeated">${P(call(S.findingsN, total))}</a><span aria-hidden="true">·</span><span>${P([S.checked[0](d[0]), S.checked[1](d[1])])}</span></p>`);
+  o.push("</header>");
+  o.push(coverageBlock(sm));
+  o.push(pagesBlock(sm));
+  o.push(siteWideBlock(sm));
+  o.push(repeatedBlock(sm));
+  o.push(matrixBlock(sm));
+  o.push(singleBlock(sm));
+  o.push('<div class="lcharts">');
+  o.push(totalsBlock(sm));
+  o.push("</div>");
+  o.push(`<section class="panel" id="cannot-see" aria-labelledby="h-cannot">${head("h-cannot", UI.cannot)}<p class="capnote">${P(S.cannotSite)}</p></section>`);
+  o.push(...documentEnd("footerSite"));
+  return o.join("\n") + "\n";
+}
+
+/** The site report in Markdown (English). */
+export function renderSiteMarkdown(sm) {
+  const m = sm.manifest;
+  const cell = (s) => String(s ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
+  const o = [`# ${TOOL_NAME} ${EDITION}: site audit, ${sm.pages.length} pages`, "", `**${siteVerdict(sm)[0]}** · ${m.evaluated} of ${m.total} pages evaluated (cap ${m.cap}) · skill ${SKILL_VERSION}`, ""];
+  if (m.leftOut.count) o.push(`Left out: ${m.leftOut.count} (${Object.entries(m.leftOut.byReason).map(([r, n]) => `${n} ${(S.reason[r] || [r])[0]}`).join(", ")}).`, "");
+  o.push("## Pages", "", "| # | Page | Problems | Blocking · high · medium · low | Report |", "|---|---|---|---|---|");
+  for (const p of sm.pages) o.push(`| ${p.i} | ${cell(p.url)} | ${p.ok ? p.total : p.reasonCode} | ${p.ok ? SEVERITIES.map((s) => p.counts[s]).join(" · ") : "—"} | pages/${p.slug}.html |`);
+  o.push("", "## Problems repeated across pages", "");
+  if (!sm.repeated.length) o.push(S.noneRepeated[0]);
+  for (const c of sm.repeated) {
+    const e = explain(c.code);
+    o.push(`### ${cell(e.t[0])} · ${SEV[c.worst][0]} · ${c.pages.size} pages`, "", cell(e.d[0]), "");
+    o.push(`- Pages: ${[...c.pages.values()].map((x) => sm.pages.find((p) => p.slug === x.slug).i).join(", ")}`);
+    o.push(`- Code: \`${c.code}\` · *Fix direction, for specialists:* ${cell(e.x[0])}`, "");
+  }
+  o.push("## Across the site", "");
+  if (!sm.siteWide.findings.length) o.push("No site-wide problem among the audited pages.", "");
+  for (const f of sm.siteWide.findings) o.push(`- **${SITE_EXPLAIN[f.code].t[0]}** (${SEV[f.severity][0]}, ${f.slugs.length} pages, code ${f.code}): ${cell(SITE_EXPLAIN[f.code].d[0])} *Fix direction:* ${cell(SITE_EXPLAIN[f.code].x[0])}`);
+  for (const n of sm.siteWide.notChecked) o.push(`- Not checked: ${SITE_EXPLAIN[n.code].t[0]} (${n.reason})`);
+  o.push("");
+  o.push("## Pages × problems", "", `| Problem | ${sm.pages.filter((p) => p.ok).map((p) => p.i).join(" | ")} | Pages |`, `|---|${sm.pages.filter((p) => p.ok).map(() => "---").join("|")}|---|`);
+  for (const c of sm.codes) o.push(`| ${cell(codeTitle(c.code)[0])} | ${sm.pages.filter((p) => p.ok).map((p) => (c.pages.get(p.slug) ? SEV[c.pages.get(p.slug).severity][0][0] : "")).join(" | ")} | ${c.pages.size} |`);
+  o.push("", "B blocking, H high, M medium, L low.", "");
+  return o.join("\n");
+}
+
+/** The site export: getlooploop/ai-search-audit-site@1. Each page's own export is beside it. */
+export function buildSiteExport(sm, entries) {
+  return {
+    schema: SITE_EXPORT_SCHEMA,
+    pageSchema: EXPORT_SCHEMA,
+    skillVersion: SKILL_VERSION,
+    producedBy: PRODUCED_BY,
+    edition: "full",
+    createdAt: sm.manifest.createdAt,
+    rulesChecked: RULES_CHECKED,
+    source: sm.manifest.source,
+    cap: sm.manifest.cap,
+    total: sm.manifest.total,
+    evaluated: sm.manifest.evaluated,
+    leftOut: sm.manifest.leftOut,
+    politeness: sm.manifest.politeness,
+    verdict: { en: siteVerdict(sm)[0], uk: siteVerdict(sm)[1] },
+    totals: sm.totals,
+    pages: sm.pages.map((p) => {
+      const e = entries.find((x) => x.slug === p.slug);
+      return {
+        slug: p.slug,
+        url: p.url,
+        title: p.title,
+        ok: p.ok,
+        reasonCode: p.reasonCode,
+        createdAt: p.createdAt,
+        counts: p.counts,
+        total: p.total,
+        report: `pages/${p.slug}.html`,
+        export: `pages/${p.slug}.json`,
+        findings: e?.model ? e.model.findings.map((f) => ({ id: f.id, code: f.code, severity: f.severity, label: { en: f.label[0], uk: f.label[1] }, where: f.where })) : [],
+        drift: e?.history?.drift ? { since: e.history.drift.since, changed: e.history.drift.changed ?? null } : null,
+        compare: e?.compare ? e.compare.counts : null,
+      };
+    }),
+    repeated: sm.repeated.map((c) => ({ code: c.code, severity: c.worst, pages: [...c.pages.keys()], explanation: explanationOf(c.code) })),
+    single: sm.single.map((c) => ({ code: c.code, severity: c.worst, page: [...c.pages.keys()][0] })),
+    siteWide: { findings: sm.siteWide.findings.map((f) => ({ ...f, explanation: { title: { en: SITE_EXPLAIN[f.code].t[0], uk: SITE_EXPLAIN[f.code].t[1] }, description: { en: SITE_EXPLAIN[f.code].d[0], uk: SITE_EXPLAIN[f.code].d[1] }, rule: SITE_EXPLAIN[f.code].r, fixDirection: { en: SITE_EXPLAIN[f.code].x[0], uk: SITE_EXPLAIN[f.code].x[1] } } })), notChecked: sm.siteWide.notChecked, scope: "the audited pages only" },
+    matrix: { codes: sm.codes.map((c) => c.code), pages: sm.pages.filter((p) => p.ok).map((p) => p.slug), cells: sm.codes.map((c) => sm.pages.filter((p) => p.ok).map((p) => c.pages.get(p.slug)?.severity || null)) },
+  };
+}
+
