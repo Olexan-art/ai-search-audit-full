@@ -7,11 +7,11 @@ import { candidates, crawlDelay, crawlerVerdict, pageSlug, parseUrlList, readSit
 import { buildModel } from "../scripts/lib/model.mjs";
 import { buildSiteExport, buildSiteModel, renderSiteReport } from "../scripts/lib/siteReport.mjs";
 import { renderReport } from "../scripts/lib/report.mjs";
-import { page, section, withFetch } from "./helpers.mjs";
+import { hostingDeps, page, section, withFetch } from "./helpers.mjs";
 
 const html = (h) => page({ body: section(h) + section(`${h} two`) });
 const r = {};
-const fast = { delayMs: 0, fetchRobotsFor: async () => ({ status: "none" }) };
+const fast = { delayMs: 0, fetchRobotsFor: async () => ({ status: "none" }), deps: hostingDeps() };
 
 test("the URL list: comments and blanks ignored, duplicates and non-addresses set aside", () => {
   const list = parseUrlList("https://example.org/a\n\n# comment\nhttps://example.org/b # trailing\nhttps://example.org/a\nnot a url\n");
@@ -58,7 +58,7 @@ test("a lower --max is a cap too, and pages closed by robots.txt are left out wi
   const urls = ["https://example.org/a", "https://example.org/secret/b", "https://example.org/c", "https://example.org/d"];
   const routes = Object.fromEntries(urls.map((u) => [u, { body: html(u) }]));
   const robots = async () => ({ status: "ok", text: "User-agent: *\nDisallow: /secret\n" });
-  const m = await withFetch(routes, () => readSite({ list: urls, source: { kind: "urls", input: "t" }, max: 2, delayMs: 0, fetchRobotsFor: robots }));
+  const m = await withFetch(routes, () => readSite({ list: urls, source: { kind: "urls", input: "t" }, max: 2, delayMs: 0, fetchRobotsFor: robots, deps: hostingDeps() }));
   assert.equal(m.evaluated, 2);
   assert.deepEqual(m.pages.map((p) => p.url), ["https://example.org/a", "https://example.org/c"]);
   assert.deepEqual(m.leftOut.byReason, { robots_disallowed: 1, cap: 1 });

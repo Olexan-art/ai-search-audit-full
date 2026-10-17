@@ -29,7 +29,7 @@ import { validateReviews } from "./lib/reviews.mjs";
 import { textModules } from "./lib/checks.mjs";
 import { compareFindings, DEFAULT_HISTORY_DIR, history, saveSnapshot } from "./lib/history.mjs";
 import { SITE_READING_SCHEMA } from "./lib/site.mjs";
-import { buildSiteExport, buildSiteModel, renderSiteMarkdown, renderSiteReport, SITE_EXPORT_SCHEMA } from "./lib/siteReport.mjs";
+import { buildSiteExport, buildSiteModel, buildSiteRefusalExport, renderSiteMarkdown, renderSiteRefusal, renderSiteRefusalMarkdown, renderSiteReport, SITE_EXPORT_SCHEMA } from "./lib/siteReport.mjs";
 
 const USAGE = [
   "Usage: node scripts/audit.mjs reading.json [--questions questions.json] [--brand brand.json] [--reviews reviews.json]",
@@ -204,6 +204,22 @@ const manifest = readJson(args.site, "site");
 if (manifest.schema !== SITE_READING_SCHEMA) {
   console.error(`REFUSED   ${args.site} is not a site reading (schema ${JSON.stringify(manifest.schema)}, expected ${SITE_READING_SCHEMA}). Run read.mjs --urls or --sitemap first.`);
   process.exit(1);
+}
+if (manifest.refused) {
+  // 2.108: the site itself is refused; the report is the refusal and where the run stopped.
+  if (args.check) {
+    console.log(`REFUSED   ${manifest.refused.reasonCode}: the site was refused, so there is nothing to judge.`);
+    process.exit(2);
+  }
+  mkdirSync(args.outDir, { recursive: true });
+  writeFileSync(join(args.outDir, "index.html"), renderSiteRefusal(manifest));
+  writeFileSync(join(args.outDir, "site.md"), renderSiteRefusalMarkdown(manifest));
+  writeFileSync(join(args.outDir, "site.json"), JSON.stringify(buildSiteRefusalExport(manifest), null, 2));
+  console.log(`REFUSED   ${manifest.refused.reasonCode}: the site audit stopped at ${manifest.refused.url}; no page of this site is analysed`);
+  console.log(`html      ${join(args.outDir, "index.html")}`);
+  console.log(`md        ${join(args.outDir, "site.md")}`);
+  console.log(`json      ${join(args.outDir, "site.json")}`);
+  process.exit(2);
 }
 const base = dirname(resolve(args.site));
 const entries = [];

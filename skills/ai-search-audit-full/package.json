@@ -1,6 +1,6 @@
 {
   "name": "getlooploop-ai-search-audit-full-skill",
-  "version": "2.107.0",
+  "version": "2.108.0",
   "description": "AI Search Audit Full, run locally: the Lite checks (access, robots.txt for search and AI crawlers, the Google and Bing checklist, structured data, trust signals, language versions, the Vectorscope reading, writing patterns, the keyword, and the agent's own judgement of questions, brand and reviews), plus a plain description, the rule quoted from its source and a fix direction for every problem, up to 50 pages per site, before and after, and a local history with drift. The scripts call no model.",
   "type": "module",
   "private": true,
@@ -13,7 +13,7 @@
     "audit": "node dist/audit.mjs",
     "build": "node tools/build.mjs",
     "zip": "node tools/zip.mjs",
-    "test": "node --test tests/assets.test.mjs tests/checks.test.mjs tests/cli.test.mjs tests/contrast.test.mjs tests/dist.test.mjs tests/explain.test.mjs tests/fixtures.test.mjs tests/history.test.mjs tests/judgement.test.mjs tests/keyword.test.mjs tests/languages.test.mjs tests/locales.test.mjs tests/map.test.mjs tests/multipage.test.mjs tests/network.test.mjs tests/patterns.test.mjs tests/refusal.test.mjs tests/report.test.mjs tests/robots.test.mjs tests/site.test.mjs tests/sitewide.test.mjs tests/skill.test.mjs tests/version.test.mjs",
+    "test": "node --test tests/assets.test.mjs tests/checks.test.mjs tests/cli.test.mjs tests/contrast.test.mjs tests/dist.test.mjs tests/explain.test.mjs tests/fixtures.test.mjs tests/history.test.mjs tests/judgement.test.mjs tests/keyword.test.mjs tests/languages.test.mjs tests/locales.test.mjs tests/map.test.mjs tests/multipage.test.mjs tests/network.test.mjs tests/patterns.test.mjs tests/refusal.test.mjs tests/report.test.mjs tests/robots.test.mjs tests/site.test.mjs tests/sitewide.test.mjs tests/skill.test.mjs tests/version.test.mjs tests/russianSite.test.mjs",
     "favicons": "node tools/favicons.mjs",
     "verify-rules": "node tools/verify-rules.mjs"
   },

@@ -9,6 +9,11 @@ import { judgePath, parseRobots, pathOf, rulesFor } from "../vendor/vectorscope/
 import { guardedFetch, requestCacheStats, useRequestCache } from "./net.mjs";
 import { parseSitemap, SITEMAP_CHILD_CAP, SITEMAP_MAX_BYTES } from "./collect.mjs";
 import { readAudit, robotsOnce } from "./reading.mjs";
+import { hostingRecord, judgeRussianSite } from "../vendor/vectorscope/russianSite.mjs";
+import { REFUSED_RU_AUDIENCE, REFUSED_RU_DOMAIN, REFUSED_RU_HOSTING } from "../vendor/vectorscope/refusal.mjs";
+
+/** The refusals that stop a whole site run: the site, not one page, is what is refused. */
+export const SITE_REFUSAL_CODES = [REFUSED_RU_DOMAIN, REFUSED_RU_HOSTING, REFUSED_RU_AUDIENCE];
 import { gunzipSync } from "node:zlib";
 
 /** At most this many pages per site audit; the rest are listed as left out. */
@@ -165,8 +170,12 @@ const pause = (ms) => new Promise((r) => setTimeout(r, ms));
  * at a time, up to `max` (at most SITE_PAGE_CAP), skipping pages robots.txt closes to this
  * crawler, pausing `delayMs` (or the site's Crawl-delay, if longer) between pages. Calls
  * `onPage(reading, slug)` for each page read. Returns the manifest (without file paths).
+ * 2.108: a Russian domain zone or hosting in Russia (checked for each host before its robots.txt
+ * or any page is asked for), or a Russian-language version shown on any page read, stops the run:
+ * the manifest then carries `refused`, every page not read is left out as "site_refused", and
+ * `discarded` names the readings written before the refusal, which the caller deletes.
  */
-export async function readSite({ list, source, max = SITE_PAGE_CAP, delayMs = SITE_DELAY_MS, render = false, onPage, onProgress = () => {}, fetchRobotsFor = robotsOnce }) {
+export async function readSite({ list, source, max = SITE_PAGE_CAP, delayMs = SITE_DELAY_MS, render = false, onPage, onProgress = () => {}, fetchRobotsFor = robotsOnce, deps }) {
   const cap = Math.max(1, Math.min(SITE_PAGE_CAP, Number(max) || SITE_PAGE_CAP));
   const { pages: urls, rejected } = candidates(list);
   const robotsCache = new Map();
@@ -174,11 +183,21 @@ export async function readSite({ list, source, max = SITE_PAGE_CAP, delayMs = SI
   const pages = [];
   const slugs = new Set();
   const delays = new Map();
+  const hostingCache = new Map();
+  let refused = null;
   useRequestCache(true);
   let evaluated = 0;
   let i = 0;
   for (; i < urls.length && evaluated < cap; i++) {
     const url = urls[i];
+    const host = new URL(url).hostname;
+    const judged = await judgeRussianSite({ url, network: true, hosting: hostingCache.get(host), deps });
+    if (judged.hosting?.host && judged.hosting.status !== "not_checked") hostingCache.set(judged.hosting.host, judged.hosting);
+    if (judged.refusal) {
+      refused = { url, slug: null, reasonCode: judged.refusal.reasonCode, refusal: judged.refusal, hosting: hostingRecord(judged.hosting) };
+      onProgress({ url, refused: refused.reasonCode });
+      break;
+    }
     const robots = await fetchRobotsFor(url, robotsCache);
     const verdict = crawlerVerdict(robots, url);
     if (!verdict.allowed) {
@@ -195,13 +214,22 @@ export async function readSite({ list, source, max = SITE_PAGE_CAP, delayMs = SI
     let slug = pageSlug(url);
     for (let n = 2; slugs.has(slug); n++) slug = `${pageSlug(url)}-${n}`;
     slugs.add(slug);
-    const reading = await readAudit({ url, render, robotsCache });
+    const reading = await readAudit({ url, render, robotsCache, hostingCache, deps });
     evaluated++;
     pages.push({ url, slug, ok: reading.ok, reasonCode: reading.reasonCode, finalUrl: reading.fetch?.finalUrl || reading.page?.url || null });
     if (onPage) await onPage(reading, slug);
     onProgress({ url, slug, ok: reading.ok, reasonCode: reading.reasonCode });
+    if (SITE_REFUSAL_CODES.includes(reading.reasonCode)) {
+      refused = { url, slug, reasonCode: reading.reasonCode, refusal: reading.refusal, hosting: reading.hosting ?? null };
+      i++;
+      break;
+    }
   }
-  for (; i < urls.length; i++) leftOut.push({ url: urls[i], reason: "cap" });
+  for (; i < urls.length; i++) leftOut.push({ url: urls[i], reason: refused ? "site_refused" : "cap" });
+  // A refused site keeps nothing of its pages: only the refused page's reading (which holds no page
+  // text) stays listed; the readings written before it are named for deletion.
+  const discarded = refused ? pages.filter((p) => p.slug !== refused.slug).map((p) => p.slug) : [];
+  if (refused) pages.splice(0, pages.length, ...pages.filter((p) => p.slug === refused.slug));
   const stats = requestCacheStats();
   useRequestCache(false);
   const longDelays = [...delays.entries()].filter(([, d]) => d !== null && d > CRAWL_DELAY_MAX_S).map(([o, d]) => ({ origin: o, crawlDelay: d, used: CRAWL_DELAY_MAX_S }));
@@ -215,6 +243,7 @@ export async function readSite({ list, source, max = SITE_PAGE_CAP, delayMs = SI
     rejected: rejected.length,
     evaluated,
     pages,
+    ...(refused ? { refused, discarded } : {}),
     leftOut: { count: leftOut.length, byReason: countBy(leftOut, "reason"), items: leftOut.slice(0, LEFT_OUT_LIST_CAP), listCap: LEFT_OUT_LIST_CAP, listed: Math.min(leftOut.length, LEFT_OUT_LIST_CAP) },
     politeness: { sequential: true, delayMs, crawlDelay: Object.fromEntries([...delays.entries()].filter(([, d]) => d !== null)), crawlDelayCappedAt: CRAWL_DELAY_MAX_S, longDelays, crawler: CRAWLER_TOKEN, requestCache: stats },
   };

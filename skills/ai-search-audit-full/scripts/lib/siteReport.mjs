@@ -13,6 +13,8 @@ import { EXPORT_SCHEMA, PRODUCED_BY, SKILL_VERSION } from "./version.mjs";
 import { RULES_CHECKED } from "./explain.mjs";
 import { explanationOf } from "./outputs.mjs";
 import { siteFindings } from "./siteChecks.mjs";
+import { renderRefusal } from "./report.mjs";
+import { buildRefusalExport, renderRefusalMarkdown } from "./outputs.mjs";
 import { siteWideBlock } from "./siteWideBlock.mjs";
 import { SITE_EXPLAIN } from "./siteExplain.mjs";
 
@@ -368,3 +370,47 @@ export function buildSiteExport(sm, entries) {
   };
 }
 
+// ── 2.108: a refused site ─────────────────────────────────────────────────────
+// A Russian domain zone, hosting in Russia, or a Russian-language version shown on any page stops
+// the whole site run (site.mjs). The site report is then the refusal itself, with one line saying
+// where the run stopped; no page report is written and nothing of any page is kept.
+
+/** The refused site as a reading-shaped object, for the page refusal's renderers. */
+const refusedSite = (manifest) => ({
+  ok: false,
+  reasonCode: manifest.refused.reasonCode,
+  refusal: manifest.refused.refusal ?? null,
+  hosting: manifest.refused.hosting ?? null,
+  createdAt: manifest.createdAt,
+  requestedInput: manifest.refused.url,
+  page: { url: manifest.refused.url, requestedUrl: manifest.refused.url },
+});
+
+/** Where the run stopped, EN and UK. */
+export function siteStopNote(manifest) {
+  const read = (manifest.discarded || []).length;
+  const notRead = manifest.leftOut?.byReason?.site_refused ?? 0;
+  return [
+    `The site audit stopped at ${manifest.refused.url}: no page of this site is analysed (read before it and discarded: ${fmtEn(read)}; not read: ${fmtEn(notRead)}).`,
+    `Перевірку сайту зупинено на ${manifest.refused.url}: жодну сторінку цього сайту не проаналізовано (прочитано до неї й відкинуто: ${fmtUk(read)}; не прочитано: ${fmtUk(notRead)}).`,
+  ];
+}
+
+export function renderSiteRefusal(manifest) {
+  return renderRefusal(refusedSite(manifest), { note: siteStopNote(manifest) });
+}
+
+export function renderSiteRefusalMarkdown(manifest) {
+  const md = renderRefusalMarkdown(refusedSite(manifest));
+  const [first, ...rest] = md.split("\n");
+  return [first, "", siteStopNote(manifest)[0], ...rest].join("\n");
+}
+
+export function buildSiteRefusalExport(manifest) {
+  return {
+    ...buildRefusalExport(refusedSite(manifest)),
+    schema: SITE_EXPORT_SCHEMA,
+    pageSchema: EXPORT_SCHEMA,
+    site: { source: manifest.source, stoppedAt: manifest.refused.url, total: manifest.total, evaluated: manifest.evaluated, discarded: (manifest.discarded || []).length, leftOut: manifest.leftOut },
+  };
+}

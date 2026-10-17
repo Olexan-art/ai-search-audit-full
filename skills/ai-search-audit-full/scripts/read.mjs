@@ -3,7 +3,8 @@
 // one reading. All the network is here: the page, its robots.txt, its sitemap, its llms.txt, its
 // hreflang alternates, a HEAD (or GET) of up to 30 of its links and 20 of its images, and one
 // request each for the favicon, a path that does not exist, up to 3 URL variants, a Markdown copy,
-// ai-catalog.json and a declared IndexNow key. Each list has a cap and the reading says how much
+// ai-catalog.json and a declared IndexNow key; before the page, one DNS lookup of its host and one
+// RDAP request to rdap.org with its IP address, for the hosting country. Each list has a cap and the reading says how much
 // of it went unchecked. An empty single-page-app shell is rendered on its own when a browser is found.
 //
 // One page:
@@ -14,10 +15,11 @@
 //   node scripts/read.mjs --sitemap https://example.com/sitemap.xml [--out-dir readings] [--max 50] [--delay 1000]
 // A refusal still writes its reading, with ok:false and the code, and exits with code 2 (one page).
 
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { readAudit } from "./lib/reading.mjs";
 import { findBrowser } from "./vendor/vectorscope/render.mjs";
+import { isRefusalCode, refusalReason } from "./vendor/vectorscope/refusal.mjs";
 import { CRAWLER_TOKEN, parseUrlList, readSite, sitemapUrls, SITE_DELAY_MS, SITE_PAGE_CAP } from "./lib/site.mjs";
 import { judgeRequestedUrl } from "./vendor/vectorscope/guards.mjs";
 
@@ -50,7 +52,7 @@ const fmt = (n) => Number(n ?? 0).toLocaleString("en-US");
 function summarise(r, file) {
   if (!r.ok) {
     console.log(`REFUSED   ${r.reasonCode}${r.status ? ` (HTTP ${r.status})` : ""}`);
-    if (r.reasonCode === "refused_language_ru") console.log("reason    pages in Russian are not analysed; nothing of the page was kept. Run audit.mjs on this reading to write the report that says why.");
+    if (isRefusalCode(r.reasonCode)) console.log(`reason    ${refusalReason(r.reasonCode, "en").replace(/^Why: /, "")} Nothing of the page was kept. Run audit.mjs on this reading to write the report that says why.`);
     console.log(`reading   ${file}`);
     return;
   }
@@ -69,6 +71,7 @@ function summarise(r, file) {
   if (r.images) console.log(`images    ${r.images.checked} of ${r.images.total} sized${r.images.unchecked ? ` · ${r.images.unchecked} not checked (cap ${r.images.cap})` : ""}`);
   if (r.site) console.log(`site      favicon ${r.site.favicon.ok ? "ok" : r.site.favicon.status ?? r.site.favicon.reason} · missing path ${r.site.soft404.status ?? r.site.soft404.reason} · variants ${r.site.variants.map((v) => `${v.kind} ${v.ends ? "ok" : v.status ?? v.reason}`).join(", ")} · markdown ${r.site.markdown.ok ? "yes" : "no"} · ai-catalog ${r.site.aiCatalog?.present ? (r.site.aiCatalog.valid ? "valid" : "invalid") : "none"}${r.site.indexnow ? ` · IndexNow key ${r.site.indexnow.ok ? "ok" : "missing"}` : ""}`);
   if (r.shell?.detected) console.log(`app shell ${r.shell.roots.join(", ")} · ${r.shell.words} words without JavaScript · ${r.render ? (r.render.ok ? "rendered automatically" : `not rendered: ${r.render.reason}`) : "not rendered (saved page)"}`);
+  if (r.hosting) console.log(`hosting   ${r.hosting.status === "checked" ? `${r.hosting.country} (${r.hosting.ip}, RDAP)` : r.hosting.status === "not_determined" ? "not determined (DNS or RDAP gave no country)" : "not checked (saved page)"}`);
   if (fetch.saved) console.log(r.robots.status === "not_checked" ? "network   none: a saved page was read; robots.txt, sitemap, llms.txt, alternates and links are not measured" : `network   a saved page${fetch.savedAt ? ` (taken ${fetch.savedAt})` : ""}, with the site checks fetched live (--network)`);
   if (render) console.log(render.ok ? `render    with JS ${fmt(render.wordCount)} words · ${render.passages} passages (without JS ${fmt(vs.page.wordCount)} · ${vs.passages.length}) · ${render.jsZones.length} sections only with JS` : `render    not done: ${render.reason === "no_browser" ? "no Chrome or Chromium found (set CHROME_PATH)" : render.reason}`);
   console.log(`reading   ${file}`);
@@ -152,13 +155,19 @@ const manifest = await readSite({
   delayMs: delay,
   render: args.render,
   onPage: (reading, slug) => writeFileSync(join(args.outDir, `${slug}.json`), JSON.stringify(reading, null, 2)),
-  onProgress: (p) => console.log(p.skipped ? `  skipped ${p.url}  (${p.skipped})` : `  ${p.ok ? "read   " : `REFUSED ${p.reasonCode}`} ${p.url}  → ${p.slug}.json`),
+  onProgress: (p) => console.log(p.refused ? `  REFUSED ${p.refused} ${p.url}  (the site; nothing fetched)` : p.skipped ? `  skipped ${p.url}  (${p.skipped})` : `  ${p.ok ? "read   " : `REFUSED ${p.reasonCode}`} ${p.url}  → ${p.slug}.json`),
 });
 for (const p of manifest.pages) p.reading = `${p.slug}.json`;
+// A refused site keeps nothing of its pages: the readings written before the refusal are deleted.
+for (const slug of manifest.discarded || []) rmSync(join(args.outDir, `${slug}.json`), { force: true });
 const file = join(args.outDir, "site.json");
 writeFileSync(file, JSON.stringify(manifest, null, 2));
 console.log(`evaluated ${manifest.evaluated} of ${manifest.total} pages${manifest.leftOut.count ? ` · left out ${manifest.leftOut.count}: ${Object.entries(manifest.leftOut.byReason).map(([r, n]) => `${n} ${r}`).join(", ")}` : ""}`);
 if (source.children?.unread) console.log(`not done  ${source.children.unread} child sitemaps not read (cap ${source.children.cap})`);
 if (manifest.politeness.requestCache?.hits) console.log(`requests  ${manifest.politeness.requestCache.hits} repeated requests answered from this run's memory`);
 console.log(`site      ${file}`);
+if (manifest.refused) {
+  console.log(`REFUSED   ${manifest.refused.reasonCode}: ${refusalReason(manifest.refused.reasonCode, "en").replace(/^Why: /, "")} The site run stopped at ${manifest.refused.url}${manifest.discarded.length ? `; ${manifest.discarded.length} reading(s) written before it were deleted` : ""}. Run audit.mjs --site on site.json to write the report that says why.`);
+  process.exit(2);
+}
 process.exit(0);

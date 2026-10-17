@@ -11,6 +11,7 @@ import { extractSections } from "../vendor/vectorscope/chunk.mjs";
 import { declaredLanguagesFromHtml, judgeLanguage } from "../vendor/vectorscope/language.mjs";
 import { isHtmlContentType } from "../vendor/vectorscope/nonPageUrl.mjs";
 import { REFUSAL_CODE } from "../vendor/vectorscope/refusal.mjs";
+import { hostingRecord, judgeRussianSite } from "../vendor/vectorscope/russianSite.mjs";
 import { basename } from "node:path";
 import { gzipSync } from "node:zlib";
 import { guardedFetch } from "./net.mjs";
@@ -74,8 +75,10 @@ export function jsOnlyZones(plainFacts, renderedFacts) {
  *   savedAt            with html: when the saved copy was taken (ISO); the reading is dated then,
  *                      so a history timeline puts it where it belongs, and it stays marked saved
  *   robotsCache        a Map shared by the pages of one site audit: robots.txt fetched once per origin
+ *   hostingCache       a Map shared by the pages of one site audit: the hosting country asked once per host
+ *   deps               { lookup, fetch } for the hosting check, replaced in tests
  */
-export async function readAudit({ url, html, finalUrl, robotsText, network, render = false, onHtml, now = new Date(), savedAt = null, robotsCache = null }) {
+export async function readAudit({ url, html, finalUrl, robotsText, network, render = false, onHtml, now = new Date(), savedAt = null, robotsCache = null, hostingCache = null, deps }) {
   const when = typeof html === "string" && savedAt ? new Date(savedAt) : now;
   if (Number.isNaN(when.getTime())) throw new Error(`savedAt is not a date: ${savedAt}`);
   const base = { schema: READING_SCHEMA, skillVersion: SKILL_VERSION, createdAt: when.toISOString(), requestedInput: String(url ?? "") };
@@ -84,6 +87,25 @@ export async function readAudit({ url, html, finalUrl, robotsText, network, rend
   const urlKey = verdict.url;
   const saved = typeof html === "string";
   const online = network ?? !saved;
+
+  // 2.108: a Russian domain zone or a server in Russia refuses before the page is fetched; a
+  // Russian-language version of the site refuses after it (Vectorscope's judgeRussianSite, in that
+  // order). The hosting country is asked only when the page itself is fetched.
+  const refuse = (judged, pageUrl) => ({
+    ...base,
+    ok: false,
+    reasonCode: judged.refusal.reasonCode,
+    refusal: judged.refusal,
+    page: { url: pageUrl, requestedUrl: urlKey },
+    hosting: hostingRecord(judged.hosting),
+  });
+  const remember = (place) => {
+    if (hostingCache && place?.host && place.status !== "not_checked") hostingCache.set(place.host, place);
+    return place;
+  };
+  const before = await judgeRussianSite({ url: urlKey, network: !saved, hosting: hostingCache?.get(new URL(urlKey).hostname), deps });
+  remember(before.hosting);
+  if (before.refusal) return refuse(before, urlKey);
 
   let page;
   if (saved) {
@@ -94,6 +116,12 @@ export async function readAudit({ url, html, finalUrl, robotsText, network, rend
   }
   if (onHtml) onHtml(page.html, page.url);
 
+  const finalHost = new URL(page.url).hostname;
+  const after = await judgeRussianSite({ url: urlKey, finalUrl: page.url, html: page.html, contentLanguage: page.headers.contentLanguage, network: !saved, hosting: hostingCache?.get(finalHost) ?? before.hosting, deps });
+  remember(after.hosting);
+  if (after.refusal) return refuse(after, page.url);
+  const hosting = hostingRecord(after.hosting);
+
   // Pages in Russian are not analysed: decided before anything else is read, and nothing kept.
   const analysed = analyseHtml({ html: page.html, url: page.url });
   const language = judgeLanguage({ declared: declaredLanguagesFromHtml(page.html, page.headers.contentLanguage), text: analysed.bodyText || "" });
@@ -102,7 +130,9 @@ export async function readAudit({ url, html, finalUrl, robotsText, network, rend
       ...base,
       ok: false,
       reasonCode: REFUSAL_CODE,
+      refusal: { reasonCode: REFUSAL_CODE, signal: "language" },
       page: { url: page.url, requestedUrl: urlKey },
+      hosting,
       language: { basis: language.basis, declared: language.declared, cyrillicWords: language.cyrillicWords, markerWords: language.markerWords, otherWords: language.otherWords },
     };
   }
@@ -181,6 +211,7 @@ export async function readAudit({ url, html, finalUrl, robotsText, network, rend
       cacheControl: page.headers.cacheControl ?? null,
       gzipBytes: saved ? null : gzipSync(Buffer.from(page.html, "utf8")).length,
     },
+    hosting,
     facts,
     vs: { page: vs.page, passages: vs.passages, technical: vs.technical, losses: vs.losses, layout: vs.layout, ...(rendered?.ok ? { render: { ok: true, browser: rendered.browser, wordCount: rendered.wordCount, passages: rendered.passages, charsIndexed: rendered.charsIndexed, headings: rendered.headings } } : {}) },
     robots,
