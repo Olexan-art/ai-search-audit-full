@@ -1,15 +1,14 @@
 // The HTML report: self-contained (a CSP that blocks the network, nothing loaded from outside),
-// page text escaped, both languages present, the Full layout's sections in order, and the Full
-// layers where they belong: a description and "What the rule says" on every problem, the fix
-// direction only inside the collapsed details for specialists. The Markdown and the JSON come
-// from the same model.
+// page text escaped, both languages present, the Lite layout's sections in order, and no prose
+// that belongs to the full version (no rule text, no fix directions). The Markdown and the JSON
+// come from the same model.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildModel } from "../scripts/lib/model.mjs";
 import { renderReport } from "../scripts/lib/report.mjs";
 import { buildExport, renderMarkdown } from "../scripts/lib/outputs.mjs";
-import { EXPORT_SCHEMA } from "../scripts/lib/version.mjs";
 import { explain } from "../scripts/lib/explain.mjs";
+import { EXPORT_SCHEMA } from "../scripts/lib/version.mjs";
 import { page, readingOf, section } from "./helpers.mjs";
 
 const EVIL = `<img src=x onerror="alert(1)">`;
@@ -35,9 +34,9 @@ test("page text is escaped wherever it appears", async () => {
   assert.ok(out.includes("&lt;img src=x onerror=&quot;alert(1)&quot;&gt;"));
 });
 
-test("the Full layout: verdict, tiles, map, biggest, charts, all problems, how it was checked, cannot see, footer", async () => {
+test("the 2.103 layout: headline, cards, the first three, the places, all checks folded, the notes, the footer", async () => {
   const { out } = await report();
-  const order = ['id="verdict"', 'id="status"', 'id="page-map"', 'id="biggest"', 'id="lc-severity"', 'id="lc-text"', 'id="lc-bots"', 'id="lc-classic"', 'id="lc-langs"', 'id="all-problems"', 'id="how-checked"', 'id="cannot-see"', 'class="foot"'];
+  const order = ['id="verdict"', 'id="headline"', 'id="sev-counts"', 'id="see-first"', 'id="means"', 'id="review-first"', 'id="page-map"', 'id="all-checks"', 'id="status"', 'id="lc-bots"', 'id="lc-classic"', 'id="lc-langs"', 'id="lc-severity"', 'id="lc-text"', 'id="lc-strips"', 'id="all-problems"', 'id="how-checked"', 'id="cannot-see"', 'id="info-strip"', 'id="explained-link"', 'class="foot"'];
   let at = -1;
   for (const id of order) {
     const i = out.indexOf(id);
@@ -46,59 +45,71 @@ test("the Full layout: verdict, tiles, map, biggest, charts, all problems, how i
   }
   assert.equal((out.match(/<li class="tile /g) || []).length, 6);
   for (const q of ["Shown well in search?", "AI finds it?", "AI reads all of it?", "AI quotes it right?", "AI gets the brand right?", "Languages in order?"]) assert.ok(out.includes(q), q);
+  assert.ok(!out.includes("Rich results &amp; markup"));
   assert.ok(out.includes('id="tile-brand"') && out.includes("no brand.json or reviews.json"), "the brand tile says it was not checked");
-  assert.equal((out.match(/id="cg-/g) || []).length, 35);
   assert.ok(out.includes('href="https://www.getlooploop.com"'));
-  assert.ok(!out.includes('id="full-link"') && !/Full version from GetLoopLoop|Full report with explanations/.test(out), "no line pointing at a full version");
-  assert.ok(!out.includes('id="map-key"'), "the Full map points at All problems instead of a key list");
+  assert.match(out, /<img class="gll-mark" src="data:image\/webp;base64,/, "the real mark, inline");
+  assert.ok(out.includes("AI search that understands your business") && out.includes("AI пошук, який розуміє ваш бізнес"));
+  assert.ok(out.includes("A schema of the document, not a screenshot of the page."));
+  assert.ok(!out.includes('id="full-link"') && !/Full report with explanations|Full version from GetLoopLoop/.test(out), "Full never points at a full version");
+  assert.match(out, /<a class="btn btn-out" href="#all-problems">/, "the notes CTA points into this report");
 });
 
-test("every problem has its description and rule; the fix direction sits only inside the closed details", async () => {
+test("all checks is one closed <details> holding the 35-cell checklist and every finding", async () => {
   const { m, out } = await report();
-  assert.ok(m.findings.length > 3);
-  for (const f of m.findings) {
-    const row = out.slice(out.indexOf(`<li id="p-${f.id}"`));
-    const end = row.indexOf("</li>", row.indexOf("</details>"));
-    const li = row.slice(0, end);
-    assert.ok(li.includes(explain(f.code).d[0].replace(/'/g, "&#39;").slice(0, 30)) || li.includes(explain(f.code).d[0].slice(0, 30)), `${f.code}: description`);
-    assert.ok(li.includes("What the rule says"), `${f.code}: rule`);
-    const plain = li.slice(0, li.indexOf('<details class="spec"'));
-    assert.ok(!plain.includes("Fix direction"), `${f.code}: no fix direction outside the details`);
-    const details = li.slice(li.indexOf('<details class="spec"'));
-    assert.ok(/^<details class="spec" id="[^"]+">/.test(details), `${f.code}: details closed by default`);
-    assert.ok(details.includes("Fix direction"), `${f.code}: fix direction in the details`);
-  }
-  // Outside the details for specialists, the words of the fix directions never appear.
-  const stripped = out.replace(/<details class="spec"[\s\S]*?<\/details>/g, "");
-  assert.ok(!stripped.includes("Fix direction · for specialists"));
-  for (const f of m.findings) assert.ok(!stripped.includes(explain(f.code).x[0].slice(0, 40)), `${f.code}: fix text leaked`);
+  const d = /<details class="allc" id="all-checks">([\s\S]*?)<\/details>\n<section class="info"/.exec(out);
+  assert.ok(d, "a closed details, right before the notes");
+  assert.equal((d[1].match(/id="cg-/g) || []).length, 35);
+  assert.equal((out.match(/id="cg-/g) || []).length, 35, "the checklist is drawn once");
+  for (const f of m.findings) assert.ok(d[1].includes(`id="pin-${f.id}"`), f.id);
+  assert.ok(d[1].includes("Robot access · Google and Bing · Languages · Reading the text"));
 });
 
-test("both languages are in the file", async () => {
+test("both languages are in the file, with the Full layers in each", async () => {
   const { out } = await report();
   assert.ok(out.includes('class="l-uk" lang="uk"'));
-  for (const t of ["Мапа сторінки", "Що каже правило", "Подробиці для фахівців", "Усі проблеми"]) assert.ok(out.includes(t), t);
+  assert.ok(out.includes("Де на сторінці це знайдено"));
+  for (const t of ["What the rule says", "Що каже правило", "Details for specialists", "Подробиці для фахівців", "What it means and the rule", "Що це означає і правило"]) assert.ok(out.includes(t), t);
 });
 
-test("the export: the schema id, every finding with its rules and Full layers, the same pins as the report", async () => {
+test("the top rows and the selected place open to the description and the rule; the fix direction lives only in the details for specialists", async () => {
+  const { m, out } = await report();
+  const top = /<section class="sum" id="review-first"[\s\S]*?<\/section>/.exec(out)[0];
+  const places = /<section class="sum" id="page-map"[\s\S]*?<\/section>/.exec(out)[0];
+  for (const f of m.bigs.slice(0, 3)) {
+    const row = top.slice(top.indexOf(`id="top-${f.id}"`));
+    assert.ok(row.includes(explain(f.code).d[0].slice(0, 30).replace(/'/g, "&#39;")) || row.includes(explain(f.code).d[0].slice(0, 30)), `${f.code}: description in the top rows`);
+    assert.ok(row.includes("What the rule says"), `${f.code}: the rule in the top rows`);
+  }
+  assert.ok(places.includes('<details class="why"'), "findings in the selected place open the same way");
+  for (const block of [top, places]) assert.ok(!block.includes("Fix direction"), "no fix direction in the summary");
+  const outside = out.replace(/<details class="spec"[\s\S]*?<\/details>/g, "");
+  assert.ok(!outside.includes("Fix direction · for specialists"));
+  for (const f of m.findings) assert.ok(!outside.includes(explain(f.code).x[0].slice(0, 40)), `${f.code}: fix text outside the details`);
+  for (const f of m.findings) {
+    const li = out.slice(out.indexOf(`<li id="pin-${f.id}"`));
+    const spec = li.slice(li.indexOf('<details class="spec"'), li.indexOf("</details>") + 10);
+    assert.match(spec, /^<details class="spec" id="[^"]+">/, `${f.code}: details closed`);
+    assert.ok(spec.includes("Fix direction"), `${f.code}: fix direction in the details`);
+  }
+});
+
+test("the export: the schema id, every finding with its rule sources, the same pins as the report", async () => {
   const { m, out } = await report();
   const x = buildExport(m);
   assert.equal(x.schema, EXPORT_SCHEMA);
-  assert.equal(x.edition, "full");
   assert.equal(x.findings.length, m.findings.length);
   for (const f of x.findings) {
     assert.ok(f.rules.length && f.rules.every((s) => s.url.startsWith("https://")), f.code);
     assert.ok(f.label.en && f.label.uk, f.code);
-    assert.ok(f.explanation.description.en && f.explanation.description.uk, f.code);
-    assert.ok(f.explanation.fixDirection.en && f.explanation.fixDirection.uk, f.code);
-    assert.ok(["quote", "skill"].includes(f.explanation.rule.kind), f.code);
   }
-  assert.ok(x.state && Array.isArray(x.state.passages), "the page state the drift compares");
-  for (const f of m.findings) assert.ok(out.includes(`id="${f.big ? "big" : "p"}-${f.id}"`), f.id);
+  for (const f of m.findings) assert.ok(out.includes(`id="pin-${f.id}"`), f.id);
   const md = renderMarkdown(m);
   assert.ok(md.startsWith("# AI Search Audit Full: https://example.org/page"));
-  for (const f of m.findings) assert.ok(md.includes(`\`${f.code}\``), f.code);
   assert.ok(md.includes("What the rule says") && md.includes("Fix direction, for specialists"));
+  assert.equal(x.edition, "full");
+  for (const f of x.findings) assert.ok(f.explanation.description.en && f.explanation.description.uk && f.explanation.fixDirection.en && ["quote", "skill"].includes(f.explanation.rule.kind), f.code);
+  for (const f of m.findings) assert.ok(md.includes(`\`${f.code}\``), f.code);
 });
 
 test("light by default whatever the system prefers; dark only from the toggle or #theme=dark", async () => {
@@ -118,5 +129,88 @@ test("severity carries a shape and a word, not colour alone", async () => {
   // Every marker in a key, a chip or a bar row is a severity shape, and a severity word sits beside it.
   const pins = [...out.matchAll(/<svg class="pi pin (blocking|high|medium|low)"[^>]*>(<polygon|<circle|<rect)/g)];
   assert.ok(pins.length > 0);
-  for (const m of out.matchAll(/<li class="bchip (\w+)"[\s\S]*?<\/li>/g)) assert.match(m[0], /class="sevw /, m[0].slice(0, 60));
+  const pills = [...out.matchAll(/<span class="pill sp (\w+)">(<svg class="pi pin \1"[^>]*>[\s\S]*?<\/svg>)<span class="l-en">(\w+)<\/span>/g)];
+  assert.ok(pills.length > 0, "severity pills: a shape and a word");
+  const row = /<ul class="sevrow"[^>]*>([\s\S]*?)<\/ul>/.exec(out)[1];
+  for (const s of ["blocking", "high", "medium", "low"]) assert.match(row, new RegExp(`<li class="${s}"><svg class="pi pin ${s}"[\\s\\S]*?<span class="l-en">\\d+ ${s}</span>`), s);
+});
+
+// ── 2.103: the summary ───────────────────────────────────────────────────────
+
+
+test("the headline: reachable with the count of notes, in both languages, with the Ukrainian plural", async () => {
+  const { m, out } = await report();
+  const n = m.findings.length;
+  assert.ok(n > 1);
+  const h = /<h1 id="headline">([\s\S]*?)<\/h1>/.exec(out)[1];
+  assert.ok(h.includes(`The page is reachable. ${n} notes.`), h);
+  const uk = n % 10 >= 2 && n % 10 <= 4 && !(n % 100 >= 12 && n % 100 <= 14) ? "зауваження" : n % 10 === 1 && n % 100 !== 11 ? "зауваження" : "зауважень";
+  assert.ok(h.includes(`Сторінка доступна. Є ${n} ${uk}.`), h);
+  assert.ok(out.includes("The check found nothing that blocks robots."));
+});
+
+test("the headline names the block: noindex, and robots.txt", async () => {
+  const { headline, subtitle } = await import("../scripts/lib/copy.mjs");
+  const ni = headline([{ code: "noindex", severity: "blocking", area: "find" }, { code: "h1_missing", severity: "medium", area: "classic" }]);
+  assert.equal(ni.blocked, true);
+  assert.deepEqual(ni.t, ["The page asks search not to index it. 2 notes.", "Сторінка просить пошук не індексувати її. Є 2 зауваження."]);
+  assert.ok(subtitle([{ code: "h1_missing", severity: "medium", area: "classic" }], true)[0].startsWith("Start with the block"));
+  const r = await readingOf(html, {}, { robotsText: "User-agent: *\nDisallow: /\n" });
+  const bm = buildModel(r);
+  assert.ok(bm.findings.some((f) => f.code === "search_engine_blocked"));
+  const out = renderReport(bm);
+  assert.match(out, /<h1 id="headline"><span class="l-en">robots\.txt blocks search robots\. \d+ notes\.<\/span><span class="l-uk" lang="uk">robots\.txt блокує пошукових роботів\. Є \d+ /);
+  assert.match(out, /class="lite-verdict is-blocked"|lite-verdict is-blocked/);
+  assert.match(out, /<li class="card block" id="card-find">[\s\S]*?Robots are blocked[\s\S]*?Blocked: /);
+  assert.deepEqual(headline([]).t, ["The page is reachable. No notes.", "Сторінка доступна. Зауважень немає."]);
+  assert.equal(headline([{ code: "x", severity: "low" }]).t[1], "Сторінка доступна. Є 1 зауваження.");
+  assert.equal(headline(Array.from({ length: 5 }, () => ({ code: "x", severity: "low" }))).t[1], "Сторінка доступна. Є 5 зауважень.");
+});
+
+test("three cards: robots, the text, brand and questions, the third not checked without judgement files", async () => {
+  const { out } = await report();
+  const cards = [...out.matchAll(/<li class="card (ok|prob|block|na)" id="card-(\w+)">/g)].map((x) => [x[2], x[1]]);
+  assert.deepEqual(cards.map((c) => c[0]), ["find", "text", "brand"]);
+  assert.equal(cards[2][1], "na");
+  assert.ok(out.includes("Not checked: no brand, reviews or questions file"));
+  for (const id of ["find", "text", "brand"]) assert.match(out, new RegExp(`id="card-${id}"><span class="card-i"><svg`), id);
+  assert.ok(out.includes('class="cards-note"'));
+  assert.ok(!out.includes('class="bchip'), "the old chips are gone");
+});
+
+test("the first three: numbered rows with severity, layer, place and a button to the place", async () => {
+  const { m, out } = await report();
+  const rows = [...out.matchAll(/<li class="tr( jd)?" id="top-([^"]+)">([\s\S]*?)<\/li>(?=<li class="tr|<\/ol>)/g)];
+  assert.equal(rows.length, Math.min(3, m.bigs.length));
+  rows.forEach((r, i) => {
+    const f = m.bigs[i];
+    assert.equal(r[2], f.id);
+    assert.match(r[3], new RegExp(`<span class="tn ${f.severity}" aria-hidden="true">${f.pin}</span>`));
+    assert.match(r[3], /class="pill sp /);
+    assert.match(r[3], /class="pill lp (ms|est)"/);
+    assert.match(r[3], /class="tloc"/);
+    if (f.layer === "judgement") assert.match(r[3], /<details class="tr-d"><summary/);
+    else assert.match(r[3], /class="btn btn-out btn-sm tr-b" href="#(place|pin)-/);
+  });
+  // The place the first mapped finding is in is selected, server side, so the page reads without the script.
+  const sel = /<li class="[^"]*\bsel\b[^"]*" id="place-([^"]+)"><button type="button" class="pr" data-place="\1" aria-pressed="true"/.exec(out);
+  assert.ok(sel, "one place is selected");
+  assert.equal((out.match(/aria-pressed="true" aria-controls="pd-/g) || []).length, 1);
+  assert.ok(out.includes(`<div class="pd" id="pd-${sel[1]}">`), "its detail is shown; the others are hidden");
+  assert.equal((out.match(/<div class="pd" id="pd-[^"]+">/g) || []).length, 1);
+});
+
+test("a question finding opens its examples and names the model, in the first three", async () => {
+  const { buildModel: bm } = await import("../scripts/lib/model.mjs");
+  const r = await readingOf(html);
+  const m = bm(r);
+  const q = { ...m.findings[0], id: "q-test", code: "question_missing", layer: "judgement", label: ["No answer: “Can I?”", "Без відповіді: «Чи можна?»"], evidence: { question: "Can I check a PDF?" }, judgement: { model: "Test model 2" }, zones: [], strip: null, pin: 1 };
+  m.findings.unshift(q);
+  m.bigs.unshift(q);
+  const out = renderReport(m);
+  const row = /<li class="tr jd" id="top-q-test">([\s\S]*?)<\/details><\/li>/.exec(out);
+  assert.ok(row);
+  assert.ok(row[1].includes("Examples of questions") && row[1].includes("“Can I check a PDF?”") && row[1].includes("Model: Test model 2"));
+  assert.ok(row[1].includes("the agent&#39;s estimate, not a check of three assistants") || row[1].includes("the agent's estimate, not a check of three assistants"));
+  assert.ok(row[1].includes('class="pill lp est"'));
 });

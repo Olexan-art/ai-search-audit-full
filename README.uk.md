@@ -2,11 +2,11 @@
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.101** — навичка (Agent Skill) від [GetLoopLoop](https://www.getlooploop.com) для claude.ai і застосунку Claude, Claude Code, Codex, opencode, Hermes Agent та інших агентів, що завантажують навички `SKILL.md`. Версії рахуються в тисячних (2.101, 2.102, …).
+AI Search Audit Full **2.103** — навичка (Agent Skill) від [GetLoopLoop](https://www.getlooploop.com) для claude.ai і застосунку Claude, Claude Code, Codex, opencode, Hermes Agent та інших агентів, що завантажують навички `SKILL.md`. Версії рахуються в тисячних (2.101, 2.102, …).
 
 Перш ніж Google, Bing чи ШІ-асистент покажуть або процитують сторінку, краулер має отримати дозвіл, сторінка має сказати, що вона таке, а текст має пережити машинне читання. `ai-search-audit-full` перевіряє публічні сторінки за опублікованими правилами для всіх трьох, додає три прочитання, які може зробити лише ШІ (запитання людей, як модель агента описує бренд і що вона вважає про його відгуки), і пояснює кожну знайдену проблему: що не так і чому це важливо, що каже правило словами самого джерела і, для фахівців, у який бік іде виправлення. Навичка перевіряє одну сторінку або до 50 сторінок сайту, порівнює запуск зі старішим і зберігає локальну історію, тож кожен звіт показує, що змінилося від попереднього запуску.
 
-Це приватна версія Full. Вона побудована на публічній [Lite](https://github.com/Olexan-art/ai-search-audit) (2.102) і виконує всі перевірки Lite.
+Це приватна версія Full. Вона побудована на публічній [Lite](https://github.com/Olexan-art/ai-search-audit) (2.103) і виконує всі перевірки Lite.
 
 ![Звіт сторінки з прикладу: плитки, мапа сторінки й мовні версії](docs/ai-search-audit-full-light-1280.png)
 
@@ -22,15 +22,19 @@ AI Search Audit Full **2.101** — навичка (Agent Skill) від [GetLoopL
 | До і після | — | `--compare old-export.json`: виправлені, нові й незмінні знахідки для кожної сторінки |
 | Історія | — | кожен запуск зберігається знімком на цьому комп’ютері; **часова шкала** кожної сторінки і **що змінилося від попереднього запуску** (title, опис, canonical, h1, кількість слів, типи схеми, robots.txt і кожен бот, hreflang, уривки нові, втрачені й змінені) |
 
+У звіті кожна знахідка в розділі *Спочатку перегляньте ці знахідки* й в обраному місці розгортається до простого опису й того, що каже правило; історія та «до і після» йдуть після розділу *Де на сторінці це знайдено*; напрями виправлення — у подробицях для фахівців кожної проблеми, усередині *Усі перевірки та технічні подробиці*.
+
 Усе лишається локальним: жодного сервера, жодного вивантаження. Скрипти не викликають жодної моделі; частини із судженнями пише агент, що виконує навичку, і вони позначені його моделлю.
 
 ![Історія сторінки: два запуски й що змінилося між ними](docs/ai-search-audit-full-history-1280.png)
 
-Звіт сайту, та сама сторінка в темній темі й сторінка українською на вузькому екрані:
+Звіт сайту, та сама сторінка в темній темі й сторінка українською:
 
 ![Звіт сайту з прикладу](docs/ai-search-audit-full-site-1280.png)
 
 ![Звіт сторінки, темна тема](docs/ai-search-audit-full-dark-1280.png)
+
+![Звіт сторінки українською](docs/ai-search-audit-full-light-uk-1280.png)
 
 ## Приклади
 
@@ -48,7 +52,7 @@ AI Search Audit Full **2.101** — навичка (Agent Skill) від [GetLoopL
 
 ### claude.ai і застосунок Claude
 
-1. Завантажте **`ai-search-audit-full.zip`** з [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) цього репозиторію (увійшовши з доступом) або `gh release download v2.101 -R Olexan-art/ai-search-audit-full`. **Не розпаковуйте**: завантаження приймає zip із текою `ai-search-audit-full` на верхньому рівні.
+1. Завантажте **`ai-search-audit-full.zip`** з [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) цього репозиторію (увійшовши з доступом) або `gh release download v2.103 -R Olexan-art/ai-search-audit-full`. **Не розпаковуйте**: завантаження приймає zip із текою `ai-search-audit-full` на верхньому рівні.
 2. Увімкніть виконання коду: **Settings > Capabilities > Code execution and file creation**. На планах Team і Enterprise це вмикає власник в Organization settings > Capabilities.
 3. Завантажте навичку: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, оберіть `ai-search-audit-full.zip` і ввімкніть навичку.
 4. Дозвольте пісочниці доступ до сайту: **Allow network egress** (Free, Pro, Max) або список доменів власника на Team і Enterprise. Аудит сайту робить ті самі запити, що й аудит сторінки, для кожної сторінки.
@@ -134,7 +138,7 @@ node dist/audit.mjs --site readings/site.json --questions-dir questions --brand 
 cd skills/ai-search-audit-full
 npm install          # cheerio і esbuild для збирання
 npm run build        # scripts/ → dist/
-npm test             # 220 тестів, зокрема що dist дорівнює свіжому збиранню
+npm test             # 227 тестів, зокрема що dist дорівнює свіжому збиранню
 npm run verify-rules # мережа: кожну цитату правила звірено з живою сторінкою
 npm run zip          # dist-release/ai-search-audit-full.zip
 ```

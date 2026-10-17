@@ -5,10 +5,10 @@
 import { esc } from "../vendor/vectorscope/html.mjs";
 import { parts } from "./report.mjs";
 import { SITE_EXPLAIN } from "./siteExplain.mjs";
-import { SEV, UI, dateOf, fmtEn, fmtUk, ukForm } from "./copy.mjs";
+import { SEV, UI, dateLong, fmtEn, fmtUk, ukForm } from "./copy.mjs";
 import { source } from "./rules.mjs";
 
-const { P, ext, call, clip, head } = parts;
+const { P, ext, call, clip, sumHead } = parts;
 const en = (n, one, many) => `${fmtEn(n)} ${n === 1 ? one : many}`;
 const uk = (n, a, b, c) => `${fmtUk(n)} ${ukForm(n, a, b, c)}`;
 
@@ -28,7 +28,7 @@ const W = {
 export function siteRuleText(r) {
   if (r.kind === "quote") {
     const s = source(r.src);
-    const d = dateOf(r.checked);
+    const d = dateLong(r.checked);
     return `<q class="rq" lang="en">${esc(r.quote)}</q> <span class="rsrc">${ext(s.url, `${esc(s.name)} ↗`)} <span class="rchk">· ${P([UI.ruleChecked[0](d[0]), UI.ruleChecked[1](d[1])])}</span></span>`;
   }
   return `<span class="rskill">${P(UI.skillRule)}</span> ${P(r.text)}`;
@@ -37,7 +37,7 @@ export function siteRuleText(r) {
 export function siteWideBlock(sm) {
   const sw = sm.siteWide;
   if (!sw) return "";
-  const o = [`<section class="panel" id="site-wide" aria-labelledby="h-site-wide">${head("h-site-wide", W.title, W.sub)}`];
+  const o = [`<section class="sum" id="site-wide" aria-labelledby="h-site-wide">${sumHead("h-site-wide", W.title, W.sub)}`];
   if (!sw.findings.length) o.push(`<p class="none-found">${P(W.none)}</p>`);
   else {
     o.push('<ul class="rep">');

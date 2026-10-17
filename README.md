@@ -2,13 +2,13 @@ English · [Українська](README.uk.md)
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.101**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
+AI Search Audit Full **2.103**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
 
 Before Google, Bing or an AI assistant can show or quote a page, a crawler has to be allowed in, the page has to say what it is, and the text has to survive the machine's reading. `ai-search-audit-full` checks public pages against the published rules for all three, adds three readings only an AI can make (the questions people ask, how the agent's own model describes the brand, and what it believes about the brand's reviews), and explains every problem it finds: what is wrong and why it matters, what the rule says in its source's own words, and, for specialists, which way the fix goes. It audits one page or up to 50 pages of a site, compares a run with an older one, and keeps a local history so each report shows what changed since the last run.
 
-This is the private Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.102) and runs every Lite check.
+This is the private Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.103) and runs every Lite check.
 
-![A page report from the example run: the tiles, the page map and the language versions](docs/ai-search-audit-full-light-1280.png)
+![A page report from the example run: the headline, what it means for you, the findings to review first and where on the page they are](docs/ai-search-audit-full-light-1280.png)
 
 ## What Full adds over Lite
 
@@ -22,15 +22,19 @@ This is the private Full edition. It is built on the public [Lite](https://githu
 | Before/after | — | `--compare old-export.json`: fixed, new and unchanged findings per page |
 | History | — | every run saved as a snapshot on this machine; a **timeline** per page and **what changed since the last run** (title, description, canonical, h1, words, schema types, robots.txt and each bot, hreflang, passages new, lost and changed) |
 
+In the report, every finding in *Review these first* and in the selected place opens to its plain description and what the rule says; the history and before/after follow *Where on the page*; the fix directions sit in each problem's details for specialists, inside *All checks and technical details*.
+
 Everything stays local: no server, no upload. The scripts call no model; the judgement parts are written by the agent running the skill, and marked with its model.
 
 ![The history of a page: two runs and what changed between them](docs/ai-search-audit-full-history-1280.png)
 
-The site report, the same page in dark, and a page in Ukrainian on a narrow screen:
+The site report, the same page in dark, and a page in Ukrainian:
 
 ![The site report of the example run](docs/ai-search-audit-full-site-1280.png)
 
 ![A page report, dark](docs/ai-search-audit-full-dark-1280.png)
+
+![A page report in Ukrainian](docs/ai-search-audit-full-light-uk-1280.png)
 
 ## Examples
 
@@ -48,7 +52,7 @@ The skill needs Node 20.18 or later and **no `npm install`**: `dist/read.mjs` an
 
 ### claude.ai and the Claude desktop app
 
-1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) (signed in with access), or `gh release download v2.101 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
+1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) (signed in with access), or `gh release download v2.103 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
 2. Turn on code execution: **Settings > Capabilities > Code execution and file creation**. On Team and Enterprise plans an owner controls it in Organization settings > Capabilities.
 3. Upload: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, choose `ai-search-audit-full.zip`, and turn the skill on.
 4. Let the sandbox reach the site: **Allow network egress** (Free, Pro, Max), or the owner's domain list on Team and Enterprise. A site audit makes the same requests as a page audit, for each page.
@@ -134,7 +138,7 @@ For live assistants, answer volatility, embeddings and Search Console, see [GetL
 cd skills/ai-search-audit-full
 npm install          # cheerio, and esbuild for the build
 npm run build        # scripts/ → dist/
-npm test             # 220 tests, including dist equals a fresh build
+npm test             # 227 tests, including dist equals a fresh build
 npm run verify-rules # network: every rule quote matched against its live page
 npm run zip          # dist-release/ai-search-audit-full.zip
 ```

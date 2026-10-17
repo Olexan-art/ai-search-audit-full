@@ -23,16 +23,6 @@ export const CSS_FULL = `
 a.mapchip:hover{border-color:var(--accent)}
 .lyr.measured{--c:var(--lm);--cs:var(--lm-soft)}
 .lyr.derived{--c:var(--ld);--cs:var(--ld-soft)}
-.bigs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;align-items:start}
-.big{border:1px solid var(--line);border-left:4px solid var(--sev);border-radius:12px;padding:12px 15px;background:var(--panel-2);min-width:0;display:flex;flex-direction:column;gap:8px;scroll-margin-top:12px}
-.big.blocking{--sev:var(--red)}.big.high,.big.medium{--sev:var(--amber)}.big.low{--sev:var(--pin-low)}
-.bh{display:flex;gap:10px;align-items:flex-start}
-.bh .pi{flex:none;width:30px;height:30px}
-.bh h3{font-size:16px;line-height:1.3;margin:3px 0 0;overflow-wrap:anywhere}
-.plain{margin:0;display:grid;gap:5px;font-size:15px;line-height:1.45}
-.plain div{min-width:0}
-.plain dt{display:block}
-.plain dd{margin:0;overflow-wrap:anywhere}
 .rule{margin:0;font-size:14px;line-height:1.5;color:var(--text);border-left:2px solid var(--line-2);padding-left:9px;overflow-wrap:anywhere}
 .rule .lbl{margin-right:5px}
 dd.rule{font-size:14px}
@@ -80,6 +70,16 @@ dd.rule{font-size:14px}
 .prow-w{margin:0;font-size:15px;line-height:1.45}
 .prow-p{margin:0;font-size:14px;color:var(--muted)}
 .prow-p .lbl{margin-right:5px}
+.why{margin:2px 0 6px 52px}
+.why-s{cursor:pointer;list-style:none;display:inline-flex;gap:6px;align-items:center;font-size:15px;font-weight:600;color:var(--accent);border-radius:6px}
+.why-s::-webkit-details-marker{display:none}
+.why-s .chev{width:16px;height:16px;flex:none}
+.why[open] .why-s .chev{transform:rotate(180deg)}
+.why-b{margin-top:6px;display:grid;gap:6px;max-width:82ch}
+.why-d{margin:0;font-size:15px;line-height:1.5}
+.pd-list li .why{grid-column:1/-1;margin:2px 0 4px 34px}
+.tr-x .why-b{margin:0 0 10px}
+@media (prefers-reduced-motion:no-preference){.why-s .chev{transition:transform .15s}}
 .how{margin-top:22px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;background:var(--panel);padding:10px 16px}
 .how>summary{cursor:pointer;font-weight:700;font-size:15.5px;list-style:none;width:max-content;max-width:100%}
 .how>summary::-webkit-details-marker{display:none}

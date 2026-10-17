@@ -31,8 +31,9 @@ test("the Full layers: AA for their pairs, tokens only, light by default", () =>
   assert.ok(!/#[0-9a-f]{3,8}\b|rgba?\(/i.test(CSS_FULL), "no colour literals in the Full layers");
   const t = themes(CSS + CSS_EXTRA);
   for (const name of new Set([...CSS_FULL.matchAll(/var\(--([\w-]+)\)/g)].map((m) => m[1]))) {
-    assert.ok(t.light[name] !== undefined || (CSS + CSS_EXTRA).includes(`--${name}:`), `--${name} in the light theme`);
-    assert.ok(t.dark[name] !== undefined || (CSS + CSS_EXTRA).includes(`--${name}:`), `--${name} in the dark theme`);
+    const local = CSS_FULL.includes(`--${name}:`);
+    assert.ok(local || t.light[name] !== undefined || (CSS + CSS_EXTRA).includes(`--${name}:`), `--${name} in the light theme`);
+    assert.ok(local || t.dark[name] !== undefined || (CSS + CSS_EXTRA).includes(`--${name}:`), `--${name} in the dark theme`);
   }
   assert.ok(!/opacity:\s*\.\d/.test(CSS_FULL), "no severity told by a faded colour");
 });

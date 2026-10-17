@@ -6,7 +6,7 @@
 import { esc } from "../vendor/vectorscope/html.mjs";
 import { parts } from "./report.mjs";
 import { explain } from "./explain.mjs";
-import { SEV, UI, dateOf, fmtEn, fmtUk, nProblems, ukForm } from "./copy.mjs";
+import { LITE, SEV, SEV_COUNT, UI, dateLong, dateOf, fmtEn, fmtUk, nProblems, ukForm } from "./copy.mjs";
 import { SEVERITIES, SEVERITY_RANK } from "./checks.mjs";
 import { EDITION, TOOL_NAME } from "./report.mjs";
 import { EXPORT_SCHEMA, PRODUCED_BY, SKILL_VERSION } from "./version.mjs";
@@ -18,7 +18,7 @@ import { SITE_EXPLAIN } from "./siteExplain.mjs";
 
 export const SITE_EXPORT_SCHEMA = "getlooploop/ai-search-audit-site@1";
 
-const { P, pair, ext, call, clip, head, pinIcon, sevPill, ruleText, documentStart, documentEnd } = parts;
+const { P, pair, ext, call, clip, head, sumHead, pinIcon, sevPill, ruleText, documentStart, documentEnd } = parts;
 const en = (n, one, many) => `${fmtEn(n)} ${n === 1 ? one : many}`;
 const uk = (n, a, b, c) => `${fmtUk(n)} ${ukForm(n, a, b, c)}`;
 
@@ -68,6 +68,20 @@ const S = {
   sevTotals: ["Findings by severity, all pages", "Знахідки за серйозністю, усі сторінки"],
   checked: [(d) => `checked ${d}`, (d) => `перевірено ${d}`],
   openPage: ["page report", "звіт сторінки"],
+  notesN: [(n) => en(n, "note", "notes"), (n) => uk(n, "зауваження", "зауваження", "зауважень")],
+  seePages: ["See the pages", "Переглянути сторінки"],
+  cardBlock: [(b, n) => `${b} of ${n} pages have a problem that blocks search or AI`, (b, n) => `${b} із ${n} сторінок мають проблему, що блокує пошук або ШІ`],
+  cardHide: [(b, n) => `${b} of ${n} pages hide text from AI`, (b, n) => `${b} із ${n} сторінок ховають текст від ШІ`],
+  cardOk: ["Search engines and AI can reach and read every page", "Пошукові системи й ШІ можуть дістатися до кожної сторінки й прочитати її"],
+  cardPages: [(n) => `${en(n, "page", "pages")} audited`, (n) => `перевірено ${uk(n, "сторінку", "сторінки", "сторінок")}`],
+  cardRepeated: [(n) => `${en(n, "problem repeats", "problems repeat")} across pages`, (n) => `${uk(n, "проблема повторюється", "проблеми повторюються", "проблем повторюються")} на сторінках`],
+  cardNoRepeated: ["No problem repeats across pages", "Жодна проблема не повторюється на сторінках"],
+  cardRepeatedSub: ["Fixed once in a template, fixed everywhere", "Виправлене один раз у шаблоні виправлене всюди"],
+  cardSite: [(n) => `${en(n, "problem", "problems")} only the set of pages shows`, (n) => `${uk(n, "проблема", "проблеми", "проблем")}, видимі лише на наборі сторінок`],
+  cardNoSite: ["No site-wide problem among the audited pages", "Серед перевірених сторінок проблем на рівні сайту немає"],
+  cardSiteNot: [(n) => `${en(n, "site-wide check", "site-wide checks")} could not run`, (n) => `${uk(n, "перевірку", "перевірки", "перевірок")} на рівні сайту не виконано`],
+  cardSiteSub: ["Titles, links, hreflang and canonicals between the pages", "Title, посилання, hreflang і canonical між сторінками"],
+  allSub: ["What was audited · Pages × problems · Problems on one page · Severity", "Що перевірено · Сторінки × проблеми · Проблеми на одній сторінці · Серйозність"],
   cannotSite: ["Each page report lists what one page's check cannot see; the site audit adds one limit: at most 50 pages, every page left out listed above.", "Кожен звіт сторінки перелічує, чого не бачить перевірка однієї сторінки; аудит сайту додає одне обмеження: щонайбільше 50 сторінок, і кожну пропущену перелічено вище."],
 };
 
@@ -161,13 +175,13 @@ function pagesBlock(sm) {
     const cmp = p.compare ? ` · <a href="${pageLink(p, "#compare")}">${P(call(S.cmpN, p.compare.fixed, p.compare.new))}</a>` : "";
     return `<li id="page-${esc(p.slug)}"><span class="i">${p.i}</span><span><a href="${pageLink(p)}">${esc(p.url)}</a>${p.title ? `<span class="pt">${esc(clip(p.title, 120))}</span>` : ""}${!p.ok ? `<span class="pt mono">${esc(p.reasonCode)}</span>` : ""}</span><span class="cnts">${counts}${drift}${first}${cmp}</span></li>`;
   });
-  return `<section class="panel" id="pages" aria-labelledby="h-pages">${head("h-pages", S.pages, call(S.pagesN, sm.pages.length))}<ol class="pages-list">${items.join("")}</ol></section>`;
+  return `<section class="sum" id="pages" aria-labelledby="h-pages">${sumHead("h-pages", S.pages, call(S.pagesN, sm.pages.length))}<ol class="pages-list">${items.join("")}</ol></section>`;
 }
 
 const codeTitle = (code) => explain(code).t;
 
 function repeatedBlock(sm) {
-  const o = [`<section class="panel" id="repeated" aria-labelledby="h-repeated">${head("h-repeated", S.repeated, S.repeatedSub)}`];
+  const o = [`<section class="sum" id="repeated" aria-labelledby="h-repeated">${sumHead("h-repeated", S.repeated, S.repeatedSub)}`];
   if (!sm.repeated.length) {
     o.push(`<p class="none-found">${P(S.noneRepeated)}</p></section>`);
     return o.join("\n");
@@ -225,32 +239,61 @@ function totalsBlock(sm) {
   return `<section class="panel wide" id="site-severity" aria-labelledby="h-site-sev">${head("h-site-sev", S.sevTotals)}<ul class="sbars">${rows}</ul></section>`;
 }
 
-/** The site report HTML (index.html of the output folder). */
+/** The site report HTML (index.html of the output folder), in the page report's summary-first layout. */
 export function renderSiteReport(sm) {
   const m = sm.manifest;
+  const { CARD_ICON, LIST_ICON, CHEV } = parts;
   let host = "";
   try {
     host = new URL(sm.pages[0]?.url || m.source.input).hostname;
   } catch {}
   const o = documentStart(`${TOOL_NAME} ${EDITION}: ${host} · ${sm.pages.length} pages`);
-  o[o.findIndex((l) => l.includes('class="eyebrow"'))] = `<div class="top-l"><span class="eyebrow">${P(S.eyebrow)}</span></div>`;
-  o.push('<header class="verdict lite-verdict" id="verdict">');
-  o.push(`<div class="pageid"><span class="url mono">${esc(host)}</span></div>`);
-  o.push(`<h1>${P(siteVerdict(sm))}</h1>`);
-  const d = dateOf(m.createdAt);
   const total = SEVERITIES.reduce((n, s) => n + sm.totals[s], 0);
-  o.push(`<p class="lite-meta"><span>${P(call(S.evaluated, m.evaluated, m.total))}</span><span aria-hidden="true">·</span><a href="#repeated">${P(call(S.findingsN, total))}</a><span aria-hidden="true">·</span><span>${P([S.checked[0](d[0]), S.checked[1](d[1])])}</span></p>`);
-  o.push("</header>");
-  o.push(coverageBlock(sm));
+  const d = dateLong(m.createdAt);
+  const blocked = sm.pages.some((p) => p.blocking);
+  const sevs = SEVERITIES.map((s) => `<li class="${s}">${pinIcon(s, null, 16)}<span>${P(call(SEV_COUNT[s], sm.totals[s]))}</span></li>`).join("");
+  o.push(
+    [
+      `<header class="verdict lite-verdict${blocked ? " is-blocked" : ""}" id="verdict">`,
+      `<p class="pageid"><span class="url">${esc(host)}</span></p>`,
+      `<p class="lite-meta"><span>${P([LITE.checked[0](d[0]), LITE.checked[1](d[1])])}</span><span aria-hidden="true">·</span><span>${P(S.eyebrow)}</span></p>`,
+      `<h1 id="headline">${P(siteVerdict(sm))}</h1>`,
+      `<p class="lede" id="subtitle">${P([`${S.evaluated[0](m.evaluated, m.total)} · ${S.notesN[0](total)}`, `${S.evaluated[1](m.evaluated, m.total)} · ${S.notesN[1](total)}`])}</p>`,
+      `<ul class="sevrow" id="sev-counts" ${parts.attrPair("aria-label", UI.severity[0], UI.severity[1])}>${sevs}</ul>`,
+      `<p class="cta-row"><a class="btn btn-primary" id="see-pages" href="#pages">${P(S.seePages)}<span aria-hidden="true"> ↓</span></a></p>`,
+      "</header>",
+    ].join("\n"),
+  );
+  // Three cards: the pages that block, the problems shared by pages, the problems only the set shows.
+  const blockPages = sm.pages.filter((p) => p.blocking);
+  const hidePages = sm.pages.filter((p) => p.hides);
+  const sw = sm.siteWide?.findings || [];
+  const worst = (sevs2) => (sevs2.includes("blocking") ? "block" : sevs2.some((s) => s === "high" || s === "medium") ? "prob" : "ok");
+  const cards = [
+    { id: "find", state: blockPages.length ? "block" : hidePages.length ? "prob" : "ok", title: blockPages.length ? call(S.cardBlock, blockPages.length, sm.pages.length) : hidePages.length ? call(S.cardHide, hidePages.length, sm.pages.length) : S.cardOk, status: call(S.cardPages, sm.okPages) },
+    { id: "text", state: worst(sm.repeated.map((c) => c.worst)), title: sm.repeated.length ? call(S.cardRepeated, sm.repeated.length) : S.cardNoRepeated, status: S.cardRepeatedSub },
+    { id: "brand", state: sm.siteWide ? worst(sw.map((f) => f.severity)) : "na", title: sw.length ? call(S.cardSite, sw.length) : S.cardNoSite, status: sm.siteWide?.notChecked.length ? call(S.cardSiteNot, sm.siteWide.notChecked.length) : S.cardSiteSub },
+  ];
+  o.push(`<section class="sum" id="means" aria-labelledby="h-means"><h2 id="h-means">${P(LITE.means)}</h2><ul class="cards" id="cards">${cards.map((c) => `<li class="card ${c.state}" id="card-${c.id}"><span class="card-i">${CARD_ICON[c.id]}</span><span class="card-t"><h3>${P(c.title)}</h3><span class="card-s">${P(c.status)}</span></span></li>`).join("")}</ul></section>`);
   o.push(pagesBlock(sm));
   o.push(siteWideBlock(sm));
   o.push(repeatedBlock(sm));
-  o.push(matrixBlock(sm));
-  o.push(singleBlock(sm));
-  o.push('<div class="lcharts">');
-  o.push(totalsBlock(sm));
-  o.push("</div>");
-  o.push(`<section class="panel" id="cannot-see" aria-labelledby="h-cannot">${head("h-cannot", UI.cannot)}<p class="capnote">${P(S.cannotSite)}</p></section>`);
+  o.push(
+    [
+      `<details class="allc" id="all-checks">`,
+      `<summary class="allc-s"><span class="allc-i">${LIST_ICON}</span><span class="allc-t"><h2 id="h-all">${P(LITE.all)}</h2><span class="sub">${P(S.allSub)}</span></span>${CHEV}</summary>`,
+      '<div class="allc-b">',
+      coverageBlock(sm),
+      matrixBlock(sm),
+      singleBlock(sm),
+      '<div class="lcharts">',
+      totalsBlock(sm),
+      "</div>",
+      `<section class="panel" id="cannot-see" aria-labelledby="h-cannot">${head("h-cannot", UI.cannot)}<p class="capnote">${P(S.cannotSite)}</p></section>`,
+      "</div>",
+      "</details>",
+    ].join("\n"),
+  );
   o.push(...documentEnd("footerSite"));
   return o.join("\n") + "\n";
 }
