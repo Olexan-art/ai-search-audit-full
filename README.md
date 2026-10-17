@@ -6,7 +6,7 @@ AI Search Audit Full **2.104**, an Agent Skill from [GetLoopLoop](https://www.ge
 
 Before Google, Bing or an AI assistant can show or quote a page, a crawler has to be allowed in, the page has to say what it is, and the text has to survive the machine's reading. `ai-search-audit-full` checks public pages against the published rules for all three, adds three readings only an AI can make (the questions people ask, how the agent's own model describes the brand, and what it believes about the brand's reviews), and explains every problem it finds: what is wrong and why it matters, what the rule says in its source's own words, and, for specialists, which way the fix goes. It audits one page or up to 50 pages of a site, compares a run with an older one, and keeps a local history so each report shows what changed since the last run.
 
-This is the private Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.104) and runs every Lite check.
+This is the Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.104) and runs every Lite check.
 
 ![A page report from the example run: the headline, what it means for you, the findings to review first and where on the page they are](docs/ai-search-audit-full-light-1280.png)
 
@@ -48,11 +48,11 @@ The reports open in English; add `#lang=uk` for Ukrainian.
 
 ## Install
 
-The skill needs Node 20.18 or later and **no `npm install`**: `dist/read.mjs` and `dist/audit.mjs` are bundled with everything they need. The repository and its release are private: you need access to [Olexan-art/ai-search-audit-full](https://github.com/Olexan-art/ai-search-audit-full).
+The skill needs Node 20.18 or later and **no `npm install`**: `dist/read.mjs` and `dist/audit.mjs` are bundled with everything they need.
 
 ### claude.ai and the Claude desktop app
 
-1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) (signed in with access), or `gh release download v2.104 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
+1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) or `gh release download v2.104 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
 2. Turn on code execution: **Settings > Capabilities > Code execution and file creation**. On Team and Enterprise plans an owner controls it in Organization settings > Capabilities.
 3. Upload: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, choose `ai-search-audit-full.zip`, and turn the skill on.
 4. Let the sandbox reach the site: **Allow network egress** (Free, Pro, Max), or the owner's domain list on Team and Enterprise. A site audit makes the same requests as a page audit, for each page.
@@ -151,4 +151,4 @@ To take a new Lite release: apply Lite's diff since the last one onto `skills/ai
 
 ## Licence
 
-Proprietary: Copyright (c) 2026 Olexandr Tsyrkin. All rights reserved. See [LICENSE](LICENSE). The vendored Vectorscope code keeps its MIT licence ([`scripts/vendor/vectorscope/LICENSE`](skills/ai-search-audit-full/scripts/vendor/vectorscope/LICENSE)), and the favicons their [notice](skills/ai-search-audit-full/assets/favicons/NOTICE.txt).
+MIT, as the Lite: see [LICENSE](LICENSE). The vendored Vectorscope code keeps its MIT licence ([`scripts/vendor/vectorscope/LICENSE`](skills/ai-search-audit-full/scripts/vendor/vectorscope/LICENSE)), and the favicons their [notice](skills/ai-search-audit-full/assets/favicons/NOTICE.txt).
