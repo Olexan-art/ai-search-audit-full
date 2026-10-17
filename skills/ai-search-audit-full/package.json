@@ -1,6 +1,6 @@
 {
   "name": "getlooploop-ai-search-audit-full-skill",
-  "version": "2.105.0",
+  "version": "2.106.0",
   "description": "AI Search Audit Full, run locally: the Lite checks (access, robots.txt for search and AI crawlers, the Google and Bing checklist, structured data, trust signals, language versions, the Vectorscope reading, writing patterns, the keyword, and the agent's own judgement of questions, brand and reviews), plus a plain description, the rule quoted from its source and a fix direction for every problem, up to 50 pages per site, before and after, and a local history with drift. The scripts call no model.",
   "type": "module",
   "private": true,

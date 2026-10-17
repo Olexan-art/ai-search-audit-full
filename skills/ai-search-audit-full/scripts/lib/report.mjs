@@ -24,6 +24,7 @@ import { source } from "./rules.mjs";
 import { FAVICONS } from "./favicons.mjs";
 import { CANNOT, CARD_COPY, LAYER, LITE, MARK, OWNERS, SEV, SEV_COUNT, STATE, UI, ZONE_LABEL, dateLong, dateOf, fmtEn, fmtUk, headline, nMinor, nProblems, subtitle } from "./copy.mjs";
 import { GLL_MARK } from "../vendor/vectorscope/brandmark.mjs";
+import { LOGO_GLITCH_JS } from "./glitch.mjs";
 import { SEVERITIES } from "./checks.mjs";
 
 export const TOOL_NAME = "AI Search Audit";
@@ -523,7 +524,8 @@ function documentEnd(madeKey = "footer") {
     `<div class="foot-made"><img class="motanka" src="${MOTANKA}" alt="" width="30" height="39"><p>${P(UI[madeKey])}</p></div></footer>`,
     '<div class="corner corner--br" aria-hidden="true"></div>',
     "</main>",
-    `<script>${JS}</script>`,
+    `<script>${JS};
+${LOGO_GLITCH_JS}</script>`,
     "</body>",
     "</html>",
   ];
