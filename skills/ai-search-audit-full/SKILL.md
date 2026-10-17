@@ -3,7 +3,7 @@ name: ai-search-audit-full
 description: Audit public web pages for classic search and AI search (SEO and GEO), one page or up to 50 pages of a site: robots.txt for Googlebot and AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot), noindex, snippets, sitemap, llms.txt, title, headings, canonical, links, images, structured data, trust signals, hreflang versions, how an AI retriever reads the page (passages, the 26-passage cap), writing patterns, the keyword, the questions people ask, and what the agent's own model believes about the brand and its reviews. Every problem gets a plain description, the rule quoted from its official source and a fix direction for specialists; a site report groups repeated problems; before/after and a local history show what changed. Use for an SEO or GEO audit of a page or site, AI-search readiness, why Google, ChatGPT or Perplexity may not show or quote a page, what changed since the last audit, or ai-search-audit-full. Ukrainian: «SEO-аудит сайту», «аудит для ШІ-пошуку». Scripts call no model.
 ---
 
-Version 2.104. Versions count in thousandths (2.101, 2.102, 2.103, 2.104, …): the first number moves only on a breaking change.
+Version 2.105. Versions count in thousandths (2.101, 2.102, 2.103, 2.104, 2.105, …): the first number moves only on a breaking change.
 
 # AI Search Audit (Full)
 
