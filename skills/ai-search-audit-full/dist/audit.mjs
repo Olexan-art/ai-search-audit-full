@@ -20786,10 +20786,6 @@ var CSS_FULL = `
 .small{font-size:14px;color:var(--muted)}
 .subhead{font-size:15px;margin:16px 0 8px;font-weight:700}
 .tile p .more{color:var(--muted)}
-.pill{display:inline-block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:1px 9px;border:1px solid var(--line-2);color:var(--muted);white-space:nowrap;font-weight:700}
-.pill.sev-blocking{color:var(--red-ink);border-color:var(--red);background:var(--red)}
-.pill.sev-medium{color:var(--amber);border-color:var(--amber);background:var(--amber-soft)}
-.pill.sev-low{color:var(--pin-low);border-color:var(--pin-low);background:transparent}
 .chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .chips .lyr{flex-basis:auto;margin:0}
 .chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;border:1px solid var(--line-2);border-radius:999px;padding:1px 10px 1px 8px;color:var(--text);background:var(--panel);white-space:nowrap;text-decoration:none}
