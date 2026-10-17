@@ -2,11 +2,11 @@
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.103** — навичка (Agent Skill) від [GetLoopLoop](https://www.getlooploop.com) для claude.ai і застосунку Claude, Claude Code, Codex, opencode, Hermes Agent та інших агентів, що завантажують навички `SKILL.md`. Версії рахуються в тисячних (2.101, 2.102, …).
+AI Search Audit Full **2.104** — навичка (Agent Skill) від [GetLoopLoop](https://www.getlooploop.com) для claude.ai і застосунку Claude, Claude Code, Codex, opencode, Hermes Agent та інших агентів, що завантажують навички `SKILL.md`. Версії рахуються в тисячних (2.101, 2.102, …).
 
 Перш ніж Google, Bing чи ШІ-асистент покажуть або процитують сторінку, краулер має отримати дозвіл, сторінка має сказати, що вона таке, а текст має пережити машинне читання. `ai-search-audit-full` перевіряє публічні сторінки за опублікованими правилами для всіх трьох, додає три прочитання, які може зробити лише ШІ (запитання людей, як модель агента описує бренд і що вона вважає про його відгуки), і пояснює кожну знайдену проблему: що не так і чому це важливо, що каже правило словами самого джерела і, для фахівців, у який бік іде виправлення. Навичка перевіряє одну сторінку або до 50 сторінок сайту, порівнює запуск зі старішим і зберігає локальну історію, тож кожен звіт показує, що змінилося від попереднього запуску.
 
-Це приватна версія Full. Вона побудована на публічній [Lite](https://github.com/Olexan-art/ai-search-audit) (2.103) і виконує всі перевірки Lite.
+Це приватна версія Full. Вона побудована на публічній [Lite](https://github.com/Olexan-art/ai-search-audit) (2.104) і виконує всі перевірки Lite.
 
 ![Звіт сторінки з прикладу: плитки, мапа сторінки й мовні версії](docs/ai-search-audit-full-light-1280.png)
 
@@ -52,7 +52,7 @@ AI Search Audit Full **2.103** — навичка (Agent Skill) від [GetLoopL
 
 ### claude.ai і застосунок Claude
 
-1. Завантажте **`ai-search-audit-full.zip`** з [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) цього репозиторію (увійшовши з доступом) або `gh release download v2.103 -R Olexan-art/ai-search-audit-full`. **Не розпаковуйте**: завантаження приймає zip із текою `ai-search-audit-full` на верхньому рівні.
+1. Завантажте **`ai-search-audit-full.zip`** з [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) цього репозиторію (увійшовши з доступом) або `gh release download v2.104 -R Olexan-art/ai-search-audit-full`. **Не розпаковуйте**: завантаження приймає zip із текою `ai-search-audit-full` на верхньому рівні.
 2. Увімкніть виконання коду: **Settings > Capabilities > Code execution and file creation**. На планах Team і Enterprise це вмикає власник в Organization settings > Capabilities.
 3. Завантажте навичку: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, оберіть `ai-search-audit-full.zip` і ввімкніть навичку.
 4. Дозвольте пісочниці доступ до сайту: **Allow network egress** (Free, Pro, Max) або список доменів власника на Team і Enterprise. Аудит сайту робить ті самі запити, що й аудит сторінки, для кожної сторінки.
@@ -93,6 +93,10 @@ For an SEO or AI search audit of a web page or a site, follow skills/ai-search-a
 **GLM** та інші сімейства моделей працюють усередині одного з цих агентів; встановлюйте навичку для того агента.
 
 Джерела: [Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude) · [Claude Code skills](https://code.claude.com/docs/en/skills) · [Codex skills](https://learn.chatgpt.com/docs/build-skills) · [opencode skills](https://opencode.ai/docs/skills) · [Hermes Agent skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills). Перевірено 2026-10-16.
+
+### Агент без інтернету в shell
+
+Хмарні пісочниці часто запускають shell без мережі або не дають писати в теку навичок. Навичці тека навичок не потрібна: розпакуйте `ai-search-audit-full.zip` у будь-яку теку, куди агент може писати, і вкажіть йому цю теку (або прикріпіть zip у чаті). Без мережі збережіть сторінку в браузері як «Веб-сторінка, лише HTML» і, якщо можете, її `robots.txt`, і передайте обидва файли агенту: навичка прочитає збережену копію і позначить кожну перевірку, якій потрібна мережа, як неперевірену.
 
 ## Запуск коротко
 

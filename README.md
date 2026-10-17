@@ -2,11 +2,11 @@ English · [Українська](README.uk.md)
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.103**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
+AI Search Audit Full **2.104**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
 
 Before Google, Bing or an AI assistant can show or quote a page, a crawler has to be allowed in, the page has to say what it is, and the text has to survive the machine's reading. `ai-search-audit-full` checks public pages against the published rules for all three, adds three readings only an AI can make (the questions people ask, how the agent's own model describes the brand, and what it believes about the brand's reviews), and explains every problem it finds: what is wrong and why it matters, what the rule says in its source's own words, and, for specialists, which way the fix goes. It audits one page or up to 50 pages of a site, compares a run with an older one, and keeps a local history so each report shows what changed since the last run.
 
-This is the private Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.103) and runs every Lite check.
+This is the private Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.104) and runs every Lite check.
 
 ![A page report from the example run: the headline, what it means for you, the findings to review first and where on the page they are](docs/ai-search-audit-full-light-1280.png)
 
@@ -52,7 +52,7 @@ The skill needs Node 20.18 or later and **no `npm install`**: `dist/read.mjs` an
 
 ### claude.ai and the Claude desktop app
 
-1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) (signed in with access), or `gh release download v2.103 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
+1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) (signed in with access), or `gh release download v2.104 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
 2. Turn on code execution: **Settings > Capabilities > Code execution and file creation**. On Team and Enterprise plans an owner controls it in Organization settings > Capabilities.
 3. Upload: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, choose `ai-search-audit-full.zip`, and turn the skill on.
 4. Let the sandbox reach the site: **Allow network egress** (Free, Pro, Max), or the owner's domain list on Team and Enterprise. A site audit makes the same requests as a page audit, for each page.
@@ -93,6 +93,10 @@ For an SEO or AI search audit of a web page or a site, follow skills/ai-search-a
 **GLM** and other model families run inside one of these agents; install the skill for that agent.
 
 Sources: [Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude) · [Claude Code skills](https://code.claude.com/docs/en/skills) · [Codex skills](https://learn.chatgpt.com/docs/build-skills) · [opencode skills](https://opencode.ai/docs/skills) · [Hermes Agent skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills). Checked on 2026-10-16.
+
+### No internet in the agent's shell
+
+Cloud sandboxes often run the shell offline or keep the skills folder read-only. The skill does not need a skills folder: unpack `ai-search-audit-full.zip` anywhere the agent can write and point it at that folder (or attach the zip to the chat). With no network, save the page in your browser as "Web page, HTML only" and, if you can, its `robots.txt`, and give both files to the agent: the skill reads the saved copy and marks every check that needs the network as not checked.
 
 ## A run, in short
 
