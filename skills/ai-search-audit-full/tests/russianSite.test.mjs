@@ -51,9 +51,6 @@ test("a Russian-language version of the site refuses after the fetch; nothing of
   const cases = [
     [{ head: '<link rel="alternate" hreflang="ru" href="https://example.org/ru/page">' }, {}, "hreflang"],
     [{ head: '<meta property="og:locale:alternate" content="ru_RU">' }, {}, "og_locale"],
-    [{ body: `<p>${SECRET}</p><nav><a href="/ru/page">RU</a></nav>` }, {}, "switcher_path"],
-    [{ body: `<p>${SECRET}</p><a href="https://ru.example.org/">RU</a>` }, {}, "switcher_host"],
-    [{ body: `<p>${SECRET}</p><a href="/x" lang="ru">x</a>` }, {}, "link_lang"],
     [{ body: `<p>${SECRET}</p>` }, { "content-language": "ru-RU" }, "content_language"],
   ];
   for (const [parts, headers, kind] of cases) {
@@ -62,6 +59,13 @@ test("a Russian-language version of the site refuses after the fetch; nothing of
     assert.equal(r.refusal.signals[0].kind, kind);
     assert.equal(r.hosting.country, "US");
     assert.ok(!JSON.stringify(r).includes(SECRET), kind);
+  }
+});
+
+test("links to a Russian version are not a declaration: a switcher to /ru, a ru. subdomain, <a lang=\"ru\"> do not refuse", async () => {
+  for (const link of ['<nav><a href="/ru/page">RU</a></nav>', '<a href="https://ru.example.org/">RU</a>', '<a href="/x" lang="ru" hreflang="ru">x</a>']) {
+    const r = await withFetch({ "https://example.org/page": { body: page({ body: `<p>${"Words here. ".repeat(40)}</p>${link}` }) } }, () => readAudit({ url: "https://example.org/page", network: false, deps: hostingDeps("US") }));
+    assert.equal(r.ok, true, link);
   }
 });
 
@@ -119,7 +123,7 @@ test("site: a Russian-language version on any page stops the run; the readings b
   const urls = ["https://example.org/a", "https://example.org/b", "https://example.org/c"];
   const routes = {
     "https://example.org/a": { body: body("A") },
-    "https://example.org/b": { body: page({ body: section("B") + '<a href="/ru/b">RU</a>' }) },
+    "https://example.org/b": { body: page({ head: '<link rel="alternate" hreflang="ru" href="https://example.org/ru/b">', body: section("B") }) },
     "https://example.org/c": { body: body("C") },
   };
   const seen = [];
@@ -127,7 +131,7 @@ test("site: a Russian-language version on any page stops the run; the readings b
   const m = await withFetch(routes, () => site(urls, { deps: hostingDeps("DE", seen), onPage: (r, slug) => written.push(slug) }));
   assert.equal(m.refused.reasonCode, "refused_ru_audience");
   assert.equal(m.refused.url, "https://example.org/b");
-  assert.deepEqual(m.refused.refusal.signals, [{ kind: "switcher_path", value: "example.org/ru/b" }]);
+  assert.deepEqual(m.refused.refusal.signals, [{ kind: "hreflang", value: "ru" }]);
   assert.deepEqual(written, ["example-org-a", "example-org-b"]);
   assert.deepEqual(m.discarded, ["example-org-a"]);
   assert.deepEqual(m.pages.map((p) => p.slug), ["example-org-b"]);

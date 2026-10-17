@@ -1,6 +1,6 @@
 # AI Search Audit Full: https://www.getlooploop.com/vectorscope
 
-Semantic Chunking Visualizer for Any URL — Vectorscope · checked 17 Oct 2026 · skill 2.107
+Semantic Chunking Visualizer for Any URL — Vectorscope · checked 17 Oct 2026 · skill 2.108
 
 **Nothing hides text from AI** · 19 problems (blocking 0, high 0, medium 7, low 12)
 
@@ -324,7 +324,7 @@ x-default: yes
 
 - 4 sections drawn as one zone on the map
 
-## History (2 runs, kept in `history\www.getlooploop.com\vectorscope`)
+## History (2 runs, kept in `C:\Users\Adept_Ko\AppData\Local\Temp\claude\c--DEV-GetLoopLoop\8a1c86f7-3344-4907-8518-5a05490f0e0b\scratchpad\full-ex\history\www.getlooploop.com\vectorscope`)
 
 | Run | Problems | Blocking · high · medium · low |
 |---|---|---|

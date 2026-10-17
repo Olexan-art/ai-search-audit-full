@@ -1,6 +1,6 @@
 {
   "schema": "getlooploop/ai-search-audit@1",
-  "skillVersion": "2.107",
+  "skillVersion": "2.108",
   "producedBy": "ai-search-audit skill, Lite (local; deterministic checks, and the agent's own judgement where marked; the scripts call no model)",
   "createdAt": "2026-10-17T12:59:27.061Z",
   "edition": "full",
@@ -1667,7 +1667,7 @@
     ]
   },
   "history": {
-    "folder": "history\\www.getlooploop.com\\vectorscope",
+    "folder": "C:\\Users\\Adept_Ko\\AppData\\Local\\Temp\\claude\\c--DEV-GetLoopLoop\\8a1c86f7-3344-4907-8518-5a05490f0e0b\\scratchpad\\full-ex\\history\\www.getlooploop.com\\vectorscope",
     "total": 2,
     "older": 0,
     "runs": [

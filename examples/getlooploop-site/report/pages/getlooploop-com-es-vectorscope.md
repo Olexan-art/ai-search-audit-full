@@ -1,6 +1,6 @@
 # AI Search Audit Full: https://www.getlooploop.com/es/vectorscope
 
-Fragmentado semántico de tu página — Vectorscope · checked 17 Oct 2026 · skill 2.107
+Fragmentado semántico de tu página — Vectorscope · checked 17 Oct 2026 · skill 2.108
 
 **Nothing hides text from AI** · 18 problems (blocking 0, high 0, medium 7, low 11)
 
@@ -317,7 +317,7 @@ x-default: yes
 - The promise-without-a-figure rule reads English only
 - 4 sections drawn as one zone on the map
 
-## History (2 runs, kept in `history\www.getlooploop.com\es-vectorscope`)
+## History (2 runs, kept in `C:\Users\Adept_Ko\AppData\Local\Temp\claude\c--DEV-GetLoopLoop\8a1c86f7-3344-4907-8518-5a05490f0e0b\scratchpad\full-ex\history\www.getlooploop.com\es-vectorscope`)
 
 | Run | Problems | Blocking · high · medium · low |
 |---|---|---|

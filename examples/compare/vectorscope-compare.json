@@ -1,6 +1,6 @@
 {
   "schema": "getlooploop/ai-search-audit@1",
-  "skillVersion": "2.107",
+  "skillVersion": "2.108",
   "producedBy": "ai-search-audit skill, Lite (local; deterministic checks, and the agent's own judgement where marked; the scripts call no model)",
   "createdAt": "2026-10-17T12:59:27.061Z",
   "edition": "full",
