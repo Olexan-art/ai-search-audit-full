@@ -147,6 +147,32 @@ Lite's thresholds apply unchanged; they are listed in the [Lite README](https://
 
 For live assistants, answer volatility, embeddings and Search Console, see [GetLoopLoop](https://www.getlooploop.com).
 
+## Asking your agent
+
+A short request with a clear stop condition and a reply format keeps the agent on the procedure. Copy it and put in your page:
+
+```markdown
+## Task
+Run the skill `ai-search-audit-full` on 1 page (or on the pages in urls.txt). Write its report.
+
+## Inputs
+- Page: https://example.com/page
+- Working folder: ./audit
+- Earlier reports (optional): ./old-reports
+
+## Rules
+1. Read SKILL.md first. Follow it exactly.
+2. Write every file into the working folder.
+3. Pass every earlier report with --history-from.
+
+## Stop condition
+Stop when report.html exists. Show it.
+
+## Reply format
+- The report link or path.
+- What changed since the last run, and the 3 biggest problems.
+```
+
 ## Working on the skill
 
 ```

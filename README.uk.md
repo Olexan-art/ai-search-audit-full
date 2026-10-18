@@ -147,6 +147,32 @@ node dist/audit.mjs --site readings/site.json --questions-dir questions --style-
 
 Живі асистенти, мінливість відповідей, ембединги й Search Console — на [GetLoopLoop](https://www.getlooploop.com).
 
+## Як доручати агентові
+
+Коротке доручення з чіткою умовою зупинки та форматом відповіді тримає агента в межах процедури. Скопіюйте його й підставте свою сторінку:
+
+```markdown
+## Task
+Run the skill `ai-search-audit-full` on 1 page (or on the pages in urls.txt). Write its report.
+
+## Inputs
+- Page: https://example.com/page
+- Working folder: ./audit
+- Earlier reports (optional): ./old-reports
+
+## Rules
+1. Read SKILL.md first. Follow it exactly.
+2. Write every file into the working folder.
+3. Pass every earlier report with --history-from.
+
+## Stop condition
+Stop when report.html exists. Show it.
+
+## Reply format
+- The report link or path.
+- What changed since the last run, and the 3 biggest problems.
+```
+
 ## Робота над навичкою
 
 ```

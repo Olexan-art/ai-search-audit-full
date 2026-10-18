@@ -147,6 +147,32 @@ Progi Lite obowiązują bez zmian; są wymienione w [README Lite](https://github
 
 Żywi asystenci, zmienność odpowiedzi, embeddingi i Search Console: zobacz [GetLoopLoop](https://www.getlooploop.com).
 
+## Jak zlecać agentowi
+
+Krótkie zlecenie z jasnym warunkiem zatrzymania i formatem odpowiedzi trzyma agenta przy procedurze. Skopiuj je i wpisz swoją stronę:
+
+```markdown
+## Task
+Run the skill `ai-search-audit-full` on 1 page (or on the pages in urls.txt). Write its report.
+
+## Inputs
+- Page: https://example.com/page
+- Working folder: ./audit
+- Earlier reports (optional): ./old-reports
+
+## Rules
+1. Read SKILL.md first. Follow it exactly.
+2. Write every file into the working folder.
+3. Pass every earlier report with --history-from.
+
+## Stop condition
+Stop when report.html exists. Show it.
+
+## Reply format
+- The report link or path.
+- What changed since the last run, and the 3 biggest problems.
+```
+
 ## Praca nad skillem
 
 ```
