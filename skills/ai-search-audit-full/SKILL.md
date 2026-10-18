@@ -3,7 +3,7 @@ name: ai-search-audit-full
 description: Audits 1 public web page, or at most 50 pages of a site, for search and AI search (SEO and GEO): robots.txt for AI crawlers, noindex, snippets, sitemap, links, images, structured data, hreflang, how an AI retriever reads the page, and the agent's reading of questions, brand and reviews. Each problem has its rule source and a fix direction; a history is kept. Use for an SEO or GEO audit, AI search readiness, why Google, ChatGPT or Perplexity do not show or quote a page, or what changed since the last audit. Also «SEO-аудит сайту», «audyt SEO serwisu». For passages only, use vectorscope. For a quick check of 1 page, use ai-search-audit.
 ---
 
-Version 2.110.
+Version 2.111.
 
 # AI Search Audit (Full)
 

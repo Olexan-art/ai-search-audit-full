@@ -2,11 +2,11 @@ English · [Українська](README.uk.md) · [Polski](README.pl.md)
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.110**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
+AI Search Audit Full **2.111**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
 
 Before Google, Bing or an AI assistant can show or quote a page, a crawler has to be allowed in, the page has to say what it is, and the text has to survive the machine's reading. `ai-search-audit-full` checks public pages against the published rules for all three, adds three readings only an AI can make (the questions people ask, how the agent's own model describes the brand, and what it believes about the brand's reviews), and explains every problem it finds: what is wrong and why it matters, what the rule says in its source's own words, and, for specialists, which way the fix goes. It audits one page or up to 50 pages of a site, compares a run with an older one, and keeps a local history so each report shows what changed since the last run. At the bottom of every page report, *How generated the text sounds* puts the Pattern score, the words language models overuse and the agent's swap test side by side. The reports read in English, Ukrainian or Polish.
 
-This is the Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.109) and runs every Lite check.
+This is the Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.110) and runs every Lite check.
 
 ![A page report from the example run: the headline, what it means for you, the findings to review first and where on the page they are](docs/ai-search-audit-full-light-1280.png)
 
