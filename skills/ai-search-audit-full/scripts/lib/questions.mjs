@@ -50,7 +50,7 @@ export function validateQuestions(input, passages, { keyword = null } = {}) {
     if (passage !== null && !byIndex.has(passage)) throw new Error(`${where}.passage ${JSON.stringify(passage)} is not a passage index of this reading (0–${passages.length - 1}).`);
     const quote = typeof q.quote === "string" ? q.quote.trim() : "";
     // What the page lacks for this question, one line (optional: older files have none).
-    if (q.miss !== undefined && q.miss !== null && (!str(q.miss) || q.miss.length > MAX_MISS_CHARS)) throw new Error(`${where}.miss must be 1–${MAX_MISS_CHARS} characters: what the page lacks for this question.`);
+    if (q.miss !== undefined && q.miss !== null && q.miss !== "" && (!str(q.miss) || q.miss.length > MAX_MISS_CHARS)) throw new Error(`${where}.miss must be 1–${MAX_MISS_CHARS} characters: what the page lacks for this question.`);
     if (foreignLetters(q.miss, native)) throw new Error(`${where}: Russian letters found in miss.`);
     const miss = q.verdict !== "complete" && str(q.miss) ? q.miss.replace(/\s+/g, " ").trim() : null;
     if (q.verdict === "missing") {

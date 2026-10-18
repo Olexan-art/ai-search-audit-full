@@ -37,11 +37,12 @@ import { SITE_READING_SCHEMA } from "./lib/site.mjs";
 import { buildSiteExport, buildSiteModel, buildSiteRefusalExport, renderSiteMarkdown, renderSiteRefusal, renderSiteRefusalMarkdown, renderSiteReport, SITE_EXPORT_SCHEMA } from "./lib/siteReport.mjs";
 
 const USAGE = [
-  "Usage: node scripts/audit.mjs reading.json [--questions questions.json] [--brand brand.json] [--reviews reviews.json] [--style style.json]",
+  "Usage: node dist/audit.mjs reading.json [--questions questions.json] [--style style.json] [--brand brand.json] [--reviews reviews.json]",
   '       [--keyword "phrase"] [--html report.html] [--md report.md] [--json export.json]',
-  "       [--compare old-export.json] [--history dir | --no-history] [--check]",
-  "   or: node scripts/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--brand brand.json]",
+  "       [--compare old-export.json] [--history dir | --no-history] [--history-from file|dir …] [--check]",
+  "   or: node dist/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--style-dir dir] [--brand brand.json]",
   '       [--reviews reviews.json] [--keyword "phrase"] [--compare old-site.json] [--history dir | --no-history] [--history-from file|dir …] [--check]',
+  "   --history-from cannot be combined with --no-history.",
 ].join("\n");
 
 function parseArgs(argv) {

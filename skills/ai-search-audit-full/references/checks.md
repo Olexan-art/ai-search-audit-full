@@ -1,12 +1,15 @@
-# The checks: findings, codes and how each area is read
+Read this when the user asks what a code means, how a check works, which threshold applies, or why something was or was not flagged.
 
-Read this when the user asks what a finding or code means, how a check works, which threshold applies, or why something was or was not flagged.
+# The checks: findings, codes and how each area is read
 
 ## What the report says about each problem
 
-Each finding has a code, a severity (blocking, high, medium or low), the status tile it belongs to, who it concerns (developer, content, SEO), its layer (measured: a script counted it; derived: a fixed formula over measured values; judgement: your model, with `agent` and `model`), where it is, the evidence, and its rule sources (in the export). Findings that are not tied to one spot on the page (most of the brand, review and question findings, and several site checks) are counted on the map as "+N not tied to one spot".
-
-In the plain layer each problem shows a short label, the severity, who it concerns, where it is, **what goes wrong** (a description for juniors and managers: what is wrong and why it matters to search or AI, with no advice) and **what the rule says**: a short verbatim quote from the official source (Google Search Central, the RFC, the W3C, the vendor's crawler page), with the link and the date the quote was checked against the live page, or "This skill's rule" where no published source states it (a threshold this skill chose, or a reading only this skill makes); no quote is ever attributed to anyone who did not write it. The **fix direction** is technical and terse, for developers and SEOs, and sits only inside each problem's collapsed "Details for specialists", next to the code, the technical place, the evidence and every rule source. Outside those details the report gives no advice.
+- Each finding has a code, a severity (blocking, high, medium, low), its tile, who it concerns (developer, content, SEO), its layer, where it is, the evidence and its rule sources (in the export).
+- Layers: measured (a script counted it), derived (a fixed formula over measured values), judgement (your model, with `agent` and `model`).
+- Findings not tied to 1 spot (most brand, review and question findings, several site checks) count on the map as "+N not tied to one spot".
+- The plain layer shows a short label, severity, who it concerns, where, **what goes wrong** (what and why it matters to search or AI, for juniors and managers, no advice) and **what the rule says**.
+- What the rule says: a short verbatim quote from the official source (Google Search Central, the RFC, the W3C, the vendor's crawler page), with the link and the date it was checked against the live page. With no published source (this skill's threshold or reading): "This skill's rule". No quote is attributed to anyone who did not write it.
+- The **fix direction** (technical, terse) is only in each problem's collapsed "Details for specialists", with the code, the technical place, the evidence and every rule source. Outside it, the report gives no advice.
 
 ## Codes by tile
 
@@ -21,22 +24,30 @@ In the plain layer each problem shows a short label, the severity, who it concer
 
 ## How each area is read
 
-**Passages.** The passage checks are the Vectorscope skill's, run unchanged (h2 sections, 2,000-character windows, a 26-passage cap); `repeated_claim` and the keyword's "one section" use the page's h2 sections as their groups, so they need no embeddings. The Google and Bing checklist has 35 cells; Core Web Vitals and "in Google's index" are always *not measured* (they need field data and Search Console).
-
-**Writing patterns** are the GetLoopLoop PatternScope's deterministic detectors, run over the kept text: stock phrases from a list written per language, repeated sentence shapes, runs of sentences that open the same way, and evaluative claims with nothing checkable in the sentence, each with its position (passage and word) and a density per 1,000 words. English, Ukrainian and Spanish are analysed; other languages are reported as not analysed. They are signals about worn writing, not an AI detector. The same score, with the marker words (vocabulary models overuse, counted beside the score and never inside it) and your swap test, is the report's last block, *How generated the text sounds*, shared with the Vectorscope skill.
-
-**The keyword** is `--keyword` when given, else the page's h1 with the site's name, a trailing year, a sales tail, a clause after a comma or colon and stop words at the edges trimmed (at most five words); the report says which. The promise-without-a-figure rule reads English only, and says so.
-
-**Locale facts** compare the numbers in each h2 section across the language versions read, aligned by section order and only when both versions have the same number of sections; a version whose sections do not line up is listed as not compared. Numbers written as words are not read, and a number may differ on purpose (a local price).
-
-**Structured data:** JSON-LD is parsed (microdata and RDFa types are listed). Required properties, as Google's pages list them, are checked for FAQPage, Product, SoftwareApplication (and WebApplication, MobileApplication), BreadcrumbList, Event, JobPosting, LocalBusiness, VideoObject, QAPage, WebSite, ProductGroup, Offer, AggregateOffer, Review and AggregateRating; recommended ones for those and Article (NewsArticle, BlogPosting), Organization and Person. Every FAQPage question must appear in the visible text. Rich results Google retired are informational (no Google rich result any more, not an error), each dated by its entry on https://developers.google.com/search/updates: FAQ (7 May 2026), How-to (14 September 2023), course info, estimated salary and vehicle listing (documentation removed 9 September 2025), ClaimReview (phased out 12 June 2025), special announcement (31 July 2025), practice problem (6 January 2026) and the sitelinks search box (29 November 2024).
-
-**llms.txt:** the report notes that Google documents no use of it, quoting Google's AI features page: "You don't need to create new machine readable files, AI text files, or markup to appear in these features."
-
-**AI crawlers:** robots.txt is matched by RFC 9309 (the Vectorscope skill's parser): GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User, Google-Extended, Googlebot, Bingbot and CCBot. A 4xx robots.txt means no rules; a 5xx or no answer means everything is assumed disallowed.
-
-**Brand and reviews:** how your brand.json and reviews.json are compared with the page is in `judgement-files.md`.
+- **Passages:** the Vectorscope skill's checks, unchanged (h2 sections, 2,000-character windows, a 26-passage cap). `repeated_claim` and the keyword's "one section" group by h2 sections, so they need no embeddings.
+- **Google and Bing checklist:** 35 cells. Core Web Vitals and "in Google's index" are always *not measured* (they need field data and Search Console).
+- **Writing patterns:** the GetLoopLoop PatternScope's deterministic detectors over the kept text: stock phrases (a list per language), repeated sentence shapes, runs of same openings, evaluative claims with nothing checkable. Each has a position (passage and word) and a density per 1,000 words. English, Ukrainian and Spanish are analysed; other languages are reported as not analysed. Signals of worn writing, not an AI detector.
+- **How generated the text sounds:** the report's last block, shared with the Vectorscope skill: the Pattern score, the marker words (vocabulary models overuse, counted beside the score, never in it) and your swap test.
+- **Keyword:** `--keyword`, else the h1 with the site's name, a trailing year, a sales tail, a clause after a comma or colon, and edge stop words trimmed (at most 5 words). The report says which. The promise-without-a-figure rule reads English only, and says so.
+- **Locale facts:** numbers in each h2 section across the language versions read, aligned by section order, only when both have the same number of sections; otherwise listed as not compared. Numbers in words are not read. A number may differ on purpose (a local price).
+- **Structured data:** JSON-LD is parsed; microdata and RDFa types are listed. Required properties (as Google lists them) are checked for FAQPage, Product, SoftwareApplication (and WebApplication, MobileApplication), BreadcrumbList, Event, JobPosting, LocalBusiness, VideoObject, QAPage, WebSite, ProductGroup, Offer, AggregateOffer, Review and AggregateRating; recommended ones for those and Article (NewsArticle, BlogPosting), Organization and Person. Every FAQPage question must be in the visible text.
+- **Retired rich results** are informational (no Google rich result any more, not an error), dated by https://developers.google.com/search/updates: FAQ (7 May 2026), How-to (14 September 2023), course info, estimated salary and vehicle listing (documentation removed 9 September 2025), ClaimReview (phased out 12 June 2025), special announcement (31 July 2025), practice problem (6 January 2026), sitelinks search box (29 November 2024).
+- **llms.txt:** Google documents no use of it; the report quotes Google's AI features page: "You don't need to create new machine readable files, AI text files, or markup to appear in these features."
+- **AI crawlers:** robots.txt matched by RFC 9309 (the Vectorscope skill's parser) for GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User, Google-Extended, Googlebot, Bingbot and CCBot. A 4xx robots.txt means no rules; a 5xx or no answer means all disallowed.
+- **Brand and reviews:** see `judgement-files.md`.
 
 ## This skill's own thresholds
 
-Each is a named constant with its reason, in `scripts/lib/`: title 10 to 60 characters; description 70 to 160; a redirect chain is 2 or more hops; a heavy page is HTML over 500 KB or more than 30 scripts; a hard-to-read URL is over 115 characters, more than 2 query parameters or a session id; hidden headings are high from 200 hidden characters; an image is oversized over 200 KB and wants a srcset over 100 KB or from 800 px declared width; above the fold is the hero and at most its first two images, the first being the LCP candidate; `data-nosnippet` blocks snippets when it covers half the visible text; an app shell is under 150 words with an app root (`#root`, `#__next`, `#app`, …) holding under 200 characters; stock phrases are medium from 2.0 per 1,000 words; the keyword's off-phrase floor is half the passage text and "one section" is a third of the sections or fewer, from three sections.
+Named constants with their reasons, in `scripts/lib/`:
+
+- title 10 to 60 characters; description 70 to 160;
+- redirect chain: 2 or more hops;
+- heavy page: HTML over 500 KB or more than 30 scripts;
+- hard-to-read URL: over 115 characters, more than 2 query parameters, or a session id;
+- hidden headings: high from 200 hidden characters;
+- image oversized over 200 KB; wants a srcset over 100 KB or from 800 px declared width;
+- above the fold: the hero and at most its first 2 images, the first being the LCP candidate;
+- `data-nosnippet` blocks snippets when it covers half the visible text;
+- app shell: under 150 words, with an app root (`#root`, `#__next`, `#app`, …) holding under 200 characters;
+- stock phrases: medium from 2.0 per 1,000 words;
+- keyword: off-phrase floor is half the passage text; "one section" is a third of the sections or fewer, from 3 sections.

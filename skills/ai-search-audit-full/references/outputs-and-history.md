@@ -1,22 +1,45 @@
-# Outputs, export format, history and drift
+Read this when the user asks what a file holds, the export format, or how the history, the drift or `--compare` work.
 
-Read this when the user asks what a file holds, needs the export's format, or asks how the history, the drift or `--compare` work.
+# Outputs, export format, history and drift
 
 ## Outputs
 
-- `report.html`: one self-contained page (inline CSS and one small script, favicons as data URIs, a content security policy that blocks every network request, every piece of page text escaped), light by default with a dark theme on the toggle, English, Ukrainian and Polish, safe down to 375 px. Summary first: a headline built from the findings, the severity counts, three cards, the three findings to review first and the places in the document with the selected one beside them, each finding with its plain description and what the rule says one click away; then the history and before/after when there are any; every technical detail, including each finding's details for specialists with the fix direction, is in one closed section, *All checks and technical details*. Judgement findings carry an "Agent's judgement · <model>" badge, and a note says that brand, reviews and questions are one model's view.
-- `report.md`: the same audit in Markdown, in English: the status, the biggest problems, every problem by who it concerns with its description, what the rule says, the place, the layer and the fix direction, the page map as a list, the checklist, the bots, the language versions, where the text goes, before and after, the history and the drift, and what was not checked.
-- `export.json`: `getlooploop/ai-search-audit@1`, `edition: "full"`. Every finding with `code`, `severity`, `area`, `owner`, `layer`, `judgement` (`agent`, `model`, or `null`), `label` (en, uk), `where`, `map` (zones and strip rows), `passages`, `evidence`, `rules` (each `{ name, url }`) and `explanation` (`title`, `description`, `rule` as `{ kind: "quote", quote, source, checked }` or `{ kind: "skill", text }`, and `fixDirection`), plus `state` (what the drift compares), `compare` and `history` when they were made, the tiles, the checklist, the page map, robots, sitemap, llms.txt, languages, alternates, links, structured data, `keyword`, `writingPatterns`, `generatedText` (the last block: Pattern score, marker words, swap test, per passage), `localeFacts`, `judgement` (the files as validated), the reading's waterfall, `notChecked` (every cap) and `notMeasured`.
-- For a site: `index.html` (pages × problems, problems repeated across pages as "N pages", problems on one page, what was audited and what was left out, with every page linked), `site.md`, and `site.json` (`getlooploop/ai-search-audit-site@1`), with `pages/<page>.html|md|json` beside them.
-- `reading.json` (`getlooploop/ai-search-audit-reading@1`): everything read in step 1, so the audit can be rerun offline; for a site, `readings/site.json` (`getlooploop/ai-search-audit-site-reading@1`) lists the pages read and every page left out, with its reason.
-- The history folder: one export per page per run, and the same history inside every report.
+- `report.html`: 1 self-contained page (inline CSS, 1 small script, favicons as data URIs, a content security policy that blocks every network request, all page text escaped). Light by default, dark on the toggle; English, Ukrainian, Polish; safe down to 375 px.
+  - Summary first: a headline from the findings, severity counts, 3 cards, the 3 findings to review first, and the places in the document beside the selected one. Each finding shows its plain description; what the rule says is 1 click away.
+  - Then the history and before/after, when there are any.
+  - Every technical detail, with each finding's details for specialists and fix direction, is in 1 closed section, *All checks and technical details*.
+  - Judgement findings carry an "Agent's judgement · <model>" badge. A note says brand, reviews and questions are 1 model's view.
+- `report.md`: the same audit in English Markdown: status, biggest problems, every problem by who it concerns (description, rule, place, layer, fix direction), the page map as a list, checklist, bots, language versions, where the text goes, before and after, history, drift, and what was not checked.
+- `export.json`: `getlooploop/ai-search-audit@1`, `edition: "full"`.
+  - Every finding: `code`, `severity`, `area`, `owner`, `layer`, `judgement` (`agent`, `model`, or `null`), `label` (en, uk), `where`, `map` (zones and strip rows), `passages`, `evidence`, `rules` (each `{ name, url }`), `explanation` (`title`, `description`, `rule` as `{ kind: "quote", quote, source, checked }` or `{ kind: "skill", text }`, `fixDirection`).
+  - Also: `state` (what the drift compares), `compare` and `history` when made, tiles, checklist, page map, robots, sitemap, llms.txt, languages, alternates, links, structured data, `keyword`, `writingPatterns`, `generatedText` (Pattern score, marker words, swap test, per passage), `localeFacts`, `judgement` (the files as validated), the reading's waterfall, `notChecked` (every cap), `notMeasured`.
+- Site: `index.html` (pages × problems, problems repeated as "N pages", problems on 1 page, what was audited and left out, every page linked), `site.md`, `site.json` (`getlooploop/ai-search-audit-site@1`), and `pages/<page>.html|md|json`.
+- `reading.json` (`getlooploop/ai-search-audit-reading@1`): everything step 1 read, so the audit can run again offline. Site: `readings/site.json` (`getlooploop/ai-search-audit-site-reading@1`) lists pages read and pages left out, with reasons.
+- History folder: 1 export per page per run; every report carries the same history.
 
 ## History and drift
 
-Every run of `audit.mjs` saves its export as a snapshot under `<history>/<host>/<path>/<date>.json`. The file is named by the reading's date, so auditing the same reading again rewrites the same snapshot instead of adding a run. The report then shows the page's **timeline** (problems by severity per run, the last 20 runs; older ones are counted), **what changed since the last run** (the title, the description, the canonical, the h1, the word count, the schema types, robots.txt for each bot, the hreflang set, the passages new, lost and changed, and the findings fixed, new and unchanged), and **every audit in this history**: one row per address, any page and any site, with its runs, the first and last date and the last run's problems.
+Every `audit.mjs` run saves its export at `<history>/<host>/<path>/<date>.json`. The reading's date names the file, so a second audit of the same reading rewrites that snapshot.
 
-**Where the history lives.** `<history>` is the user's own folder, `~/.ai-search-audit/history` (or `$AI_SEARCH_AUDIT_HISTORY`), whatever the working directory: so a new folder, a new day and a new version of this skill all see the same history. It is never inside this skill's folder, which an update replaces; `--history` pointing there is redirected, and the run says so. A folder left by an older version in the working directory (`./.ai-search-audit/history`) is copied in on the next run. `--history dir` chooses another folder, `--no-history` saves nothing.
+The report shows:
 
-**Every report carries the history.** The report holds every run the history knew, compactly, in a JSON block of its own (at most 300 runs, newest kept; the report says if any were left out). Where the disk does not outlive the chat (claude.ai, and Cowork when it starts a fresh sandbox), that is how the history survives: the next run takes it back with `--history-from`. A run already in the history is not added twice.
+- the **timeline**: problems by severity per run, the last 20 runs (older runs counted);
+- **what changed since the last run**: title, description, canonical, h1, word count, schema types, robots.txt per bot, the hreflang set, passages new, lost and changed, findings fixed, new and unchanged;
+- **every audit in this history**: 1 row per address, any page or site, with runs, first and last date, and the last run's problems.
 
-`--compare old-export.json` sets this run beside one older export the user names (a page's `export.json`, or a site report's `site.json`, where pages are matched by URL): fixed, new and unchanged findings, matched by code and question id.
+**Where it lives**
+
+- `~/.ai-search-audit/history` (or `$AI_SEARCH_AUDIT_HISTORY`), whatever the working directory, so every folder, day and skill version sees the same history.
+- Never inside the skill's folder, which an update replaces: the script redirects a `--history` that points there, and says so.
+- The script copies in an older version's `./.ai-search-audit/history` from the working directory on the next run.
+- `--history dir` chooses another folder; `--no-history` saves nothing. The script refuses `--no-history` with `--history-from`.
+
+**Every report carries it**
+
+- The report holds every known run in its own JSON block: at most 300 runs, newest kept; it says if any were left out.
+- Where the disk does not outlive the chat (claude.ai, Cowork in a fresh sandbox), the next run takes it back with `--history-from`.
+- A run already in the history is not added twice.
+
+## Compare
+
+`--compare old-export.json` sets this run beside 1 older export: a page's `export.json`, or a site report's `site.json` (pages matched by URL). It shows fixed, new and unchanged findings, matched by code and question id.

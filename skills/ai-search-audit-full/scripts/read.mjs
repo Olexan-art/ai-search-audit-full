@@ -26,9 +26,9 @@ import { CRAWLER_TOKEN, parseUrlList, readSite, sitemapUrls, SITE_DELAY_MS, SITE
 import { judgeRequestedUrl } from "./vendor/vectorscope/guards.mjs";
 
 const USAGE = [
-  "Usage: node scripts/read.mjs <url> [--out reading.json] [--render] [--save-html page.html]",
-  "       node scripts/read.mjs <url> --html saved.html [--final-url <url>] [--robots saved-robots.txt] [--network] [--saved-at <ISO>]",
-  `       node scripts/read.mjs --urls urls.txt | --sitemap <url> [--out-dir readings] [--max ${SITE_PAGE_CAP}] [--delay ${SITE_DELAY_MS}] [--render]`,
+  "Usage: node dist/read.mjs <url> [--out reading.json] [--render] [--save-html page.html]",
+  "       node dist/read.mjs <url> --html saved.html [--final-url <url>] [--robots saved-robots.txt] [--network] [--saved-at <ISO>]",
+  `       node dist/read.mjs --urls urls.txt | --sitemap <url> [--out-dir readings] [--max ${SITE_PAGE_CAP}] [--delay ${SITE_DELAY_MS}] [--render]`,
 ].join("\n");
 
 function parseArgs(argv) {
