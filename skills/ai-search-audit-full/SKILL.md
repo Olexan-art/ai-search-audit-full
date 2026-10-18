@@ -1,6 +1,6 @@
 ---
 name: ai-search-audit-full
-description: Audit public web pages for classic search and AI search (SEO and GEO), one page or a site of up to 50 pages: robots.txt for Googlebot and AI crawlers, noindex, snippets, sitemap, titles, links, images, structured data, hreflang, how an AI retriever reads the page, and the agent's own reading of questions, brand and reviews. Use for an SEO or GEO audit, AI search readiness, why Google, ChatGPT or Perplexity may not show or quote a page, or what changed since the last audit. Also «SEO-аудит сайту», «audyt SEO serwisu». For how a retriever cuts one page into passages, use Vectorscope; for a quick single-page check, ai-search-audit (Lite).
+description: Audits 1 public web page, or at most 50 pages of a site, for search and AI search (SEO and GEO): robots.txt for AI crawlers, noindex, snippets, sitemap, links, images, structured data, hreflang, how an AI retriever reads the page, and the agent's reading of questions, brand and reviews. Each problem has its rule source and a fix direction; a history is kept. Use for an SEO or GEO audit, AI search readiness, why Google, ChatGPT or Perplexity do not show or quote a page, or what changed since the last audit. Also «SEO-аудит сайту», «audyt SEO serwisu». For passages only, use vectorscope. For a quick check of 1 page, use ai-search-audit.
 ---
 
 Version 2.110.
@@ -101,9 +101,9 @@ Read `references/judgement-files.md` first: schemas, examples, the 5 brand quest
 
 The HTML is the result; a chat message or a file name alone has not delivered it. Save it where the user keeps files, never only in a scratch folder (the next run's history needs it).
 
-**Present one file: `report.html`** (for a site, `report/index.html`). Keep `report.md` and `export.json` beside it; do not present, attach, open or preview them. Never open or preview `export.json` or `report.md` as the result, and never end the reply on either: the HTML is the report. If the environment shows the last file presented, it must be the HTML.
+If the user or caller said not to publish or open anything, stop when the HTML file exists and give its absolute path. This overrides the bullets below.
 
-When the user or caller has said not to publish or open anything, stop after the HTML file exists and give its path.
+**Present one file: `report.html`** (for a site, `report/index.html`). Keep `report.md` and `export.json` beside it; do not present, attach, open or preview them. Never open or preview `export.json` or `report.md` as the result, and never end the reply on either: the HTML is the report. If the environment shows the last file presented, it must be the HTML.
 
 - **claude.ai or the Claude desktop app:** save it in the folder your environment names for user files, then present **only `report.html`**, not even the JSON after it. For a site, zip `report`, present only the zip, and say `index.html` is the start. Do not retype the report into an artifact.
 - **Claude Code:** publish only `report.html` with an HTML or artifact tool, if there is one, and give the link (for a site, open `index.html` locally). Otherwise run `start "" "<absolute path>"` (Windows), `open "<absolute path>"` (macOS) or `xdg-open "<absolute path>"` (Linux), and give the path.
