@@ -5,7 +5,7 @@
 // checks what the agent wrote: every quote must be copied from its passage, word for word.
 
 import { quoteIn, validateIdentity, VERDICTS } from "../vendor/vectorscope/judgement.mjs";
-import { RUSSIAN_ONLY } from "./russian.mjs";
+import { foreignLetters, nativeLetters } from "./russian.mjs";
 
 export const MIN_QUESTIONS = 8;
 export const MAX_QUESTIONS = 12;
@@ -28,6 +28,7 @@ export function validateQuestions(input, passages, { keyword = null } = {}) {
   const list = input.questions;
   if (list.length < MIN_QUESTIONS || list.length > MAX_QUESTIONS) throw new Error(`${list.length} questions; write ${MIN_QUESTIONS} to ${MAX_QUESTIONS}.`);
   const byIndex = new Map(passages.map((p) => [p.index, p]));
+  const native = nativeLetters(passages);
   const ids = new Set();
   const used = new Set();
   const warnings = [];
@@ -39,7 +40,8 @@ export function validateQuestions(input, passages, { keyword = null } = {}) {
     if (ids.has(id)) throw new Error(`question id ${id} appears twice.`);
     ids.add(id);
     if (!str(q.question) || q.question.length > MAX_QUESTION_CHARS) throw new Error(`${where}.question must be 1–${MAX_QUESTION_CHARS} characters.`);
-    if (RUSSIAN_ONLY.test(q.question) || RUSSIAN_ONLY.test(q.quote || "")) throw new Error(`${where}: Russian letters found. Questions are written in the page's language, and never in Russian.`);
+    // The quote is page text, checked word for word below; the question is the agent's own words.
+    if (foreignLetters(q.question, native)) throw new Error(`${where}: Russian letters found. Questions are written in the page's language, and never in Russian.`);
     const axes = Array.isArray(q.axes) ? q.axes : [];
     if (!axes.length || axes.length > 3 || axes.some((a) => !AXES.includes(a))) throw new Error(`${where}.axes must name 1 to 3 of ${AXES.join(", ")} (never all four in one question).`);
     for (const a of axes) used.add(a);
@@ -49,7 +51,7 @@ export function validateQuestions(input, passages, { keyword = null } = {}) {
     const quote = typeof q.quote === "string" ? q.quote.trim() : "";
     // What the page lacks for this question, one line (optional: older files have none).
     if (q.miss !== undefined && q.miss !== null && (!str(q.miss) || q.miss.length > MAX_MISS_CHARS)) throw new Error(`${where}.miss must be 1–${MAX_MISS_CHARS} characters: what the page lacks for this question.`);
-    if (RUSSIAN_ONLY.test(q.miss || "")) throw new Error(`${where}: Russian letters found in miss.`);
+    if (foreignLetters(q.miss, native)) throw new Error(`${where}: Russian letters found in miss.`);
     const miss = q.verdict !== "complete" && str(q.miss) ? q.miss.replace(/\s+/g, " ").trim() : null;
     if (q.verdict === "missing") {
       if (q.citable === true) throw new Error(`${where}: a missing answer cannot be citable.`);

@@ -1,173 +1,86 @@
 ---
 name: ai-search-audit-full
-description: Audit public web pages for classic search and AI search (SEO and GEO), one page or up to 50 pages of a site: robots.txt for Googlebot and AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot), noindex, snippets, sitemap, llms.txt, title, headings, canonical, links, images, structured data, trust signals, hreflang, how an AI retriever reads the page (passages, the 26-passage cap), how generated the text sounds, the keyword, the questions people ask, and what the agent's own model believes about the brand and its reviews. Each problem gets a plain description, the rule quoted from its source and a fix direction; a site report groups repeated problems; before/after and a local history show what changed. Use for an SEO or GEO audit of a page or site, AI-search readiness, why Google, ChatGPT or Perplexity may not show or quote a page, what changed since the last audit, or ai-search-audit-full. Ukrainian and Polish: «SEO-аудит сайту», «audyt SEO serwisu». Scripts call no model.
+description: Audit public web pages for classic search and AI search (SEO and GEO), one page or a site of up to 50 pages: robots.txt for Googlebot and AI crawlers, noindex, snippets, sitemap, titles, links, images, structured data, hreflang, how an AI retriever reads the page, and the agent's own reading of questions, brand and reviews. Use for an SEO or GEO audit, AI search readiness, why Google, ChatGPT or Perplexity may not show or quote a page, or what changed since the last audit. Also «SEO-аудит сайту», «audyt SEO serwisu». For how a retriever cuts one page into passages, use Vectorscope; for a quick single-page check, ai-search-audit (Lite).
 ---
 
-Version 2.110. Versions count in thousandths (2.101, 2.102, 2.103, 2.104, 2.105, 2.106, 2.107, 2.108, 2.109, 2.110, …): the first number moves only on a breaking change.
+Version 2.110. The first number moves only on a breaking change.
 
 # AI Search Audit (Full)
 
-**In plain words, for people opening this file:** before Google, Bing or an AI assistant can show or quote a page, a crawler has to be allowed in, the page has to say what it is, and the text has to survive the machine's reading. This skill checks public pages against the standard, published rules for all three, adds three readings only an AI can make (the questions people ask and whether the page answers them, what the agent's own model believes about the brand, and what it believes about the brand's reviews), and draws the result as a report. Every problem has a plain description of what is wrong and why it matters, "What the rule says" (a short quote from the official source, checked word for word, or "This skill's rule" where nobody publishes one), and, inside its collapsed details for specialists, a fix direction. It audits one page or up to 50 pages of a site, compares a run with an older one, and keeps a history on this machine, so the report can say what changed since the last run. The scripts are deterministic and call no model; the three readings are written by you, the agent running the skill, and the report marks each of them as the agent's judgement, with your model's name.
-
-**Коротко українською:** перш ніж Google, Bing чи ШІ-асистент покажуть або процитують сторінку, краулер має отримати дозвіл, сторінка має сказати, що вона таке, а текст має пережити машинне читання. Ця навичка перевіряє публічні сторінки за стандартними опублікованими правилами для всіх трьох, додає три прочитання, які може зробити лише ШІ (запитання людей і чи відповідає на них сторінка, що модель агента знає про бренд і що — про його відгуки), і показує результат звітом. Кожна проблема має простий опис того, що не так і чому це важливо, «Що каже правило» (коротка цитата з офіційного джерела, звірена слово в слово, або «Правило цієї навички», де ніхто такого не публікує) і, у згорнутих подробицях для фахівців, напрям виправлення. Навичка перевіряє одну сторінку або до 50 сторінок сайту, порівнює запуск зі старішим і зберігає історію на цьому комп’ютері, тож звіт показує, що змінилося від попереднього запуску. Скрипти детерміновані й не викликають жодної моделі; три прочитання пишете ви, агент, і звіт позначає кожне як судження агента з назвою вашої моделі.
+This skill checks one public page, or up to 50 pages of a site, against the published rules that decide whether Google, Bing or an AI assistant can crawl it, understand it and quote it. You add three readings only an agent can make: the questions people ask and whether the page answers them, and what your model believes about the brand and its reviews. Two bundled scripts read and check deterministically and call no model; the report marks your readings as the agent's judgement, with your model's name, and keeps a history of what changed since the last run.
 
 **Answer the user in the language they wrote in.**
 
 ## Before you start
 
-- **`$SKILL` below is this skill's folder**, the one this SKILL.md is in. In Claude Code it is `${CLAUDE_SKILL_DIR}`. On claude.ai the skill's whole folder is copied into the code-execution sandbox; use the path you read this file from. Work in a writable directory of your own and call the scripts by their path.
-- **No install.** `dist/read.mjs` and `dist/audit.mjs` (with the code they share in `dist/chunks/`) are the scripts bundled with everything they need (cheerio and the Vectorscope skill's reading code), so plain `node` runs them: no `npm install`, no network for packages, no other skill folder needed.
+- **`$SKILL` is this skill's folder**, the one this SKILL.md is in. In Claude Code it is `${CLAUDE_SKILL_DIR}`. On claude.ai, use the path you read this file from. Work in a writable directory of your own and call the scripts by their path.
+- **No install.** `dist/read.mjs` and `dist/audit.mjs` (with `dist/chunks/`) carry everything they need; plain `node` runs them.
 - **Node 20.18 or later.** Check with `node --version`. If there is no Node, or an older one, say so and stop.
-- **Network, per page:** the read makes requests to the page, its site's `/robots.txt`, its sitemap (the robots.txt `Sitemap:` lines on the same site, else `/sitemap.xml`, and at most 5 child sitemaps of an index), `/llms.txt`, its hreflang alternates (at most 10), a HEAD (or a bodiless GET) of at most 30 of its links and at most 20 of its images, and one request each for the favicon, a path that does not exist (the soft-404 check), at most 3 URL variants (http, www or not, the trailing slash), a Markdown copy of the page, `/.well-known/ai-catalog.json` (then `/ai-catalog.json`) and, only when the page declares one, its IndexNow key file. Before the page, one DNS lookup of its host and one RDAP request to `rdap.org` (`https://rdap.org/ip/<the site's IP address>`) for the country its server is registered in: that request sends the site's IP address to rdap.org and nothing of the page, and a saved page (`--html`) makes neither. When the page is an empty single-page-app shell, it is also rendered in a local Chrome or Chromium (see *Limits*). Nothing else, and every cap is reported in the report and the export.
-- **Network, for a site:** the same for each page (the DNS lookup and the RDAP request once per host), at most 50 pages, read one at a time with a pause of at least 1 second between pages (longer when robots.txt asks for a `Crawl-delay`, up to 10 seconds), and only pages robots.txt allows this skill's crawler (`GetLoopLoop`, else the `*` group) to fetch. A request already answered in the run (robots.txt, the sitemap, links shared by the pages) is answered from memory instead of being sent again.
-- **Nothing leaves the machine.** No server, no upload. The history is a folder of JSON files in the user's own folder (`~/.ai-search-audit/history`), and every report carries a copy of it.
+- **Network:** the page, a bounded set of site files and links, one DNS lookup and one RDAP request to `rdap.org` with the site's IP address. A site is read one page at a time, at most 50 pages, 1 second apart by default and never less than 0.5 seconds, only where robots.txt allows. Nothing is uploaded: no server of ours, no account; the only requests are those listed in `references/network-and-limits.md`. Read that file when a fetch fails, the shell has no network, the skill folder is read-only or the user gives you a saved page.
 - **Never re-create the audit by hand.** If the scripts cannot run here (no Node, no code execution, the network blocked), say so, say what would make them run, and stop. Do not fetch the page another way and check it yourself: findings made by hand are not the tool's.
 
 ## Steps: one page
 
-1. *script* `node "$SKILL/dist/read.mjs" <url> --out reading.json` (add `--render` to compare with a JavaScript render in a local Chrome or Chromium; an empty app shell is rendered without it).
-   It prints what it read: the final URL and redirects, the page's size, passages, robots.txt, sitemap, llms.txt, the language versions, the links and images checked, the site checks, and every cap it hit. If it prints `REFUSED <code>` (exit code 2), skip to step 6: the report says why. Do not retry with another URL unless asked.
-2. *judgement* **questions.json** and **style.json.** Read the `text` of every passage in `reading.json` (`vs.passages`), in full. Write 8 to 12 questions a person would say out loud to an assistant about the page's topic, and judge each against the passages. From the same reading, mark every passage specific or generic (the swap test). Schemas and rules below.
-3. *judgement* **brand.json.** Name the brand the page belongs to (the site's own name). Answer the five buyer questions below **from your own knowledge only**: no browsing, no search, no other tool, and not from the page you just read. Where you do not know, say so with `"knows": false`.
-4. *judgement* **reviews.json.** For the same brand, state from your own knowledge only the rating you believe it has on each of the 12 platforms below and on the control platform, or `"knows": false`.
+1. *script* `node "$SKILL/dist/read.mjs" <url> --out reading.json` (`--render` adds a JavaScript render in a local Chrome or Chromium; an empty app shell is rendered without it).
+   If it prints `REFUSED <code>` (exit code 2), skip to step 6: the report says why. Do not retry with another URL unless asked.
+2. *judgement* **questions.json** and **style.json.** Read the `text` of every passage in `reading.json` (`vs.passages`), in full. Write 8 to 12 questions a person would say out loud to an assistant about the page's topic and judge each against the passages; mark every passage specific or generic (the swap test).
+3. *judgement* **brand.json.** Name the brand (the site's own name) and answer the five fixed buyer questions **from your own knowledge only**, not from the page.
+4. *judgement* **reviews.json.** Step 1 wrote `reviews.template.json` beside `reading.json`. Fill it in as `reviews.json`: for the same brand and from your own knowledge only, the rating you believe it has on each platform it lists, or `"knows": false`.
 5. *script* `node "$SKILL/dist/audit.mjs" reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --check`
-   It validates the four files against the reading and writes nothing. If it prints `REFUSED <file>: <reason>`, fix that file as the message says and run it again. A `warning` line is advice about the file, not a refusal.
-6. *script* `node "$SKILL/dist/audit.mjs" reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --html report.html --md report.md --json export.json` (add `--keyword "phrase"` when the user gave a target keyword; otherwise the keyword is read off the h1; add `--compare old-export.json` when the user gives an older export to compare with; add `--history-from <file or folder>` for every earlier report of this skill you can find, of any page or site: see *History and drift*).
-   It runs every check, prints the problems, numbered as on the report's map, with where each one is (judgement findings are marked `(judgement)`), and saves this run's export as a snapshot in the history folder (see *History*).
+   It writes nothing. On `REFUSED <file>: <reason>`, fix that file as the message says and run it again. A `warning` line is advice, not a refusal.
+6. *script* `node "$SKILL/dist/audit.mjs" reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --html report.html --md report.md --json export.json`
+   - add `--keyword "phrase"` when the user gave a target keyword (otherwise the keyword is read off the h1);
+   - add `--compare old-export.json` when the user gives an older export to compare with;
+   - add `--history-from <file or folder>` (repeatable) for every earlier report of this skill you can find, of any page or site (see *History*).
+   It prints the problems, numbered as on the report's map (judgement findings marked `(judgement)`), and saves the export in the history.
 7. **Show the report** (required; see *Show the report*). A chat summary goes with it, never instead of it.
 
-**`REFUSED refused_ru_domain`, `refused_ru_hosting`, `refused_ru_audience` or `refused_language_ru`** means the page is not analysed: its address is in a Russian domain zone, its site is hosted in Russia, its site has a Russian-language version, or the page is in Russian (the table at the end has the line for each). Skip steps 2 to 5, run step 6 without the judgement files (the report holds the reason and its sources), show it, say in one line in the chat why it was not analysed (the code's line in the table), and stop. Do not analyse the page in any other way.
-
-`--html saved.html --final-url <url>` audits a saved copy instead (add `--robots saved-robots.txt` for its robots.txt); then nothing is fetched, and the sitemap, llms.txt, language versions, links, images and site checks are reported as not measured. Add `--network` to fetch those site checks live around the saved copy, and `--saved-at <ISO date>` to date the reading when the copy was taken, so the history puts it in its place; the report marks it "saved copy". `--save-html page.html` keeps the fetched copy.
+A saved copy of the page (`--html saved.html --final-url <url>`, with `--robots`, `--network`, `--saved-at`) is described in `references/network-and-limits.md`.
 
 ## Steps: several pages of a site
 
-1. *script* `node "$SKILL/dist/read.mjs" --urls urls.txt --out-dir readings` (one URL per line; `#` starts a comment), or `node "$SKILL/dist/read.mjs" --sitemap https://example.com/sitemap.xml --out-dir readings` (same-host URLs only, a sitemap index followed into at most 5 children). `--max N` lowers the cap (50 at most); `--delay ms` lengthens the pause (1000 by default, 500 at least).
-   It writes one reading per page (`readings/<page>.json`) and `readings/site.json`, and prints each page, each page skipped (and why), `evaluated N of M`, and what was left out: past the cap, closed by robots.txt, listed twice, not a web address, child sitemaps not read.
-   **`REFUSED refused_ru_domain`, `refused_ru_hosting` or `refused_ru_audience`** after the list means the whole site is refused, not one page: the run stopped there, the readings written before it were deleted, and every page not read is left out as `site_refused`. Skip steps 2 and 3, run step 4 without the judgement files (`node "$SKILL/dist/audit.mjs" --site readings/site.json --out-dir report`; the site report holds the refusal, its reason and where the run stopped, and no page reports are written), show it, say in one line in the chat why the site was not analysed (the code's line in the table), and stop. Do not analyse the site or any of its pages in any other way. A page in Russian (`refused_language_ru`) refuses only that page, and the rest proceed.
-2. *judgement* For each page read, write `questions/<page>.json` and `style/<page>.json` (the same schemas as questions.json and style.json; `<page>` is the reading's file name without `.json`). Write `brand.json` and `reviews.json` once: they are about the brand, so they apply to every page.
+1. *script* `node "$SKILL/dist/read.mjs" --urls urls.txt --out-dir readings` (one URL per line, `#` for comments), or `node "$SKILL/dist/read.mjs" --sitemap https://example.com/sitemap.xml --out-dir readings` (same-host URLs only, a sitemap index followed into at most 5 children). `--max N` lowers the cap (50 at most); `--delay ms` lengthens the pause (1000 by default, never under 500).
+   It writes `readings/<page>.json` per page, `readings/site.json` and `readings/reviews.template.json`, and prints `evaluated N of M` and what was left out, and why.
+2. *judgement* For each page read, write `questions/<page>.json` and `style/<page>.json` (`<page>` is the reading's file name without `.json`). Write `brand.json` once, and `reviews.json` once from `readings/reviews.template.json`; both apply to every page.
 3. *script* `node "$SKILL/dist/audit.mjs" --site readings/site.json --questions-dir questions --style-dir style --brand brand.json --reviews reviews.json --check`, then fix any file it refuses.
-4. *script* `node "$SKILL/dist/audit.mjs" --site readings/site.json --questions-dir questions --style-dir style --brand brand.json --reviews reviews.json --out-dir report` (add `--compare old-site.json` to compare with the `site.json` of an older site report: pages are matched by URL; add `--history-from` for earlier reports, as for one page).
-   It writes `report/index.html` (the site report), `report/site.md`, `report/site.json`, and for every page `report/pages/<page>.html`, `.md` and `.json`. Each page's report links to the others and back to the site report. Every page's export is saved in the history folder.
+4. *script* `node "$SKILL/dist/audit.mjs" --site readings/site.json --questions-dir questions --style-dir style --brand brand.json --reviews reviews.json --out-dir report` (add `--compare old-site.json` for the `site.json` of an older site report, pages matched by URL; add `--keyword` and `--history-from` as for one page).
+   It writes `report/index.html` (the site report), `report/site.md`, `report/site.json`, and `report/pages/<page>.html`, `.md` and `.json` for every page, all linked together.
 5. **Show the site report**, `report/index.html` (see *Show the report*).
 
 A page with no `questions/<page>.json` or `style/<page>.json` is audited without that judgement, and its report says so.
 
+## When the read is refused
+
+On any `REFUSED <code>` from read.mjs, run the audit step without the judgement files (the report states the reason), show it, and tell the user in one plain line what the code means. The table of codes and their lines is at the end of `references/network-and-limits.md`; read it when you get a code; for `unreachable`, also follow *If the page cannot be fetched* there.
+
+`refused_ru_domain`, `refused_ru_hosting`, `refused_ru_audience` and `refused_language_ru` mean the page is not analysed (a Russian domain zone, hosting in Russia, a declared Russian-language version, a page in Russian). One line in the chat, the report, and stop: do not analyse the page in any other way. For a site, any of the first three after the list refuses the whole site: the run stopped, earlier readings were deleted, and the rest are left out as `site_refused`. Run `node "$SKILL/dist/audit.mjs" --site readings/site.json --out-dir report` with no judgement files (no page reports are written), show it, say why, and stop. `refused_language_ru` refuses only that page; the rest proceed.
+
 ## The files you write
 
-Every one of them carries `agent` and `model` at the top level, as `groups.json` does in the Vectorscope skill: `agent` is the product you are running in ("Claude Code", "claude.ai", "Codex", "opencode", "Hermes"), `model` is your model's name as you know it ("Claude Opus 5.5", "GPT-5"). Up to 60 characters each. Fill them in honestly; if you do not know one, leave it out and the report says "model not stated". Never guess or invent either. The report prints the model beside every judgement finding.
+Before writing questions.json, style.json, brand.json or reviews.json, read `references/judgement-files.md`: it has the schemas, an example of each, the brand's five questions in their fixed wording and how to fill in the review template. The rules that matter most:
 
-**Never in Russian.** Questions, answers and quotes are in the page's language (or English for the brand and review answers), never Russian; a file holding a Russian-only letter is refused.
+- **Every file** carries top-level `agent` (the product you run in) and `model` (your model's name as you know it), up to 60 characters each. Fill them honestly; if you do not know one, leave it out. Never guess or invent either.
+- **Never in Russian.** Questions and answers are in the page's language (English for brand and review answers). What you write is refused if it holds a letter Russian uses that the page's own language does not (on a Ukrainian page, any of the four letters only Russian writes there); quotes are the page's own words and are checked against it instead.
+- **questions.json:** `topic`, and 8 to 12 questions with `id`, `question`, `axes` (one to three of `urgency`, `device`, `object`, `obstacle`; each used somewhere), `passage` (or `null`), `verdict` (`complete`, `partial`, `missing`), `citable`, `quote` (verbatim from that passage, up to 400 characters; none when `missing`) and, for every `partial` and `missing` answer, `miss`: one line, up to 200 characters, on what the page lacks. First-person speech in the page's language, mostly without the keyword, no wake words, no padded duplicates, at least one the page probably does not answer. Judge from the passages only. These become the report's answer map.
+- **style.json:** one verdict per passage, `specific` or `generic` by the swap test (would it fit a competitor's page with only the brand name changed?), with verbatim `evidence` (up to 200 characters) and an optional `why`. It is not an AI detector.
+- **brand.json / reviews.json:** `brand`, `basis: "own_knowledge"`, then the five fixed questions with `knows` and `answer`, or every platform of `reviews.template.json` once, none added or removed, with `knows` and `rating`. Answer each the same way.
+- **Honesty, for brand and reviews:** own knowledge only. Do not browse, search, fetch or read the page for these, even if a tool is available. `"knows": false` is the correct answer when it is true; do not soften a guess into a fact or copy the page into an answer.
 
-### questions.json
+## What the report says, and fixes
 
-```json
-{
-  "agent": "Claude Code",
-  "model": "Claude Opus 5.5",
-  "topic": "what the page is about, in a few words",
-  "questions": [
-    { "id": "q1", "question": "My launch is tomorrow: will an assistant see the FAQ at the bottom?", "axes": ["urgency", "object"],
-      "passage": 5, "verdict": "partial", "citable": false, "quote": "verbatim words from passage 5",
-      "miss": "Says the FAQ may fall below the cut, not how to check where the cut falls." },
-    { "id": "q2", "question": "Can I paste a PDF instead of a web page?", "axes": ["object"], "passage": null, "verdict": "missing", "miss": "Nothing on PDFs or other file types." }
-  ]
-}
-```
-
-Write the questions the way the GetLoopLoop Voicescope does: cross the page's topic with a real circumstance, and vary the circumstance along four axes, naming in `axes` the one to three each question uses (never all four in one question; every axis used at least once across the file):
-
-- `urgency`: needed right now, on the move, or against a deadline;
-- `device`: who is asking and on what (a phone, nothing installed, hands busy, somebody standing over them);
-- `object`: the thing in front of them (the specific document, page, account, report or person);
-- `obstacle`: what actually hurts (the mistake already made, the thing they cannot find, the thing they are afraid of getting wrong).
-
-Rules, in the order they are usually broken: most questions must **not** contain the page's keyword (people describe the problem, not the jargon); write speech, in the first person, in the page's language; no wake words ("Hey Google", "Siri"); no question that is another with words added; include at least one the page probably does not answer.
-
-Then judge each, from the passages only, never from what you know: `passage` is the single passage a retriever should return (`null` when none does); `verdict` is `complete` (that passage alone answers it), `partial` (it helps but leaves part out) or `missing`; `citable` is true only when the quoted words make sense quoted alone; `quote` is the exact words that answer, up to 400 characters, copied **verbatim** from that passage (whitespace, quote marks, dashes and case are folded, nothing else). A `missing` answer has no quote. The script refuses a quote that is not in its passage. For every `partial` and `missing` answer, `miss` says in one line (up to 200 characters, your own words) what the page lacks for that question.
-
-The report draws these as the **answer map**: one row per question, what the page lacks first, with a quality out of 100 that is a fixed sum (complete 50 or partial 25, `citable` 25, and 25 when the quote opens its passage, which the script measures), your `miss` line, and "add first" on the three weakest.
-
-### brand.json
-
-```json
-{
-  "agent": "Claude Code",
-  "model": "Claude Opus 5.5",
-  "brand": "BrightDesk",
-  "basis": "own_knowledge",
-  "answers": [
-    { "question": "what_is", "knows": true, "answer": "BrightDesk is a help desk for small support teams. …" },
-    { "question": "pricing", "knows": false, "answer": "" },
-    { "question": "integrations", "knows": true, "answer": "…" },
-    { "question": "weaknesses", "knows": false, "answer": "" },
-    { "question": "alternatives", "knows": true, "answer": "…" }
-  ]
-}
-```
-
-The five questions, the GetLoopLoop Brandscope's, fixed (ask them of yourself in this wording):
-
-1. `what_is`: What is <brand>? Answer in two sentences.
-2. `pricing`: How much does <brand> cost? Name the plans and prices you know of. If you are not sure, say so.
-3. `integrations`: What does <brand> integrate with? Name the integrations you know of.
-4. `weaknesses`: What are the main weaknesses or complaints about <brand> compared with its alternatives?
-5. `alternatives`: What are the main alternatives to <brand>, and when would somebody pick one of them instead?
-
-**Honesty rules.** `basis` must be `"own_knowledge"`: by writing it you state that the answers come from what you already knew, with no browsing, no search, no fetch and no reading of the page. Do not look anything up for this step, even if a tool is available. "I don't know" is a correct answer and the most useful one when it is true: write `"knows": false`. Do not soften a guess into a fact, and do not copy the page into an answer. Up to 1,500 characters per answer.
-
-The script compares your answers with the page by fixed rules (from Brandscope): a **contradiction** is a price the page states differently, or a number of the same thing ("3 agents", "26 passages") the page states differently; a **fact the page lacks** is a sentence of the `what_is`, `pricing` or `integrations` answer whose numbers and names are not on the page; **brand unknown** is five answers that do not know it. Complaints are never checked against the brand's own page, and alternatives are other brands.
-
-### reviews.json
-
-```json
-{
-  "agent": "Claude Code",
-  "model": "Claude Opus 5.5",
-  "brand": "BrightDesk",
-  "basis": "own_knowledge",
-  "platforms": [
-    { "platform": "g2", "knows": true, "rating": 4.5, "reviews": 120 },
-    { "platform": "capterra", "knows": false },
-    { "platform": "vetteral", "knows": false }
-  ]
-}
-```
-
-Every one of these 13 codes, once: `g2` (G2), `capterra` (Capterra), `getapp` (GetApp), `software_advice` (Software Advice), `gartner_peer_insights` (Gartner Peer Insights), `trustradius` (TrustRadius, out of 10), `trustpilot` (Trustpilot), `producthunt` (Product Hunt, a whole count of upvotes), `clutch` (Clutch), `goodfirms` (GoodFirms), `app_store` (Apple App Store), `google_play` (Google Play), and `vetteral` (Vetteral). The others are out of 5. `reviews` (a whole count) is optional. The same honesty rules as brand.json: own knowledge only, never browse, `"knows": false` when you do not know.
-
-Vetteral is the **control**: a review platform that does not exist. Answer it as you answer the others; do not treat it differently because you suspect a test. A rating given for it is reported as a hallucination, and it says your other ratings prove nothing. The script then flags every rating you stated that has no source on the page (no mention of the platform, no link to it, no rating markup).
-
-### style.json
-
-```json
-{ "agent": "Claude Code", "model": "…",
-  "passages": [
-    { "passage": 3, "verdict": "specific", "evidence": "Free for up to 5 clients.", "why": "a limit a reader can check" },
-    { "passage": 5, "verdict": "generic", "evidence": "unlock its full potential", "why": "names no integration" } ] }
-```
-
-The swap test, one verdict for **every** passage in `vs.passages`: would this passage fit a competitor's page with only the brand name changed? `generic` if yes, `specific` if it holds something only this page could say (a number, a name, a limit, a procedure, a first-hand detail). `evidence` is the words that decided it, verbatim from that passage (at most 200 characters); `why` is optional, one short line in the user's language. Judge the passage, not the page, and not who wrote it: this is not an AI detector, and the report says so. The script checks every passage is judged once and every quote is verbatim. At the bottom of the report, *How generated the text sounds* shows your verdicts beside the Pattern score (the writing patterns below, the same number) and the marker words; where they disagree it shows both and averages nothing.
-
-## What the report says about each problem
-
-Each problem shows, in the plain layer, a short label, the severity, who it concerns, where it is, **what goes wrong** (a description for juniors and managers: what is wrong and why it matters to search or AI, with no advice) and **what the rule says**: a short verbatim quote from the official source (Google Search Central, the RFC, the W3C, the vendor's crawler page), with the link and the date the quote was checked against the live page, or "This skill's rule" where no published source states it (a threshold this skill chose, or a reading only this skill makes); no quote is ever attributed to anyone who did not write it. The **fix direction** is technical and terse, for developers and SEOs, and sits only inside each problem's collapsed "Details for specialists", next to the code, the technical place, the evidence and every rule source. Outside those details the report gives no advice.
+Each problem has a plain description, "What the rule says" (a verbatim quote from the official source, or "This skill's rule"), and a fix direction only inside its collapsed "Details for specialists". Read `references/checks.md` when the user asks what a code means, how a check works or which threshold applies.
 
 When the user asks for fixes, point them to the details for specialists. If they want more than those directions, you may answer from your own knowledge, and say that the advice is yours, not the report's. Do not volunteer a fix list with the summary.
 
-## History and drift
+## History
 
-Every run of `audit.mjs` saves its export as a snapshot under `<history>/<host>/<path>/<date>.json`. The file is named by the reading's date, so auditing the same reading again rewrites the same snapshot instead of adding a run. The report then shows the page's **timeline** (problems by severity per run, the last 20 runs; older ones are counted), **what changed since the last run** (the title, the description, the canonical, the h1, the word count, the schema types, robots.txt for each bot, the hreflang set, the passages new, lost and changed, and the findings fixed, new and unchanged), and **every audit in this history**: one row per address, any page and any site, with its runs, the first and last date and the last run's problems.
+Every run saves its export in `~/.ai-search-audit/history` (`--history dir` chooses another, `--no-history` saves nothing), and every report carries a copy of the history, because on claude.ai and in fresh sandboxes the disk does not outlive the chat.
 
-**Where the history lives (2.110).** `<history>` is the user's own folder, `~/.ai-search-audit/history` (or `$AI_SEARCH_AUDIT_HISTORY`), whatever the working directory: so a new folder, a new day and a new version of this skill all see the same history. It is never inside this skill's folder, which an update replaces; `--history` pointing there is redirected, and the run says so. A folder left by an older version in the working directory (`./.ai-search-audit/history`) is copied in on the next run. `--history dir` chooses another folder, `--no-history` saves nothing.
-
-**Every report carries the history.** The report holds every run the history knew, compactly, in a JSON block of its own (at most 300 runs, newest kept; the report says if any were left out). Where the disk does not outlive the chat (claude.ai, and Cowork when it starts a fresh sandbox), that is how the history survives: the next run takes it back with `--history-from`.
-
-- **Before a run, look for earlier reports** and give them to `audit.mjs` with `--history-from <file or folder>` (repeatable): any `report.html`, page report, site `index.html`, `export.json` or `site.json` from this skill, of any page or site. Look in the files attached to the conversation, in the folder the user works in (Cowork's folder, the outputs folder) and wherever earlier reports were saved; a folder is searched whole. A run already in the history is not added twice.
+- **Before a run, look for earlier reports** and pass them with `--history-from <file or folder>` (repeatable): any `report.html`, `index.html`, `export.json` or `site.json` from this skill, of any page or site, in the files attached to the conversation, the folder the user works in (Cowork's folder, the outputs folder) or wherever earlier reports were saved.
 - **If there is none and the history is empty**, say once that the history starts with this run, and that the report itself carries it: keep the report, and attach it (or point to its folder) next time, in any chat.
 - **Save the report where the user keeps files** (see *Show the report*), never only in a scratch folder: the next run's history depends on finding it.
 
-`--compare old-export.json` sets this run beside one older export the user names (a page's `export.json`, or a site report's `site.json`): fixed, new and unchanged findings, matched by code and question id.
+Read `references/outputs-and-history.md` when the user asks what a file holds, the export format, or how the drift and `--compare` work.
 
 ## Show the report
 
@@ -194,86 +107,8 @@ Short, alongside the report and never instead of it:
 - How generated the text sounds, in one line: the Pattern score and its band, the marker words per 1,000 words, and how many passages you judged generic (derived, derived, your judgement). Never say the page was written by AI, or was not: the text cannot show it.
 - Do not claim that any assistant has indexed the page, ranks it or will cite it, and do not add a score of your own.
 
-## The checks
+## Hard rules
 
-Each finding has a code, a severity (blocking, high, medium or low), the status tile it belongs to, who it concerns (developer, content, SEO), its layer (measured: a script counted it; derived: a fixed formula over measured values; judgement: your model, with `agent` and `model`), where it is, the evidence, and its rule sources (in the export). Findings that are not tied to one spot on the page (most of the brand, review and question findings, and several site checks) are counted on the map as "+N not tied to one spot".
-
-| Tile | Codes |
-|---|---|
-| Shown well in search? | `not_https`, `title_missing` (high); `h1_missing`, `canonical_other`, `canonical_multiple`, `broken_links`, `viewport_missing`, `jsonld_invalid`, `schema_required_missing`, `image_lcp_lazy`, `image_oversized`, `mixed_content`, `soft_404`, `url_variants_inconsistent` (medium); `redirect_chain`, `sitemap_missing`, `sitemap_not_listed`, `title_too_long`, `title_too_short`, `meta_description_missing`, `meta_description_short`, `meta_description_long`, `h1_multiple`, `heading_order_skip`, `canonical_missing`, `canonical_relative`, `internal_links_none`, `image_alt_missing`, `image_dimensions_missing`, `image_not_lazy`, `image_legacy_format`, `image_no_srcset`, `html_lang_missing`, `social_tags_missing`, `page_weight_heavy`, `url_unreadable`, `schema_recommended_missing`, `favicon_missing`, `site_name_missing`, `hsts_missing`, `author_missing`, `about_contact_missing`, `organization_details_missing`, `article_date_missing`, `privacy_terms_missing`, `date_mismatch`, `html_not_compressed`, `html_lang_invalid`, `link_text_generic`, `image_link_alt_empty`, `image_alt_repeated`, `internal_nofollow`, `fragment_link_broken`, `robots_no_sitemap`, `sitemap_lastmod_invalid`, `og_image_broken` (low); `structured_data_none`, `faq_rich_result_retired`, `rich_result_retired`, `html_no_cache_control`, `security_headers_missing` (low, informational) |
-| AI finds it? | `robots_unreachable`, `search_engine_blocked`, `ai_search_blocked`, `noindex` (blocking); `snippet_blocked` (high); `markdown_alternate_broken`, `ai_catalog_invalid`, `indexnow_key_broken` (low); `ai_training_blocked`, `llms_txt_missing` (low, informational) |
-| AI reads all of it? | `cap_overflow`, `js_dependent`, `hero_lede_dropped`, `hidden_headings`, `spa_shell` (high; hidden headings are medium when the hidden text is short); `ssr_placeholder_text`, `h1_glued_words`, `nav_in_content`, `dominant_heading` (medium); `thin_section` (low) |
-| AI quotes it right? | `faq_schema_not_visible`, `lost_faq_questions` (high); `mid_sentence_start`, `question_missing`, `keyword_not_in_title`, `keyword_variant_split`, `keyword_one_section` (medium); `truncated_teaser`, `repeated_claim`, `question_partial`, `off_keyword_share`, `promise_without_number`, `stock_phrases`, `repeated_sentence_shape`, `uniform_openings`, `unchecked_claims` (low; the writing patterns are medium when they recur, stock phrases from 2.0 per 1,000 words) |
-| AI gets the brand right? | `brand_contradiction`, `review_rating_unbacked`, `review_control_hallucination` (high); `brand_fact_absent`, `brand_unknown`, `reviews_without_markup` (medium) |
-| Languages in order? | `hreflang_no_return` (high); `hreflang_invalid_code`, `hreflang_no_self`, `hreflang_alternate_broken`, `title_duplicate_locales`, `locale_facts_differ` (medium); `description_duplicate_locales`, `hreflang_lang_mismatch`, `hreflang_no_x_default`, `llms_txt_one_language` (low) |
-
-The passage checks are the Vectorscope skill's, run unchanged (h2 sections, 2,000-character windows, a 26-passage cap); `repeated_claim` and the keyword's "one section" use the page's h2 sections as their groups, so they need no embeddings. The Google and Bing checklist has 35 cells; Core Web Vitals and "in Google's index" are always *not measured* (they need field data and Search Console).
-
-**Writing patterns** are the GetLoopLoop PatternScope's deterministic detectors, run over the kept text: stock phrases from a list written per language, repeated sentence shapes, runs of sentences that open the same way, and evaluative claims with nothing checkable in the sentence, each with its position (passage and word) and a density per 1,000 words. English, Ukrainian and Spanish are analysed; other languages are reported as not analysed. They are signals about worn writing, not an AI detector. The same score, with the marker words (vocabulary models overuse, counted beside the score and never inside it) and your swap test, is the report's last block, *How generated the text sounds*, shared with the Vectorscope skill.
-
-**The keyword** is `--keyword` when given, else the page's h1 with the site's name, a trailing year, a sales tail, a clause after a comma or colon and stop words at the edges trimmed (at most five words); the report says which. The promise-without-a-figure rule reads English only, and says so.
-
-**Locale facts** compare the numbers in each h2 section across the language versions read, aligned by section order and only when both versions have the same number of sections; a version whose sections do not line up is listed as not compared. Numbers written as words are not read, and a number may differ on purpose (a local price).
-
-**Structured data:** JSON-LD is parsed (microdata and RDFa types are listed). Required properties, as Google's pages list them, are checked for FAQPage, Product, SoftwareApplication (and WebApplication, MobileApplication), BreadcrumbList, Event, JobPosting, LocalBusiness, VideoObject, QAPage, WebSite, ProductGroup, Offer, AggregateOffer, Review and AggregateRating; recommended ones for those and Article (NewsArticle, BlogPosting), Organization and Person. Every FAQPage question must appear in the visible text. Rich results Google retired are informational (no Google rich result any more, not an error), each dated by its entry on https://developers.google.com/search/updates: FAQ (7 May 2026), How-to (14 September 2023), course info, estimated salary and vehicle listing (documentation removed 9 September 2025), ClaimReview (phased out 12 June 2025), special announcement (31 July 2025), practice problem (6 January 2026) and the sitelinks search box (29 November 2024).
-
-**llms.txt:** the report notes that Google documents no use of it, quoting Google's AI features page: "You don't need to create new machine readable files, AI text files, or markup to appear in these features."
-
-**AI crawlers:** robots.txt is matched by RFC 9309 (the Vectorscope skill's parser): GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User, Google-Extended, Googlebot, Bingbot and CCBot. A 4xx robots.txt means no rules; a 5xx or no answer means everything is assumed disallowed.
-
-**This skill's own thresholds** (each a named constant with its reason, in `scripts/lib/`): title 10 to 60 characters; description 70 to 160; a redirect chain is 2 or more hops; a heavy page is HTML over 500 KB or more than 30 scripts; a hard-to-read URL is over 115 characters, more than 2 query parameters or a session id; hidden headings are high from 200 hidden characters; an image is oversized over 200 KB and wants a srcset over 100 KB or from 800 px declared width; above the fold is the hero and at most its first two images, the first being the LCP candidate; `data-nosnippet` blocks snippets when it covers half the visible text; an app shell is under 150 words with an app root (`#root`, `#__next`, `#app`, …) holding under 200 characters; stock phrases are medium from 2.0 per 1,000 words; the keyword's off-phrase floor is half the passage text and "one section" is a third of the sections or fewer, from three sections.
-
-## Refusal codes
-
-| Code | Tell the user |
-|---|---|
-| `invalid_url` | That does not look like a web address. Ask for the full URL of a page. |
-| `blocked_scheme` | Only http and https pages can be read. |
-| `blocked_host`, `blocked_address` | That address is not a page on the public web: localhost, a private network, or a non-standard port. |
-| `unreachable` | The page could not be reached. It may be down, or the name does not resolve. |
-| `http_error` | The page answered with an error status (in the reading), or redirected more than 5 times. |
-| `blocked` | The site turns automated readers away (HTTP 401, 403 or 429); retrying will not help. |
-| `not_html` | The URL is a file such as a PDF or an image, not an HTML page. |
-| `too_large` | The page is over the 3 MB ceiling. |
-| `empty` | The page answered, but no readable text was left once navigation and boilerplate were removed. |
-| `refused_ru_domain` | The address is in a Russian domain zone (.ru, .su, .рф, .москва, .moscow), and this tool does not analyse it; the page was not fetched. One line in the chat, the report, nothing more. |
-| `refused_ru_hosting` | The site is hosted in Russia (RDAP gives its server's country as RU), and this tool does not analyse it; the page was not fetched. One line in the chat, the report, nothing more. |
-| `refused_ru_audience` | The site has a Russian-language version (an hreflang alternate, og:locale or Content-Language declares a Russian version), and this tool does not analyse it. One line in the chat, the report, nothing more. |
-| `refused_language_ru` | The page is in Russian, and this tool does not analyse pages in Russian. One line in the chat, the report, nothing more. |
-
-
-## Outputs
-
-- `report.html`: one self-contained page (inline CSS and one small script, favicons as data URIs, a content security policy that blocks every network request, every piece of page text escaped), light by default with a dark theme on the toggle, English, Ukrainian and Polish, safe down to 375 px. Summary first: a headline built from the findings, the severity counts, three cards, the three findings to review first and the places in the document with the selected one beside them, each finding with its plain description and what the rule says one click away; then the history and before/after when there are any; every technical detail, including each finding's details for specialists with the fix direction, is in one closed section, *All checks and technical details*. Judgement findings carry an "Agent's judgement · <model>" badge, and a note says that brand, reviews and questions are one model's view.
-- `report.md`: the same audit in Markdown, in English: the status, the biggest problems, every problem by who it concerns with its description, what the rule says, the place, the layer and the fix direction, the page map as a list, the checklist, the bots, the language versions, where the text goes, before and after, the history and the drift, and what was not checked.
-- `export.json`: `getlooploop/ai-search-audit@1`, `edition: "full"`. Every finding with `code`, `severity`, `area`, `owner`, `layer`, `judgement` (`agent`, `model`, or `null`), `label` (en, uk), `where`, `map` (zones and strip rows), `passages`, `evidence`, `rules` (each `{ name, url }`) and `explanation` (`title`, `description`, `rule` as `{ kind: "quote", quote, source, checked }` or `{ kind: "skill", text }`, and `fixDirection`), plus `state` (what the drift compares), `compare` and `history` when they were made, the tiles, the checklist, the page map, robots, sitemap, llms.txt, languages, alternates, links, structured data, `keyword`, `writingPatterns`, `generatedText` (the last block: Pattern score, marker words, swap test, per passage), `localeFacts`, `judgement` (the files as validated), the reading's waterfall, `notChecked` (every cap) and `notMeasured`.
-- For a site: `index.html` (pages × problems, problems repeated across pages as "N pages", problems on one page, what was audited and what was left out, with every page linked), `site.md`, and `site.json` (`getlooploop/ai-search-audit-site@1`), with `pages/<page>.html|md|json` beside them.
-- `reading.json` (`getlooploop/ai-search-audit-reading@1`): everything read in step 1, so step 6 can be rerun offline; for a site, `readings/site.json` (`getlooploop/ai-search-audit-site-reading@1`) lists the pages read and every page left out, with its reason.
-- The history folder: one export per page per run, and the same history inside every report (see *History and drift*).
-
-## Limits
-
-- One public URL per page audit, at most 50 per site audit; every page past the cap, closed by robots.txt, listed twice or not a web address is listed in the site report with its reason. The guard refuses localhost, private and link-local addresses, hostnames without a dot, non-standard ports and anything that is not http(s), on every redirect hop (5 at most) of every request.
-- No login and no cookies; no Accept-Language, so a site that picks a language by location may answer in another language.
-- No JavaScript in the reading. `--render`, or an empty app shell, also runs the page in a local Chrome, Chromium or Edge (`CHROME_PATH`, else the usual install paths) with a fresh throwaway profile, and draws the sections only the render has as dashed zones on the map. With no browser, the report says the render was not done.
-- 12-second timeout per request (8 for a link, an image or a site check), 3,000,000-character ceiling for HTML, 10 MB for a sitemap, 1 MB for llms.txt, the Markdown copy and ai-catalog.json.
-- The brand and review readings are one model's knowledge at its training time; they are not a measurement of any assistant, and they say nothing about what ChatGPT, Gemini or Perplexity answer today.
-- The rule quotes were checked against their pages on the date each one shows; a source can change after that. `node tools/verify-rules.mjs` in a repository checkout checks them all again.
-- The fetch sends `User-Agent: GetLoopLoop/1.0 SEO Crawler`.
-- The readable source is `scripts/` in the repository, built into `dist/` with esbuild; tests: `npm test` in the skill folder of a repository checkout.
-
-## No network in the shell, or nowhere to install
-
-Some agents run their shell with no internet (cloud sandboxes such as Codex in the cloud or ChatGPT), or cannot write to their skills folder.
-
-- **The skill folder can live anywhere.** If the agent's skills folder is read-only, unpack `ai-search-audit-full.zip` (or copy this folder) into any directory you can write, such as the working directory, and use that folder as `$SKILL`. Nothing needs installing. Copying file by file (through a file connector, say) works too, as long as `dist/` comes whole, `dist/chunks/` included; no file in it is over 700 KB. If you cannot get the files at all (no network, downloads blocked), ask the user to attach `ai-search-audit-full.zip` from the repository's Releases, and wait.
-- **No network in the shell:** read.mjs prints `REFUSED unreachable`. Ask the user for a saved copy: the page saved from their browser as "Web page, HTML only" (Ctrl+S, or Cmd+S on a Mac), and, if they can, the site's robots.txt (open `<site>/robots.txt` and save it as text). Then run `node "$SKILL/dist/read.mjs" <url> --html page.html --robots robots.txt --out reading.json` and go on with step 2. Without `--robots`, robots.txt is reported as not checked. Every check that needs the network (the sitemap, llms.txt, the language versions, links, images and the site checks) is then reported as not checked. A site audit needs the network; offline, audit one page at a time. The report says it read a saved copy.
-- **Only files the user gives you.** Do not make the saved copy yourself with a browsing or fetch tool: those return text or Markdown converted from the page, not its HTML, and the reading would not be the page's. And do not fill in for the scripts: a check made by hand is not this tool's result.
-
-## If the page cannot be fetched
-
-When a request fails, read.mjs prints `REFUSED unreachable` (or another code above). In a sandbox, say what to change:
-
-- **claude.ai or the Claude desktop app:** code execution reaches only what its network setting allows. On Free, Pro and Max plans the setting is **Allow network egress** (Settings > Capabilities); on Team and Enterprise plans an owner sets it in Organization settings > Capabilities (off, package managers only, package managers and specific domains, or all domains; with specific domains, the page's domain must be listed). If the plan's setting cannot allow the site, say that this page cannot be audited from claude.ai, and that the same skill runs in Claude Code or another agent on the user's own machine. Then stop.
-- **Behind a proxy:** if `HTTPS_PROXY` or `HTTP_PROXY` is set and the fetch is `unreachable`, run read.mjs once more with `NODE_USE_ENV_PROXY=1` in front (Node 22.21 or later, or 24 or later).
-- **Anywhere else:** the site may be down, the name may not resolve, or the machine has no internet. Say which code came back and stop.
+- Never re-create the audit by hand, and never make a saved copy yourself with a browsing or fetch tool.
+- Never write Russian in the files you write.
+- The scripts call no model; the only judgement in the report is yours, under your model's name, never guessed.

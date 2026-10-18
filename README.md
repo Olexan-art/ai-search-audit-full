@@ -115,7 +115,7 @@ One page:
 
 ```
 node dist/read.mjs https://example.com/page --out reading.json
-# the agent writes questions.json, style.json, brand.json and reviews.json (schemas in SKILL.md)
+# the agent writes questions.json, style.json, brand.json and reviews.json (schemas in references/judgement-files.md)
 node dist/audit.mjs reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --check
 node dist/audit.mjs reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --html report.html --md report.md --json export.json [--compare old-export.json]
 ```

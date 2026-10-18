@@ -4,4 +4,4 @@
 // changing it: npm install && npm run build (tests/dist.test.mjs fails if this file differs).
 import { createRequire as __aiSearchAuditCreateRequire } from "node:module";
 const require = __aiSearchAuditCreateRequire(import.meta.url);
-import{a,b,c,d,e}from"./chunks/chunk-4EFFUYQ5.mjs";import"./chunks/chunk-ED3YHLTM.mjs";export{c as EXPLAIN,a as RULES_CHECKED,d as explain,e as foldQuoteText,b as skillRule};
+import{a,b,c,d,e}from"./chunks/chunk-6XFCJZ7T.mjs";import"./chunks/chunk-ED3YHLTM.mjs";export{c as EXPLAIN,a as RULES_CHECKED,d as explain,e as foldQuoteText,b as skillRule};

@@ -29,7 +29,7 @@ import { buildExport, buildRefusalExport, renderMarkdown, renderRefusalMarkdown 
 import { EXPORT_SCHEMA, READING_SCHEMA } from "./lib/version.mjs";
 import { validateQuestions } from "./lib/questions.mjs";
 import { validateBrand } from "./lib/brand.mjs";
-import { validateReviews } from "./lib/reviews.mjs";
+import { controlFor, validateReviews } from "./lib/reviews.mjs";
 import { textModules } from "./lib/checks.mjs";
 import { computeGenerated, validateStyle } from "./vendor/vectorscope/generatedText.mjs";
 import { compareFindings, DEFAULT_HISTORY_DIR, history, historyIndex, historyPack, importHistory, resolveHistoryDir, saveSnapshot } from "./lib/history.mjs";
@@ -117,7 +117,7 @@ function judge(reading, files, tag = "") {
   const judged = [
     ["questions", files.questions, (x) => validateQuestions(x, reading.vs.passages, { keyword: modules.keyword.keyword })],
     ["brand", files.brand, validateBrand],
-    ["reviews", files.reviews, validateReviews],
+    ["reviews", files.reviews, (x) => validateReviews(x, controlFor(reading.fetch?.finalUrl || reading.requestedInput))],
     ["style", files.style, (x) => validateStyle(x, reading.vs.passages)],
   ];
   for (const [key, file, validate] of judged) {

@@ -1263,9 +1263,9 @@ export const EXPLAIN = {
       "Na stronie nie trzeba nic zmieniać; traktuj oceny podawane przez model jako niezweryfikowane i porównuj z innym modelem lub z samymi platformami.",
     ],
     r: S(
-      "The model is asked about Vetteral, a review platform invented for the test; any rating it gives there is invented, and its other ratings prove nothing. This is this skill's rule.",
-      "Модель питають про Vetteral — платформу відгуків, вигадану для перевірки; будь-який рейтинг там вигаданий, і інші її рейтинги нічого не доводять. Це правило цієї навички.",
-      "Model jest pytany o Vetteral, platformę z opiniami wymyśloną na potrzeby testu; każda ocena, którą tam poda, jest wymyślona, a jego pozostałe oceny niczego nie dowodzą. To reguła tej umiejętności.",
+      "Among the platforms the model is asked about is one invented for the test (the finding names it), and the instructions never say which; any rating it gives there is invented, and its other ratings prove nothing. This is this skill's rule.",
+      "Серед платформ, про які питають модель, є одна, вигадана для перевірки (знахідка її називає), і інструкції не кажуть, яка саме; будь-який рейтинг там вигаданий, і інші її рейтинги нічого не доводять. Це правило цієї навички.",
+      "Wśród platform, o które pytany jest model, jest jedna wymyślona na potrzeby testu (ustalenie ją nazywa), a instrukcje nie mówią, która; każda ocena, którą tam poda, jest wymyślona, a jego pozostałe oceny niczego nie dowodzą. To reguła tej umiejętności.",
     ),
   },
   reviews_without_markup: {

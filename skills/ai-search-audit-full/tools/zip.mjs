@@ -6,7 +6,7 @@
 //
 //   npm run zip
 //
-// In: SKILL.md, dist/ (the bundled scripts, which need no npm install), the favicons' NOTICE and
+// In: SKILL.md, references/ (the reference files SKILL.md points to), dist/ (the bundled scripts, which need no npm install), the favicons' NOTICE and
 // the repository's LICENSE, and the vendored Vectorscope code's MIT licence as LICENSE-vectorscope. Out: scripts/ (the readable source, with the vendored Vectorscope code;
 // dist/ already carries all of it, and the source is in the repository), node_modules, tests,
 // tools, assets, examples, docs. Before writing, it checks the frontmatter rules the upload enforces:
@@ -126,7 +126,7 @@ function zip(entries) {
   return Buffer.concat([...locals, ...centrals, end]);
 }
 
-for (const required of ["SKILL.md", "dist/read.mjs", "dist/audit.mjs", "assets/favicons/NOTICE.txt", "scripts/vendor/vectorscope/LICENSE"]) {
+for (const required of ["SKILL.md", "references", "dist/read.mjs", "dist/audit.mjs", "assets/favicons/NOTICE.txt", "scripts/vendor/vectorscope/LICENSE"]) {
   if (!existsSync(join(SKILL_DIR, required))) fail(`${required} is missing${required.startsWith("dist/") ? "; run npm run build" : ""}.`);
 }
 const license = join(REPO_DIR, "LICENSE");
@@ -136,7 +136,7 @@ if (!existsSync(license)) fail("LICENSE is missing at the repository root.");
 const lf = (path) => (/\.(mjs|md|txt)$|LICENSE$/.test(path) ? Buffer.from(readFileSync(path, "utf8").replace(/\r\n/g, "\n"), "utf8") : readFileSync(path));
 
 const fm = checkFrontmatter(readFileSync(join(SKILL_DIR, "SKILL.md"), "utf8"));
-const files = [join(SKILL_DIR, "SKILL.md"), ...walk(join(SKILL_DIR, "dist")), join(SKILL_DIR, "assets", "favicons", "NOTICE.txt")];
+const files = [join(SKILL_DIR, "SKILL.md"), ...walk(join(SKILL_DIR, "references")), ...walk(join(SKILL_DIR, "dist")), join(SKILL_DIR, "assets", "favicons", "NOTICE.txt")];
 const entries = files
   .map((path) => ({ name: `${FOLDER}/${relative(SKILL_DIR, path).replace(/\\/g, "/")}`, data: lf(path) }))
   .concat([{ name: `${FOLDER}/LICENSE`, data: lf(license) }, { name: `${FOLDER}/LICENSE-vectorscope`, data: lf(join(SKILL_DIR, "scripts", "vendor", "vectorscope", "LICENSE")) }])

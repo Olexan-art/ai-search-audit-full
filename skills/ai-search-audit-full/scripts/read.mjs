@@ -16,6 +16,8 @@
 // A refusal still writes its reading, with ok:false and the code, and exits with code 2 (one page).
 
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { dirname as dirOf, join as joinPath } from "node:path";
+import { reviewsTemplate } from "./lib/reviews.mjs";
 import { join } from "node:path";
 import { readAudit } from "./lib/reading.mjs";
 import { findBrowser } from "./vendor/vectorscope/render.mjs";
@@ -109,6 +111,8 @@ if (!siteMode) {
     onHtml: args.saveHtml ? (source) => writeFileSync(args.saveHtml, source) : undefined,
   });
   writeFileSync(args.out, JSON.stringify(reading, null, 2));
+  // The reviews.json to fill in: every platform, this site's control among them, unnamed.
+  if (reading.ok) writeFileSync(joinPath(dirOf(args.out), "reviews.template.json"), JSON.stringify(reviewsTemplate(reading.fetch.finalUrl), null, 2));
   summarise(reading, args.out);
   process.exit(reading.ok ? 0 : 2);
 }
@@ -162,6 +166,8 @@ for (const p of manifest.pages) p.reading = `${p.slug}.json`;
 for (const slug of manifest.discarded || []) rmSync(join(args.outDir, `${slug}.json`), { force: true });
 const file = join(args.outDir, "site.json");
 writeFileSync(file, JSON.stringify(manifest, null, 2));
+// One reviews.json for the whole site: every platform, the site's control among them, unnamed.
+if (!manifest.refused && list.length) writeFileSync(joinPath(args.outDir, "reviews.template.json"), JSON.stringify(reviewsTemplate(list[0]), null, 2));
 console.log(`evaluated ${manifest.evaluated} of ${manifest.total} pages${manifest.leftOut.count ? ` · left out ${manifest.leftOut.count}: ${Object.entries(manifest.leftOut.byReason).map(([r, n]) => `${n} ${r}`).join(", ")}` : ""}`);
 if (source.children?.unread) console.log(`not done  ${source.children.unread} child sitemaps not read (cap ${source.children.cap})`);
 if (manifest.politeness.requestCache?.hits) console.log(`requests  ${manifest.politeness.requestCache.hits} repeated requests answered from this run's memory`);
