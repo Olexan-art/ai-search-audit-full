@@ -41,15 +41,11 @@ How generated the text sounds, at the bottom of each page report: the Pattern sc
 
 ![How generated the text sounds](docs/ai-search-audit-full-generated-1280.png)
 
-The site report, the same page in dark, a page in Ukrainian and in Polish:
+The site report:
 
 ![The site report of the example run](docs/ai-search-audit-full-site-1280.png)
 
-![A page report, dark](docs/ai-search-audit-full-dark-1280.png)
-
-![A page report in Ukrainian](docs/ai-search-audit-full-light-uk-1280.png)
-
-![A page report in Polish](docs/ai-search-audit-full-light-pl-1280.png)
+Every report opens light, with a dark theme on the toggle, and reads in English, Ukrainian or Polish.
 
 ## Examples
 

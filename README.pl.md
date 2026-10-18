@@ -41,15 +41,11 @@ Na ile tekst brzmi jak wygenerowany, na dole każdego raportu strony: wskaźnik 
 
 ![Na ile tekst brzmi jak wygenerowany](docs/ai-search-audit-full-generated-1280.png)
 
-Raport serwisu, ta sama strona w ciemnym motywie, strona po ukraińsku i po polsku:
+Raport serwisu:
 
 ![Raport serwisu z przykładowego przebiegu](docs/ai-search-audit-full-site-1280.png)
 
-![Raport strony, ciemny motyw](docs/ai-search-audit-full-dark-1280.png)
-
-![Raport strony po ukraińsku](docs/ai-search-audit-full-light-uk-1280.png)
-
-![Raport strony po polsku](docs/ai-search-audit-full-light-pl-1280.png)
+Każdy raport otwiera się w jasnym motywie, ciemny włącza przełącznik; raport czyta się po angielsku, ukraińsku lub polsku.
 
 ## Przykłady
 
