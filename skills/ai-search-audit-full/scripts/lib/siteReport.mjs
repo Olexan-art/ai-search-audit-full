@@ -6,6 +6,8 @@
 import { esc } from "../vendor/vectorscope/html.mjs";
 import { parts } from "./report.mjs";
 import { explain } from "./explain.mjs";
+import { HEAT } from "./copy.mjs";
+import { HEAT_WEIGHT, heatShare } from "./heat.mjs";
 import { LITE, SEV, SEV_COUNT, UI, dateLong, dateOf, fmtEn, fmtPl, fmtUk, nProblems, plForm, ukForm } from "./copy.mjs";
 import { SEVERITIES, SEVERITY_RANK } from "./checks.mjs";
 import { EDITION, TOOL_NAME } from "./report.mjs";
@@ -216,14 +218,19 @@ function matrixBlock(sm) {
   const ok = sm.pages.filter((p) => p.ok);
   if (!sm.codes.length || !ok.length) return "";
   const headCells = ok.map((p) => `<th scope="col"><a href="${pageLink(p)}" title="${esc(p.url)}">${p.i}</a></th>`).join("");
+  // The heat: a cell is the severity's weight times how often the finding appears on that page.
+  const cellHeat = (x) => (x ? (HEAT_WEIGHT[x.severity] || 0) * (x.n || 1) : 0);
+  const maxCell = Math.max(0, ...sm.codes.flatMap((c) => ok.map((p) => cellHeat(c.pages.get(p.slug)))));
+  const pageHeat = ok.map((p) => sm.codes.reduce((s, c) => s + cellHeat(c.pages.get(p.slug)), 0));
+  const maxPage = Math.max(0, ...pageHeat);
   const rows = sm.codes.map((c) => {
     const cells = ok.map((p) => {
       const x = c.pages.get(p.slug);
-      return x ? `<td><a href="${pageLink(p, `#${x.big ? "big" : "p"}-${esc(x.id)}`)}" aria-label="${esc(`${p.path}: ${SEV[x.severity][0]}`)}">${pinIcon(x.severity, x.n > 1 ? x.n : null, 20)}</a></td>` : `<td class="none" aria-label="—">·</td>`;
+      return x ? `<td class="ht" style="--heat:${heatShare(cellHeat(x), maxCell)}"><a href="${pageLink(p, `#${x.big ? "big" : "p"}-${esc(x.id)}`)}" aria-label="${esc(`${p.path}: ${SEV[x.severity][0]}`)}">${pinIcon(x.severity, x.n > 1 ? x.n : null, 20)}</a></td>` : `<td class="none" aria-label="—">·</td>`;
     });
     return `<tr><th scope="row"><a href="#${c.pages.size >= 2 ? "rep" : "one"}-${esc(c.code)}">${P(codeTitle(c.code))}</a></th>${cells.join("")}<td class="n">${c.pages.size}</td></tr>`;
   });
-  return `<section class="panel" id="matrix" aria-labelledby="h-matrix">${head("h-matrix", S.matrix, S.matrixSub)}<div class="tablewrap"><table class="mx"><thead><tr><th scope="col">${P(S.problem)}</th>${headCells}<th scope="col">${P(S.total)}</th></tr></thead><tbody>${rows.join("")}</tbody></table></div><ul class="left-list mx-key">${ok.map((p) => `<li><span class="mono">${p.i}</span> ${esc(p.url)}</li>`).join("")}</ul></section>`;
+  return `<section class="panel" id="matrix" aria-labelledby="h-matrix">${head("h-matrix", S.matrix, S.matrixSub)}<div class="tablewrap"><table class="mx"><thead><tr><th scope="col">${P(S.problem)}</th>${headCells}<th scope="col">${P(S.total)}</th></tr></thead><tbody>${rows.join("")}</tbody><tfoot><tr><th scope="row">${P(HEAT.pageRow)}</th>${pageHeat.map((h) => `<td class="ht hsum" style="--heat:${heatShare(h, maxPage)}">${h}</td>`).join("")}<td></td></tr></tfoot></table></div><p class="capnote">${P(HEAT.siteLegend)}</p><ul class="left-list mx-key">${ok.map((p) => `<li><span class="mono">${p.i}</span> ${esc(p.url)}</li>`).join("")}</ul></section>`;
 }
 
 function singleBlock(sm) {

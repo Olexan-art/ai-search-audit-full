@@ -31,6 +31,10 @@ Wszystko zostaje lokalnie: bez serwera, bez wysyłania danych. Skrypty nie wywo�
 
 ![Mapa odpowiedzi: każde pytanie, czy strona na nie odpowiada, jakość i czego brakuje](docs/ai-search-audit-full-answers-1280.png)
 
+*Gdzie na stronie* pokazuje **ciepło**: każda strefa jest zacieniona według wagi swoich ustaleń (blokujące 8, wysokie 4, średnie 2, niskie 1) względem najgorętszej strefy; siatka „strony × problemy” w raporcie serwisu jest zacieniona tak samo, z wierszem ciepła stron pod spodem.
+
+![Gdzie na stronie: każda strefa zacieniona według wagi swoich ustaleń](docs/ai-search-audit-full-heat-1280.png)
+
 ![Historia strony: dwa przebiegi, co się między nimi zmieniło i wszystkie audyty w historii](docs/ai-search-audit-full-history-1280.png)
 
 Na ile tekst brzmi jak wygenerowany, na dole każdego raportu strony: wskaźnik szablonowości, słowa-markery, test podmiany i każdy fragment z dowodami. To nie wykrywa autorstwa i blok mówi to wprost:

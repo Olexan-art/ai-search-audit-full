@@ -31,6 +31,10 @@ The **answer map** puts the questions people ask in one table: whether the page 
 
 ![The answer map: each question, whether the page answers it, the quality and what is missing](docs/ai-search-audit-full-answers-1280.png)
 
+*Where on the page* carries a **heat**: each zone is shaded by its findings weighted by severity (blocking 8, high 4, medium 2, low 1), against the hottest zone; the site report's pages × problems grid is shaded the same way, with a page-heat row under it.
+
+![Where on the page, with each zone shaded by the weight of its findings](docs/ai-search-audit-full-heat-1280.png)
+
 ![The history of a page: two runs, what changed between them, and every audit in the history](docs/ai-search-audit-full-history-1280.png)
 
 How generated the text sounds, at the bottom of each page report: the Pattern score, the marker words, the swap test and every passage with its evidence. Not an authorship detector, and the block says so:

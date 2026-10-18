@@ -5,6 +5,16 @@
 // measures them), no colour of its own, and severity always as a shape and a word, never colour alone.
 
 export const CSS_FULL = `
+.pl.h1{--heat:.2}.pl.h2{--heat:.4}.pl.h3{--heat:.6}.pl.h4{--heat:.8}.pl.h5{--heat:1}
+.pl .pr{background:color-mix(in srgb,var(--red) calc(var(--heat,0) * 22%),var(--panel))}
+.pl.sel .pr{background:color-mix(in srgb,var(--red) calc(var(--heat,0) * 22%),var(--sel-soft))}
+.heat-key{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.heat-ramp{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.heat-ramp i{display:inline-block;width:72px;height:10px;border-radius:5px;border:1px solid var(--line);background:linear-gradient(90deg,var(--panel),color-mix(in srgb,var(--red) 22%,var(--panel)))}
+.mx td.ht{background:color-mix(in srgb,var(--red) calc(var(--heat,0) * 26%),transparent)}
+.mx tfoot th,.mx tfoot td{border-top:2px solid var(--line-2);font-weight:700}
+.mx tfoot th{text-transform:none;letter-spacing:0;font-size:14px;color:var(--text)}
+.mx td.hsum{font-variant-numeric:tabular-nums}
 .am-lead{margin:6px 0 0;color:var(--muted);font-size:15px}
 table.am{width:100%;border-collapse:collapse}
 table.am th,table.am td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}

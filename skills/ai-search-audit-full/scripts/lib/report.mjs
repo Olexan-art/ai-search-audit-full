@@ -22,7 +22,8 @@ import { CSS_FULL } from "./cssFull.mjs";
 import { explain } from "./explain.mjs";
 import { source } from "./rules.mjs";
 import { FAVICONS } from "./favicons.mjs";
-import { ANSWERS } from "./copy.mjs";
+import { ANSWERS, HEAT } from "./copy.mjs";
+import { heatOf, heatShare } from "./heat.mjs";
 import { CANNOT, CARD_COPY, LAYER, LITE, MARK, OWNERS, SEV, SEV_COUNT, STATE, UI, ZONE_LABEL, dateLong, dateOf, fmtEn, fmtPl, fmtUk, headline, nMinor, nProblems, subtitle } from "./copy.mjs";
 import { GLL_MARK, GLL_MARK_LIGHT } from "../vendor/vectorscope/brandmark.mjs";
 import { GENERATED_CSS, renderGeneratedHtml } from "../vendor/vectorscope/generatedText.mjs";
@@ -286,7 +287,7 @@ function placeRow(p, sel) {
   const srPl = p.pins.map((f) => `${f.pin} · ${SEV[f.severity][2]} · ${f.label[2]}`);
   const w = p.kind === "file" ? 0 : HEADERISH.has(p.kind) ? 34 : Math.round(Math.min(92, 22 + Math.sqrt(Math.max(0, p.chars || 0)) * 1.1));
   const mid = p.hide ? `<span class="pr-hid">${P(p.hide)}</span>` : w ? `<span class="pr-bar" style="width:${w}%" aria-hidden="true"></span>` : `<span class="pr-n">${P(call(LITE.rows, p.rows.length))}</span>`;
-  const cls = ["pl", p.kind === "file" ? "file" : "", p.js ? "js" : "", p.unseen ? "hid" : "", sel ? "sel" : ""].filter(Boolean).join(" ");
+  const cls = ["pl", p.kind === "file" ? "file" : "", p.js ? "js" : "", p.unseen ? "hid" : "", p.heat ? `h${Math.max(1, Math.ceil(p.heat * 5))}` : "", sel ? "sel" : ""].filter(Boolean).join(" ");
   return `<li class="${cls}" id="place-${p.id}"><button type="button" class="pr" data-place="${p.id}" aria-pressed="${sel}" aria-controls="pd-${p.id}"><span class="pr-l">${P(p.label.map((t) => clip(t, 46)))}</span>${mid}<span class="pr-pins" aria-hidden="true">${pins}</span>${sr.length ? `<span class="vh">: ${P([sr.join("; "), srUk.join("; "), srPl.join("; ")])}</span>` : ""}</button></li>`;
 }
 
@@ -315,9 +316,13 @@ function placeDetail(p, sel) {
 
 function placesBlock(model) {
   const places = placeList(model);
+  // The heat: each place's findings weighted by severity, against the hottest place.
+  const maxHeat = Math.max(0, ...places.map((p) => heatOf(p.pins)));
+  for (const p of places) p.heat = heatShare(heatOf(p.pins), maxHeat);
   const first = model.findings.map(placeOf).find(Boolean);
   const selId = first || places.find((p) => p.pins.length)?.id || places[2]?.id || places[0].id;
   const legend = [...SEVERITIES.map((s) => `<li>${pinIcon(s, null, 20)}${P(SEV[s])}</li>`), `<li><span class="sw-hatch" aria-hidden="true"></span>${P(LITE.notRead)}</li>`, `<li><span class="sw-js" aria-hidden="true"></span>${P(UI.onlyJs)}</li>`];
+  if (maxHeat) legend.push(`<li class="heat-key"><span class="heat-ramp" aria-hidden="true"><span>${P(HEAT.cool)}</span><i></i><span>${P(HEAT.hot)}</span></span>${P(HEAT.legend)}</li>`);
   if (model.unmappedCount) legend.push(`<li class="pm-un"><a href="#all-problems">${P(call(UI.unmapped, model.unmappedCount))}</a></li>`);
   const zonesCap = model.caps.find((c) => c.id === "zones");
   return [

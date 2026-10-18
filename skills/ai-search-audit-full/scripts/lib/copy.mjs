@@ -581,3 +581,12 @@ export const ANSWERS = {
   how: ["Quality is a fixed sum: a complete answer 50 or a partial one 25, quotable on its own 25 (the agent's reading), and the answer opens its passage 25 (measured). A partial answer cannot reach 100.", "Якість — фіксована сума: повна відповідь 50 або часткова 25, цитується сама по собі 25 (оцінка агента) і відповідь стоїть на початку уривка 25 (виміряно). Часткова відповідь не може набрати 100.", "Jakość to stała suma: pełna odpowiedź 50 lub częściowa 25, da się ją zacytować samodzielnie 25 (ocena agenta), odpowiedź otwiera swój fragment 25 (zmierzone). Częściowa odpowiedź nie osiągnie 100."],
   signs: { citable: ["quotable alone", "цитується окремо", "do zacytowania samodzielnie"], direct: ["opens the passage", "на початку уривка", "otwiera fragment"] },
 };
+
+// ── the heat on the page map and the site matrix ────────────────────────────
+export const HEAT = {
+  legend: ["Heat: findings weighted by severity (blocking 8, high 4, medium 2, low 1), against the hottest place", "Тепло: знахідки, зважені за важкістю (блокувальна 8, висока 4, середня 2, низька 1), відносно найгарячішого місця", "Ciepło: ustalenia ważone wagą (blokujące 8, wysokie 4, średnie 2, niskie 1), względem najgorętszego miejsca"],
+  cool: ["none", "нема", "brak"],
+  hot: ["hottest", "найгарячіше", "najgorętsze"],
+  pageRow: ["Page heat", "Тепло сторінки", "Ciepło strony"],
+  siteLegend: ["Heat: each cell is the finding's severity weight times how often it appears on that page (blocking 8, high 4, medium 2, low 1); the last row adds up each page", "Тепло: кожна клітинка — вага важкості знахідки, помножена на те, скільки разів вона трапляється на сторінці (блокувальна 8, висока 4, середня 2, низька 1); останній рядок — сума по сторінці", "Ciepło: każda komórka to waga ustalenia razy liczba jego wystąpień na stronie (blokujące 8, wysokie 4, średnie 2, niskie 1); ostatni wiersz sumuje każdą stronę"],
+};
