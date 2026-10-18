@@ -115,6 +115,12 @@ export function renderMarkdown(model) {
       if (d.passages) o.push(`- passages: ${d.passages.added} new, ${d.passages.lost} lost, ${d.passages.unchanged} unchanged`);
       o.push(`- findings: ${d.findings.counts.fixed} fixed, ${d.findings.counts.new} new, ${d.findings.counts.unchanged} unchanged`);
     }
+    const ix = model.historyIndex;
+    if (ix && ix.pages.length > 1) {
+      o.push("", `### Every audit in this history (${ix.runs} runs · ${ix.pages.length} pages · ${ix.sites} sites)`, "", "| Page | Runs | First run | Last run | Problems, last run |", "|---|---|---|---|---|");
+      for (const p of ix.pages) o.push(`| ${cell(p.url)}${p.current ? " (this page)" : ""} | ${p.runs} | ${p.first} | ${p.last} | ${p.refused ? "refused" : p.lastCounts ? p.lastCounts.total : "—"} |`);
+    }
+    if (ix?.dropped) o.push("", `${ix.dropped} older runs did not fit in the report; they stay in the history folder.`);
   }
   if (model.generated) o.push("", ...generatedMarkdown(model.generated));
   o.push("", "## What this check cannot see", "");

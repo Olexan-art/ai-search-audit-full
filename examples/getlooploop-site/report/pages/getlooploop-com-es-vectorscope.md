@@ -1,6 +1,6 @@
 # AI Search Audit Full: https://www.getlooploop.com/es/vectorscope
 
-Fragmentado semántico de tu página — Vectorscope · checked 17 Oct 2026 · skill 2.109
+Fragmentado semántico de tu página — Vectorscope · checked 17 Oct 2026 · skill 2.110
 
 **Nothing hides text from AI** · 18 problems (blocking 0, high 0, medium 7, low 11)
 
@@ -317,7 +317,7 @@ x-default: yes
 - The promise-without-a-figure rule reads English only
 - 4 sections drawn as one zone on the map
 
-## History (2 runs, kept in `examples\history\www.getlooploop.com\es-vectorscope`)
+## History (2 runs, kept in `C:\DEV\ai-search-audit-full\examples\history\www.getlooploop.com\es-vectorscope`)
 
 | Run | Problems | Blocking · high · medium · low |
 |---|---|---|
@@ -330,6 +330,14 @@ Compared with 2026-10-17T12:59:06.055Z.
 
 - passages: 0 new, 0 lost, 18 unchanged
 - findings: 0 fixed, 0 new, 18 unchanged
+
+### Every audit in this history (6 runs · 3 pages · 1 sites)
+
+| Page | Runs | First run | Last run | Problems, last run |
+|---|---|---|---|---|
+| https://www.getlooploop.com/es/vectorscope (this page) | 2 | 2026-10-17T12:59:06.055Z | 2026-10-17T12:59:42.540Z | 18 |
+| https://www.getlooploop.com/uk/vectorscope | 2 | 2026-10-16T18:39:14.000Z | 2026-10-17T12:59:37.535Z | 21 |
+| https://www.getlooploop.com/vectorscope | 2 | 2026-10-16T18:39:14.000Z | 2026-10-17T12:59:27.061Z | 19 |
 
 ## How generated the text sounds `derived` `judgement`
 

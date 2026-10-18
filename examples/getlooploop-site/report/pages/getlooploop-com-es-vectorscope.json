@@ -1,6 +1,6 @@
 {
   "schema": "getlooploop/ai-search-audit@1",
-  "skillVersion": "2.109",
+  "skillVersion": "2.110",
   "producedBy": "ai-search-audit skill, Lite (local; deterministic checks, and the agent's own judgement where marked; the scripts call no model)",
   "createdAt": "2026-10-17T12:59:42.540Z",
   "edition": "full",
@@ -1585,7 +1585,7 @@
     ]
   },
   "history": {
-    "folder": "examples\\history\\www.getlooploop.com\\es-vectorscope",
+    "folder": "C:\\DEV\\ai-search-audit-full\\examples\\history\\www.getlooploop.com\\es-vectorscope",
     "total": 2,
     "older": 0,
     "runs": [
@@ -4593,5 +4593,72 @@
         }
       ]
     }
-  ]
+  ],
+  "historyIndex": {
+    "pages": [
+      {
+        "url": "https://www.getlooploop.com/es/vectorscope",
+        "host": "www.getlooploop.com",
+        "current": true,
+        "runs": 2,
+        "first": "2026-10-17T12:59:06.055Z",
+        "last": "2026-10-17T12:59:42.540Z",
+        "lastCounts": {
+          "total": 18,
+          "blocking": 0,
+          "high": 0,
+          "medium": 7,
+          "low": 11
+        },
+        "refused": false,
+        "trend": [
+          18,
+          18
+        ]
+      },
+      {
+        "url": "https://www.getlooploop.com/uk/vectorscope",
+        "host": "www.getlooploop.com",
+        "current": false,
+        "runs": 2,
+        "first": "2026-10-16T18:39:14.000Z",
+        "last": "2026-10-17T12:59:37.535Z",
+        "lastCounts": {
+          "total": 21,
+          "blocking": 0,
+          "high": 0,
+          "medium": 8,
+          "low": 13
+        },
+        "refused": false,
+        "trend": [
+          20,
+          21
+        ]
+      },
+      {
+        "url": "https://www.getlooploop.com/vectorscope",
+        "host": "www.getlooploop.com",
+        "current": false,
+        "runs": 2,
+        "first": "2026-10-16T18:39:14.000Z",
+        "last": "2026-10-17T12:59:27.061Z",
+        "lastCounts": {
+          "total": 19,
+          "blocking": 0,
+          "high": 0,
+          "medium": 7,
+          "low": 12
+        },
+        "refused": false,
+        "trend": [
+          18,
+          19
+        ]
+      }
+    ],
+    "sites": 1,
+    "runs": 6,
+    "dropped": 0
+  }
 }

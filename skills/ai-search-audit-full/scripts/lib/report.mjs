@@ -25,6 +25,7 @@ import { FAVICONS } from "./favicons.mjs";
 import { CANNOT, CARD_COPY, LAYER, LITE, MARK, OWNERS, SEV, SEV_COUNT, STATE, UI, ZONE_LABEL, dateLong, dateOf, fmtEn, fmtPl, fmtUk, headline, nMinor, nProblems, subtitle } from "./copy.mjs";
 import { GLL_MARK, GLL_MARK_LIGHT } from "../vendor/vectorscope/brandmark.mjs";
 import { GENERATED_CSS, renderGeneratedHtml } from "../vendor/vectorscope/generatedText.mjs";
+import { packScript } from "./history.mjs";
 import { LOGO_GLITCH_JS } from "./glitch.mjs";
 import { SEVERITIES } from "./checks.mjs";
 
@@ -573,6 +574,8 @@ export function renderReport(model) {
   // How generated the text sounds: at the bottom of the page, the same block as Vectorscope's.
   if (model.generated) o.push(generatedBlock(model));
   o.push(infoStrip());
+  // The whole history, compactly, so a later run in a new chat can take it back from this file.
+  if (model.historyPack) o.push(packScript(model.historyPack));
   o.push(...documentEnd());
   return o.join("\n") + "\n";
 }
@@ -712,6 +715,36 @@ const DRIFT_FIELD = {
 const showVal = (v) => (v === null || v === undefined || (Array.isArray(v) && !v.length) ? "—" : Array.isArray(v) ? v.join(" · ") : String(v));
 
 /** The timeline (finding counts per run) and what changed since the run before. */
+/**
+ * Every page the history holds, any site, one row per address (2.110): runs, first and last, the
+ * last run's problems and the totals run by run. Shown when the history knows more than this page.
+ */
+function allAuditsBlock(model) {
+  const ix = model.historyIndex;
+  if (!ix || ix.pages.length < 2) return ix?.dropped ? `<p class="capnote">${P(call(UI.historyDropped, ix.dropped))}</p>` : "";
+  const day = (iso) => {
+    const d = dateLong(iso);
+    return P([d[0], d[1], d[2]]);
+  };
+  const trend = (t) => {
+    const max = Math.max(1, ...t.filter((v) => v !== null));
+    return `<span class="hx-trend" aria-hidden="true">${t.map((v) => (v === null ? '<i class="ref"></i>' : `<i style="height:${Math.max(8, Math.round((v / max) * 100))}%"></i>`)).join("")}</span>`;
+  };
+  const rows = ix.pages.map((p) => {
+    const href = safeHref(p.url);
+    const label = esc(p.url.replace(/^https?:\/\//, ""));
+    const link = href ? `<a href="${esc(href)}" rel="noopener noreferrer" target="_blank">${label}</a>` : label;
+    const now = p.refused ? P(UI.refusedShort) : p.lastCounts ? `<b>${p.lastCounts.total}</b> <span class="small">${SEVERITIES.filter((s) => p.lastCounts[s]).map((s) => `${pinIcon(s, p.lastCounts[s], 20)}`).join("")}</span>` : "—";
+    return `<tr${p.current ? ' class="hx-now"' : ""}><td class="hx-url">${link}${p.current ? ` <span class="chip">${P(UI.thisPage)}</span>` : ""}</td><td class="mono">${p.runs}</td><td>${day(p.first)}</td><td>${day(p.last)}</td><td>${now}</td><td>${trend(p.trend)}</td></tr>`;
+  });
+  return [
+    `<h3 class="subhead" id="all-audits">${P(UI.allAudits)} <span class="unit">${P(call(UI.allAuditsUnit, { runs: ix.runs, pages: ix.pages.length, sites: ix.sites }))}</span></h3>`,
+    `<p class="small">${P(UI.allAuditsLead)}</p>`,
+    `<div class="tablewrap"><table class="hx"><thead><tr><th>${P(UI.colPage)}</th><th>${P(UI.colRuns)}</th><th>${P(UI.colFirst)}</th><th>${P(UI.colLast)}</th><th>${P(UI.colNow)}</th><th>${P(UI.colTrend)}</th></tr></thead><tbody>${rows.join("")}</tbody></table></div>`,
+    ix.dropped ? `<p class="capnote">${P(call(UI.historyDropped, ix.dropped))}</p>` : "",
+  ].join("");
+}
+
 function historyBlock(model) {
   const h = model.history;
   if (!h) return "";
@@ -762,6 +795,7 @@ function historyBlock(model) {
     const fc = dr.findings.counts;
     o.push(`<p class="small">${P(call(UI.driftFindings, fc.fixed, fc.new, fc.unchanged))}</p>`);
   }
+  o.push(allAuditsBlock(model));
   o.push(`<p class="capnote">${P(call(UI.historyWhere, h.folder))}</p></section>`);
   return o.join("\n");
 }
@@ -818,7 +852,7 @@ function refusalBody(lang, code) {
 }
 
 /** The report for a refused reading: the URL, the reason, the footer; nothing of the page. */
-export function renderRefusal(reading, { site = null, note = null } = {}) {
+export function renderRefusal(reading, { site = null, note = null, historyPack = null } = {}) {
   const url = reading.page?.url || reading.fetch?.finalUrl || reading.requestedInput || "";
   const o = documentStart(`${TOOL_NAME} ${EDITION}: ${REFUSAL_COPY.title.en}`);
   o.push(`<header class="verdict lite-verdict" id="verdict">${pageId(url, "")}</header>`);
@@ -830,6 +864,7 @@ export function renderRefusal(reading, { site = null, note = null } = {}) {
     const code = `${reading.reasonCode}${reading.status ? ` · HTTP ${reading.status}` : ""}`;
     o.push(`<section class="refusal" role="alert"><div class="refusal-head">${STOP}<h2>${P(["The page could not be audited", "Сторінку не вдалося перевірити", "Nie udało się sprawdzić strony"])}</h2></div><p class="lead mono">${esc(code)}</p></section>`);
   }
+  if (historyPack) o.push(packScript(historyPack));
   o.push(...documentEnd("footerRefused"));
   return o.join("\n") + "\n";
 }

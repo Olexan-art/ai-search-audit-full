@@ -2,7 +2,7 @@
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.109** to skill (Agent Skill) od [GetLoopLoop](https://www.getlooploop.com) dla claude.ai i aplikacji Claude na komputer, Claude Code, Codex, opencode, Hermes Agent i innych agentów, które wczytują skille `SKILL.md`. Wersje liczy się w tysięcznych (2.101, 2.102, …).
+AI Search Audit Full **2.110** to skill (Agent Skill) od [GetLoopLoop](https://www.getlooploop.com) dla claude.ai i aplikacji Claude na komputer, Claude Code, Codex, opencode, Hermes Agent i innych agentów, które wczytują skille `SKILL.md`. Wersje liczy się w tysięcznych (2.101, 2.102, …).
 
 Zanim Google, Bing albo asystent AI pokaże lub zacytuje stronę, robot musi zostać wpuszczony, strona musi powiedzieć, czym jest, a tekst musi przetrwać odczyt przez maszynę. `ai-search-audit-full` sprawdza publiczne strony według opublikowanych reguł dla wszystkich trzech warunków, dodaje trzy odczyty, które może zrobić tylko AI (pytania, jakie zadają ludzie, jak model agenta opisuje markę i co sądzi o jej opiniach), i objaśnia każdy znaleziony problem: co jest nie tak i dlaczego to ważne, co mówi reguła słowami samego źródła oraz, dla specjalistów, w którą stronę idzie poprawka. Audytuje jedną stronę albo do 50 stron serwisu, porównuje przebieg ze starszym i prowadzi lokalną historię, więc każdy raport pokazuje, co się zmieniło od poprzedniego przebiegu. Na dole każdego raportu strony blok *Na ile tekst brzmi jak wygenerowany* zestawia wskaźnik szablonowości, słowa nadużywane przez modele językowe i test podmiany przeprowadzony przez agenta. Raporty można czytać po angielsku, ukraińsku lub polsku.
 
@@ -21,13 +21,13 @@ To jest edycja Full. Opiera się na publicznej [Lite](https://github.com/Olexan-
 | Serwis | — | **raport serwisu**: strony × problemy, problemy powtarzające się na wielu stronach zgrupowane jako „na N stronach” oraz kontrole możliwe tylko na zestawie stron (powtórzone title, opisy i h1, strony osierocone, głębokość linków, pary hreflang, łańcuchy canonical, linki wewnętrzne przez przekierowania, zbyt krótkie strony) |
 | Przed/po | — | `--compare old-export.json`: ustalenia naprawione, nowe i bez zmian dla każdej strony |
 | Na ile tekst brzmi jak wygenerowany | ten sam blok | ten sam blok na każdej stronie serwisu, test podmiany z `style/<page>.json` |
-| Historia | — | każdy przebieg zapisany jako migawka na tym komputerze; **oś czasu** każdej strony i **co się zmieniło od poprzedniego przebiegu** (title, opis, canonical, h1, liczba słów, typy schema, robots.txt i każdy bot, hreflang, fragmenty nowe, utracone i zmienione) |
+| Historia | — | każdy przebieg zapisany jako migawka we własnym folderze użytkownika, którego nie zeruje ani nowy czat, ani nowy folder, ani nowa wersja skilla, i przenoszony wewnątrz każdego raportu; **oś czasu** każdej strony, **co się zmieniło od poprzedniego przebiegu** (title, opis, canonical, h1, liczba słów, typy schema, robots.txt i każdy bot, hreflang, fragmenty nowe, utracone i zmienione, problemy naprawione, nowe i bez zmian) oraz **wszystkie audyty w historii**, jeden wiersz na adres, dowolna strona i dowolny serwis |
 
 W raporcie każde ustalenie w sekcji *Najpierw przejrzyj te ustalenia* i w wybranym miejscu rozwija się do prostego opisu i tego, co mówi reguła; historia oraz przed/po są pod sekcją *Gdzie na stronie*; kierunki poprawek leżą w szczegółach dla specjalistów każdego problemu, w sekcji *Wszystkie sprawdzenia i szczegóły techniczne*.
 
 Wszystko zostaje lokalnie: bez serwera, bez wysyłania danych. Skrypty nie wywołują żadnego modelu; części z oceną pisze agent, który uruchamia skill, i są oznaczone jego modelem.
 
-![Historia strony: dwa przebiegi i co się między nimi zmieniło](docs/ai-search-audit-full-history-1280.png)
+![Historia strony: dwa przebiegi, co się między nimi zmieniło i wszystkie audyty w historii](docs/ai-search-audit-full-history-1280.png)
 
 Na ile tekst brzmi jak wygenerowany, na dole każdego raportu strony: wskaźnik szablonowości, słowa-markery, test podmiany i każdy fragment z dowodami. To nie wykrywa autorstwa i blok mówi to wprost:
 
@@ -59,7 +59,7 @@ Skill wymaga Node 20.18 lub nowszego i **żadnego `npm install`**: `dist/read.mj
 
 ### claude.ai i aplikacja Claude na komputer
 
-1. Pobierz **`ai-search-audit-full.zip`** z [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) tego repozytorium albo poleceniem `gh release download v2.109 -R Olexan-art/ai-search-audit-full`. **Nie rozpakowuj go**: przesyłanie przyjmuje zip z folderem `ai-search-audit-full` na najwyższym poziomie.
+1. Pobierz **`ai-search-audit-full.zip`** z [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) tego repozytorium albo poleceniem `gh release download v2.110 -R Olexan-art/ai-search-audit-full`. **Nie rozpakowuj go**: przesyłanie przyjmuje zip z folderem `ai-search-audit-full` na najwyższym poziomie.
 2. Włącz wykonywanie kodu: **Settings > Capabilities > Code execution and file creation**. W planach Team i Enterprise decyduje o tym właściciel w Organization settings > Capabilities.
 3. Prześlij skill: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, wybierz `ai-search-audit-full.zip` i włącz skill.
 4. Pozwól piaskownicy łączyć się z serwisem: **Allow network egress** (Free, Pro, Max) albo lista domen ustawiona przez właściciela w Team i Enterprise. Audyt serwisu wysyła te same zapytania co audyt strony, dla każdej strony.
@@ -126,7 +126,7 @@ node dist/audit.mjs --site readings/site.json --questions-dir questions --style-
 
 **Uprzejmość:** strony są czytane pojedynczo, co najmniej co 1 sekundę (`--delay`, nigdy poniżej 500 ms), dłużej, gdy robots.txt ustawia `Crawl-delay` (do 10 s), i tylko tam, gdzie robots.txt pozwala pobierać `GetLoopLoop` (w przeciwnym razie `*`); jeśli robots.txt nie odpowiada, żadna strona tego serwisu nie zostanie przeczytana. Zapytania powtarzające się między stronami (robots.txt, sitemapa, wspólne linki) są obsługiwane z pamięci.
 
-**Historia:** każdy przebieg `audit.mjs` zapisuje swój eksport w `./.ai-search-audit/history/<host>/<path>/<date>.json` (`--history dir` albo `--no-history`). Ponowny audyt tego samego odczytu nadpisuje jego migawkę. Usuń folder, żeby usunąć historię.
+**Historia:** każdy przebieg `audit.mjs` zapisuje swój eksport w `~/.ai-search-audit/history/<host>/<path>/<date>.json` (albo w `$AI_SEARCH_AUDIT_HISTORY`; `--history dir` dla innego folderu, `--no-history`, by nic nie zapisywać). Folder należy do użytkownika, nie do skilla, więc aktualizacja skilla go nie rusza; folder, który starsza wersja zostawiła w katalogu roboczym, zostanie skopiowany. Każdy raport niesie też całą historię, więc tam, gdzie dysk czatu nie przetrwa (claude.ai, nowa piaskownica Cowork), kolejny przebieg odzyskuje ją z wcześniejszego raportu: `--history-from report.html` (albo folder z raportami, eksportami lub `site.json`), niezależnie od tego, jakiej strony czy serwisu dotyczył. Ponowny audyt tego samego odczytu nadpisuje jego migawkę. Usuń folder, żeby usunąć historię.
 
 ### Własne progi tego skilla
 

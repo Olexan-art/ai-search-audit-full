@@ -17,6 +17,7 @@ import { renderRefusal } from "./report.mjs";
 import { buildRefusalExport, renderRefusalMarkdown } from "./outputs.mjs";
 import { siteWideBlock } from "./siteWideBlock.mjs";
 import { SITE_EXPLAIN } from "./siteExplain.mjs";
+import { packScript } from "./history.mjs";
 
 export const SITE_EXPORT_SCHEMA = "getlooploop/ai-search-audit-site@1";
 
@@ -297,6 +298,7 @@ export function renderSiteReport(sm) {
       "</details>",
     ].join("\n"),
   );
+  if (sm.historyPack) o.push(packScript(sm.historyPack));
   o.push(...documentEnd("footerSite"));
   return o.join("\n") + "\n";
 }

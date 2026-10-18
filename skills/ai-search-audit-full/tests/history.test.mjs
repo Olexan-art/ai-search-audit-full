@@ -118,3 +118,24 @@ test("a passage changed in place shows where its text changed", async () => {
   assert.match(c.after, /12 euros/);
   assert.equal(changedAt(undefined, "x"), null);
 });
+
+test("2.110: one row per address (case, trailing slash and fragment fold together), the pack capped and saying so", async () => {
+  const { urlKey, historyPack, historyIndex, packFromHtml, packScript, PACK_CAP } = await import("../scripts/lib/history.mjs");
+  assert.equal(urlKey("https://WWW.Example.org/uk/page/#top"), urlKey("https://www.example.org/uk/page"));
+  assert.notEqual(urlKey("https://example.org/a?x=1"), urlKey("https://example.org/a"));
+  const dir = tmp();
+  const { x } = await exportOf(v1, "2026-10-16T08:00:00.000Z");
+  for (let i = 0; i < PACK_CAP + 5; i++) saveSnapshot(dir, { ...x, createdAt: new Date(Date.UTC(2026, 0, 1) + i * 60000).toISOString() });
+  const pack = historyPack(dir);
+  assert.equal(pack.runs.length, PACK_CAP);
+  assert.equal(pack.dropped, 5);
+  assert.ok(pack.runs[0].state.passages.every((p) => typeof p.text === "string"), "the newest run of a page keeps its passages' text");
+  assert.ok(pack.runs[1].state.passages.every((p) => p.text === undefined), "older runs keep only what the timeline needs");
+  const ix = historyIndex(null, x, pack);
+  assert.equal(ix.pages.length, 1);
+  assert.equal(ix.dropped, 5);
+  const evil = { ...pack, runs: [{ ...pack.runs[0], page: { ...pack.runs[0].page, title: "</script><script>alert(1)</script>" } }] };
+  const html = `<p>x</p>${packScript(evil)}`;
+  assert.ok(!html.includes("</script><script>alert"), "page text cannot close the block");
+  assert.equal(packFromHtml(html).runs[0].page.title, "</script><script>alert(1)</script>");
+});

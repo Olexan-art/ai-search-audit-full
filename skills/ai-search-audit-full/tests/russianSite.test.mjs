@@ -161,7 +161,7 @@ test("site CLI: read.mjs --urls on a .ru site writes a refused site.json and not
     assert.equal(r.status, 2, r.stderr);
     assert.match(r.stdout, /REFUSED {3}refused_ru_domain/);
     assert.deepEqual(readdirSync(join(dir, "readings")), ["site.json"]);
-    const a = spawnSync(process.execPath, [AUDIT, "--site", join(dir, "readings", "site.json"), "--out-dir", join(dir, "report")], { encoding: "utf8" });
+    const a = spawnSync(process.execPath, [AUDIT, "--site", join(dir, "readings", "site.json"), "--out-dir", join(dir, "report")], { encoding: "utf8", env: { ...process.env, AI_SEARCH_AUDIT_HISTORY: join(dir, "hist") } });
     assert.equal(a.status, 2, a.stderr);
     const html = readFileSync(join(dir, "report", "index.html"), "utf8");
     assert.ok(html.includes(esc(REFUSAL_REASON.refused_ru_domain.en)) && html.includes(REFUSAL_REASON.refused_ru_domain.uk));

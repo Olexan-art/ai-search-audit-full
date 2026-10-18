@@ -1,6 +1,6 @@
 # AI Search Audit Full: https://www.getlooploop.com/vectorscope
 
-Semantic Chunking Visualizer for Any URL — Vectorscope · checked 17 Oct 2026 · skill 2.109
+Semantic Chunking Visualizer for Any URL — Vectorscope · checked 17 Oct 2026 · skill 2.110
 
 **Nothing hides text from AI** · 19 problems (blocking 0, high 0, medium 7, low 12)
 
@@ -324,7 +324,7 @@ x-default: yes
 
 - 4 sections drawn as one zone on the map
 
-## History (2 runs, kept in `examples\history\www.getlooploop.com\vectorscope`)
+## History (2 runs, kept in `C:\DEV\ai-search-audit-full\examples\history\www.getlooploop.com\vectorscope`)
 
 | Run | Problems | Blocking · high · medium · low |
 |---|---|---|
@@ -339,6 +339,14 @@ Compared with 2026-10-16T18:39:14.000Z.
 - source: "saved copy" → "live"
 - passages: 1 new, 1 lost, 16 unchanged
 - findings: 0 fixed, 1 new, 18 unchanged
+
+### Every audit in this history (6 runs · 3 pages · 1 sites)
+
+| Page | Runs | First run | Last run | Problems, last run |
+|---|---|---|---|---|
+| https://www.getlooploop.com/vectorscope (this page) | 2 | 2026-10-16T18:39:14.000Z | 2026-10-17T12:59:27.061Z | 19 |
+| https://www.getlooploop.com/es/vectorscope | 2 | 2026-10-17T12:59:06.055Z | 2026-10-17T12:59:42.540Z | 18 |
+| https://www.getlooploop.com/uk/vectorscope | 2 | 2026-10-16T18:39:14.000Z | 2026-10-17T12:59:37.535Z | 21 |
 
 ## How generated the text sounds `derived` `judgement`
 

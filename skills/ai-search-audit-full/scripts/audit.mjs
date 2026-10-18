@@ -13,12 +13,16 @@
 //        [--reviews reviews.json] [--keyword "phrase"] [--compare old-site.json] [--history dir | --no-history] [--check]
 //
 // --check validates the judgement files against the reading(s) and writes nothing.
-// Every run saves its export as a snapshot under the history folder (default
-// ./.ai-search-audit/history), which the report reads back for the timeline and the drift.
+// Every run saves its export as a snapshot under the history folder (default ~/.ai-search-audit/history,
+// or $AI_SEARCH_AUDIT_HISTORY; never inside the skill's folder), which the report reads back for the
+// timeline and the drift, and every report carries the whole history in a JSON block. --history-from
+// takes earlier reports, exports or history folders and adds their runs (2.110). The old default,
+// ./.ai-search-audit/history in the working directory, is read and copied in.
 // A refused reading (ok:false) still gets its report: the URL and the reason, nothing else.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { buildModel } from "./lib/model.mjs";
 import { renderRefusal, renderReport } from "./lib/report.mjs";
 import { buildExport, buildRefusalExport, renderMarkdown, renderRefusalMarkdown } from "./lib/outputs.mjs";
@@ -28,7 +32,7 @@ import { validateBrand } from "./lib/brand.mjs";
 import { validateReviews } from "./lib/reviews.mjs";
 import { textModules } from "./lib/checks.mjs";
 import { computeGenerated, validateStyle } from "./vendor/vectorscope/generatedText.mjs";
-import { compareFindings, DEFAULT_HISTORY_DIR, history, saveSnapshot } from "./lib/history.mjs";
+import { compareFindings, DEFAULT_HISTORY_DIR, history, historyIndex, historyPack, importHistory, resolveHistoryDir, saveSnapshot } from "./lib/history.mjs";
 import { SITE_READING_SCHEMA } from "./lib/site.mjs";
 import { buildSiteExport, buildSiteModel, buildSiteRefusalExport, renderSiteMarkdown, renderSiteRefusal, renderSiteRefusalMarkdown, renderSiteReport, SITE_EXPORT_SCHEMA } from "./lib/siteReport.mjs";
 
@@ -37,11 +41,11 @@ const USAGE = [
   '       [--keyword "phrase"] [--html report.html] [--md report.md] [--json export.json]',
   "       [--compare old-export.json] [--history dir | --no-history] [--check]",
   "   or: node scripts/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--brand brand.json]",
-  '       [--reviews reviews.json] [--keyword "phrase"] [--compare old-site.json] [--history dir | --no-history] [--check]',
+  '       [--reviews reviews.json] [--keyword "phrase"] [--compare old-site.json] [--history dir | --no-history] [--history-from file|dir …] [--check]',
 ].join("\n");
 
 function parseArgs(argv) {
-  const out = { reading: null, html: null, md: null, json: null, questions: null, brand: null, reviews: null, style: null, styleDir: null, keyword: null, check: false, compare: null, history: DEFAULT_HISTORY_DIR, noHistory: false, site: null, outDir: "report", questionsDir: null };
+  const out = { reading: null, html: null, md: null, json: null, questions: null, brand: null, reviews: null, style: null, styleDir: null, keyword: null, check: false, compare: null, history: null, historyFrom: [], noHistory: false, site: null, outDir: "report", questionsDir: null };
   const takes = { "--html": "html", "--md": "md", "--json": "json", "--questions": "questions", "--brand": "brand", "--reviews": "reviews", "--style": "style", "--style-dir": "styleDir", "--keyword": "keyword", "--compare": "compare", "--history": "history", "--site": "site", "--out-dir": "outDir", "--questions-dir": "questionsDir" };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -49,6 +53,10 @@ function parseArgs(argv) {
       const v = argv[++i];
       if (v === undefined) throw new Error(`${arg} needs a value`);
       out[takes[arg]] = v;
+    } else if (arg === "--history-from") {
+      const v = argv[++i];
+      if (v === undefined) throw new Error("--history-from needs a value");
+      out.historyFrom.push(v);
     } else if (arg === "--check") out.check = true;
     else if (arg === "--no-history") out.noHistory = true;
     else if (arg === "-h" || arg === "--help") out.help = true;
@@ -80,7 +88,27 @@ const readJson = (file, what) => {
     process.exit(1);
   }
 };
-const historyDir = args.noHistory ? null : args.history;
+// The history folder: the user's own, never the skill's (an update replaces that), never lost to a new version.
+const SKILL_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+if (args.noHistory && args.historyFrom.length) {
+  console.error("REFUSED   --history-from adds runs to the history, and --no-history turns it off: give one of them.");
+  process.exit(1);
+}
+const where = args.noHistory ? { dir: null, moved: null } : resolveHistoryDir(args.history, { skillDir: SKILL_DIR });
+const historyDir = where.dir;
+if (where.moved === "inside_skill") console.log(`history   ${args.history} is inside the skill's folder, which an update replaces; kept in ${historyDir} instead`);
+if (historyDir && !args.check) {
+  // The pre-2.110 default lived in the working directory, often the skill's own folder: copy it in.
+  const legacy = resolve(DEFAULT_HISTORY_DIR);
+  if (existsSync(legacy) && legacy !== resolve(historyDir)) {
+    const got = importHistory(historyDir, [legacy]);
+    if (got.imported) console.log(`history   ${got.imported} run${got.imported === 1 ? "" : "s"} copied in from ${legacy}`);
+  }
+  if (args.historyFrom.length) {
+    const got = importHistory(historyDir, args.historyFrom);
+    console.log(`history   from ${got.files} file${got.files === 1 ? "" : "s"}: ${got.imported} run${got.imported === 1 ? "" : "s"} added, ${got.already} already here${got.unreadable.length ? ` · not readable as a report, an export or a history: ${got.unreadable.join(", ")}` : ""}`);
+  }
+}
 
 /** The judgement files for one reading, each validated against it, or the run stops and says what to fix. */
 function judge(reading, files, tag = "") {
@@ -138,7 +166,10 @@ function auditPage(reading, extra, { old = null, site = null, out = {} } = {}) {
     if (out.html) writeFileSync(out.html, renderRefusal(reading, { site }));
     if (out.md) writeFileSync(out.md, renderRefusalMarkdown(reading));
     if (out.json) writeFileSync(out.json, JSON.stringify(exp, null, 2));
-    if (historyDir && exp.page.url) saveSnapshot(historyDir, exp);
+    if (historyDir && exp.page.url) {
+      saveSnapshot(historyDir, exp);
+      if (out.html) writeFileSync(out.html, renderRefusal(reading, { site, historyPack: historyPack(historyDir, exp) }));
+    }
     return { model: null, exp, hist: null, compare: null };
   }
   const model = buildModel(reading, extra);
@@ -155,10 +186,16 @@ function auditPage(reading, extra, { old = null, site = null, out = {} } = {}) {
   }
   if (historyDir) model.history = history(historyDir, exp);
   exp = buildExport(model);
-  if (historyDir) saveSnapshot(historyDir, exp);
+  if (historyDir) {
+    saveSnapshot(historyDir, exp);
+    // Every run this history holds, any page and any site: listed by URL, and carried inside the report.
+    model.historyPack = historyPack(historyDir, exp);
+    model.historyIndex = historyIndex(null, exp, model.historyPack);
+  }
   if (out.html) writeFileSync(out.html, renderReport(model));
   if (out.md) writeFileSync(out.md, renderMarkdown(model));
-  if (out.json) writeFileSync(out.json, JSON.stringify(exp, null, 2));
+  // The written export lists every audit in the history; the snapshot does not carry that list.
+  if (out.json) writeFileSync(out.json, JSON.stringify(model.historyIndex ? { ...exp, historyIndex: model.historyIndex } : exp, null, 2));
   return { model, exp, hist: model.history || null, compare: model.compare || null };
 }
 
@@ -197,6 +234,7 @@ if (args.reading) {
   console.log(`checklist ${["pass", "fail", "warn", "na", "none"].map((s) => `${s} ${cl.filter((x) => x.state === s).length}`).join(" · ")}`);
   for (const cap of model.caps) console.log(`not done  ${cap.t[0]}`);
   if (compare) console.log(`compare   since ${compare.before.createdAt}: ${compare.counts.fixed} fixed · ${compare.counts.new} new · ${compare.counts.unchanged} unchanged`);
+  if (model.historyIndex) console.log(`history   ${model.historyIndex.runs} run${model.historyIndex.runs === 1 ? "" : "s"} of ${model.historyIndex.pages.length} page${model.historyIndex.pages.length === 1 ? "" : "s"} on ${model.historyIndex.sites} site${model.historyIndex.sites === 1 ? "" : "s"} carried in the report`);
   if (hist) console.log(`history   ${hist.total} run${hist.total === 1 ? "" : "s"} in ${hist.folder}${hist.drift ? ` · since ${hist.drift.since}: ${hist.drift.comparable ? `${hist.drift.changed} changes` : "not comparable"}` : " · first run"}`);
   else console.log("history   not saved (--no-history)");
   for (const [k, v] of [["html", args.html], ["md", args.md], ["json", args.json]]) if (v) console.log(`${k.padEnd(9)} ${v}`);
@@ -273,6 +311,7 @@ for (const e of pass) {
   console.log(`  ${e.reading.ok ? `${String(r.model.findings.length).padStart(3)} problems` : `REFUSED ${e.reading.reasonCode}`}  ${e.url}${r.hist?.drift ? ` · ${r.hist.drift.changed ?? "?"} changes since ${r.hist.drift.since}` : ""}${r.compare ? ` · ${r.compare.counts.fixed} fixed, ${r.compare.counts.new} new` : ""}`);
 }
 const sm = buildSiteModel(manifest, done);
+if (historyDir) sm.historyPack = historyPack(historyDir);
 writeFileSync(join(args.outDir, "index.html"), renderSiteReport(sm));
 writeFileSync(join(args.outDir, "site.md"), renderSiteMarkdown(sm));
 writeFileSync(join(args.outDir, "site.json"), JSON.stringify(buildSiteExport(sm, done), null, 2));
