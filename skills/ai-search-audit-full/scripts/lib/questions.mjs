@@ -11,6 +11,7 @@ export const MIN_QUESTIONS = 8;
 export const MAX_QUESTIONS = 12;
 export const MAX_QUESTION_CHARS = 200;
 export const MAX_QUOTE_CHARS = 400;
+export const MAX_MISS_CHARS = 200;
 /** Voicescope's four axes: urgency; who is asking and on what; the thing in front of them; what actually hurts. */
 export const AXES = ["urgency", "device", "object", "obstacle"];
 const str = (v) => typeof v === "string" && v.trim().length > 0;
@@ -46,16 +47,20 @@ export function validateQuestions(input, passages, { keyword = null } = {}) {
     const passage = q.passage ?? null;
     if (passage !== null && !byIndex.has(passage)) throw new Error(`${where}.passage ${JSON.stringify(passage)} is not a passage index of this reading (0–${passages.length - 1}).`);
     const quote = typeof q.quote === "string" ? q.quote.trim() : "";
+    // What the page lacks for this question, one line (optional: older files have none).
+    if (q.miss !== undefined && q.miss !== null && (!str(q.miss) || q.miss.length > MAX_MISS_CHARS)) throw new Error(`${where}.miss must be 1–${MAX_MISS_CHARS} characters: what the page lacks for this question.`);
+    if (RUSSIAN_ONLY.test(q.miss || "")) throw new Error(`${where}: Russian letters found in miss.`);
+    const miss = q.verdict !== "complete" && str(q.miss) ? q.miss.replace(/\s+/g, " ").trim() : null;
     if (q.verdict === "missing") {
       if (q.citable === true) throw new Error(`${where}: a missing answer cannot be citable.`);
-      return { id, question: q.question.trim(), axes, passage, verdict: "missing", citable: false, quote: null };
+      return { id, question: q.question.trim(), axes, passage, verdict: "missing", citable: false, quote: null, miss };
     }
     if (typeof q.citable !== "boolean") throw new Error(`${where}.citable must be true or false.`);
     if (passage === null) throw new Error(`${where}.passage is required for a ${q.verdict} answer.`);
     if (!quote) throw new Error(`${where}.quote is required for a ${q.verdict} answer: the words in the passage that answer.`);
     if (quote.length > MAX_QUOTE_CHARS) throw new Error(`${where}.quote is over ${MAX_QUOTE_CHARS} characters; quote the answering sentence.`);
     if (!quoteIn(quote, byIndex.get(passage).text)) throw new Error(`${where}.quote is not verbatim text from passage ${passage}. Copy it exactly (whitespace, quote marks and case may differ).`);
-    return { id, question: q.question.trim(), axes, passage, verdict: q.verdict, citable: q.citable, quote };
+    return { id, question: q.question.trim(), axes, passage, verdict: q.verdict, citable: q.citable, quote, miss };
   });
   const unused = AXES.filter((a) => !used.has(a));
   if (unused.length) throw new Error(`no question uses the ${unused.join(", ")} axis; vary the circumstance along all four.`);

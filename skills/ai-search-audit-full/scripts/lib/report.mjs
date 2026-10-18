@@ -22,6 +22,7 @@ import { CSS_FULL } from "./cssFull.mjs";
 import { explain } from "./explain.mjs";
 import { source } from "./rules.mjs";
 import { FAVICONS } from "./favicons.mjs";
+import { ANSWERS } from "./copy.mjs";
 import { CANNOT, CARD_COPY, LAYER, LITE, MARK, OWNERS, SEV, SEV_COUNT, STATE, UI, ZONE_LABEL, dateLong, dateOf, fmtEn, fmtPl, fmtUk, headline, nMinor, nProblems, subtitle } from "./copy.mjs";
 import { GLL_MARK, GLL_MARK_LIGHT } from "../vendor/vectorscope/brandmark.mjs";
 import { GENERATED_CSS, renderGeneratedHtml } from "../vendor/vectorscope/generatedText.mjs";
@@ -233,6 +234,26 @@ function firstBlock(model) {
   const top = model.bigs.slice(0, 3);
   const body = top.length ? `<ol class="trows" id="top-rows">${top.map((f) => firstRow(f, model)).join("")}</ol>` : `<p class="none-found">${P(UI.noProblems)}</p>`;
   return `<section class="sum" id="review-first" aria-labelledby="h-first"><h2 id="h-first">${P(LITE.first)}</h2>${body}</section>`;
+}
+
+// ── the answer map: one row per question, what the page lacks first ─────────
+
+function answersBlock(model) {
+  const a = model.answers;
+  const s = a.summary;
+  const tone = (q) => (q >= 75 ? "var(--green)" : q >= 40 ? "var(--amber)" : "var(--red)");
+  const first = new Set(a.addFirst);
+  const rows = a.rows.map((r) => {
+    const signs = r.verdict === "missing" ? "" : `<span class="am-signs">${r.citable ? `<span class="am-s">✓ ${P(ANSWERS.signs.citable)}</span>` : ""}${r.direct ? `<span class="am-s">✓ ${P(ANSWERS.signs.direct)}</span>` : ""}</span>`;
+    const miss = r.verdict === "complete" ? P(ANSWERS.noMiss) : r.miss ? esc(r.miss) : `<span class="am-faint">${P(ANSWERS.missUnstated)}</span>`;
+    return `<tr class="am-${r.verdict}"><th scope="row">${esc(r.question)}${first.has(r.id) ? ` <span class="am-first">${P(ANSWERS.addFirst)}</span>` : ""}${r.quote ? `<q class="am-q">${esc(r.quote)}</q>` : ""}</th>`
+      + `<td><span class="am-v">${P(ANSWERS.verdict[r.verdict])}</span></td>`
+      + `<td><span class="am-bar" style="--t:${tone(r.quality)}"><i style="width:${r.quality}%"></i></span><b class="am-n">${r.quality}/100</b>${signs}</td>`
+      + `<td class="am-miss">${miss}</td><td class="am-p">${r.passage === null ? "—" : `#${r.passage}`}</td></tr>`;
+  }).join("");
+  const sub = [ANSWERS.sub[0](s), ANSWERS.sub[1](s), ANSWERS.sub[2](s)];
+  const pills = `<span class="pill lp est">${P(LITE.estimate)}</span> <span class="pill lp ms">${P(LAYER.derived)}</span>`;
+  return `<section class="sum" id="answer-map" aria-labelledby="h-answers">${sumHead("h-answers", ANSWERS.title, sub)}<p class="am-lead">${pills} ${P(ANSWERS.lead)}</p><div class="tablewrap"><table class="am"><thead><tr>${ANSWERS.cols.map((c) => `<th>${P(c)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div><p class="capnote">${P(ANSWERS.how)}</p></section>`;
 }
 
 // ── where on the page: the places, top to bottom, and the selected one ──────
@@ -567,6 +588,7 @@ export function renderReport(model) {
   if (model.site) o.push(siteNav(model.site));
   o.push(cardsBlock(model));
   o.push(firstBlock(model));
+  if (model.answers) o.push(answersBlock(model));
   o.push(placesBlock(model));
   o.push(compareBlock(model));
   o.push(historyBlock(model));

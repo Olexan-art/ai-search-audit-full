@@ -7,6 +7,7 @@ import { headingKey } from "./facts.mjs";
 import { AREAS, label, fmtEn, fmtPl, fmtUk, plForm, ukForm } from "./copy.mjs";
 import { samePage } from "../vendor/vectorscope/technical.mjs";
 import { pathOf as robotsPathOf } from "../vendor/vectorscope/robots.mjs";
+import { answerMap } from "./answerMap.mjs";
 
 /** How many findings the "Biggest problems" row shows. */
 export const BIGGEST = 5;
@@ -283,6 +284,7 @@ export function buildModel(reading, extra = {}) {
     modules,
     extra,
     judgement: judgementSummary(extra),
+    answers: answerMap(extra.questions, reading.vs.passages),
     keyword: modules.keyword.keyword ? { keyword: modules.keyword.keyword, source: modules.keyword.source } : null,
   };
 }

@@ -5,6 +5,29 @@
 // measures them), no colour of its own, and severity always as a shape and a word, never colour alone.
 
 export const CSS_FULL = `
+.am-lead{margin:6px 0 0;color:var(--muted);font-size:15px}
+table.am{width:100%;border-collapse:collapse}
+table.am th,table.am td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.am thead th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;white-space:nowrap}
+table.am tbody th{font-weight:600;font-size:15px;color:var(--text);text-transform:none;letter-spacing:0;white-space:normal;min-width:240px;max-width:420px}
+table.am tbody tr:last-child th,table.am tbody tr:last-child td{border-bottom:0}
+.am-q{display:block;margin-top:6px;font-weight:400;font-size:13px;color:var(--muted);font-style:italic;overflow-wrap:anywhere}
+.am-first{display:inline-block;margin:4px 0 0;padding:1px 7px;border:1px solid var(--red);color:var(--red);border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;vertical-align:1px}
+.am-v{font-weight:700;white-space:nowrap}
+.am-v::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--vc)}
+tr.am-complete{--vc:var(--green)}tr.am-partial{--vc:var(--amber)}tr.am-missing{--vc:var(--red)}
+tr.am-partial .am-v::before{background:linear-gradient(90deg,var(--vc) 50%,transparent 50%);border:1.5px solid var(--vc)}
+tr.am-missing .am-v::before{background:transparent;border:1.5px solid var(--vc)}
+tr.am-complete .am-v{color:var(--green)}tr.am-partial .am-v{color:var(--amber)}tr.am-missing .am-v{color:var(--red)}
+.am-bar{--t:var(--muted);display:inline-block;width:72px;height:8px;border-radius:4px;background:var(--line);vertical-align:middle;overflow:hidden;margin-right:8px}
+.am-bar i{display:block;height:100%;background:var(--t);border-radius:4px}
+.am-n{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14px}
+.am-signs{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+.am-s{display:block;white-space:nowrap}
+.am-miss{min-width:200px;max-width:340px;font-size:14px}
+.am-faint{color:var(--muted);font-style:italic}
+.am-p{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+@media (max-width:640px){table.am thead{display:none}table.am tbody tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}table.am tbody tr:last-child{border-bottom:0}table.am tbody th,table.am td{display:block;border:0;padding:3px 14px;min-width:0;max-width:none}tr.am-complete .am-miss,table.am td.am-p{display:none}.am-miss{min-width:0;max-width:none}}
 .lbl{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .small{font-size:14px;color:var(--muted)}
 .subhead{font-size:15px;margin:16px 0 8px;font-weight:700}

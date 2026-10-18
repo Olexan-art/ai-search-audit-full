@@ -27,6 +27,10 @@ W raporcie każde ustalenie w sekcji *Najpierw przejrzyj te ustalenia* i w wybra
 
 Wszystko zostaje lokalnie: bez serwera, bez wysyłania danych. Skrypty nie wywołują żadnego modelu; części z oceną pisze agent, który uruchamia skill, i są oznaczone jego modelem.
 
+**Mapa odpowiedzi** zbiera pytania, które zadają ludzie, w jedną tabelę: czy strona odpowiada na każde z nich, jakość na 100 (stała suma: pełna lub częściowa odpowiedź, czy da się ją zacytować samodzielnie, czy otwiera swój fragment), czego brakuje i „dodać najpierw” przy trzech najsłabszych.
+
+![Mapa odpowiedzi: każde pytanie, czy strona na nie odpowiada, jakość i czego brakuje](docs/ai-search-audit-full-answers-1280.png)
+
 ![Historia strony: dwa przebiegi, co się między nimi zmieniło i wszystkie audyty w historii](docs/ai-search-audit-full-history-1280.png)
 
 Na ile tekst brzmi jak wygenerowany, na dole każdego raportu strony: wskaźnik szablonowości, słowa-markery, test podmiany i każdy fragment z dowodami. To nie wykrywa autorstwa i blok mówi to wprost:

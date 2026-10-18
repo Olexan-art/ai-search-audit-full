@@ -27,6 +27,10 @@ In the report, every finding in *Review these first* and in the selected place o
 
 Everything stays local: no server, no upload. The scripts call no model; the judgement parts are written by the agent running the skill, and marked with its model.
 
+The **answer map** puts the questions people ask in one table: whether the page answers each one, a quality out of 100 (a fixed sum: complete or partial, quotable alone, and whether the answer opens its passage), what is missing, and "add first" on the three weakest.
+
+![The answer map: each question, whether the page answers it, the quality and what is missing](docs/ai-search-audit-full-answers-1280.png)
+
 ![The history of a page: two runs, what changed between them, and every audit in the history](docs/ai-search-audit-full-history-1280.png)
 
 How generated the text sounds, at the bottom of each page report: the Pattern score, the marker words, the swap test and every passage with its evidence. Not an authorship detector, and the block says so:

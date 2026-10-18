@@ -187,6 +187,8 @@ export function buildExport(model) {
     layers: { measured: "what a script counted on the page; any agent gets the same value", derived: "computed from measured values by a fixed formula", judgement: "the agent's model read or answered it; another model may judge differently" },
     judgement: { ...model.judgement, questions: model.extra?.questions || null, brand: model.extra?.brand || null, reviews: model.extra?.reviews || null },
     keyword: model.modules.keyword,
+    // The answer map: every question ranked, its quality (complete or partial + citable + direct) and what is missing.
+    answerMap: model.answers || null,
     // How generated the text sounds: the Pattern score, marker words and swap test, as the report's last block shows them.
     generatedText: model.generated ? generatedExport(model.generated) : null,
     writingPatterns: model.modules.patterns.analysed ? { language: model.modules.patterns.language, wordCount: model.modules.patterns.wordCount, score: model.modules.patterns.score, detectors: model.modules.patterns.version, findings: model.modules.patterns.findings.map((x) => ({ family: x.family, detector: x.detector, severity: x.severity, evidence: x.evidence, passage: x.passage, word: x.word, heading: x.heading, occurrences: x.occurrences })), note: "signals about worn writing, not an AI detector" } : { analysed: false, reason: model.modules.patterns.reason },

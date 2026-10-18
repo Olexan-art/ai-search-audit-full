@@ -567,3 +567,17 @@ export const LITE = {
   tagline: ["AI search that understands your business", "AI пошук, який розуміє ваш бізнес", "Wyszukiwanie AI, które rozumie Twój biznes"],
   product: "AI Search Audit · Full",
 };
+
+// ── the answer map ──────────────────────────────────────────────────────────
+export const ANSWERS = {
+  title: ["Answer map", "Карта відповідей", "Mapa odpowiedzi"],
+  sub: [(s) => `${s.questions} questions · ${s.complete} answered · ${s.partial} in part · ${s.missing} not answered · quality ${s.average}/100`, (s) => `${s.questions} питань · ${s.complete} з відповіддю · ${s.partial} частково · ${s.missing} без відповіді · якість ${s.average}/100`, (s) => `${s.questions} pytań · ${s.complete} z odpowiedzią · ${s.partial} częściowo · ${s.missing} bez odpowiedzi · jakość ${s.average}/100`],
+  lead: ["The questions people ask about this page's topic, and how well the page answers each one. What the page lacks comes first.", "Питання, які люди ставлять на тему цієї сторінки, і наскільки добре сторінка відповідає на кожне. Спершу те, чого бракує.", "Pytania, które ludzie zadają na temat tej strony, i jak dobrze strona odpowiada na każde z nich. Najpierw to, czego brakuje."],
+  cols: [["Question", "Питання", "Pytanie"], ["Answers", "Відповідь", "Odpowiedź"], ["Quality", "Якість", "Jakość"], ["What is missing", "Чого бракує", "Czego brakuje"], ["Passage", "Уривок", "Fragment"]],
+  verdict: { complete: ["yes", "так", "tak"], partial: ["in part", "частково", "częściowo"], missing: ["no", "ні", "nie"] },
+  addFirst: ["add first", "додати спершу", "dodać najpierw"],
+  noMiss: ["—", "—", "—"],
+  missUnstated: ["not stated", "не вказано", "nie podano"],
+  how: ["Quality is a fixed sum: a complete answer 50 or a partial one 25, quotable on its own 25 (the agent's reading), and the answer opens its passage 25 (measured). A partial answer cannot reach 100.", "Якість — фіксована сума: повна відповідь 50 або часткова 25, цитується сама по собі 25 (оцінка агента) і відповідь стоїть на початку уривка 25 (виміряно). Часткова відповідь не може набрати 100.", "Jakość to stała suma: pełna odpowiedź 50 lub częściowa 25, da się ją zacytować samodzielnie 25 (ocena agenta), odpowiedź otwiera swój fragment 25 (zmierzone). Częściowa odpowiedź nie osiągnie 100."],
+  signs: { citable: ["quotable alone", "цитується окремо", "do zacytowania samodzielnie"], direct: ["opens the passage", "на початку уривка", "otwiera fragment"] },
+};

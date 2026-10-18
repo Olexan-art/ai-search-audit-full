@@ -68,8 +68,9 @@ Every one of them carries `agent` and `model` at the top level, as `groups.json`
   "topic": "what the page is about, in a few words",
   "questions": [
     { "id": "q1", "question": "My launch is tomorrow: will an assistant see the FAQ at the bottom?", "axes": ["urgency", "object"],
-      "passage": 5, "verdict": "partial", "citable": false, "quote": "verbatim words from passage 5" },
-    { "id": "q2", "question": "Can I paste a PDF instead of a web page?", "axes": ["object"], "passage": null, "verdict": "missing" }
+      "passage": 5, "verdict": "partial", "citable": false, "quote": "verbatim words from passage 5",
+      "miss": "Says the FAQ may fall below the cut, not how to check where the cut falls." },
+    { "id": "q2", "question": "Can I paste a PDF instead of a web page?", "axes": ["object"], "passage": null, "verdict": "missing", "miss": "Nothing on PDFs or other file types." }
   ]
 }
 ```
@@ -83,7 +84,9 @@ Write the questions the way the GetLoopLoop Voicescope does: cross the page's to
 
 Rules, in the order they are usually broken: most questions must **not** contain the page's keyword (people describe the problem, not the jargon); write speech, in the first person, in the page's language; no wake words ("Hey Google", "Siri"); no question that is another with words added; include at least one the page probably does not answer.
 
-Then judge each, from the passages only, never from what you know: `passage` is the single passage a retriever should return (`null` when none does); `verdict` is `complete` (that passage alone answers it), `partial` (it helps but leaves part out) or `missing`; `citable` is true only when the quoted words make sense quoted alone; `quote` is the exact words that answer, up to 400 characters, copied **verbatim** from that passage (whitespace, quote marks, dashes and case are folded, nothing else). A `missing` answer has no quote. The script refuses a quote that is not in its passage.
+Then judge each, from the passages only, never from what you know: `passage` is the single passage a retriever should return (`null` when none does); `verdict` is `complete` (that passage alone answers it), `partial` (it helps but leaves part out) or `missing`; `citable` is true only when the quoted words make sense quoted alone; `quote` is the exact words that answer, up to 400 characters, copied **verbatim** from that passage (whitespace, quote marks, dashes and case are folded, nothing else). A `missing` answer has no quote. The script refuses a quote that is not in its passage. For every `partial` and `missing` answer, `miss` says in one line (up to 200 characters, your own words) what the page lacks for that question.
+
+The report draws these as the **answer map**: one row per question, what the page lacks first, with a quality out of 100 that is a fixed sum (complete 50 or partial 25, `citable` 25, and 25 when the quote opens its passage, which the script measures), your `miss` line, and "add first" on the three weakest.
 
 ### brand.json
 
