@@ -16,12 +16,13 @@ test("every code has an explanation, and every explanation a code", () => {
   assert.throws(() => explain("no_such_code"));
 });
 
-test("title, description and fix direction in English and Ukrainian, with no Russian-only letters", () => {
+test("title, description and fix direction in English, Ukrainian and Polish, with no Russian-only letters", () => {
   for (const [code, e] of Object.entries(EXPLAIN)) {
     for (const k of ["t", "d", "x"]) {
-      assert.ok(Array.isArray(e[k]) && e[k].length === 2, `${code}.${k}`);
-      const [en, uk] = e[k];
-      assert.ok(en.trim() && uk.trim(), `${code}.${k} empty`);
+      assert.ok(Array.isArray(e[k]) && e[k].length === 3, `${code}.${k}`);
+      const [en, uk, pl] = e[k];
+      assert.ok(en.trim() && uk.trim() && pl.trim(), `${code}.${k} empty`);
+      assert.ok(!CYR.test(pl), `${code}.${k} Polish holds Cyrillic`);
       assert.ok(!CYR.test(en), `${code}.${k} English holds Cyrillic`);
       assert.ok(CYR.test(uk) || k === "t", `${code}.${k} Ukrainian is not Ukrainian`);
       assert.ok(!RU_ONLY.test(uk), `${code}.${k} holds a Russian-only letter`);

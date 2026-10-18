@@ -1,14 +1,14 @@
-[English](README.md) · Українська
+[English](README.md) · Українська · [Polski](README.pl.md)
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.108** — навичка (Agent Skill) від [GetLoopLoop](https://www.getlooploop.com) для claude.ai і застосунку Claude, Claude Code, Codex, opencode, Hermes Agent та інших агентів, що завантажують навички `SKILL.md`. Версії рахуються в тисячних (2.101, 2.102, …).
+AI Search Audit Full **2.109** — навичка (Agent Skill) від [GetLoopLoop](https://www.getlooploop.com) для claude.ai і застосунку Claude, Claude Code, Codex, opencode, Hermes Agent та інших агентів, що завантажують навички `SKILL.md`. Версії рахуються в тисячних (2.101, 2.102, …).
 
-Перш ніж Google, Bing чи ШІ-асистент покажуть або процитують сторінку, краулер має отримати дозвіл, сторінка має сказати, що вона таке, а текст має пережити машинне читання. `ai-search-audit-full` перевіряє публічні сторінки за опублікованими правилами для всіх трьох, додає три прочитання, які може зробити лише ШІ (запитання людей, як модель агента описує бренд і що вона вважає про його відгуки), і пояснює кожну знайдену проблему: що не так і чому це важливо, що каже правило словами самого джерела і, для фахівців, у який бік іде виправлення. Навичка перевіряє одну сторінку або до 50 сторінок сайту, порівнює запуск зі старішим і зберігає локальну історію, тож кожен звіт показує, що змінилося від попереднього запуску.
+Перш ніж Google, Bing чи ШІ-асистент покажуть або процитують сторінку, краулер має отримати дозвіл, сторінка має сказати, що вона таке, а текст має пережити машинне читання. `ai-search-audit-full` перевіряє публічні сторінки за опублікованими правилами для всіх трьох, додає три прочитання, які може зробити лише ШІ (запитання людей, як модель агента описує бренд і що вона вважає про його відгуки), і пояснює кожну знайдену проблему: що не так і чому це важливо, що каже правило словами самого джерела і, для фахівців, у який бік іде виправлення. Навичка перевіряє одну сторінку або до 50 сторінок сайту, порівнює запуск зі старішим і зберігає локальну історію, тож кожен звіт показує, що змінилося від попереднього запуску. Унизу кожного звіту сторінки блок *Наскільки текст звучить як згенерований* ставить поруч бал шаблонності, слова, які мовні моделі вживають надміру, і тест підміни від агента. Звіти можна читати англійською, українською або польською.
 
-Це версія Full. Вона побудована на публічній [Lite](https://github.com/Olexan-art/ai-search-audit) (2.108) і виконує всі перевірки Lite.
+Це версія Full. Вона побудована на публічній [Lite](https://github.com/Olexan-art/ai-search-audit) (2.109) і виконує всі перевірки Lite.
 
-![Звіт сторінки з прикладу: плитки, мапа сторінки й мовні версії](docs/ai-search-audit-full-light-1280.png)
+![Звіт сторінки з прикладу: головний висновок, що це означає для вас, знахідки, які варто переглянути першими, і де вони на сторінці](docs/ai-search-audit-full-light-1280.png)
 
 ## Що Full додає до Lite
 
@@ -20,6 +20,7 @@ AI Search Audit Full **2.108** — навичка (Agent Skill) від [GetLoopL
 | Сторінки | одна | **до 50 на сайт**, зі списку адрес або sitemap, по одній і з дотриманням robots.txt; ліміт показано як «перевірено / знайдено», з кожною пропущеною сторінкою й причиною |
 | Сайт | — | **звіт сайту**: сторінки × проблеми, проблеми, що повторюються, згруповані як «на N сторінках», і перевірки, можливі лише на наборі сторінок (однакові title, описи й h1, сторінки-сироти, глибина посилань, пари hreflang, ланцюжки canonical, внутрішні посилання через переадресацію, надто короткі сторінки) |
 | До і після | — | `--compare old-export.json`: виправлені, нові й незмінні знахідки для кожної сторінки |
+| Наскільки текст звучить як згенерований | той самий блок | той самий блок на кожній сторінці сайту, тест підміни з `style/<сторінка>.json` |
 | Історія | — | кожен запуск зберігається знімком на цьому комп’ютері; **часова шкала** кожної сторінки і **що змінилося від попереднього запуску** (title, опис, canonical, h1, кількість слів, типи схеми, robots.txt і кожен бот, hreflang, уривки нові, втрачені й змінені) |
 
 У звіті кожна знахідка в розділі *Спочатку перегляньте ці знахідки* й в обраному місці розгортається до простого опису й того, що каже правило; історія та «до і після» йдуть після розділу *Де на сторінці це знайдено*; напрями виправлення — у подробицях для фахівців кожної проблеми, усередині *Усі перевірки та технічні подробиці*.
@@ -28,7 +29,11 @@ AI Search Audit Full **2.108** — навичка (Agent Skill) від [GetLoopL
 
 ![Історія сторінки: два запуски й що змінилося між ними](docs/ai-search-audit-full-history-1280.png)
 
-Звіт сайту, та сама сторінка в темній темі й сторінка українською:
+Наскільки текст звучить як згенерований — унизу кожного звіту сторінки: бал шаблонності, слова-маркери, тест підміни й кожен уривок із доказами. Це не детектор авторства, і блок так і каже:
+
+![Наскільки текст звучить як згенерований](docs/ai-search-audit-full-generated-1280.png)
+
+Звіт сайту, та сама сторінка в темній темі, сторінка українською і польською:
 
 ![Звіт сайту з прикладу](docs/ai-search-audit-full-site-1280.png)
 
@@ -36,15 +41,17 @@ AI Search Audit Full **2.108** — навичка (Agent Skill) від [GetLoopL
 
 ![Звіт сторінки українською](docs/ai-search-audit-full-light-uk-1280.png)
 
+![Звіт сторінки польською](docs/ai-search-audit-full-light-pl-1280.png)
+
 ## Приклади
 
-Справжні запуски в [`examples/`](examples) (17 жовтня 2026). Файли суджень у [`examples/judgement/`](examples/judgement) написав Claude Code з моделлю Claude Opus 5.5, яка не знала GetLoopLoop із власних знань і так і сказала; жодної моделі продукту не викликали.
+Справжні запуски в [`examples/`](examples): сторінки прочитано 17 жовтня 2026 і повторно перевірено 18 жовтня версією 2.109, яка додала *Наскільки текст звучить як згенерований* (бал 1, 2 і 0 зі 100, жодного слова-маркера, а шаблонних уривків 4 із 17, 4 із 17 і 5 із 18 на трьох сторінках). Файли суджень у [`examples/judgement/`](examples/judgement) написав Claude Code з моделлю Claude Opus 5.5, яка не знала GetLoopLoop із власних знань і так і сказала; жодної моделі продукту не викликали.
 
-- **Аудит трьох сторінок** getlooploop.com: [звіт сайту](examples/getlooploop-site/report/index.html) і його сторінки, [/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-vectorscope.html) (19 проблем: 0 блокувальних · 0 високих · 7 середніх · 12 низьких), [/uk/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-uk-vectorscope.html) (21: 0 · 0 · 9 · 12) і [/es/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-es-vectorscope.html) (18: 0 · 0 · 7 · 11). 15 проблем повторюються на сторінках; на рівні сайту жодна перевірена сторінка не посилається на іншу.
+- **Аудит трьох сторінок** getlooploop.com: [звіт сайту](examples/getlooploop-site/report/index.html) і його сторінки, [/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-vectorscope.html) (19 проблем: 0 блокувальних · 0 високих · 7 середніх · 12 низьких), [/uk/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-uk-vectorscope.html) (21: 0 · 0 · 8 · 13) і [/es/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-es-vectorscope.html) (18: 0 · 0 · 7 · 11). 15 проблем повторюються на сторінках; на рівні сайту жодна перевірена сторінка не посилається на іншу.
 - **Два знімки історії для кожної сторінки** в [`examples/history/`](examples/history), тож зміни видно. Перший запуск /vectorscope і /uk/vectorscope прочитав копії цих сторінок, збережені 16 жовтня 2026 ([`examples/first-run/`](examples/first-run), з перевірками сайту наживо, позначено «збережена копія»); другий прочитав їх наживо. На кожній змінився один уривок, і звіт показує, де саме. /es/vectorscope прочитано наживо двічі з різницею в кілька хвилин: без змін.
 - **До і після**: [/vectorscope проти експорту Lite 2.101](examples/compare/vectorscope-compare.html) тієї самої сторінки, зробленого раніше того самого дня: виправлено 0, нова 1 (перевірка заголовків безпеки, яку додала Lite 2.102), без змін 18.
 
-Звіти відкриваються англійською; додайте `#lang=uk` для української.
+Звіти відкриваються англійською; додайте `#lang=uk` для української або `#lang=pl` для польської.
 
 ## Встановлення
 
@@ -52,7 +59,7 @@ AI Search Audit Full **2.108** — навичка (Agent Skill) від [GetLoopL
 
 ### claude.ai і застосунок Claude
 
-1. Завантажте **`ai-search-audit-full.zip`** з [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) цього репозиторію або `gh release download v2.108 -R Olexan-art/ai-search-audit-full`. **Не розпаковуйте**: завантаження приймає zip із текою `ai-search-audit-full` на верхньому рівні.
+1. Завантажте **`ai-search-audit-full.zip`** з [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) цього репозиторію або `gh release download v2.109 -R Olexan-art/ai-search-audit-full`. **Не розпаковуйте**: завантаження приймає zip із текою `ai-search-audit-full` на верхньому рівні.
 2. Увімкніть виконання коду: **Settings > Capabilities > Code execution and file creation**. На планах Team і Enterprise це вмикає власник в Organization settings > Capabilities.
 3. Завантажте навичку: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, оберіть `ai-search-audit-full.zip` і ввімкніть навичку.
 4. Дозвольте пісочниці доступ до сайту: **Allow network egress** (Free, Pro, Max) або список доменів власника на Team і Enterprise. Аудит сайту робить ті самі запити, що й аудит сторінки, для кожної сторінки.
@@ -104,17 +111,17 @@ For an SEO or AI search audit of a web page or a site, follow skills/ai-search-a
 
 ```
 node dist/read.mjs https://example.com/page --out reading.json
-# агент пише questions.json, brand.json і reviews.json (схеми в SKILL.md)
-node dist/audit.mjs reading.json --questions questions.json --brand brand.json --reviews reviews.json --check
-node dist/audit.mjs reading.json --questions questions.json --brand brand.json --reviews reviews.json --html report.html --md report.md --json export.json [--compare old-export.json]
+# агент пише questions.json, style.json, brand.json і reviews.json (схеми в SKILL.md)
+node dist/audit.mjs reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --check
+node dist/audit.mjs reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --html report.html --md report.md --json export.json [--compare old-export.json]
 ```
 
 Сайт (щонайбільше 50 сторінок):
 
 ```
 node dist/read.mjs --urls urls.txt --out-dir readings          # або: --sitemap https://example.com/sitemap.xml
-# агент пише questions/<сторінка>.json для кожної сторінки, а brand.json і reviews.json один раз
-node dist/audit.mjs --site readings/site.json --questions-dir questions --brand brand.json --reviews reviews.json --out-dir report
+# агент пише questions/<сторінка>.json і style/<сторінка>.json для кожної сторінки, а brand.json і reviews.json один раз
+node dist/audit.mjs --site readings/site.json --questions-dir questions --style-dir style --brand brand.json --reviews reviews.json --out-dir report
 ```
 
 **Ввічливість:** сторінки читаються по одній, щонайменше з секундною паузою (`--delay`, не менше 500 мс), довшою, коли robots.txt задає `Crawl-delay` (до 10 с), і лише там, де robots.txt дозволяє `GetLoopLoop` (інакше `*`); якщо robots.txt не відповідає, жодна сторінка цього сайту не читається. Запити, що повторюються між сторінками (robots.txt, sitemap, спільні посилання), беруться з пам’яті.

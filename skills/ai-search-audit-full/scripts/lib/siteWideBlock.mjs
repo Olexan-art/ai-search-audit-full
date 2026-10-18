@@ -5,22 +5,23 @@
 import { esc } from "../vendor/vectorscope/html.mjs";
 import { parts } from "./report.mjs";
 import { SITE_EXPLAIN } from "./siteExplain.mjs";
-import { SEV, UI, dateLong, fmtEn, fmtUk, ukForm } from "./copy.mjs";
+import { SEV, UI, dateLong, fmtEn, fmtPl, fmtUk, plForm, ukForm } from "./copy.mjs";
 import { source } from "./rules.mjs";
 
 const { P, ext, call, clip, sumHead } = parts;
 const en = (n, one, many) => `${fmtEn(n)} ${n === 1 ? one : many}`;
 const uk = (n, a, b, c) => `${fmtUk(n)} ${ukForm(n, a, b, c)}`;
+const pl = (n, a, b, c) => `${fmtPl(n)} ${plForm(n, a, b, c)}`;
 
 const W = {
-  title: ["Across the site", "На всьому сайті"],
-  sub: ["checks only several pages together can make; the audited pages only", "перевірки, які можна зробити лише на кількох сторінках разом; лише перевірені сторінки"],
-  none: ["No site-wide problem among the audited pages.", "Серед перевірених сторінок проблем на рівні сайту немає."],
-  onPages: [(n) => `on ${en(n, "page", "pages")}`, (n) => `на ${uk(n, "сторінці", "сторінках", "сторінках")}`],
-  notRun: ["Not checked", "Не перевірено"],
+  title: ["Across the site", "На всьому сайті", "W całym serwisie"],
+  sub: ["checks only several pages together can make; the audited pages only", "перевірки, які можна зробити лише на кількох сторінках разом; лише перевірені сторінки", "sprawdzenia możliwe tylko na kilku stronach naraz; wyłącznie sprawdzone strony"],
+  none: ["No site-wide problem among the audited pages.", "Серед перевірених сторінок проблем на рівні сайту немає.", "Wśród sprawdzonych stron nie ma problemów na poziomie serwisu."],
+  onPages: [(n) => `on ${en(n, "page", "pages")}`, (n) => `на ${uk(n, "сторінці", "сторінках", "сторінках")}`, (n) => `na ${pl(n, "stronie", "stronach", "stronach")}`],
+  notRun: ["Not checked", "Не перевірено", "Nie sprawdzono"],
   reason: {
-    fewer_pages: [(m) => `needs at least ${m} audited pages`, (m) => `потрібно щонайменше ${m} перевірених сторінок`],
-    no_home_page: [() => "needs the home page among the audited pages", () => "потрібна головна сторінка серед перевірених"],
+    fewer_pages: [(m) => `needs at least ${m} audited pages`, (m) => `потрібно щонайменше ${m} перевірених сторінок`, (m) => `wymaga co najmniej ${m} sprawdzonych stron`],
+    no_home_page: [() => "needs the home page among the audited pages", () => "потрібна головна сторінка серед перевірених", () => "wymaga strony głównej wśród sprawdzonych stron"],
   },
 };
 
@@ -29,7 +30,7 @@ export function siteRuleText(r) {
   if (r.kind === "quote") {
     const s = source(r.src);
     const d = dateLong(r.checked);
-    return `<q class="rq" lang="en">${esc(r.quote)}</q> <span class="rsrc">${ext(s.url, `${esc(s.name)} ↗`)} <span class="rchk">· ${P([UI.ruleChecked[0](d[0]), UI.ruleChecked[1](d[1])])}</span></span>`;
+    return `<q class="rq" lang="en">${esc(r.quote)}</q> <span class="rsrc">${ext(s.url, `${esc(s.name)} ↗`)} <span class="rchk">· ${P([UI.ruleChecked[0](d[0]), UI.ruleChecked[1](d[1]), UI.ruleChecked[2](d[2])])}</span></span>`;
   }
   return `<span class="rskill">${P(UI.skillRule)}</span> ${P(r.text)}`;
 }

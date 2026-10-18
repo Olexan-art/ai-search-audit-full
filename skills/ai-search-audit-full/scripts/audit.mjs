@@ -6,10 +6,10 @@
 //
 // One page:
 //   node scripts/audit.mjs reading.json [--questions questions.json] [--brand brand.json] [--reviews reviews.json]
-//        [--keyword "phrase"] [--html report.html] [--md report.md] [--json export.json]
+//        [--style style.json] [--keyword "phrase"] [--html report.html] [--md report.md] [--json export.json]
 //        [--compare old-export.json] [--history dir | --no-history] [--check]
 // A site (the readings and site.json that read.mjs --urls / --sitemap wrote):
-//   node scripts/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--brand brand.json]
+//   node scripts/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--style-dir dir] [--brand brand.json]
 //        [--reviews reviews.json] [--keyword "phrase"] [--compare old-site.json] [--history dir | --no-history] [--check]
 //
 // --check validates the judgement files against the reading(s) and writes nothing.
@@ -27,12 +27,13 @@ import { validateQuestions } from "./lib/questions.mjs";
 import { validateBrand } from "./lib/brand.mjs";
 import { validateReviews } from "./lib/reviews.mjs";
 import { textModules } from "./lib/checks.mjs";
+import { computeGenerated, validateStyle } from "./vendor/vectorscope/generatedText.mjs";
 import { compareFindings, DEFAULT_HISTORY_DIR, history, saveSnapshot } from "./lib/history.mjs";
 import { SITE_READING_SCHEMA } from "./lib/site.mjs";
 import { buildSiteExport, buildSiteModel, buildSiteRefusalExport, renderSiteMarkdown, renderSiteRefusal, renderSiteRefusalMarkdown, renderSiteReport, SITE_EXPORT_SCHEMA } from "./lib/siteReport.mjs";
 
 const USAGE = [
-  "Usage: node scripts/audit.mjs reading.json [--questions questions.json] [--brand brand.json] [--reviews reviews.json]",
+  "Usage: node scripts/audit.mjs reading.json [--questions questions.json] [--brand brand.json] [--reviews reviews.json] [--style style.json]",
   '       [--keyword "phrase"] [--html report.html] [--md report.md] [--json export.json]',
   "       [--compare old-export.json] [--history dir | --no-history] [--check]",
   "   or: node scripts/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--brand brand.json]",
@@ -40,8 +41,8 @@ const USAGE = [
 ].join("\n");
 
 function parseArgs(argv) {
-  const out = { reading: null, html: null, md: null, json: null, questions: null, brand: null, reviews: null, keyword: null, check: false, compare: null, history: DEFAULT_HISTORY_DIR, noHistory: false, site: null, outDir: "report", questionsDir: null };
-  const takes = { "--html": "html", "--md": "md", "--json": "json", "--questions": "questions", "--brand": "brand", "--reviews": "reviews", "--keyword": "keyword", "--compare": "compare", "--history": "history", "--site": "site", "--out-dir": "outDir", "--questions-dir": "questionsDir" };
+  const out = { reading: null, html: null, md: null, json: null, questions: null, brand: null, reviews: null, style: null, styleDir: null, keyword: null, check: false, compare: null, history: DEFAULT_HISTORY_DIR, noHistory: false, site: null, outDir: "report", questionsDir: null };
+  const takes = { "--html": "html", "--md": "md", "--json": "json", "--questions": "questions", "--brand": "brand", "--reviews": "reviews", "--style": "style", "--style-dir": "styleDir", "--keyword": "keyword", "--compare": "compare", "--history": "history", "--site": "site", "--out-dir": "outDir", "--questions-dir": "questionsDir" };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (takes[arg]) {
@@ -89,6 +90,7 @@ function judge(reading, files, tag = "") {
     ["questions", files.questions, (x) => validateQuestions(x, reading.vs.passages, { keyword: modules.keyword.keyword })],
     ["brand", files.brand, validateBrand],
     ["reviews", files.reviews, validateReviews],
+    ["style", files.style, (x) => validateStyle(x, reading.vs.passages)],
   ];
   for (const [key, file, validate] of judged) {
     if (!file) continue;
@@ -140,6 +142,8 @@ function auditPage(reading, extra, { old = null, site = null, out = {} } = {}) {
     return { model: null, exp, hist: null, compare: null };
   }
   const model = buildModel(reading, extra);
+  // How generated the text sounds: the writing patterns' own text, each passage, the swap test.
+  model.generated = computeGenerated({ sections: reading.facts.sections || null, passages: reading.vs.passages, style: extra.style ?? null });
   if (site) model.site = site;
   let exp = buildExport(model);
   const before = olderFor(old, exp.page.url);
@@ -176,7 +180,7 @@ if (args.reading) {
     for (const [k, v] of [["html", args.html], ["md", args.md], ["json", args.json]]) if (v) console.log(`${k.padEnd(9)} ${v}`);
     process.exit(2);
   }
-  const extra = judge(reading, { questions: args.questions, brand: args.brand, reviews: args.reviews });
+  const extra = judge(reading, { questions: args.questions, brand: args.brand, reviews: args.reviews, style: args.style });
   const old = loadCompare(args.compare);
   if (args.check) process.exit(0);
   const { model, hist, compare } = auditPage(reading, extra, { old, out: args });
@@ -237,7 +241,9 @@ for (const p of manifest.pages) {
   let extra = {};
   if (reading.ok) {
     const q = args.questionsDir ? join(args.questionsDir, `${p.slug}.json`) : null;
-    extra = judge(reading, { questions: q && existsSync(q) ? q : null, brand: args.brand, reviews: args.reviews }, ` [${p.slug}]`);
+    const st = args.styleDir ? join(args.styleDir, `${p.slug}.json`) : null;
+    extra = judge(reading, { questions: q && existsSync(q) ? q : null, brand: args.brand, reviews: args.reviews, style: st && existsSync(st) ? st : null }, ` [${p.slug}]`);
+    if (args.styleDir && !(st && existsSync(st))) console.log(`style     ${p.slug}: no ${p.slug}.json in ${args.styleDir}; the swap test was not made for this page`);
     if (args.questionsDir && !(q && existsSync(q))) console.log(`questions ${p.slug}: no ${p.slug}.json in ${args.questionsDir}; that judgement was not made for this page`);
   }
   entries.push({ slug: p.slug, url: p.url, reading, extra });

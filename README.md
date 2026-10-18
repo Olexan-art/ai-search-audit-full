@@ -1,12 +1,12 @@
-English · [Українська](README.uk.md)
+English · [Українська](README.uk.md) · [Polski](README.pl.md)
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.108**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
+AI Search Audit Full **2.109**, an Agent Skill from [GetLoopLoop](https://www.getlooploop.com) for claude.ai and the Claude desktop app, Claude Code, Codex, opencode, Hermes Agent and other agents that load `SKILL.md` skills. Versions count in thousandths (2.101, 2.102, …).
 
-Before Google, Bing or an AI assistant can show or quote a page, a crawler has to be allowed in, the page has to say what it is, and the text has to survive the machine's reading. `ai-search-audit-full` checks public pages against the published rules for all three, adds three readings only an AI can make (the questions people ask, how the agent's own model describes the brand, and what it believes about the brand's reviews), and explains every problem it finds: what is wrong and why it matters, what the rule says in its source's own words, and, for specialists, which way the fix goes. It audits one page or up to 50 pages of a site, compares a run with an older one, and keeps a local history so each report shows what changed since the last run.
+Before Google, Bing or an AI assistant can show or quote a page, a crawler has to be allowed in, the page has to say what it is, and the text has to survive the machine's reading. `ai-search-audit-full` checks public pages against the published rules for all three, adds three readings only an AI can make (the questions people ask, how the agent's own model describes the brand, and what it believes about the brand's reviews), and explains every problem it finds: what is wrong and why it matters, what the rule says in its source's own words, and, for specialists, which way the fix goes. It audits one page or up to 50 pages of a site, compares a run with an older one, and keeps a local history so each report shows what changed since the last run. At the bottom of every page report, *How generated the text sounds* puts the Pattern score, the words language models overuse and the agent's swap test side by side. The reports read in English, Ukrainian or Polish.
 
-This is the Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.108) and runs every Lite check.
+This is the Full edition. It is built on the public [Lite](https://github.com/Olexan-art/ai-search-audit) (2.109) and runs every Lite check.
 
 ![A page report from the example run: the headline, what it means for you, the findings to review first and where on the page they are](docs/ai-search-audit-full-light-1280.png)
 
@@ -20,6 +20,7 @@ This is the Full edition. It is built on the public [Lite](https://github.com/Ol
 | Pages | one | **up to 50 per site**, from a URL list or a sitemap, read one at a time with robots.txt respected; the cap is reported as evaluated / total, with every page left out and why |
 | The site | — | a **site report**: pages × problems, problems repeated across pages grouped as "on N pages", and checks only a set of pages can make (duplicate titles, descriptions and h1s, orphan pages, link depth, hreflang pairs, canonical chains, internal links through redirects, thin pages) |
 | Before/after | — | `--compare old-export.json`: fixed, new and unchanged findings per page |
+| How generated the text sounds | the same block | the same block on every page of a site, the swap test from `style/<page>.json` |
 | History | — | every run saved as a snapshot on this machine; a **timeline** per page and **what changed since the last run** (title, description, canonical, h1, words, schema types, robots.txt and each bot, hreflang, passages new, lost and changed) |
 
 In the report, every finding in *Review these first* and in the selected place opens to its plain description and what the rule says; the history and before/after follow *Where on the page*; the fix directions sit in each problem's details for specialists, inside *All checks and technical details*.
@@ -28,7 +29,11 @@ Everything stays local: no server, no upload. The scripts call no model; the jud
 
 ![The history of a page: two runs and what changed between them](docs/ai-search-audit-full-history-1280.png)
 
-The site report, the same page in dark, and a page in Ukrainian:
+How generated the text sounds, at the bottom of each page report: the Pattern score, the marker words, the swap test and every passage with its evidence. Not an authorship detector, and the block says so:
+
+![How generated the text sounds](docs/ai-search-audit-full-generated-1280.png)
+
+The site report, the same page in dark, a page in Ukrainian and in Polish:
 
 ![The site report of the example run](docs/ai-search-audit-full-site-1280.png)
 
@@ -36,15 +41,17 @@ The site report, the same page in dark, and a page in Ukrainian:
 
 ![A page report in Ukrainian](docs/ai-search-audit-full-light-uk-1280.png)
 
+![A page report in Polish](docs/ai-search-audit-full-light-pl-1280.png)
+
 ## Examples
 
-Real runs in [`examples/`](examples) (17 October 2026). The judgement files in [`examples/judgement/`](examples/judgement) were written by Claude Code running Claude Opus 5.5, which did not know GetLoopLoop from its own knowledge and said so; no product model was called.
+Real runs in [`examples/`](examples): the pages were read on 17 October 2026 and audited again on 18 October with 2.109, which added *How generated the text sounds* (score 1, 2 and 0 of 100, no marker words, and 4 of 17, 4 of 17 and 5 of 18 passages generic on the three pages). The judgement files in [`examples/judgement/`](examples/judgement) were written by Claude Code running Claude Opus 5.5, which did not know GetLoopLoop from its own knowledge and said so; no product model was called.
 
-- **A three-page site audit** of getlooploop.com: [the site report](examples/getlooploop-site/report/index.html) and its pages, [/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-vectorscope.html) (19 problems: 0 blocking · 0 high · 7 medium · 12 low), [/uk/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-uk-vectorscope.html) (21: 0 · 0 · 9 · 12) and [/es/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-es-vectorscope.html) (18: 0 · 0 · 7 · 11). 15 problems repeat across pages; across the site, no audited page links to another one.
+- **A three-page site audit** of getlooploop.com: [the site report](examples/getlooploop-site/report/index.html) and its pages, [/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-vectorscope.html) (19 problems: 0 blocking · 0 high · 7 medium · 12 low), [/uk/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-uk-vectorscope.html) (21: 0 · 0 · 8 · 13) and [/es/vectorscope](examples/getlooploop-site/report/pages/getlooploop-com-es-vectorscope.html) (18: 0 · 0 · 7 · 11). 15 problems repeat across pages; across the site, no audited page links to another one.
 - **Two history snapshots per page** in [`examples/history/`](examples/history), so the drift shows. The first run of /vectorscope and /uk/vectorscope read the copies of those pages saved on 16 October 2026 ([`examples/first-run/`](examples/first-run), with the site checks fetched live, marked "saved copy"); the second run read them live. One passage changed on each, and the report shows where. /es/vectorscope was read live twice, minutes apart: no change.
 - **Before and after**: [/vectorscope against the Lite 2.101 export](examples/compare/vectorscope-compare.html) of the same page, made earlier the same day: 0 fixed, 1 new (the security headers check that Lite 2.102 added), 18 unchanged.
 
-The reports open in English; add `#lang=uk` for Ukrainian.
+The reports open in English; add `#lang=uk` for Ukrainian or `#lang=pl` for Polish.
 
 ## Install
 
@@ -52,7 +59,7 @@ The skill needs Node 20.18 or later and **no `npm install`**: `dist/read.mjs` an
 
 ### claude.ai and the Claude desktop app
 
-1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) or `gh release download v2.108 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
+1. Download **`ai-search-audit-full.zip`** from this repository's [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) or `gh release download v2.109 -R Olexan-art/ai-search-audit-full`. **Do not unpack it**: the upload takes the zip, with the `ai-search-audit-full` folder at its top level.
 2. Turn on code execution: **Settings > Capabilities > Code execution and file creation**. On Team and Enterprise plans an owner controls it in Organization settings > Capabilities.
 3. Upload: **Customize > Skills**, **+**, **Create skill**, **Upload a skill**, choose `ai-search-audit-full.zip`, and turn the skill on.
 4. Let the sandbox reach the site: **Allow network egress** (Free, Pro, Max), or the owner's domain list on Team and Enterprise. A site audit makes the same requests as a page audit, for each page.
@@ -104,17 +111,17 @@ One page:
 
 ```
 node dist/read.mjs https://example.com/page --out reading.json
-# the agent writes questions.json, brand.json and reviews.json (schemas in SKILL.md)
-node dist/audit.mjs reading.json --questions questions.json --brand brand.json --reviews reviews.json --check
-node dist/audit.mjs reading.json --questions questions.json --brand brand.json --reviews reviews.json --html report.html --md report.md --json export.json [--compare old-export.json]
+# the agent writes questions.json, style.json, brand.json and reviews.json (schemas in SKILL.md)
+node dist/audit.mjs reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --check
+node dist/audit.mjs reading.json --questions questions.json --style style.json --brand brand.json --reviews reviews.json --html report.html --md report.md --json export.json [--compare old-export.json]
 ```
 
 A site (at most 50 pages):
 
 ```
 node dist/read.mjs --urls urls.txt --out-dir readings          # or: --sitemap https://example.com/sitemap.xml
-# the agent writes questions/<page>.json for each page, and brand.json and reviews.json once
-node dist/audit.mjs --site readings/site.json --questions-dir questions --brand brand.json --reviews reviews.json --out-dir report
+# the agent writes questions/<page>.json and style/<page>.json for each page, and brand.json and reviews.json once
+node dist/audit.mjs --site readings/site.json --questions-dir questions --style-dir style --brand brand.json --reviews reviews.json --out-dir report
 ```
 
 **Politeness:** pages are read one at a time, at least 1 second apart (`--delay`, never under 500 ms), longer when robots.txt sets a `Crawl-delay` (up to 10 s), and only where robots.txt lets `GetLoopLoop` (else `*`) fetch; a robots.txt that does not answer means no page of that site is read. Requests repeated across pages (robots.txt, the sitemap, shared links) are answered from memory.

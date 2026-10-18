@@ -1,7 +1,7 @@
 {
   "schema": "getlooploop/ai-search-audit-site@1",
   "pageSchema": "getlooploop/ai-search-audit@1",
-  "skillVersion": "2.108",
+  "skillVersion": "2.109",
   "producedBy": "ai-search-audit skill, Lite (local; deterministic checks, and the agent's own judgement where marked; the scripts call no model)",
   "edition": "full",
   "createdAt": "2026-10-17T12:59:46.029Z",
@@ -41,8 +41,8 @@
   "totals": {
     "blocking": 0,
     "high": 0,
-    "medium": 23,
-    "low": 35
+    "medium": 22,
+    "low": 36
   },
   "pages": [
     {
@@ -269,8 +269,8 @@
       "counts": {
         "blocking": 0,
         "high": 0,
-        "medium": 9,
-        "low": 12
+        "medium": 8,
+        "low": 13
       },
       "total": 21,
       "report": "pages/getlooploop-com-uk-vectorscope.html",
@@ -347,16 +347,6 @@
           "where": "passage #1"
         },
         {
-          "id": "repeated_sentence_shape",
-          "code": "repeated_sentence_shape",
-          "severity": "medium",
-          "label": {
-            "en": "13 sentences of one shape",
-            "uk": "13 речень однієї форми"
-          },
-          "where": "passage #7 · word 786, passage #8 · word 916, passage #8 · word 984"
-        },
-        {
           "id": "brand_unknown",
           "code": "brand_unknown",
           "severity": "medium",
@@ -415,6 +405,16 @@
             "uk": "Частково: “До п’ятниці треба перевірити двадцять…”"
           },
           "where": "question 10 · passage #14"
+        },
+        {
+          "id": "repeated_sentence_shape",
+          "code": "repeated_sentence_shape",
+          "severity": "low",
+          "label": {
+            "en": "4 sentences of one shape",
+            "uk": "4 речення однієї форми"
+          },
+          "where": "passage #13 · word 1670, passage #13 · word 1674, passage #13 · word 1752"
         },
         {
           "id": "faq_rich_result_retired",
@@ -1191,7 +1191,7 @@
     },
     {
       "code": "repeated_sentence_shape",
-      "severity": "medium",
+      "severity": "low",
       "pages": [
         "getlooploop-com-vectorscope",
         "getlooploop-com-uk-vectorscope"
@@ -1386,7 +1386,7 @@
       ],
       [
         "low",
-        "medium",
+        "low",
         null
       ],
       [

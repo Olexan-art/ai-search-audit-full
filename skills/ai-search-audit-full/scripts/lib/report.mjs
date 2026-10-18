@@ -22,8 +22,9 @@ import { CSS_FULL } from "./cssFull.mjs";
 import { explain } from "./explain.mjs";
 import { source } from "./rules.mjs";
 import { FAVICONS } from "./favicons.mjs";
-import { CANNOT, CARD_COPY, LAYER, LITE, MARK, OWNERS, SEV, SEV_COUNT, STATE, UI, ZONE_LABEL, dateLong, dateOf, fmtEn, fmtUk, headline, nMinor, nProblems, subtitle } from "./copy.mjs";
+import { CANNOT, CARD_COPY, LAYER, LITE, MARK, OWNERS, SEV, SEV_COUNT, STATE, UI, ZONE_LABEL, dateLong, dateOf, fmtEn, fmtPl, fmtUk, headline, nMinor, nProblems, subtitle } from "./copy.mjs";
 import { GLL_MARK, GLL_MARK_LIGHT } from "../vendor/vectorscope/brandmark.mjs";
+import { GENERATED_CSS, renderGeneratedHtml } from "../vendor/vectorscope/generatedText.mjs";
 import { LOGO_GLITCH_JS } from "./glitch.mjs";
 import { SEVERITIES } from "./checks.mjs";
 
@@ -32,12 +33,18 @@ export const EDITION = "Full";
 
 // ── small helpers ────────────────────────────────────────────────────────────
 
-const pair = (en, uk) => `<span class="l-en">${en}</span><span class="l-uk" lang="uk">${uk}</span>`;
-/** A [en, uk] pair of plain strings, escaped. */
-const P = (t) => pair(esc(t[0]), esc(t[1]));
-const attrPair = (name, en, uk) => `${name}="${esc(en)}" data-en-${name}="${esc(en)}" data-uk-${name}="${esc(uk)}" data-i18n`;
+const pair = (en, uk, pl) => {
+  if (pl === undefined) throw new Error("pair() needs the Polish string too");
+  return `<span class="l-en">${en}</span><span class="l-uk" lang="uk">${uk}</span><span class="l-pl" lang="pl">${pl}</span>`;
+};
+/** An [en, uk, pl] triple of plain strings, escaped. */
+const P = (t) => pair(esc(t[0]), esc(t[1]), esc(t[2]));
+const attrPair = (name, en, uk, pl) => {
+  if (pl === undefined) throw new Error("attrPair() needs the Polish string too");
+  return `${name}="${esc(en)}" data-en-${name}="${esc(en)}" data-uk-${name}="${esc(uk)}" data-pl-${name}="${esc(pl)}" data-i18n`;
+};
 const ext = (href, text) => `<a href="${esc(href)}" rel="noopener noreferrer" target="_blank">${text}</a>`;
-const call = (t, ...a) => [typeof t[0] === "function" ? t[0](...a) : t[0], typeof t[1] === "function" ? t[1](...a) : t[1]];
+const call = (t, ...a) => [0, 1, 2].map((i) => (typeof t[i] === "function" ? t[i](...a) : t[i]));
 const clip = (s, n) => {
   const t = String(s ?? "").replace(/\s+/g, " ").trim();
   return t.length > n ? `${t.slice(0, Math.max(1, n - 1))}…` : t;
@@ -94,14 +101,16 @@ const pinIcon = (sev, n, size = 28) => `<svg class="pi pin ${sev}" viewBox="-19 
 const judgeBadge = (f) => {
   if (f.layer !== "judgement") return "";
   const m = f.judgement?.model;
-  const t = [`${LAYER.judgement[0]} · ${m || UI.modelNotStated[0]}`, `${LAYER.judgement[1]} · ${m || UI.modelNotStated[1]}`];
+  const t = [`${LAYER.judgement[0]} · ${m || UI.modelNotStated[0]}`, `${LAYER.judgement[1]} · ${m || UI.modelNotStated[1]}`, `${LAYER.judgement[2]} · ${m || UI.modelNotStated[2]}`];
   return `<span class="lyr judgement">${P(t)}</span>`;
 };
-const ownerMark = (o) => `<span class="own" ${attrPair("title", OWNERS[o][0], OWNERS[o][1])}>${OWNER_ICON[o]}<span class="vh">${P(OWNERS[o])}</span></span>`;
-/** SVG text in both languages, or once when the two are the same. */
+const ownerMark = (o) => `<span class="own" ${attrPair("title", OWNERS[o][0], OWNERS[o][1], OWNERS[o][2])}>${OWNER_ICON[o]}<span class="vh">${P(OWNERS[o])}</span></span>`;
+/** SVG text in every language, or once when all three are the same. */
 const stx = (x, y, t, cls, extra = "") =>
-  t[0] === t[1] ? `<text class="${cls}" x="${x}" y="${y}"${extra}>${esc(t[0])}</text>` : `<text class="${cls} l-en" x="${x}" y="${y}"${extra}>${esc(t[0])}</text><text class="${cls} l-uk" x="${x}" y="${y}"${extra}>${esc(t[1])}</text>`;
-const mkI = (st, lab) => `<span class="mk ${st}" ${attrPair("title", lab[0], lab[1])}><i aria-hidden="true">${MARK[st].i}</i><span class="vh">${P(lab)}</span></span>`;
+  t[0] === t[1] && t[0] === t[2]
+    ? `<text class="${cls}" x="${x}" y="${y}"${extra}>${esc(t[0])}</text>`
+    : `<text class="${cls} l-en" x="${x}" y="${y}"${extra}>${esc(t[0])}</text><text class="${cls} l-uk" x="${x}" y="${y}"${extra}>${esc(t[1])}</text><text class="${cls} l-pl" x="${x}" y="${y}"${extra}>${esc(t[2])}</text>`;
+const mkI = (st, lab) => `<span class="mk ${st}" ${attrPair("title", lab[0], lab[1], lab[2])}><i aria-hidden="true">${MARK[st].i}</i><span class="vh">${P(lab)}</span></span>`;
 const head = (id, t, unit) => `<div class="panel-head"><h2 id="${id}">${P(t)}${unit ? ` <span class="unit">${P(unit)}</span>` : ""}</h2></div>`;
 
 // ── the summary: headline, three cards, the first three findings ─────────────
@@ -120,13 +129,13 @@ const INFO_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" c
 const worstState = (items) => (items.some((f) => f.severity === "blocking") ? "block" : items.some((f) => f.severity === "high" || f.severity === "medium") ? "prob" : "ok");
 const sevPill = (s) => `<span class="pill sp ${s}">${pinIcon(s, null, 14)}${P(SEV[s])}</span>`;
 const layerPill = (f) => (f.layer === "judgement" ? `<span class="pill lp est">${P(LITE.estimate)}</span>` : `<span class="pill lp ms">${P(f.layer === "derived" ? LAYER.derived : LITE.measured)}</span>`);
-const modelOf = (f) => [f.judgement?.model || UI.modelNotStated[0], f.judgement?.model || UI.modelNotStated[1]];
+const modelOf = (f) => [f.judgement?.model || UI.modelNotStated[0], f.judgement?.model || UI.modelNotStated[1], f.judgement?.model || UI.modelNotStated[2]];
 
 function zoneLabel(z) {
   if (z.kind === "section" || z.kind === "js") {
     const text = z.label || z.headings[0] || "";
-    const base = text ? [text, text] : ZONE_LABEL.untitled();
-    return z.kind === "js" ? [`${base[0]} · JavaScript`, `${base[1]} · JavaScript`] : base;
+    const base = text ? [text, text, text] : ZONE_LABEL.untitled();
+    return z.kind === "js" ? [`${base[0]} · JavaScript`, `${base[1]} · JavaScript`, `${base[2]} · JavaScript`] : base;
   }
   if (z.kind === "more" && z.label) return ZONE_LABEL.more(z).map((t) => `${z.label} · ${t}`);
   return (ZONE_LABEL[z.kind] || ZONE_LABEL.untitled)(z);
@@ -141,9 +150,9 @@ function locOf(f, model) {
     const z = model.zones.find((x) => x.id === f.zones[0]);
     if (z) return zoneLabel(z).map((t) => clip(t, 40));
   }
-  if (f.strip) return f.strip.side === "head" ? ["<head>", "<head>"] : ["robots.txt", "robots.txt"];
+  if (f.strip) return f.strip.side === "head" ? ["<head>", "<head>", "<head>"] : ["robots.txt", "robots.txt", "robots.txt"];
   if (f.code === "question_missing") return LITE.notInText;
-  if (f.where) return [clip(f.where, 40), clip(f.where, 40)];
+  if (f.where) return [clip(f.where, 40), clip(f.where, 40), clip(f.where, 40)];
   return LITE.wholePage;
 }
 
@@ -158,10 +167,10 @@ function heroBlock(model) {
   return [
     `<header class="verdict lite-verdict${h.blocked ? " is-blocked" : ""}" id="verdict">`,
     `<p class="pageid">${url}</p>`,
-    `<p class="lite-meta"><span>${P([LITE.checked[0](date[0]), LITE.checked[1](date[1])])}</span>${title}</p>`,
+    `<p class="lite-meta"><span>${P([LITE.checked[0](date[0]), LITE.checked[1](date[1]), LITE.checked[2](date[2])])}</span>${title}</p>`,
     `<h1 id="headline">${P(h.t)}</h1>`,
     `<p class="lede" id="subtitle">${P(subtitle(model.findings, h.blocked))}</p>`,
-    `<ul class="sevrow" id="sev-counts" ${attrPair("aria-label", UI.severity[0], UI.severity[1])}>${sevs}</ul>`,
+    `<ul class="sevrow" id="sev-counts" ${attrPair("aria-label", UI.severity[0], UI.severity[1], UI.severity[2])}>${sevs}</ul>`,
     `<p class="cta-row"><a class="btn btn-primary" id="see-first" href="#review-first">${P(LITE.seeFindings)}<span aria-hidden="true"> ↓</span></a></p>`,
     "</header>",
   ].join("\n");
@@ -179,7 +188,7 @@ function cardsBlock(model) {
     id: "find",
     state: worstState(c1),
     title: blocker ? CARD_COPY.find.title.block : CARD_COPY.find.title.ok,
-    status: blocker ? [CARD_COPY.find.status.block[0](blocker.label[0]), CARD_COPY.find.status.block[1](blocker.label[1])] : c1.length ? call(CARD_COPY.find.status.notes, c1.length) : CARD_COPY.find.status.none,
+    status: blocker ? [CARD_COPY.find.status.block[0](blocker.label[0]), CARD_COPY.find.status.block[1](blocker.label[1]), CARD_COPY.find.status.block[2](blocker.label[2])] : c1.length ? call(CARD_COPY.find.status.notes, c1.length) : CARD_COPY.find.status.none,
   });
   cards.push({
     id: "text",
@@ -197,7 +206,10 @@ function cardsBlock(model) {
   });
   const li = cards.map((c) => `<li class="card ${c.state}" id="card-${c.id}"><span class="card-i">${CARD_ICON[c.id]}</span><span class="card-t"><h3>${P(c.title)}</h3><span class="card-s">${P(c.status)}</span></span></li>`).join("");
   const note = model.judgement.any ? call(LITE.cardsNote[0], model.judgement.model || UI.modelNotStated[0]) : LITE.cardsNote[1];
-  if (model.judgement.any && !model.judgement.model) note[1] = LITE.cardsNote[0][1](UI.modelNotStated[1]);
+  if (model.judgement.any && !model.judgement.model) {
+    note[1] = LITE.cardsNote[0][1](UI.modelNotStated[1]);
+    note[2] = LITE.cardsNote[0][2](UI.modelNotStated[2]);
+  }
   return `<section class="sum" id="means" aria-labelledby="h-means"><h2 id="h-means">${P(LITE.means)}</h2><ul class="cards" id="cards">${li}</ul><p class="cards-note">${P(note)}</p></section>`;
 }
 
@@ -207,8 +219,8 @@ function firstRow(f, model) {
     const q = /^question_/.test(f.code);
     const qs = q ? model.findings.filter((x) => x.code === f.code && x.evidence?.question).map((x) => x.evidence.question) : [];
     const m = modelOf(f);
-    const list = qs.length ? `<ul class="qx">${qs.map((t) => `<li>${pair(`“${esc(t)}”`, `«${esc(t)}»`)}</li>`).join("")}</ul>` : "";
-    const panel = `<div class="tr-x">${whyBody(f)}${list}<p class="tr-model"><b>${P([LITE.modelLine[0](m[0]), LITE.modelLine[1](m[1])])}</b><span>${P(LITE.notThree)}</span></p></div>`;
+    const list = qs.length ? `<ul class="qx">${qs.map((t) => `<li>${pair(`“${esc(t)}”`, `«${esc(t)}»`, `„${esc(t)}”`)}</li>`).join("")}</ul>` : "";
+    const panel = `<div class="tr-x">${whyBody(f)}${list}<p class="tr-model"><b>${P([LITE.modelLine[0](m[0]), LITE.modelLine[1](m[1]), LITE.modelLine[2](m[2])])}</b><span>${P(LITE.notThree)}</span></p></div>`;
     return `<li class="tr jd" id="top-${esc(f.id)}"><details class="tr-d"><summary class="tr-m">${main}<span class="btn btn-out btn-sm tr-b">${P(q ? LITE.examples : LITE.aboutEstimate)}${CHEV}</span></summary>${panel}</details></li>`;
   }
   const pid = placeOf(f);
@@ -230,8 +242,8 @@ function placeList(model) {
   const F = model.findings;
   const strip = (side) => F.filter((f) => f.strip?.side === side);
   const out = [
-    { id: "robots", kind: "file", label: ["robots.txt · llms.txt", "robots.txt · llms.txt"], pins: strip("robots"), rows: model.robots },
-    { id: "head", kind: "file", label: ["<head>", "<head>"], pins: strip("head"), rows: model.head },
+    { id: "robots", kind: "file", label: ["robots.txt · llms.txt", "robots.txt · llms.txt", "robots.txt · llms.txt"], pins: strip("robots"), rows: model.robots },
+    { id: "head", kind: "file", label: ["<head>", "<head>", "<head>"], pins: strip("head"), rows: model.head },
   ];
   const lede = F.find((f) => f.code === "hero_lede_dropped");
   for (const z of model.zones) {
@@ -249,10 +261,11 @@ function placeRow(p, sel) {
   const pins = `${shown.map((f) => pinIcon(f.severity, f.pin, 32)).join("")}${extra ? `<span class="pr-more">+${extra}</span>` : ""}`;
   const sr = p.pins.map((f) => `${f.pin} · ${SEV[f.severity][0]} · ${f.label[0]}`);
   const srUk = p.pins.map((f) => `${f.pin} · ${SEV[f.severity][1]} · ${f.label[1]}`);
+  const srPl = p.pins.map((f) => `${f.pin} · ${SEV[f.severity][2]} · ${f.label[2]}`);
   const w = p.kind === "file" ? 0 : HEADERISH.has(p.kind) ? 34 : Math.round(Math.min(92, 22 + Math.sqrt(Math.max(0, p.chars || 0)) * 1.1));
   const mid = p.hide ? `<span class="pr-hid">${P(p.hide)}</span>` : w ? `<span class="pr-bar" style="width:${w}%" aria-hidden="true"></span>` : `<span class="pr-n">${P(call(LITE.rows, p.rows.length))}</span>`;
   const cls = ["pl", p.kind === "file" ? "file" : "", p.js ? "js" : "", p.unseen ? "hid" : "", sel ? "sel" : ""].filter(Boolean).join(" ");
-  return `<li class="${cls}" id="place-${p.id}"><button type="button" class="pr" data-place="${p.id}" aria-pressed="${sel}" aria-controls="pd-${p.id}"><span class="pr-l">${P(p.label.map((t) => clip(t, 46)))}</span>${mid}<span class="pr-pins" aria-hidden="true">${pins}</span>${sr.length ? `<span class="vh">: ${P([sr.join("; "), srUk.join("; ")])}</span>` : ""}</button></li>`;
+  return `<li class="${cls}" id="place-${p.id}"><button type="button" class="pr" data-place="${p.id}" aria-pressed="${sel}" aria-controls="pd-${p.id}"><span class="pr-l">${P(p.label.map((t) => clip(t, 46)))}</span>${mid}<span class="pr-pins" aria-hidden="true">${pins}</span>${sr.length ? `<span class="vh">: ${P([sr.join("; "), srUk.join("; "), srPl.join("; ")])}</span>` : ""}</button></li>`;
 }
 
 function placeDetail(p, sel) {
@@ -264,14 +277,14 @@ function placeDetail(p, sel) {
   } else o.push(`<p class="pd-f none">${P(LITE.nothingHere)}</p>`);
   if (p.rows) {
     o.push(`<ul class="pd-rows">${p.rows.map((r) => {
-      const k = Array.isArray(r.k) ? r.k : [r.k, r.k];
+      const k = Array.isArray(r.k) ? r.k : [r.k, r.k, r.k];
       const st = r.pins.length ? r.pins.map((f) => pinIcon(f.severity, f.pin, 20)).join("") : `<span class="mk pass" aria-hidden="true"><i>${MARK.pass.i}</i></span>`;
       return `<li><span class="rk">${P(k)}</span><span class="rv">${P(r.v.map((t) => clip(t, 70)))}</span><span class="rs">${st}</span></li>`;
     }).join("")}</ul>`);
   }
   const wheres = [...new Set(p.pins.map((f) => String(f.where || "").trim()).filter(Boolean))];
   if (wheres.length) {
-    const rows = wheres.map((w) => `<div class="ex-row"><code class="ex-c">${esc(w)}</code><button type="button" class="copy" data-copy data-en-done="${esc(LITE.copied[0])}" data-uk-done="${esc(LITE.copied[1])}" ${attrPair("aria-label", LITE.copy[0], LITE.copy[1])}>${COPY_ICON}</button></div>`).join("");
+    const rows = wheres.map((w) => `<div class="ex-row"><code class="ex-c">${esc(w)}</code><button type="button" class="copy" data-copy data-en-done="${esc(LITE.copied[0])}" data-uk-done="${esc(LITE.copied[1])}" data-pl-done="${esc(LITE.copied[2])}" ${attrPair("aria-label", LITE.copy[0], LITE.copy[1], LITE.copy[2])}>${COPY_ICON}</button></div>`).join("");
     o.push(`<details class="exact"><summary class="btn btn-primary btn-sm">${P(LITE.exact)}${CHEV}</summary><div class="ex-box"><p class="ex-l">${P(LITE.path)}:</p>${rows}</div></details>`);
   }
   o.push("</div>");
@@ -288,7 +301,7 @@ function placesBlock(model) {
   return [
     `<section class="sum" id="page-map" aria-labelledby="h-map">`,
     `<div class="sum-head"><h2 id="h-map">${P(LITE.where)}</h2><span class="sub">${P(LITE.schemaNote)}</span></div>`,
-    `<div class="pmap"><ol class="places" id="places" ${attrPair("aria-label", LITE.placesAria[0], LITE.placesAria[1])}>${places.map((p) => placeRow(p, p.id === selId)).join("")}</ol>`,
+    `<div class="pmap"><ol class="places" id="places" ${attrPair("aria-label", LITE.placesAria[0], LITE.placesAria[1], LITE.placesAria[2])}>${places.map((p) => placeRow(p, p.id === selId)).join("")}</ol>`,
     `<div class="pm-side" id="place-detail">${places.map((p) => placeDetail(p, p.id === selId)).join("")}<p class="vh" id="copy-live" aria-live="polite"></p></div></div>`,
     `<ul class="pm-legend" id="map-legend">${legend.join("")}</ul>`,
     zonesCap ? `<p class="capnote">${P(zonesCap.t)}</p>` : "",
@@ -299,7 +312,7 @@ function placesBlock(model) {
 // ── all checks: the per-area status, the strips, every finding ──────────────
 
 function areasBlock(model) {
-  const o = [`<section class="panel" id="lc-areas" aria-labelledby="h-areas">${head("h-areas", LITE.areas)}<ul class="tiles areas" id="status" ${attrPair("aria-label", UI.statusAria[0], UI.statusAria[1])}>`];
+  const o = [`<section class="panel" id="lc-areas" aria-labelledby="h-areas">${head("h-areas", LITE.areas)}<ul class="tiles areas" id="status" ${attrPair("aria-label", UI.statusAria[0], UI.statusAria[1], UI.statusAria[2])}>`];
   for (const t of model.tiles) {
     const na = t.id === "brand" ? [STATE.unchecked, UI.noBrandFiles] : [STATE.na, UI.oneVersion];
     const tc = t.state === "na" ? na[1] : !t.count ? UI.nothingFound : t.minorOnly ? nMinor(t.count) : nProblems(t.count);
@@ -311,7 +324,7 @@ function areasBlock(model) {
 
 function stripsBlock(model) {
   const table = (title, rows) => `<div class="strip"><h3 class="mono">${esc(title)}</h3><ul class="pd-rows">${rows.map((r) => {
-    const k = Array.isArray(r.k) ? r.k : [r.k, r.k];
+    const k = Array.isArray(r.k) ? r.k : [r.k, r.k, r.k];
     const st = r.pins.length ? r.pins.map((f) => `<a href="#pin-${esc(f.id)}">${pinIcon(f.severity, f.pin, 20)}<span class="vh">${P(SEV[f.severity])}</span></a>`).join("") : `<span class="mk pass" aria-hidden="true"><i>${MARK.pass.i}</i></span>`;
     return `<li><span class="rk">${P(k)}</span><span class="rv">${P(r.v)}</span><span class="rs">${st}</span></li>`;
   }).join("")}</ul></div>`;
@@ -348,7 +361,7 @@ function allChecksBlock(model) {
 
 function infoStrip() {
   return [
-    `<section class="info" id="info-strip" ${attrPair("aria-label", LITE.about[0], LITE.about[1])}>`,
+    `<section class="info" id="info-strip" ${attrPair("aria-label", LITE.about[0], LITE.about[1], LITE.about[2])}>`,
     `<p class="info-n">${INFO_ICON}<span>${P(LITE.info)}</span></p>`,
     `<ul class="info-l"><li><span class="lyr-k ms" aria-hidden="true"></span><span><b>${P(LITE.measured)}</b>${P(LITE.measuredSub)}</span></li><li><span class="lyr-k est" aria-hidden="true"></span><span><b>${P(LITE.estimate)}</b>${P(LITE.estimateSub)}</span></li></ul>`,
     `<p class="fulllink" id="explained-link"><a class="btn btn-out" href="#all-problems">${P(LITE.full)}<span aria-hidden="true"> ↓</span></a></p>`,
@@ -365,7 +378,7 @@ function severityBlock(model) {
 
 function waterfallBlock(model) {
   const w = model.waterfall;
-  const unit = [`${UI.charsUnit[0]} · ${call(UI.passagesLine, model.passages.used, model.passages.cap)[0]}`, `${UI.charsUnit[1]} · ${call(UI.passagesLine, model.passages.used, model.passages.cap)[1]}`];
+  const unit = [`${UI.charsUnit[0]} · ${call(UI.passagesLine, model.passages.used, model.passages.cap)[0]}`, `${UI.charsUnit[1]} · ${call(UI.passagesLine, model.passages.used, model.passages.cap)[1]}`, `${UI.charsUnit[2]} · ${UI.passagesLine[2](model.passages.used, model.passages.cap)}`];
   if (!w) return `<section class="panel" id="lc-text" aria-labelledby="h-lc-text">${head("h-lc-text", UI.text, unit)}</section>`;
   const R = 46;
   const x = (v) => `${((v / Math.max(1, w.raw)) * 100).toFixed(3)}%`;
@@ -380,16 +393,17 @@ function waterfallBlock(model) {
   const aria = [
     `Where the text goes: ${fmtEn(w.raw)} characters in the raw HTML, ${fmtEn(w.removed)} removed, ${fmtEn(w.kept)} kept, ${fmtEn(w.inPassagesUnique)} unique in passages, ${fmtEn(w.notInPassages)} in no passage, ${fmtEn(w.pastCap)} past the cap.`,
     `Куди дівається текст: ${fmtUk(w.raw)} символів у сирому HTML, ${fmtUk(w.removed)} видалено, ${fmtUk(w.kept)} збережено, ${fmtUk(w.inPassagesUnique)} унікально в уривках, ${fmtUk(w.notInPassages)} поза уривками, ${fmtUk(w.pastCap)} за лімітом.`,
+    `Dokąd trafia tekst: ${fmtPl(w.raw)} znaków w surowym HTML, ${fmtPl(w.removed)} usunięto, ${fmtPl(w.kept)} zachowano, ${fmtPl(w.inPassagesUnique)} unikalnych we fragmentach, ${fmtPl(w.notInPassages)} poza fragmentami, ${fmtPl(w.pastCap)} poza limitem.`,
   ];
-  const s = [`<svg class="wf" id="waterfall" width="100%" height="${rows.length * R}" role="img" ${attrPair("aria-label", aria[0], aria[1])}>`];
+  const s = [`<svg class="wf" id="waterfall" width="100%" height="${rows.length * R}" role="img" ${attrPair("aria-label", aria[0], aria[1], aria[2])}>`];
   s.push(`<line class="guide" x1="${x(w.kept)}" x2="${x(w.kept)}" y1="22" y2="${2 * R + 38}"/>`);
   s.push(`<line class="guide" x1="${x(w.kept)}" x2="${x(w.kept)}" y1="${3 * R + 22}" y2="${5 * R + 38}"/>`);
   rows.forEach(([v, start, cls], i) => {
     const t = i * R;
-    const [en, uk] = UI.wf[i];
-    s.push(`<g><title>${esc(en)}: ${fmtEn(v)} / ${esc(uk)}: ${fmtUk(v)}</title>`);
-    s.push(stx(0, t + 15, [en, uk], "lab"));
-    s.push(stx("100%", t + 15, [fmtEn(v), fmtUk(v)], "val", ' text-anchor="end"'));
+    const [en, uk, pl] = UI.wf[i];
+    s.push(`<g><title>${esc(en)}: ${fmtEn(v)} / ${esc(uk)}: ${fmtUk(v)} / ${esc(pl)}: ${fmtPl(v)}</title>`);
+    s.push(stx(0, t + 15, [en, uk, pl], "lab"));
+    s.push(stx("100%", t + 15, [fmtEn(v), fmtUk(v), fmtPl(v)], "val", ' text-anchor="end"'));
     s.push(`<rect class="track" x="0" y="${t + 22}" width="100%" height="16" rx="4"/>`);
     // A zero stage is a line at its position, never an empty space.
     if (v > 0) s.push(`<rect class="${cls}" x="${x(start)}" y="${t + 22}" width="${x(v)}" height="16" rx="4"/>`);
@@ -427,10 +441,10 @@ function classicBlock(model) {
     .map((st) => `<li><span class="mk ${st}"><i aria-hidden="true">${MARK[st].i}</i></span><b>${P(call(UI.sum[st], n(st)))}</b></li>`)
     .join("");
   const cells = cl
-    .map((c) => `<li class="${c.state}" id="cg-${c.id}" tabindex="0" ${attrPair("aria-label", `${c.name[0]}: ${MARK[c.state].t[0]}`, `${c.name[1]}: ${MARK[c.state].t[1]}`)}><span class="mk ${c.state}" aria-hidden="true"><i>${MARK[c.state].i}</i></span><span class="cs" aria-hidden="true">${P(c.short)}</span><span class="tip" aria-hidden="true">${P(c.name)} · ${P(MARK[c.state].t)}</span></li>`)
+    .map((c) => `<li class="${c.state}" id="cg-${c.id}" tabindex="0" ${attrPair("aria-label", `${c.name[0]}: ${MARK[c.state].t[0]}`, `${c.name[1]}: ${MARK[c.state].t[1]}`, `${c.name[2]}: ${MARK[c.state].t[2]}`)}><span class="mk ${c.state}" aria-hidden="true"><i>${MARK[c.state].i}</i></span><span class="cs" aria-hidden="true">${P(c.short)}</span><span class="tip" aria-hidden="true">${P(c.name)} · ${P(MARK[c.state].t)}</span></li>`)
     .join("");
   const notes = model.caps.filter((c) => ["links", "links_unverified", "sitemap", "saved"].includes(c.id)).map((c) => `<li>${P(c.t)}</li>`).join("");
-  return `<section class="panel" id="lc-classic" aria-labelledby="h-lc-classic">${head("h-lc-classic", UI.classic, call(UI.checksUnit, cl.length))}<ul class="cg-sum">${sum}</ul><ul class="cg" id="classic-grid">${cells}</ul>${notes ? `<ul class="caps" ${attrPair("aria-label", UI.caps[0], UI.caps[1])}>${notes}</ul>` : ""}</section>`;
+  return `<section class="panel" id="lc-classic" aria-labelledby="h-lc-classic">${head("h-lc-classic", UI.classic, call(UI.checksUnit, cl.length))}<ul class="cg-sum">${sum}</ul><ul class="cg" id="classic-grid">${cells}</ul>${notes ? `<ul class="caps" ${attrPair("aria-label", UI.caps[0], UI.caps[1], UI.caps[2])}>${notes}</ul>` : ""}</section>`;
 }
 
 function languagesBlock(model) {
@@ -440,18 +454,25 @@ function languagesBlock(model) {
   const rows = L.rows
     .map((row) => {
       const name = `${esc(row.hreflang)}${row.self ? ` <span class="self">${P(UI.thisPage)}</span>` : ""}${row.refused ? ` <span class="self">${P(UI.langRefused)}</span>` : ""}`;
-      return `<tr><td>${name}</td>${row.cells.map((st, i) => `<td>${mkI(st, [`${UI.langCols[i][0]}: ${MARK[st].t[0]}`, `${UI.langCols[i][1]}: ${MARK[st].t[1]}`])}</td>`).join("")}</tr>`;
+      return `<tr><td>${name}</td>${row.cells.map((st, i) => `<td>${mkI(st, [`${UI.langCols[i][0]}: ${MARK[st].t[0]}`, `${UI.langCols[i][1]}: ${MARK[st].t[1]}`, `${UI.langCols[i][2]}: ${MARK[st].t[2]}`])}</td>`).join("")}</tr>`;
     })
     .join("");
-  const unit = [`${call(UI.versionsUnit, L.rows.length)[0]} · x-default ${L.xDefault ? "✓" : "✕"}`, `${call(UI.versionsUnit, L.rows.length)[1]} · x-default ${L.xDefault ? "✓" : "✕"}`];
+  const unit = [`${call(UI.versionsUnit, L.rows.length)[0]} · x-default ${L.xDefault ? "✓" : "✕"}`, `${call(UI.versionsUnit, L.rows.length)[1]} · x-default ${L.xDefault ? "✓" : "✕"}`, `${UI.versionsUnit[2](L.rows.length)} · x-default ${L.xDefault ? "✓" : "✕"}`];
   const unread = L.unread ? `<p class="capnote">${P(call(UI.langUnread, L.unread, L.cap))}</p>` : "";
   return `<section class="panel" id="lc-langs" aria-labelledby="h-lc-langs">${head("h-lc-langs", UI.langs, unit)}<div class="tablewrap"><table class="lgrid"><thead><tr><th>${P(UI.langCol)}</th>${UI.langCols.map((c) => `<th>${P(c)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>${markKey}${unread}</section>`;
 }
 
+/** The shared Vectorscope block, with this report's own layer badges and the passage map's anchors. */
+function generatedBlock(model) {
+  const j = model.generated.judgement;
+  const by = j ? [j.model ? esc(j.model) : null, j.agent ? esc(j.agent) : null].filter(Boolean).join(" · ") || null : null;
+  return renderGeneratedHtml(model.generated, { tag: (layers) => `<span class="gx-lyrs">${layers.map((l) => `<span class="lyr ${l} gx-lyr">${P(LAYER[l])}</span>`).join("")}</span>`, by });
+}
+
 function cannotBlock(model) {
   const j = model.judgement;
-  const note = j.any ? `<p class="honest" id="one-model">${P([UI.oneModel[0](j.model || UI.modelNotStated[0]), UI.oneModel[1](j.model || UI.modelNotStated[1])])}</p>` : "";
-  const items = CANNOT.map((c) => `<li>${EYE_OFF}<span class="cl-t">${P(c.t)}</span><span>${c.links.map(([en, uk, href]) => ext(href, `${pair(esc(en), esc(uk))} ↗`)).join(" · ")}</span></li>`).join("");
+  const note = j.any ? `<p class="honest" id="one-model">${P([UI.oneModel[0](j.model || UI.modelNotStated[0]), UI.oneModel[1](j.model || UI.modelNotStated[1]), UI.oneModel[2](j.model || UI.modelNotStated[2])])}</p>` : "";
+  const items = CANNOT.map((c) => `<li>${EYE_OFF}<span class="cl-t">${P(c.t)}</span><span>${c.links.map(([en, uk, href, pl]) => ext(href, `${pair(esc(en), esc(uk), esc(pl))} ↗`)).join(" · ")}</span></li>`).join("");
   return `<section class="panel" id="cannot-see" aria-labelledby="h-cannot">${head("h-cannot", UI.cannot)}${note}<ul class="cannot-lite">${items}</ul></section>`;
 }
 
@@ -468,9 +489,9 @@ const JS = `
   function effective(){return root.getAttribute("data-theme")==="dark"?"dark":"light"}
   function paint(){var t=effective(),l=root.getAttribute("data-lang")||"en",b=document.querySelectorAll("[data-set-theme]"),c=document.querySelectorAll("[data-set-lang]"),i;for(i=0;i<b.length;i++)b[i].setAttribute("aria-pressed",String(b[i].getAttribute("data-set-theme")===t));for(i=0;i<c.length;i++)c[i].setAttribute("aria-pressed",String(c[i].getAttribute("data-set-lang")===l))}
   function applyLang(l){root.setAttribute("data-lang",l);root.setAttribute("lang",l);var els=document.querySelectorAll("[data-i18n]"),pre="data-"+l+"-";for(var i=0;i<els.length;i++){var el=els[i],set=[];for(var j=0;j<el.attributes.length;j++){var a=el.attributes[j];if(a.name.indexOf(pre)===0)set.push([a.name.slice(pre.length),a.value])}for(var k=0;k<set.length;k++)el.setAttribute(set[k][0],set[k][1])}}
-  var h=location.hash,hl=/(?:^#|&)lang=(en|uk)/.exec(h),ht=/(?:^#|&)theme=(dark|light)/.exec(h);
+  var h=location.hash,hl=/(?:^#|&)lang=(en|uk|pl)/.exec(h),ht=/(?:^#|&)theme=(dark|light)/.exec(h);
   var t0=ht?ht[1]:get(TK);if(t0==="light"||t0==="dark")root.setAttribute("data-theme",t0);
-  applyLang(hl?hl[1]:get(LK)==="uk"?"uk":"en");paint();
+  var l0=get(LK);applyLang(hl?hl[1]:l0==="uk"||l0==="pl"?l0:"en");paint();
   var b=document.querySelectorAll("[data-set-theme]");
   for(var i=0;i<b.length;i++)b[i].addEventListener("click",function(){var t=this.getAttribute("data-set-theme");root.setAttribute("data-theme",t);put(TK,t);paint()});
   var c=document.querySelectorAll("[data-set-lang]");
@@ -502,7 +523,7 @@ function documentStart(title) {
     // No network from this file: the styles and the one script are inline, images are data: URIs.
     `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:">`,
     `<title>${esc(title)}</title>`,
-    `<style>${CSS}${CSS_EXTRA}${CSS_FULL}</style>`,
+    `<style>${CSS}${CSS_EXTRA}${GENERATED_CSS}${CSS_FULL}</style>`,
     "</head>",
     "<body>",
     '<main class="wrap" id="report">',
@@ -510,8 +531,8 @@ function documentStart(title) {
     `<div class="top-l">${brandMark("brand--top")}<span class="divider" aria-hidden="true"></span><span class="product">${esc(LITE.product)}</span></div>`,
     '<div class="deco deco--top" aria-hidden="true"></div>',
     '<div class="toggles">',
-    `<div class="toggle" role="group" ${attrPair("aria-label", UI.langGroup[0], UI.langGroup[1])}><button type="button" id="lang-en" data-set-lang="en" aria-pressed="true">EN</button><button type="button" id="lang-uk" data-set-lang="uk" aria-pressed="false" lang="uk">UK</button></div>`,
-    `<div class="toggle" role="group" ${attrPair("aria-label", UI.themeGroup[0], UI.themeGroup[1])}><button type="button" id="theme-dark" data-set-theme="dark" aria-pressed="false">${P(UI.dark)}</button><button type="button" id="theme-light" data-set-theme="light" aria-pressed="true">${P(UI.light)}</button></div>`,
+    `<div class="toggle" role="group" ${attrPair("aria-label", UI.langGroup[0], UI.langGroup[1], UI.langGroup[2])}><button type="button" id="lang-en" data-set-lang="en" aria-pressed="true">EN</button><button type="button" id="lang-uk" data-set-lang="uk" aria-pressed="false" lang="uk">UK</button><button type="button" id="lang-pl" data-set-lang="pl" aria-pressed="false" lang="pl">PL</button></div>`,
+    `<div class="toggle" role="group" ${attrPair("aria-label", UI.themeGroup[0], UI.themeGroup[1], UI.themeGroup[2])}><button type="button" id="theme-dark" data-set-theme="dark" aria-pressed="false">${P(UI.dark)}</button><button type="button" id="theme-light" data-set-theme="light" aria-pressed="true">${P(UI.light)}</button></div>`,
     "</div></div>",
   ];
 }
@@ -549,6 +570,8 @@ export function renderReport(model) {
   o.push(compareBlock(model));
   o.push(historyBlock(model));
   o.push(allChecksBlock(model));
+  // How generated the text sounds: at the bottom of the page, the same block as Vectorscope's.
+  if (model.generated) o.push(generatedBlock(model));
   o.push(infoStrip());
   o.push(...documentEnd());
   return o.join("\n") + "\n";
@@ -575,7 +598,7 @@ function ruleText(f) {
   if (r.kind === "quote") {
     const s = source(r.src);
     const d = dateLong(r.checked);
-    return `<q class="rq" lang="en">${esc(r.quote)}</q> <span class="rsrc">${ext(s.url, `${esc(s.name)} ↗`)} <span class="rchk">· ${P([UI.ruleChecked[0](d[0]), UI.ruleChecked[1](d[1])])}</span></span>`;
+    return `<q class="rq" lang="en">${esc(r.quote)}</q> <span class="rsrc">${ext(s.url, `${esc(s.name)} ↗`)} <span class="rchk">· ${P([UI.ruleChecked[0](d[0]), UI.ruleChecked[1](d[1]), UI.ruleChecked[2](d[2])])}</span></span>`;
   }
   const link = r.fullOnly ? "" : ` <span class="rsrc">${ext(source("skill").url, `${P(UI.skillThresholds)} ↗`)}</span>`;
   return `<span class="rskill">${P(UI.skillRule)}</span> ${P(r.text)}${link}`;
@@ -588,13 +611,13 @@ function plainWhere(f, model) {
     const names = f.zones.map((id) => model.zones.find((z) => z.id === id)).filter(Boolean).map(zoneLabel);
     const shown = names.slice(0, 2);
     const more = names.length - shown.length;
-    return [`${shown.map((t) => t[0]).join(", ")}${more ? ` +${more}` : ""}`, `${shown.map((t) => t[1]).join(", ")}${more ? ` +${more}` : ""}`];
+    return [`${shown.map((t) => t[0]).join(", ")}${more ? ` +${more}` : ""}`, `${shown.map((t) => t[1]).join(", ")}${more ? ` +${more}` : ""}`, `${shown.map((t) => t[2]).join(", ")}${more ? ` +${more}` : ""}`];
   }
   if (f.strip) {
     const rows = (f.strip.side === "head" ? model.head : model.robots).filter((r) => f.strip.rows.includes(r.id));
-    const keys = rows.map((r) => (Array.isArray(r.k) ? r.k : [r.k, r.k]));
+    const keys = rows.map((r) => (Array.isArray(r.k) ? r.k : [r.k, r.k, r.k]));
     const pre = f.strip.side === "head" ? UI.inHead : UI.inRobots;
-    return [`${pre[0]}: ${keys.map((k) => k[0]).join(", ")}`, `${pre[1]}: ${keys.map((k) => k[1]).join(", ")}`];
+    return [`${pre[0]}: ${keys.map((k) => k[0]).join(", ")}`, `${pre[1]}: ${keys.map((k) => k[1]).join(", ")}`, `${pre[2]}: ${keys.map((k) => k[2]).join(", ")}`];
   }
   return f.layer === "judgement" ? UI.inAnswers : UI.wholePage;
 }
@@ -665,10 +688,10 @@ function compareBlock(model) {
   const c = model.compare;
   if (!c) return "";
   const d = dateLong(c.before.createdAt);
-  const o = [`<section class="sum" id="compare" aria-labelledby="h-compare">${sumHead("h-compare", UI.compare, [UI.since[0](d[0]), UI.since[1](d[1])])}`];
+  const o = [`<section class="sum" id="compare" aria-labelledby="h-compare">${sumHead("h-compare", UI.compare, [UI.since[0](d[0]), UI.since[1](d[1]), UI.since[2](d[2])])}`];
   if (!c.sameUrl) o.push(`<p class="capnote bad">${P(call(UI.compareOtherUrl, c.before.url || "—"))}</p>`);
   o.push(`<ul class="cmp-n">${[["fixed", "good"], ["new", "bad"], ["unchanged", "same"]].map(([k, cls]) => `<li class="${cls}"><b>${c.counts[k]}</b>${P(UI.cmp[k])}</li>`).join("")}</ul>`);
-  const item = (f) => `<li class="${esc(f.severity)}">${pinIcon(f.severity, null, 18)}<span>${f.label ? P([f.label.en || f.code, f.label.uk || f.code]) : esc(f.code)}</span> <span class="code">${esc(f.code)}</span></li>`;
+  const item = (f) => `<li class="${esc(f.severity)}">${pinIcon(f.severity, null, 18)}<span>${f.label ? P([f.label.en || f.code, f.label.uk || f.code, f.label.pl || f.label.en || f.code]) : esc(f.code)}</span> <span class="code">${esc(f.code)}</span></li>`;
   if (c.fixed.length) o.push(`<h3 class="subhead">${P(UI.cmp.fixed)}</h3><ul class="cmp-list fixed">${c.fixed.map(item).join("")}</ul>`);
   if (c.new.length) o.push(`<h3 class="subhead">${P(UI.cmp.new)}</h3><ul class="cmp-list new">${c.new.map(item).join("")}</ul>`);
   if (c.unchanged.length) o.push(`<details class="cmp-more"><summary>${P(call(UI.cmpUnchanged, c.unchanged.length))}</summary><ul class="cmp-list">${c.unchanged.map(item).join("")}</ul></details>`);
@@ -677,14 +700,14 @@ function compareBlock(model) {
 }
 
 const DRIFT_FIELD = {
-  title: ["Title", "Title"],
-  description: ["Meta description", "Meta description"],
-  canonical: ["Canonical", "Canonical"],
-  h1: ["h1", "h1"],
-  wordCount: ["Word count", "Кількість слів"],
-  schemaTypes: ["Schema types", "Типи схеми"],
-  robotsStatus: ["robots.txt", "robots.txt"],
-  source: ["Read from", "Джерело"],
+  title: ["Title", "Title", "Title"],
+  description: ["Meta description", "Meta description", "Meta description"],
+  canonical: ["Canonical", "Canonical", "Canonical"],
+  h1: ["h1", "h1", "h1"],
+  wordCount: ["Word count", "Кількість слів", "Liczba słów"],
+  schemaTypes: ["Schema types", "Типи схеми", "Typy schematu"],
+  robotsStatus: ["robots.txt", "robots.txt", "robots.txt"],
+  source: ["Read from", "Джерело", "Źródło odczytu"],
 };
 const showVal = (v) => (v === null || v === undefined || (Array.isArray(v) && !v.length) ? "—" : Array.isArray(v) ? v.join(" · ") : String(v));
 
@@ -701,9 +724,9 @@ function historyBlock(model) {
     const hm = `${String(t.getHours()).padStart(2, "0")}:${String(t.getMinutes()).padStart(2, "0")}`;
     const bar = r.refused
       ? `<span class="tl-ref">${esc(r.refused)}</span>`
-      : `<span class="tl-bar" style="width:${(((r.total || 0) / max) * 100).toFixed(1)}%">${SEVERITIES.map((s) => (r[s] ? `<span class="tl-s ${s}" style="flex:${r[s]}" ${attrPair("title", `${SEV[s][0]}: ${r[s]}`, `${SEV[s][1]}: ${r[s]}`)}></span>` : "")).join("")}</span>`;
+      : `<span class="tl-bar" style="width:${(((r.total || 0) / max) * 100).toFixed(1)}%">${SEVERITIES.map((s) => (r[s] ? `<span class="tl-s ${s}" style="flex:${r[s]}" ${attrPair("title", `${SEV[s][0]}: ${r[s]}`, `${SEV[s][1]}: ${r[s]}`, `${SEV[s][2]}: ${r[s]}`)}></span>` : "")).join("")}</span>`;
     const tags = `${r.current ? `<span class="chip tl-now">${P(UI.thisRun)}</span>` : ""}${r.saved ? `<span class="chip">${P(UI.savedCopy)}</span>` : ""}`;
-    o.push(`<li class="${r.current ? "now" : ""}"><span class="tl-d mono">${P([`${d[0]} ${hm}`, `${d[1]} ${hm}`])}</span><span class="tl-track">${bar}</span><span class="tl-n mono">${r.refused ? "—" : r.total}</span><span class="tl-pins">${r.refused ? "" : SEVERITIES.filter((s) => r[s]).map((s) => `<span class="tl-p" ${attrPair("title", SEV[s][0], SEV[s][1])}>${pinIcon(s, r[s], 26)}<span class="vh">${P(SEV[s])}</span></span>`).join("")}</span>${tags}</li>`);
+    o.push(`<li class="${r.current ? "now" : ""}"><span class="tl-d mono">${P([`${d[0]} ${hm}`, `${d[1]} ${hm}`, `${d[2]} ${hm}`])}</span><span class="tl-track">${bar}</span><span class="tl-n mono">${r.refused ? "—" : r.total}</span><span class="tl-pins">${r.refused ? "" : SEVERITIES.filter((s) => r[s]).map((s) => `<span class="tl-p" ${attrPair("title", SEV[s][0], SEV[s][1], SEV[s][2])}>${pinIcon(s, r[s], 26)}<span class="vh">${P(SEV[s])}</span></span>`).join("")}</span>${tags}</li>`);
   }
   o.push("</ol>");
   if (h.older) o.push(`<p class="capnote">${P(call(UI.olderRuns, h.older))}</p>`);
@@ -713,12 +736,12 @@ function historyBlock(model) {
   if (!dr) o.push(`<p class="capnote">${P(UI.firstRun)}</p>`);
   else {
     const since = dateLong(dr.since);
-    o.push(`<p class="small">${P([UI.driftSince[0](since[0]), UI.driftSince[1](since[1])])}</p>`);
+    o.push(`<p class="small">${P([UI.driftSince[0](since[0]), UI.driftSince[1](since[1]), UI.driftSince[2](since[2])])}</p>`);
     if (!dr.comparable) o.push(`<p class="capnote">${P(call(UI.notComparable, dr.notCompared.join(", ")))}</p>`);
     const rows = [];
-    const srcVal = (v) => P(v === "saved copy" ? UI.savedCopy : v === "live" ? UI.liveRead : [String(v), String(v)]);
-    for (const c of dr.fields) rows.push(c.field === "source" ? `<tr><th scope="row">${P(DRIFT_FIELD.source)}</th><td class="was">${srcVal(c.before)}</td><td class="now">${srcVal(c.after)}</td></tr>` : `<tr><th scope="row">${P(DRIFT_FIELD[c.field] || [c.field, c.field])}</th><td class="was">${esc(clip(showVal(c.before), 160))}</td><td class="now">${esc(clip(showVal(c.after), 160))}</td></tr>`);
-    for (const b of dr.bots) rows.push(`<tr><th scope="row">${esc(b.token)}</th><td class="was">${P(b.before === null ? ["—", "—"] : b.before ? UI.allowed : UI.blocked)}</td><td class="now">${P(b.after === null ? ["—", "—"] : b.after ? UI.allowed : UI.blocked)}</td></tr>`);
+    const srcVal = (v) => P(v === "saved copy" ? UI.savedCopy : v === "live" ? UI.liveRead : [String(v), String(v), String(v)]);
+    for (const c of dr.fields) rows.push(c.field === "source" ? `<tr><th scope="row">${P(DRIFT_FIELD.source)}</th><td class="was">${srcVal(c.before)}</td><td class="now">${srcVal(c.after)}</td></tr>` : `<tr><th scope="row">${P(DRIFT_FIELD[c.field] || [c.field, c.field, c.field])}</th><td class="was">${esc(clip(showVal(c.before), 160))}</td><td class="now">${esc(clip(showVal(c.after), 160))}</td></tr>`);
+    for (const b of dr.bots) rows.push(`<tr><th scope="row">${esc(b.token)}</th><td class="was">${P(b.before === null ? ["—", "—", "—"] : b.before ? UI.allowed : UI.blocked)}</td><td class="now">${P(b.after === null ? ["—", "—", "—"] : b.after ? UI.allowed : UI.blocked)}</td></tr>`);
     for (const l of dr.hreflang.added) rows.push(`<tr><th scope="row">hreflang</th><td class="was">—</td><td class="now">${esc(l)}</td></tr>`);
     for (const l of dr.hreflang.removed) rows.push(`<tr><th scope="row">hreflang</th><td class="was">${esc(l)}</td><td class="now">—</td></tr>`);
     if (rows.length) o.push(`<div class="tablewrap"><table class="drift"><thead><tr><th>${P(UI.driftWhat)}</th><th>${P(UI.driftBefore)}</th><th>${P(UI.driftNow)}</th></tr></thead><tbody>${rows.join("")}</tbody></table></div>`);
@@ -752,12 +775,12 @@ function siteNav(site) {
       ? `<li aria-current="page" class="cur"><span class="mono">${esc(label)}</span><span class="pn">${n}</span></li>`
       : `<li><a class="mono" href="${esc(p.slug)}.html">${esc(label)}</a><span class="pn">${n}</span></li>`;
   });
-  return `<nav class="sitenav" id="site-pages" ${attrPair("aria-label", UI.sitePages[0], UI.sitePages[1])}><a class="site-home" href="../index.html">${P(UI.siteReportLink)}</a><span class="sub">${P(call(UI.evaluatedOf, site.evaluated, site.total))}${site.leftOut ? ` · ${P(call(UI.leftOutN, site.leftOut))}` : ""}</span><ol>${pages.join("")}</ol></nav>`;
+  return `<nav class="sitenav" id="site-pages" ${attrPair("aria-label", UI.sitePages[0], UI.sitePages[1], UI.sitePages[2])}><a class="site-home" href="../index.html">${P(UI.siteReportLink)}</a><span class="sub">${P(call(UI.evaluatedOf, site.evaluated, site.total))}${site.leftOut ? ` · ${P(call(UI.leftOutN, site.leftOut))}` : ""}</span><ol>${pages.join("")}</ol></nav>`;
 }
 
 /** How this was checked: the layers, the one model, the fix directions, the history. */
 function howBlock(model) {
-  const items = UI.how.map((t) => `<li>${P(typeof t[0] === "function" ? [t[0](model.judgement.model || UI.modelNotStated[0]), t[1](model.judgement.model || UI.modelNotStated[1])] : t)}</li>`);
+  const items = UI.how.map((t) => `<li>${P(typeof t[0] === "function" ? [t[0](model.judgement.model || UI.modelNotStated[0]), t[1](model.judgement.model || UI.modelNotStated[1]), t[2](model.judgement.model || UI.modelNotStated[2])] : t)}</li>`);
   return `<details class="how" id="how-checked"><summary>${P(UI.howChecked)}</summary><ul>${items.join("")}</ul></details>`;
 }
 
@@ -802,10 +825,10 @@ export function renderRefusal(reading, { site = null, note = null } = {}) {
   if (site) o.push(siteNav(site));
   if (note) o.push(`<p class="lead site-stop">${P(note)}</p>`);
   if (isRefusalCode(reading.reasonCode)) {
-    o.push(`<section class="refusal" role="alert"><div class="refusal-head">${STOP}<h2>${P([REFUSAL_COPY.title.en, REFUSAL_COPY.title.uk])}</h2></div><div class="lb-en">${refusalBody("en", reading.reasonCode)}</div><div class="lb-uk" lang="uk">${refusalBody("uk", reading.reasonCode)}</div></section>`);
+    o.push(`<section class="refusal" role="alert"><div class="refusal-head">${STOP}<h2>${P([REFUSAL_COPY.title.en, REFUSAL_COPY.title.uk, REFUSAL_COPY.title.pl])}</h2></div><div class="lb-en">${refusalBody("en", reading.reasonCode)}</div><div class="lb-uk" lang="uk">${refusalBody("uk", reading.reasonCode)}</div><div class="lb-pl" lang="pl">${refusalBody("pl", reading.reasonCode)}</div></section>`);
   } else {
     const code = `${reading.reasonCode}${reading.status ? ` · HTTP ${reading.status}` : ""}`;
-    o.push(`<section class="refusal" role="alert"><div class="refusal-head">${STOP}<h2>${P(["The page could not be audited", "Сторінку не вдалося перевірити"])}</h2></div><p class="lead mono">${esc(code)}</p></section>`);
+    o.push(`<section class="refusal" role="alert"><div class="refusal-head">${STOP}<h2>${P(["The page could not be audited", "Сторінку не вдалося перевірити", "Nie udało się sprawdzić strony"])}</h2></div><p class="lead mono">${esc(code)}</p></section>`);
   }
   o.push(...documentEnd("footerRefused"));
   return o.join("\n") + "\n";

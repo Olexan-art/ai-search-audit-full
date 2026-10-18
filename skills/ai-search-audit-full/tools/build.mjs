@@ -18,6 +18,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 export const SKILL_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const ENTRIES = ["read", "audit"];
+// The report copy in three languages is most of audit.mjs. Built as library entries too, it lands in a
+// chunk of its own (shared code always does), so audit.mjs stays under the connector limit. 2.109.
+export const LIBRARY_CHUNKS = { "chunks/chunk-explain": "scripts/lib/explain.mjs", "chunks/chunk-copy": "scripts/lib/copy.mjs" };
 
 const banner = () =>
   [
@@ -61,7 +64,10 @@ const plugins = [
 export function buildOptions() {
   return {
     absWorkingDir: SKILL_DIR,
-    entryPoints: Object.fromEntries(ENTRIES.map((name) => [name, join(SKILL_DIR, "scripts", `${name}.mjs`)])),
+    entryPoints: {
+      ...Object.fromEntries(ENTRIES.map((name) => [name, join(SKILL_DIR, "scripts", `${name}.mjs`)])),
+      ...Object.fromEntries(Object.entries(LIBRARY_CHUNKS).map(([name, path]) => [name, join(SKILL_DIR, path)])),
+    },
     outdir: join(SKILL_DIR, "dist"),
     entryNames: "[name]",
     chunkNames: "chunks/[name]-[hash]",

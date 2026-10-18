@@ -1,8 +1,8 @@
 # AI Search Audit Full: https://www.getlooploop.com/uk/vectorscope
 
-Семантичне розбиття сторінки — Vectorscope · checked 17 Oct 2026 · skill 2.108
+Семантичне розбиття сторінки — Vectorscope · checked 17 Oct 2026 · skill 2.109
 
-**Nothing hides text from AI** · 21 problems (blocking 0, high 0, medium 9, low 12)
+**Nothing hides text from AI** · 21 problems (blocking 0, high 0, medium 8, low 13)
 
 Every problem has a plain description and what the rule says (a quote checked against its source, or this skill's rule). Fix directions for specialists are under each problem, marked as such. The checks are deterministic (measured or derived); the questions, the brand and the reviews are the agent's judgement, marked as such. No score.
 
@@ -114,15 +114,7 @@ The main phrase appears in only a few of the page's sections. The rest of the pa
 - **Where:** `2 of 15 h2 sections` · layer: Derived · code `keyword_one_section`
 - *Fix direction, for specialists:* Name the topic (the phrase or its head word) in the headings and first sentences of the sections it is the subject of.
 
-#### 8. 13 sentences of one shape · Medium
-
-Many sentences follow the same shape. Text like that reads as templated, and the repetition hides which sentence carries the point.
-
-- **What the rule says:** This skill's rule: The PatternScope's detectors flag sentences that repeat one structure. A signal about worn writing, not an AI detector; this skill's rule.
-- **Where:** `passage #7 · word 786, passage #8 · word 916, passage #8 · word 984` · layer: Measured · code `repeated_sentence_shape`
-- *Fix direction, for specialists:* Vary the sentence structure; merge or cut the templated sentences.
-
-#### 10. Answered in part: “Чи можна перевірити сторінку з телефо…” · Low
+#### 9. Answered in part: “Чи можна перевірити сторінку з телефо…” · Low
 
 A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.
 
@@ -130,7 +122,7 @@ A question people would ask is answered only in part by the best passage. An ass
 - **Where:** `question 4 · passage #1` · layer: Agent's judgement · Claude Opus 5.5 · code `question_partial`
 - *Fix direction, for specialists:* Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.
 
-#### 11. 1 very short section · Low
+#### 10. 1 very short section · Low
 
 Some sections have a heading and almost no text. They promise a topic and give a reader, or an AI, nothing to quote about it.
 
@@ -138,7 +130,7 @@ Some sections have a heading and almost no text. They promise a topic and give a
 - **Where:** `h2 “Важливий фрагмент за лімітом?”` · layer: Measured · code `thin_section`
 - *Fix direction, for specialists:* Expand the section with substance, or merge it into a neighbouring one.
 
-#### 12. Answered in part: “Завтра запускаємо сторінку: чи асисте…” · Low
+#### 11. Answered in part: “Завтра запускаємо сторінку: чи асисте…” · Low
 
 A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.
 
@@ -146,7 +138,7 @@ A question people would ask is answered only in part by the best passage. An ass
 - **Where:** `question 1 · passage #5` · layer: Agent's judgement · Claude Opus 5.5 · code `question_partial`
 - *Fix direction, for specialists:* Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.
 
-#### 13. Answered in part: “Наш сайт — застосунок на React. Текст…” · Low
+#### 12. Answered in part: “Наш сайт — застосунок на React. Текст…” · Low
 
 A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.
 
@@ -154,13 +146,21 @@ A question people would ask is answered only in part by the best passage. An ass
 - **Where:** `question 9 · passage #5` · layer: Agent's judgement · Claude Opus 5.5 · code `question_partial`
 - *Fix direction, for specialists:* Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.
 
-#### 14. Answered in part: “До п’ятниці треба перевірити двадцять…” · Low
+#### 13. Answered in part: “До п’ятниці треба перевірити двадцять…” · Low
 
 A question people would ask is answered only in part by the best passage. An assistant can quote it, but has to fill the rest from elsewhere.
 
 - **What the rule says:** This skill's rule: The agent judges each question against the passages; a passage that helps but leaves part of the answer out is a partial answer. The verdict is the agent's judgement.
 - **Where:** `question 10 · passage #14` · layer: Agent's judgement · Claude Opus 5.5 · code `question_partial`
 - *Fix direction, for specialists:* Complete the passage with the missing part of the answer (figures, steps, conditions) in the same section.
+
+#### 14. 4 sentences of one shape · Low
+
+Many sentences follow the same shape. Text like that reads as templated, and the repetition hides which sentence carries the point.
+
+- **What the rule says:** This skill's rule: The PatternScope's detectors flag sentences that repeat one structure. A signal about worn writing, not an AI detector; this skill's rule.
+- **Where:** `passage #13 · word 1670, passage #13 · word 1674, passage #13 · word 1752` · layer: Measured · code `repeated_sentence_shape`
+- *Fix direction, for specialists:* Vary the sentence structure; merge or cut the templated sentences.
 
 #### 20. No contact link · Low
 
@@ -180,7 +180,7 @@ Most of the passage text never mentions the main phrase. To a machine reading pa
 
 ### For SEO (4)
 
-#### 9. AI doesn't know the brand · Medium
+#### 8. AI doesn't know the brand · Medium
 
 The model does not know the brand at all. An assistant answering from memory cannot describe it and depends entirely on what it can find and read.
 
@@ -218,18 +218,18 @@ The site's llms.txt points only to pages in one language, though this page has o
 Top to bottom; the numbers are the problems above. Unseen: the text reaches no passage an AI retriever would read.
 
 1. Site header · navigation
-2. Hero · problems 6, 7, 10
+2. Hero · problems 6, 7, 9
 3. Sidebar · unseen
 4. Що це означає?
-5. Важливий фрагмент за лімітом? · problems 11
+5. Важливий фрагмент за лімітом? · problems 10
 6. Моделі й ліміти пошуку різняться.
-7. Як читати свій результат · problems 3, 12, 13
-8. Що таке семантичне розбиття на фрагменти? · problems 8
-9. Чи готовий мій контент до пошуку з ШІ? · problems 8
-10. Як перевірити RAG-конвеєр за допомогою Vectorscope · problems 8
+7. Як читати свій результат · problems 3, 11, 12
+8. Що таке семантичне розбиття на фрагменти?
+9. Чи готовий мій контент до пошуку з ШІ?
+10. Як перевірити RAG-конвеєр за допомогою Vectorscope
 11. Для кого Vectorscope?
 12. Слова, вжиті на цій сторінці
-13. 4 more sections · problems 1, 3, 8, 14
+13. 4 more sections · problems 1, 3, 13, 14
 14. Footer
 
 **`<head>`**
@@ -341,12 +341,12 @@ x-default: yes
 - The promise-without-a-figure rule reads English only
 - 4 sections drawn as one zone on the map
 
-## History (2 runs, kept in `C:\Users\Adept_Ko\AppData\Local\Temp\claude\c--DEV-GetLoopLoop\8a1c86f7-3344-4907-8518-5a05490f0e0b\scratchpad\full-ex\history\www.getlooploop.com\uk-vectorscope`)
+## History (2 runs, kept in `examples\history\www.getlooploop.com\uk-vectorscope`)
 
 | Run | Problems | Blocking · high · medium · low |
 |---|---|---|
 | 2026-10-16T18:39:14.000Z (saved copy) | 20 | 0 · 0 · 9 · 11 |
-| 2026-10-17T12:59:37.535Z (this run) | 21 | 0 · 0 · 9 · 12 |
+| 2026-10-17T12:59:37.535Z (this run) | 21 | 0 · 0 · 8 · 13 |
 
 ### What changed since the last run
 
@@ -356,6 +356,42 @@ Compared with 2026-10-16T18:39:14.000Z.
 - source: "saved copy" → "live"
 - passages: 1 new, 1 lost, 16 unchanged
 - findings: 0 fixed, 1 new, 20 unchanged
+
+## How generated the text sounds `derived` `judgement`
+
+Stock phrasing, marker words and generic passages. Not an authorship detector: who wrote the text cannot be shown from the text.
+
+- **Pattern score** `derived`: 2/100, low (12 points over 2,022 words = 5.93 per 1,000; PatternScope det-1/score-1, language uk).
+- **Marker words** `derived`: 0 per 1,000 words, rare (0 occurrences; not part of the score; thresholds not yet calibrated).
+- **Generic passages** `judgement`: 4 of 17, 13% of passage characters (the agent's swap test).
+- **Too short for a score** `measured`: 6 of 17 passages under 60 words (#0, #2, #3, #4, #14, #16).
+
+The script and the agent disagree on #10 and #12: #10 low score, generic text; #12 low score, generic text. Shown, not averaged.
+
+### Where the score comes from `derived`
+
+- Repeated sentence shape: 4 findings, 12 points — “Це інструмент візуалізації ембедингів?”, “Так, для однієї сторінки за раз.”, “Не для того, щоб різати сторінку.”, “Це не детектор ШІ.”
+
+| # | Heading | Score | Markers /1k | Agent | Evidence |
+|---|---|---|---|---|---|
+| #0 | Семантичне розбиття сторінки — Vectorscope | — (37 words) | 0 | specific | “що не вміщується в ліміт 26” — Називає власний ліміт інструмента — 26 уривків. |
+| #1 | — | 0 low | 0 | specific | “розріз по h2, далі вікна по 2000 символів до 26 фрагментів / сторінку” — Точні параметри розрізу: h2, вікна по 2000 символів, ліміт 26. |
+| #2 | Що це означає? | — (39 words) | 0 | generic | “Це попередній погляд машини, а не гарантія того, що з ним зробить будь-який асистент.” — Загальне пояснення, яке підійде будь-якому візуалізатору розбиття. |
+| #3 | Важливий фрагмент за лімітом? | — (23 words) | 0 | specific | “Це прочитання бере зі сторінки не більше 26 фрагментів.” — Конкретна межа і конкретна дія для фрагмента за нею. |
+| #4 | Моделі й ліміти пошуку різняться. | — (33 words) | 0 | generic | “Це не доводить, що будь-який асистент проіндексував сторінку.” — Типове застереження, яке конкурент перенесе без змін. |
+| #5 | Як читати свій результат | 0 low | 0 | specific | “Vectorscope застосовує ту саму межу, що й продукт, і називає фрагменти, які за неї вийшли.” — Описує власну поведінку інструмента й причини низького видобутку. |
+| #6 | Як читати свій результат | 0 low | 0 | specific | “змініть заголовок, прогоніть сторінку знову, задайте те саме питання” — Конкретна процедура перевірки переписаного заголовка. |
+| #7 | Що таке семантичне розбиття на фрагменти? | 0 low | 0 | specific | “вікно у 2000 символів із перекриттям у 200, яке закінчується на межі речення” — Точні розміри вікна й перекриття, h3 не ріже фрагмент. |
+| #8 | Чи готовий мій контент до пошуку з ШІ? | 0 low | 0 | specific | “директива noindex повідомляється, а не ігнорується” — Чіткий перелік того, що інструмент бачить і чого не бачить. |
+| #9 | Як перевірити RAG-конвеєр за допомогою Vectorscope | 0 low | 0 | specific | “можна навести на будь-який URL секунд за двадцять” — Час на URL і покрокова перевірка власного чанкера. |
+| #10 | Для кого Vectorscope? | 0 low | 0 | generic ≠ script | “Vectorscope — для всіх, чию сторінку читатимуть фрагментами” — Список аудиторій, який підійде будь-якому подібному інструменту. |
+| #11 | Слова, вжиті на цій сторінці | 0 low | 0 | specific | “На цій сторінці крок за змістом — це групування вже вирізаних фрагментів, а не сам розріз.” — Визначення прив’язані до того, як працює саме цей інструмент. |
+| #12 | Читати далі | 0 low | 0 | generic ≠ script | “Довші відповіді на питання, які ця сторінка може лише підсумувати.” — Звичайний список посилань без власного змісту. |
+| #13 | Питання, які про це ставлять | 8 low | 0 | specific | “Vectorscope ріже по кожному h2 — h3 нового фрагмента не починає” — Відповіді називають власні правила розрізу й зберігання. |
+| #14 | Питання, які про це ставлять | — (32 words) | 0 | specific | “Обмеження існує, бо кожне читання витрачає виклик ембедингів” — Пояснює, звідки береться обмеження частоти саме тут. |
+| #15 | Інші безкоштовні AI SEO інструменти | 0 low | 0 | specific | “спершу не називаючи платформи, потім називаючи всі дванадцять” — Названі власні інструменти з конкретними деталями. |
+| #16 | Чого це показати не може | — (45 words) | 0 | specific | “для цього потрібен корпус усього сайту, зміряний у часі” — Чітка межа однієї сторінки проти корпусу продукту. |
+
 
 ## What this check cannot see
 

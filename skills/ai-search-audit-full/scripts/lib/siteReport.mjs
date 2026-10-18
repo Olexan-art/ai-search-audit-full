@@ -6,7 +6,7 @@
 import { esc } from "../vendor/vectorscope/html.mjs";
 import { parts } from "./report.mjs";
 import { explain } from "./explain.mjs";
-import { LITE, SEV, SEV_COUNT, UI, dateLong, dateOf, fmtEn, fmtUk, nProblems, ukForm } from "./copy.mjs";
+import { LITE, SEV, SEV_COUNT, UI, dateLong, dateOf, fmtEn, fmtPl, fmtUk, nProblems, plForm, ukForm } from "./copy.mjs";
 import { SEVERITIES, SEVERITY_RANK } from "./checks.mjs";
 import { EDITION, TOOL_NAME } from "./report.mjs";
 import { EXPORT_SCHEMA, PRODUCED_BY, SKILL_VERSION } from "./version.mjs";
@@ -23,68 +23,69 @@ export const SITE_EXPORT_SCHEMA = "getlooploop/ai-search-audit-site@1";
 const { P, pair, ext, call, clip, head, sumHead, pinIcon, sevPill, ruleText, documentStart, documentEnd } = parts;
 const en = (n, one, many) => `${fmtEn(n)} ${n === 1 ? one : many}`;
 const uk = (n, a, b, c) => `${fmtUk(n)} ${ukForm(n, a, b, c)}`;
+const pl = (n, a, b, c) => `${fmtPl(n)} ${plForm(n, a, b, c)}`;
 
 const S = {
-  pagesN: [(n) => en(n, "page", "pages"), (n) => uk(n, "сторінка", "сторінки", "сторінок")],
-  onPages: [(n) => `on ${en(n, "page", "pages")}`, (n) => `на ${uk(n, "сторінці", "сторінках", "сторінках")}`],
-  coverage: ["What was audited", "Що перевірено"],
-  evaluated: [(e, t) => `${e} of ${t} pages evaluated`, (e, t) => `перевірено ${e} із ${t} сторінок`],
-  capLine: [(c) => `cap ${c} pages per audit`, (c) => `ліміт ${c} сторінок на аудит`],
-  leftOut: [(n) => `${en(n, "page", "pages")} left out`, (n) => `${uk(n, "сторінку", "сторінки", "сторінок")} пропущено`],
+  pagesN: [(n) => en(n, "page", "pages"), (n) => uk(n, "сторінка", "сторінки", "сторінок"), (n) => pl(n, "strona", "strony", "stron")],
+  onPages: [(n) => `on ${en(n, "page", "pages")}`, (n) => `на ${uk(n, "сторінці", "сторінках", "сторінках")}`, (n) => `na ${pl(n, "stronie", "stronach", "stronach")}`],
+  coverage: ["What was audited", "Що перевірено", "Co sprawdzono"],
+  evaluated: [(e, t) => `${e} of ${t} pages evaluated`, (e, t) => `перевірено ${e} із ${t} сторінок`, (e, t) => `sprawdzono ${e} z ${t} stron`],
+  capLine: [(c) => `cap ${c} pages per audit`, (c) => `ліміт ${c} сторінок на аудит`, (c) => `limit ${c} stron na audyt`],
+  leftOut: [(n) => `${en(n, "page", "pages")} left out`, (n) => `${uk(n, "сторінку", "сторінки", "сторінок")} пропущено`, (n) => `pominięto ${pl(n, "stronę", "strony", "stron")}`],
   reason: {
-    cap: ["past the cap", "за лімітом"],
-    robots_disallowed: ["robots.txt closes it to this crawler", "robots.txt закриває її для цього краулера"],
-    robots_unreachable: ["robots.txt does not answer: assumed closed", "robots.txt не відповідає: вважається закритою"],
-    duplicate: ["listed twice", "указано двічі"],
-    invalid_url: ["not a web address", "не вебадреса"],
-    blocked_scheme: ["not http or https", "не http чи https"],
-    blocked_host: ["not a public host", "не публічний хост"],
-    blocked_address: ["not a public address", "не публічна адреса"],
+    cap: ["past the cap", "за лімітом", "poza limitem"],
+    robots_disallowed: ["robots.txt closes it to this crawler", "robots.txt закриває її для цього краулера", "robots.txt zamyka ją dla tego crawlera"],
+    robots_unreachable: ["robots.txt does not answer: assumed closed", "robots.txt не відповідає: вважається закритою", "robots.txt nie odpowiada: przyjęto, że jest zamknięta"],
+    duplicate: ["listed twice", "указано двічі", "podana dwukrotnie"],
+    invalid_url: ["not a web address", "не вебадреса", "to nie jest adres internetowy"],
+    blocked_scheme: ["not http or https", "не http чи https", "ani http, ani https"],
+    blocked_host: ["not a public host", "не публічний хост", "to nie jest publiczny host"],
+    blocked_address: ["not a public address", "не публічна адреса", "to nie jest publiczny adres"],
   },
-  listed: [(a, b) => `${a} of ${b} listed`, (a, b) => `перелічено ${a} із ${b}`],
-  sourceUrls: [(f) => `from the URL list ${f}`, (f) => `зі списку адрес ${f}`],
-  sourceSitemap: [(u) => `from the sitemap ${u}`, (u) => `із sitemap ${u}`],
-  childUnread: [(n, c) => `${en(n, "child sitemap", "child sitemaps")} not read (cap ${c})`, (n, c) => `${uk(n, "дочірній sitemap", "дочірні sitemap", "дочірніх sitemap")} не прочитано (ліміт ${c})`],
-  offHost: [(n) => `${en(n, "sitemap URL", "sitemap URLs")} on another host left out`, (n) => `${uk(n, "адресу", "адреси", "адрес")} sitemap на іншому хості пропущено`],
-  polite: [(d) => `Pages were read one at a time, ${d} ms apart (longer where robots.txt asks for a Crawl-delay), as GetLoopLoop/1.0; requests repeated across pages (robots.txt, the sitemap, shared links) were answered from this run's memory.`, (d) => `Сторінки читали по одній, з паузою ${d} мс (довшою, де robots.txt просить Crawl-delay), як GetLoopLoop/1.0; запити, що повторюються між сторінками (robots.txt, sitemap, спільні посилання), бралися з пам’яті цього запуску.`],
-  longDelay: [(o, d, u) => `${o} asks for a Crawl-delay of ${d} s; ${u} s was used.`, (o, d, u) => `${o} просить Crawl-delay ${d} с; використано ${u} с.`],
-  pages: ["Pages", "Сторінки"],
-  refused: ["not audited", "не перевірено"],
-  driftN: [(n) => (n ? `${en(n, "change", "changes")} since the last run` : "no change since the last run"), (n) => (n ? `${uk(n, "зміна", "зміни", "змін")} від попереднього запуску` : "без змін від попереднього запуску")],
-  firstRun: ["first run", "перший запуск"],
-  cmpN: [(f, n) => `${f} fixed · ${n} new`, (f, n) => `виправлено ${f} · нових ${n}`],
-  repeated: ["Problems repeated across pages", "Проблеми, що повторюються на сторінках"],
-  repeatedSub: ["each counted once, with the pages it is on", "кожна врахована один раз, зі сторінками, де вона є"],
-  noneRepeated: ["No problem is on more than one page.", "Жодна проблема не трапляється більше ніж на одній сторінці."],
-  matrix: ["Pages × problems", "Сторінки × проблеми"],
-  matrixSub: ["the marker is the problem's severity on that page; empty means not found there", "маркер — серйозність проблеми на цій сторінці; порожньо — там її не знайдено"],
-  problem: ["Problem", "Проблема"],
-  total: ["Pages", "Сторінок"],
-  single: ["Problems on one page only", "Проблеми лише на одній сторінці"],
-  verdictBlock: [(b, n) => `${b} of ${n} pages have a problem that blocks search or AI`, (b, n) => `${b} із ${n} сторінок мають проблему, що блокує пошук або ШІ`],
-  verdictHide: [(b, n) => `${b} of ${n} pages hide text from AI`, (b, n) => `${b} із ${n} сторінок ховають текст від ШІ`],
-  verdictOk: ["No page has a blocking problem or hides text from AI", "Жодна сторінка не має блокувальної проблеми й не ховає текст від ШІ"],
-  verdictNone: ["No problems found on any page", "На жодній сторінці проблем не знайдено"],
-  eyebrow: ["AI search audit · Full · site", "Аудит для ШІ-пошуку · Full · сайт"],
-  findingsN: [(n) => en(n, "finding", "findings"), (n) => uk(n, "знахідка", "знахідки", "знахідок")],
-  sevTotals: ["Findings by severity, all pages", "Знахідки за серйозністю, усі сторінки"],
-  checked: [(d) => `checked ${d}`, (d) => `перевірено ${d}`],
-  openPage: ["page report", "звіт сторінки"],
-  notesN: [(n) => en(n, "note", "notes"), (n) => uk(n, "зауваження", "зауваження", "зауважень")],
-  seePages: ["See the pages", "Переглянути сторінки"],
-  cardBlock: [(b, n) => `${b} of ${n} pages have a problem that blocks search or AI`, (b, n) => `${b} із ${n} сторінок мають проблему, що блокує пошук або ШІ`],
-  cardHide: [(b, n) => `${b} of ${n} pages hide text from AI`, (b, n) => `${b} із ${n} сторінок ховають текст від ШІ`],
-  cardOk: ["Search engines and AI can reach and read every page", "Пошукові системи й ШІ можуть дістатися до кожної сторінки й прочитати її"],
-  cardPages: [(n) => `${en(n, "page", "pages")} audited`, (n) => `перевірено ${uk(n, "сторінку", "сторінки", "сторінок")}`],
-  cardRepeated: [(n) => `${en(n, "problem repeats", "problems repeat")} across pages`, (n) => `${uk(n, "проблема повторюється", "проблеми повторюються", "проблем повторюються")} на сторінках`],
-  cardNoRepeated: ["No problem repeats across pages", "Жодна проблема не повторюється на сторінках"],
-  cardRepeatedSub: ["Fixed once in a template, fixed everywhere", "Виправлене один раз у шаблоні виправлене всюди"],
-  cardSite: [(n) => `${en(n, "problem", "problems")} only the set of pages shows`, (n) => `${uk(n, "проблема", "проблеми", "проблем")}, видимі лише на наборі сторінок`],
-  cardNoSite: ["No site-wide problem among the audited pages", "Серед перевірених сторінок проблем на рівні сайту немає"],
-  cardSiteNot: [(n) => `${en(n, "site-wide check", "site-wide checks")} could not run`, (n) => `${uk(n, "перевірку", "перевірки", "перевірок")} на рівні сайту не виконано`],
-  cardSiteSub: ["Titles, links, hreflang and canonicals between the pages", "Title, посилання, hreflang і canonical між сторінками"],
-  allSub: ["What was audited · Pages × problems · Problems on one page · Severity", "Що перевірено · Сторінки × проблеми · Проблеми на одній сторінці · Серйозність"],
-  cannotSite: ["Each page report lists what one page's check cannot see; the site audit adds one limit: at most 50 pages, every page left out listed above.", "Кожен звіт сторінки перелічує, чого не бачить перевірка однієї сторінки; аудит сайту додає одне обмеження: щонайбільше 50 сторінок, і кожну пропущену перелічено вище."],
+  listed: [(a, b) => `${a} of ${b} listed`, (a, b) => `перелічено ${a} із ${b}`, (a, b) => `wymieniono ${a} z ${b}`],
+  sourceUrls: [(f) => `from the URL list ${f}`, (f) => `зі списку адрес ${f}`, (f) => `z listy adresów ${f}`],
+  sourceSitemap: [(u) => `from the sitemap ${u}`, (u) => `із sitemap ${u}`, (u) => `z sitemap ${u}`],
+  childUnread: [(n, c) => `${en(n, "child sitemap", "child sitemaps")} not read (cap ${c})`, (n, c) => `${uk(n, "дочірній sitemap", "дочірні sitemap", "дочірніх sitemap")} не прочитано (ліміт ${c})`, (n, c) => `nie przeczytano: ${pl(n, "podrzędna sitemap", "podrzędne sitemapy", "podrzędnych sitemap")} (limit ${c})`],
+  offHost: [(n) => `${en(n, "sitemap URL", "sitemap URLs")} on another host left out`, (n) => `${uk(n, "адресу", "адреси", "адрес")} sitemap на іншому хості пропущено`, (n) => `pominięto ${pl(n, "adres", "adresy", "adresów")} z sitemap na innym hoście`],
+  polite: [(d) => `Pages were read one at a time, ${d} ms apart (longer where robots.txt asks for a Crawl-delay), as GetLoopLoop/1.0; requests repeated across pages (robots.txt, the sitemap, shared links) were answered from this run's memory.`, (d) => `Сторінки читали по одній, з паузою ${d} мс (довшою, де robots.txt просить Crawl-delay), як GetLoopLoop/1.0; запити, що повторюються між сторінками (robots.txt, sitemap, спільні посилання), бралися з пам’яті цього запуску.`, (d) => `Strony czytano po jednej, w odstępach ${d} ms (dłuższych tam, gdzie robots.txt prosi o Crawl-delay), jako GetLoopLoop/1.0; żądania powtarzające się między stronami (robots.txt, sitemap, wspólne linki) obsłużono z pamięci tego uruchomienia.`],
+  longDelay: [(o, d, u) => `${o} asks for a Crawl-delay of ${d} s; ${u} s was used.`, (o, d, u) => `${o} просить Crawl-delay ${d} с; використано ${u} с.`, (o, d, u) => `${o} prosi o Crawl-delay ${d} s; użyto ${u} s.`],
+  pages: ["Pages", "Сторінки", "Strony"],
+  refused: ["not audited", "не перевірено", "nie sprawdzono"],
+  driftN: [(n) => (n ? `${en(n, "change", "changes")} since the last run` : "no change since the last run"), (n) => (n ? `${uk(n, "зміна", "зміни", "змін")} від попереднього запуску` : "без змін від попереднього запуску"), (n) => (n ? `${pl(n, "zmiana", "zmiany", "zmian")} od poprzedniego uruchomienia` : "bez zmian od poprzedniego uruchomienia")],
+  firstRun: ["first run", "перший запуск", "pierwsze uruchomienie"],
+  cmpN: [(f, n) => `${f} fixed · ${n} new`, (f, n) => `виправлено ${f} · нових ${n}`, (f, n) => `naprawione: ${f} · nowe: ${n}`],
+  repeated: ["Problems repeated across pages", "Проблеми, що повторюються на сторінках", "Problemy powtarzające się na stronach"],
+  repeatedSub: ["each counted once, with the pages it is on", "кожна врахована один раз, зі сторінками, де вона є", "każdy liczony raz, ze stronami, na których występuje"],
+  noneRepeated: ["No problem is on more than one page.", "Жодна проблема не трапляється більше ніж на одній сторінці.", "Żaden problem nie występuje na więcej niż jednej stronie."],
+  matrix: ["Pages × problems", "Сторінки × проблеми", "Strony × problemy"],
+  matrixSub: ["the marker is the problem's severity on that page; empty means not found there", "маркер — серйозність проблеми на цій сторінці; порожньо — там її не знайдено", "znacznik to waga problemu na tej stronie; puste pole oznacza, że go tam nie znaleziono"],
+  problem: ["Problem", "Проблема", "Problem"],
+  total: ["Pages", "Сторінок", "Stron"],
+  single: ["Problems on one page only", "Проблеми лише на одній сторінці", "Problemy tylko na jednej stronie"],
+  verdictBlock: [(b, n) => `${b} of ${n} pages have a problem that blocks search or AI`, (b, n) => `${b} із ${n} сторінок мають проблему, що блокує пошук або ШІ`, (b, n) => `Strony z problemem blokującym wyszukiwarkę lub AI: ${b} z ${n}`],
+  verdictHide: [(b, n) => `${b} of ${n} pages hide text from AI`, (b, n) => `${b} із ${n} сторінок ховають текст від ШІ`, (b, n) => `Strony ukrywające tekst przed AI: ${b} z ${n}`],
+  verdictOk: ["No page has a blocking problem or hides text from AI", "Жодна сторінка не має блокувальної проблеми й не ховає текст від ШІ", "Żadna strona nie ma problemu blokującego ani nie ukrywa tekstu przed AI"],
+  verdictNone: ["No problems found on any page", "На жодній сторінці проблем не знайдено", "Nie znaleziono problemów na żadnej stronie"],
+  eyebrow: ["AI search audit · Full · site", "Аудит для ШІ-пошуку · Full · сайт", "Audyt wyszukiwania AI · Full · serwis"],
+  findingsN: [(n) => en(n, "finding", "findings"), (n) => uk(n, "знахідка", "знахідки", "знахідок"), (n) => pl(n, "ustalenie", "ustalenia", "ustaleń")],
+  sevTotals: ["Findings by severity, all pages", "Знахідки за серйозністю, усі сторінки", "Ustalenia według wagi, wszystkie strony"],
+  checked: [(d) => `checked ${d}`, (d) => `перевірено ${d}`, (d) => `sprawdzono ${d}`],
+  openPage: ["page report", "звіт сторінки", "raport strony"],
+  notesN: [(n) => en(n, "note", "notes"), (n) => uk(n, "зауваження", "зауваження", "зауважень"), (n) => pl(n, "uwaga", "uwagi", "uwag")],
+  seePages: ["See the pages", "Переглянути сторінки", "Zobacz strony"],
+  cardBlock: [(b, n) => `${b} of ${n} pages have a problem that blocks search or AI`, (b, n) => `${b} із ${n} сторінок мають проблему, що блокує пошук або ШІ`, (b, n) => `Strony z problemem blokującym wyszukiwarkę lub AI: ${b} z ${n}`],
+  cardHide: [(b, n) => `${b} of ${n} pages hide text from AI`, (b, n) => `${b} із ${n} сторінок ховають текст від ШІ`, (b, n) => `Strony ukrywające tekst przed AI: ${b} z ${n}`],
+  cardOk: ["Search engines and AI can reach and read every page", "Пошукові системи й ШІ можуть дістатися до кожної сторінки й прочитати її", "Wyszukiwarki i AI mogą dotrzeć do każdej strony i ją przeczytać"],
+  cardPages: [(n) => `${en(n, "page", "pages")} audited`, (n) => `перевірено ${uk(n, "сторінку", "сторінки", "сторінок")}`, (n) => `sprawdzono ${pl(n, "stronę", "strony", "stron")}`],
+  cardRepeated: [(n) => `${en(n, "problem repeats", "problems repeat")} across pages`, (n) => `${uk(n, "проблема повторюється", "проблеми повторюються", "проблем повторюються")} на сторінках`, (n) => `${pl(n, "problem powtarza", "problemy powtarzają", "problemów powtarza")} się na stronach`],
+  cardNoRepeated: ["No problem repeats across pages", "Жодна проблема не повторюється на сторінках", "Żaden problem nie powtarza się na stronach"],
+  cardRepeatedSub: ["Fixed once in a template, fixed everywhere", "Виправлене один раз у шаблоні виправлене всюди", "Poprawione raz w szablonie jest poprawione wszędzie"],
+  cardSite: [(n) => `${en(n, "problem", "problems")} only the set of pages shows`, (n) => `${uk(n, "проблема", "проблеми", "проблем")}, видимі лише на наборі сторінок`, (n) => `${pl(n, "problem widoczny", "problemy widoczne", "problemów widocznych")} tylko w zestawie stron`],
+  cardNoSite: ["No site-wide problem among the audited pages", "Серед перевірених сторінок проблем на рівні сайту немає", "Wśród sprawdzonych stron nie ma problemów na poziomie serwisu"],
+  cardSiteNot: [(n) => `${en(n, "site-wide check", "site-wide checks")} could not run`, (n) => `${uk(n, "перевірку", "перевірки", "перевірок")} на рівні сайту не виконано`, (n) => `nie wykonano: ${pl(n, "sprawdzenie", "sprawdzenia", "sprawdzeń")} na poziomie serwisu`],
+  cardSiteSub: ["Titles, links, hreflang and canonicals between the pages", "Title, посилання, hreflang і canonical між сторінками", "Title, linki, hreflang i canonical między stronami"],
+  allSub: ["What was audited · Pages × problems · Problems on one page · Severity", "Що перевірено · Сторінки × проблеми · Проблеми на одній сторінці · Серйозність", "Co sprawdzono · Strony × problemy · Problemy na jednej stronie · Waga"],
+  cannotSite: ["Each page report lists what one page's check cannot see; the site audit adds one limit: at most 50 pages, every page left out listed above.", "Кожен звіт сторінки перелічує, чого не бачить перевірка однієї сторінки; аудит сайту додає одне обмеження: щонайбільше 50 сторінок, і кожну пропущену перелічено вище.", "Każdy raport strony wymienia, czego nie widzi sprawdzenie jednej strony; audyt serwisu dodaje jedno ograniczenie: najwyżej 50 stron, a każda pominięta jest wymieniona wyżej."],
 };
 
 const pathOf = (url) => {
@@ -157,13 +158,13 @@ function coverageBlock(sm) {
   const src = m.source.kind === "sitemap" ? call(S.sourceSitemap, m.source.input) : call(S.sourceUrls, m.source.input);
   o.push(`<p class="cov"><b>${P(call(S.evaluated, m.evaluated, m.total))}</b> · ${P(src)}</p>`);
   const caps = [];
-  if (m.leftOut.count) caps.push(`<li>${P(call(S.leftOut, m.leftOut.count))}: ${Object.entries(m.leftOut.byReason).map(([r, n]) => `${n} ${P(S.reason[r] || [r, r])}`).join(" · ")}</li>`);
+  if (m.leftOut.count) caps.push(`<li>${P(call(S.leftOut, m.leftOut.count))}: ${Object.entries(m.leftOut.byReason).map(([r, n]) => `${n} ${P(S.reason[r] || [r, r, r])}`).join(" · ")}</li>`);
   if (m.source.children?.unread) caps.push(`<li>${P(call(S.childUnread, m.source.children.unread, m.source.children.cap))}</li>`);
   if (m.source.offHost) caps.push(`<li>${P(call(S.offHost, m.source.offHost))}</li>`);
   for (const d of m.politeness.longDelays || []) caps.push(`<li>${P(call(S.longDelay, d.origin, d.crawlDelay, d.used))}</li>`);
   if (caps.length) o.push(`<ul class="caps" id="site-caps">${caps.join("")}</ul>`);
   if (m.leftOut.items.length) {
-    o.push(`<details class="cmp-more" id="left-out"><summary>${P(call(S.listed, m.leftOut.listed, m.leftOut.count))}</summary><ol class="left-list">${m.leftOut.items.map((x) => `<li><span class="mono">${esc(clip(x.url, 140))}</span> · ${P(S.reason[x.reason] || [x.reason, x.reason])}${x.rule ? ` · <span class="mono">${esc(x.rule)}</span>` : ""}</li>`).join("")}</ol></details>`);
+    o.push(`<details class="cmp-more" id="left-out"><summary>${P(call(S.listed, m.leftOut.listed, m.leftOut.count))}</summary><ol class="left-list">${m.leftOut.items.map((x) => `<li><span class="mono">${esc(clip(x.url, 140))}</span> · ${P(S.reason[x.reason] || [x.reason, x.reason, x.reason])}${x.rule ? ` · <span class="mono">${esc(x.rule)}</span>` : ""}</li>`).join("")}</ol></details>`);
   }
   o.push(`<p class="capnote">${P(call(S.polite, m.politeness.delayMs))}</p></section>`);
   return o.join("\n");
@@ -171,7 +172,7 @@ function coverageBlock(sm) {
 
 function pagesBlock(sm) {
   const items = sm.pages.map((p) => {
-    const counts = p.ok ? `${P(nProblems(p.total))} ${SEVERITIES.filter((s) => p.counts[s]).map((s) => `<span class="pc" ${parts.attrPair("title", SEV[s][0], SEV[s][1])}>${pinIcon(s, p.counts[s], 26)}</span>`).join("")}` : P(S.refused);
+    const counts = p.ok ? `${P(nProblems(p.total))} ${SEVERITIES.filter((s) => p.counts[s]).map((s) => `<span class="pc" ${parts.attrPair("title", SEV[s][0], SEV[s][1], SEV[s][2])}>${pinIcon(s, p.counts[s], 26)}</span>`).join("")}` : P(S.refused);
     const drift = typeof p.drift === "number" ? ` · <a href="${pageLink(p, "#history")}">${P(call(S.driftN, p.drift))}</a>` : "";
     const first = p.hasHistory && p.drift === undefined && p.ok ? ` · ${P(S.firstRun)}` : "";
     const cmp = p.compare ? ` · <a href="${pageLink(p, "#compare")}">${P(call(S.cmpN, p.compare.fixed, p.compare.new))}</a>` : "";
@@ -258,10 +259,10 @@ export function renderSiteReport(sm) {
     [
       `<header class="verdict lite-verdict${blocked ? " is-blocked" : ""}" id="verdict">`,
       `<p class="pageid"><span class="url">${esc(host)}</span></p>`,
-      `<p class="lite-meta"><span>${P([LITE.checked[0](d[0]), LITE.checked[1](d[1])])}</span><span aria-hidden="true">·</span><span>${P(S.eyebrow)}</span></p>`,
+      `<p class="lite-meta"><span>${P([LITE.checked[0](d[0]), LITE.checked[1](d[1]), LITE.checked[2](d[2])])}</span><span aria-hidden="true">·</span><span>${P(S.eyebrow)}</span></p>`,
       `<h1 id="headline">${P(siteVerdict(sm))}</h1>`,
-      `<p class="lede" id="subtitle">${P([`${S.evaluated[0](m.evaluated, m.total)} · ${S.notesN[0](total)}`, `${S.evaluated[1](m.evaluated, m.total)} · ${S.notesN[1](total)}`])}</p>`,
-      `<ul class="sevrow" id="sev-counts" ${parts.attrPair("aria-label", UI.severity[0], UI.severity[1])}>${sevs}</ul>`,
+      `<p class="lede" id="subtitle">${P([`${S.evaluated[0](m.evaluated, m.total)} · ${S.notesN[0](total)}`, `${S.evaluated[1](m.evaluated, m.total)} · ${S.notesN[1](total)}`, `${S.evaluated[2](m.evaluated, m.total)} · ${S.notesN[2](total)}`])}</p>`,
+      `<ul class="sevrow" id="sev-counts" ${parts.attrPair("aria-label", UI.severity[0], UI.severity[1], UI.severity[2])}>${sevs}</ul>`,
       `<p class="cta-row"><a class="btn btn-primary" id="see-pages" href="#pages">${P(S.seePages)}<span aria-hidden="true"> ↓</span></a></p>`,
       "</header>",
     ].join("\n"),
@@ -386,13 +387,14 @@ const refusedSite = (manifest) => ({
   page: { url: manifest.refused.url, requestedUrl: manifest.refused.url },
 });
 
-/** Where the run stopped, EN and UK. */
+/** Where the run stopped, EN, UK and PL. */
 export function siteStopNote(manifest) {
   const read = (manifest.discarded || []).length;
   const notRead = manifest.leftOut?.byReason?.site_refused ?? 0;
   return [
     `The site audit stopped at ${manifest.refused.url}: no page of this site is analysed (read before it and discarded: ${fmtEn(read)}; not read: ${fmtEn(notRead)}).`,
     `Перевірку сайту зупинено на ${manifest.refused.url}: жодну сторінку цього сайту не проаналізовано (прочитано до неї й відкинуто: ${fmtUk(read)}; не прочитано: ${fmtUk(notRead)}).`,
+    `Sprawdzanie serwisu zatrzymano na ${manifest.refused.url}: żadna strona tego serwisu nie została przeanalizowana (przeczytane przed nią i odrzucone: ${fmtPl(read)}; nieprzeczytane: ${fmtPl(notRead)}).`,
   ];
 }
 

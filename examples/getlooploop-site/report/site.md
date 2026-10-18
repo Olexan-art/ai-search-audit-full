@@ -1,13 +1,13 @@
 # AI Search Audit Full: site audit, 3 pages
 
-**No page has a blocking problem or hides text from AI** · 3 of 3 pages evaluated (cap 50) · skill 2.108
+**No page has a blocking problem or hides text from AI** · 3 of 3 pages evaluated (cap 50) · skill 2.109
 
 ## Pages
 
 | # | Page | Problems | Blocking · high · medium · low | Report |
 |---|---|---|---|---|
 | 1 | https://www.getlooploop.com/vectorscope | 19 | 0 · 0 · 7 · 12 | pages/getlooploop-com-vectorscope.html |
-| 2 | https://www.getlooploop.com/uk/vectorscope | 21 | 0 · 0 · 9 · 12 | pages/getlooploop-com-uk-vectorscope.html |
+| 2 | https://www.getlooploop.com/uk/vectorscope | 21 | 0 · 0 · 8 · 13 | pages/getlooploop-com-uk-vectorscope.html |
 | 3 | https://www.getlooploop.com/es/vectorscope | 18 | 0 · 0 · 7 · 11 | pages/getlooploop-com-es-vectorscope.html |
 
 ## Problems repeated across pages
@@ -110,7 +110,7 @@ Some sections have a heading and almost no text. They promise a topic and give a
 - Pages: 1, 2, 3
 - Code: `thin_section` · *Fix direction, for specialists:* Expand the section with substance, or merge it into a neighbouring one.
 
-### Sentences of one shape · Medium · 2 pages
+### Sentences of one shape · Low · 2 pages
 
 Many sentences follow the same shape. Text like that reads as templated, and the repetition hides which sentence carries the point.
 
@@ -141,7 +141,7 @@ Many sentences follow the same shape. Text like that reads as templated, and the
 | Retired rich result | L | L | L | 3 |
 | Security headers missing | L | L | L | 3 |
 | Very short sections | L | L | L | 3 |
-| Sentences of one shape | L | M |  | 2 |
+| Sentences of one shape | L | L |  | 2 |
 | Main phrase in few sections |  | M |  | 1 |
 | Most of the text off the main phrase |  | L |  | 1 |
 
