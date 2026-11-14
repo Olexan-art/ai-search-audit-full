@@ -623,15 +623,19 @@ const whyDetails = (f, id) => `<details class="why" id="${id}"><summary class="w
 const ex = (f) => explain(f.code);
 
 /** "What the rule says": a verified quote with its source and the date it was checked, or this skill's rule. */
+function quoteHtml(r) {
+  const s = source(r.src);
+  const d = dateLong(r.checked);
+  return `<q class="rq" lang="en">${esc(r.quote)}</q> <span class="rsrc">${ext(s.url, `${esc(s.name)} ↗`)} <span class="rchk">· ${P([UI.ruleChecked[0](d[0]), UI.ruleChecked[1](d[1]), UI.ruleChecked[2](d[2])])}</span></span>`;
+}
 function ruleText(f) {
-  const r = ex(f).r;
-  if (r.kind === "quote") {
-    const s = source(r.src);
-    const d = dateLong(r.checked);
-    return `<q class="rq" lang="en">${esc(r.quote)}</q> <span class="rsrc">${ext(s.url, `${esc(s.name)} ↗`)} <span class="rchk">· ${P([UI.ruleChecked[0](d[0]), UI.ruleChecked[1](d[1]), UI.ruleChecked[2](d[2])])}</span></span>`;
-  }
+  const e = ex(f);
+  const r = e.r;
+  // Further quotes backing the same rule (explain.mjs `also`), each on its own line.
+  const also = (e.also || []).map((q) => `<br>${quoteHtml(q)}`).join("");
+  if (r.kind === "quote") return `${quoteHtml(r)}${also}`;
   const link = r.fullOnly ? "" : ` <span class="rsrc">${ext(source("skill").url, `${P(UI.skillThresholds)} ↗`)}</span>`;
-  return `<span class="rskill">${P(UI.skillRule)}</span> ${P(r.text)}${link}`;
+  return `<span class="rskill">${P(UI.skillRule)}</span> ${P(r.text)}${link}${also}`;
 }
 const ruleLine = (f) => `<p class="rule"><span class="lbl">${P(UI.ruleSays)}</span> ${ruleText(f)}</p>`;
 

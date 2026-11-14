@@ -11,6 +11,10 @@
 // Exit code 1 when a quote is not found on its page (the page changed, or the quote is wrong):
 // then requote it from the page, or label the code "This skill's rule". Never edit a quote to
 // something the page does not say.
+//
+// A modern-web-guidance source is a GitHub blob URL pinned to a commit; it is read as the raw
+// Markdown at the same commit (raw.githubusercontent.com), with the Markdown marks a quote cannot
+// carry (`code` ticks, **bold**) dropped. Quotes in an entry's `also` list are checked too.
 
 import { EXPLAIN, foldQuoteText } from "../scripts/lib/explain.mjs";
 import { SOURCES } from "../scripts/lib/rules.mjs";
@@ -18,6 +22,17 @@ import { SITE_EXPLAIN } from "../scripts/lib/siteExplain.mjs";
 
 const only = process.argv[2] || null;
 const UA = "Mozilla/5.0 (compatible; ai-search-audit-full rule check)";
+
+/** A GitHub blob URL as the raw file at the same commit; any other URL unchanged. */
+function rawUrl(url) {
+  const m = /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([0-9a-f]{40})\/(.+)$/.exec(url);
+  return m ? `https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}/${m[4]}` : url;
+}
+
+/** Raw Markdown as text: inline code ticks and bold marks dropped. */
+function markdownText(md) {
+  return foldQuoteText(String(md).replace(/\*\*/g, "").replace(/`/g, ""));
+}
 
 function pageText(html) {
   return foldQuoteText(
@@ -32,17 +47,19 @@ function pageText(html) {
 
 const byUrl = new Map();
 for (const [code, e] of [...Object.entries(EXPLAIN), ...Object.entries(SITE_EXPLAIN)]) {
-  if (e.r.kind !== "quote") continue;
-  if (only && e.r.src !== only) continue;
-  const src = SOURCES[e.r.src];
-  if (!src) {
-    console.log(`MISSING   ${code}: no source ${e.r.src} in rules.mjs`);
-    process.exitCode = 1;
-    continue;
+  for (const q of [e.r, ...(e.also || [])]) {
+    if (q.kind !== "quote") continue;
+    if (only && q.src !== only) continue;
+    const src = SOURCES[q.src];
+    if (!src) {
+      console.log(`MISSING   ${code}: no source ${q.src} in rules.mjs`);
+      process.exitCode = 1;
+      continue;
+    }
+    const url = rawUrl(src[1].split("#")[0]);
+    if (!byUrl.has(url)) byUrl.set(url, []);
+    byUrl.get(url).push({ code, quote: q.quote, src: q.src });
   }
-  const url = src[1].split("#")[0];
-  if (!byUrl.has(url)) byUrl.set(url, []);
-  byUrl.get(url).push({ code, quote: e.r.quote, src: e.r.src });
 }
 
 let ok = 0;
@@ -51,7 +68,7 @@ for (const [url, items] of byUrl) {
   let text = "";
   try {
     const r = await fetch(url, { headers: { "User-Agent": UA, "Accept-Language": "en" }, signal: AbortSignal.timeout(30_000) });
-    text = pageText(await r.text());
+    text = url.startsWith("https://raw.githubusercontent.com/") ? markdownText(await r.text()) : pageText(await r.text());
     if (!r.ok) console.log(`HTTP ${r.status}  ${url}`);
   } catch (error) {
     console.log(`UNREACHABLE ${url}: ${error.message}`);

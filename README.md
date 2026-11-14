@@ -15,7 +15,7 @@ This is the Full edition. It is built on the public [Lite](https://github.com/Ol
 | | Lite | Full |
 |---|---|---|
 | Every problem | a short label, a severity, a place | plus **What goes wrong**: a plain description for juniors and managers, with no advice |
-| The rule | in the export only | **What the rule says**: a short verbatim quote from the official source with its link and the date it was checked, or "This skill's rule" where nobody publishes one (83 quotes, all matched word for word against the live pages on 17 October 2026) |
+| The rule | in the export only | **What the rule says**: a short verbatim quote from the official source with its link and the date it was checked, or "This skill's rule" where nobody publishes one (86 quotes and 6 supporting ones, all matched word for word: the modern-web-guidance quotes against the guides at a pinned commit on 14 November 2026, the rest against the live pages on 17 October 2026) |
 | Fixes | none | a **fix direction**, technical and terse, only inside each problem's collapsed "Details for specialists" |
 | Pages | one | **up to 50 per site**, from a URL list or a sitemap, read one at a time with robots.txt respected; the cap is reported as evaluated / total, with every page left out and why |
 | The site | — | a **site report**: pages × problems, problems repeated across pages grouped as "on N pages", and checks only a set of pages can make (duplicate titles, descriptions and h1s, orphan pages, link depth, hreflang pairs, canonical chains, internal links through redirects, thin pages) |

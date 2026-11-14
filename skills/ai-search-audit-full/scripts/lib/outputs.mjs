@@ -6,6 +6,7 @@
 import { CANNOT, LAYER, MARK, SEV, UI, dateOf, verdict, ZONE_LABEL } from "./copy.mjs";
 import { generatedExport, generatedMarkdown } from "../vendor/vectorscope/generatedText.mjs";
 import { CODES, SEVERITIES } from "./checks.mjs";
+import { rubricOf } from "./rubrics.mjs";
 import { EXPORT_SCHEMA, PRODUCED_BY, SKILL_VERSION } from "./version.mjs";
 import { EDITION, refusalLead, TOOL_NAME } from "./report.mjs";
 import { explain, RULES_CHECKED } from "./explain.mjs";
@@ -50,6 +51,7 @@ export function renderMarkdown(model) {
       o.push(`#### ${f.pin}. ${cell(f.label[0])} · ${SEV[f.severity][0]}`, "");
       o.push(cell(e.d[0]), "");
       o.push(`- **What the rule says:** ${ruleMd(e.r)}`);
+      for (const q of e.also || []) o.push(`- **Also:** ${ruleMd(q)}`);
       o.push(`- **Where:** ${f.where ? `\`${cell(f.where)}\`` : "the page as a whole"} · layer: ${cell(layerOf(f))} · code \`${f.code}\``);
       o.push(`- *Fix direction, for specialists:* ${cell(e.x[0])}`, "");
     }
@@ -142,6 +144,7 @@ function ruleMd(r) {
 export function explanationOf(code) {
   const e = explain(code);
   const rule = e.r.kind === "quote" ? { kind: "quote", quote: e.r.quote, source: source(e.r.src), checked: e.r.checked, language: "en" } : { kind: "skill", label: "This skill's rule", text: { en: e.r.text[0], uk: e.r.text[1] }, source: e.r.fullOnly ? null : source("skill") };
+  if (e.also?.length) rule.also = e.also.map((q) => ({ kind: "quote", quote: q.quote, source: source(q.src), checked: q.checked, language: "en" }));
   return { title: { en: e.t[0], uk: e.t[1] }, description: { en: e.d[0], uk: e.d[1] }, rule, fixDirection: { en: e.x[0], uk: e.x[1], audience: "specialists" } };
 }
 
@@ -177,6 +180,8 @@ export function buildExport(model) {
       evidence: f.evidence,
       rules: f.rules,
       explanation: explanationOf(f.code),
+      // The verifier rubric (rubrics.mjs): when the finding stands and when a reader would set it aside, by clause id.
+      ...(rubricOf(f.code) ? { rubric: rubricOf(f.code) } : {}),
     })),
     rulesChecked: RULES_CHECKED,
     state: pageState(r),

@@ -66,3 +66,28 @@ test("the quote check folds HTML leftovers the way stripped pages produce them",
   assert.equal(foldQuoteText("rank 1 ( &lt;h1&gt; ), the"), "rank 1 (<h1>), the");
   assert.equal(foldQuoteText("don&#39;t &ldquo;both&rdquo;"), `don't "both"`);
 });
+
+test("an also quote is a short English quote from a known source, never this skill, and a modern-web-guidance link is pinned to a commit", () => {
+  let n = 0;
+  for (const [code, e] of Object.entries(EXPLAIN)) {
+    if (e.also === undefined) continue;
+    assert.ok(Array.isArray(e.also) && e.also.length, `${code}: also is a list`);
+    for (const q of e.also) {
+      n++;
+      assert.equal(q.kind, "quote", code);
+      assert.ok(SOURCES[q.src], `${code}: unknown source ${q.src}`);
+      assert.notEqual(q.src, "skill", code);
+      assert.notEqual(q.src, e.r.src, `${code}: also repeats the main source`);
+      assert.match(q.checked, /^\d{4}-\d{2}-\d{2}$/, code);
+      assert.ok(q.quote.length >= 20 && q.quote.length <= 260, `${code}: a short quote`);
+      assert.ok(!CYR.test(q.quote), code);
+    }
+  }
+  assert.ok(n >= 5, `${n} also quotes`);
+  for (const [key, [name, url]] of Object.entries(SOURCES)) {
+    if (!key.startsWith("mwg")) continue;
+    assert.match(url, /^https:\/\/github\.com\/GoogleChrome\/modern-web-guidance\/blob\/[0-9a-f]{40}\/skills\/modern-web-guidance\/guides\/[a-z-]+\/[a-z-]+\.md$/, key);
+    assert.match(name, /^modern-web-guidance: /, key);
+    assert.doesNotMatch(name, /Google Search|Chrome recommends/i, `${key}: not a search rule, not an endorsement`);
+  }
+});

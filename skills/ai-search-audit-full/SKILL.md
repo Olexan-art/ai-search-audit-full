@@ -116,6 +116,7 @@ The report works offline. It opens in English and in the light theme; add `#lang
 - First: a blocked crawler (`ai_search_blocked`, `search_engine_blocked`, `robots_unreachable`), `snippet_blocked` or `noindex`.
 - The verdict line and severity counts. Site: pages evaluated of found, left out, problems on most pages.
 - Problems 1 to 5, with where, in the report's words.
+- For a problem whose code has a verifier rubric (`references/checks.md`, *Verifier rubrics*), read the page first. If a dropWhen clause holds, still list the problem and name the clause id. Never remove a finding.
 - Changes since the last run; `--compare` counts; the history size the run prints; if it started empty, that the report carries it.
 - Every cap printed (links past 30, images past 20, alternates past 10, child sitemaps past 5, pages past 50, merged map sections, a failed render).
 - Once: the checks are deterministic, each on a published rule or a named threshold; questions, brand and reviews are your judgement as 1 named model, not ChatGPT, Gemini or Perplexity (the web Brandscope and Reviewscope ask 3).

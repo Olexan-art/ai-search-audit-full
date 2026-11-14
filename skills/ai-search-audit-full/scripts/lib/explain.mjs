@@ -18,8 +18,12 @@
 // Nothing here is invented: a rule nobody publishes is labelled as this skill's.
 
 export const RULES_CHECKED = "2026-10-17";
+// The modern-web-guidance quotes were matched against the raw guides at the pinned commit on this date.
+export const MWG_CHECKED = "2026-11-14";
 
 const Q = (src, quote, checked = RULES_CHECKED) => ({ kind: "quote", src, quote, checked });
+// `also`: further verbatim quotes that back the same rule, from another source (since 2.112, the
+// modern-web-guidance guides for building pages). Shown after the main quote, checked the same way.
 // S(en, uk, pl, opts); a call without the Polish string, S(en, uk, opts), still works.
 const S = (en, uk, pl, opts) => {
   if (typeof pl !== "string") { opts = pl; pl = undefined; }
@@ -523,6 +527,21 @@ export const EXPLAIN = {
       "HTML понад 500 КБ або понад 30 скриптів — важка сторінка. Поріг — цієї навички; швидкість для реальних відвідувачів вимірюють Core Web Vitals, і ця перевірка їх не читає.",
       "HTML powyżej 500 KB lub więcej niż 30 skryptów to ciężka strona. Próg należy do tej umiejętności; szybkość dla prawdziwych odwiedzających mierzą Core Web Vitals, a to sprawdzenie ich nie odczytuje.",
     ),
+    also: [Q("mwgScriptPriority", "For scripts that are not needed immediately (e.g., analytics, ads, or below-the-fold widgets), add fetchpriority=\"low\" and ensure they have a async, defer, or module attribute to avoid blocking.", MWG_CHECKED)],
+  },
+  script_render_blocking: {
+    t: ["Render-blocking scripts in the head", "Скрипти в head блокують рендеринг", "Skrypty w head blokują renderowanie"],
+    d: [
+      "External scripts in the page's head load without async or defer, so the browser stops reading the HTML until each one has downloaded and run, and the text appears later. Consent managers and A/B-test snippets are often blocking on purpose.",
+      "Зовнішні скрипти в head сторінки завантажуються без async чи defer, тож браузер зупиняє читання HTML, доки кожен не завантажиться й не виконається, і текст з’являється пізніше. Менеджери згод і сніпети A/B-тестів часто блокують навмисно.",
+      "Zewnętrzne skrypty w head strony ładują się bez async ani defer, więc przeglądarka przerywa czytanie HTML, dopóki każdy z nich się nie pobierze i nie wykona, a tekst pojawia się później. Menedżery zgód i fragmenty testów A/B często blokują celowo.",
+    ],
+    x: [
+      "Add defer (or async for an independent script, or type=module) to each listed script, or move it to the end of the body; keep a consent manager or an anti-flicker A/B snippet blocking only when it must run before the first paint.",
+      "Додайте defer (або async для незалежного скрипта, або type=module) до кожного скрипта зі списку чи перенесіть його в кінець body; менеджер згод або сніпет A/B-тесту проти мерехтіння лишайте блокувальним, лише коли він мусить виконатися до першого відмальовування.",
+      "Dodaj defer (albo async dla niezależnego skryptu, albo type=module) do każdego skryptu z listy lub przenieś go na koniec body; menedżer zgód lub fragment testu A/B przeciw migotaniu zostaw blokujący tylko wtedy, gdy musi się wykonać przed pierwszym renderowaniem.",
+    ],
+    r: Q("mwgScriptPriority", "For scripts that are not needed immediately (e.g., analytics, ads, or below-the-fold widgets), add fetchpriority=\"low\" and ensure they have a async, defer, or module attribute to avoid blocking.", MWG_CHECKED),
   },
   url_unreadable: {
     t: ["Hard-to-read URL", "Незручна адреса", "Nieczytelny URL"],
@@ -653,6 +672,7 @@ export const EXPLAIN = {
       "Usuń loading=lazy z pierwszego obrazu nad linią zgięcia i dodaj fetchpriority=high.",
     ],
     r: Q("wLcpLazy", "more eagerly loading images within the initial viewport—while liberally lazy loading the rest—can give us the best of both worlds: fewer bytes loaded and improved Core Web Vitals"),
+    also: [Q("mwgImagePriority", 'Never use loading="lazy" on the LCP image.', MWG_CHECKED)],
   },
   image_not_lazy: {
     t: ["Images below the fold load eagerly", "Зображення нижче екрана без lazy", "Obrazy poniżej pierwszego ekranu ładują się od razu"],
@@ -667,6 +687,36 @@ export const EXPLAIN = {
       "Dodaj loading=lazy do elementów <img> i <iframe> poniżej pierwszego ekranu.",
     ],
     r: Q("wLcpLazy", "more eagerly loading images within the initial viewport—while liberally lazy loading the rest—can give us the best of both worlds: fewer bytes loaded and improved Core Web Vitals"),
+    also: [Q("mwgImagePriority", 'For standard below-the-fold images, loading="lazy" is sufficient to defer the request until the user scrolls near them.', MWG_CHECKED)],
+  },
+  image_preload_lazy: {
+    t: ["Preloaded image is also lazy", "Зображення з preload і водночас lazy", "Obraz z preload jest też lazy"],
+    d: [
+      "The page asks the browser to fetch an image early with a preload, and the same image is marked to load lazily. The two say opposite things: if the image is needed at once, lazy loading delays it; if it is not, the preload spends early bandwidth on it.",
+      "Сторінка просить браузер завантажити зображення заздалегідь через preload, і те саме зображення позначене для лінивого завантаження. Ці вказівки суперечать одна одній: якщо зображення потрібне одразу, lazy його затримує; якщо ні, preload витрачає на нього ранню смугу пропускання.",
+      "Strona prosi przeglądarkę o wcześniejsze pobranie obrazu przez preload, a ten sam obraz ma ustawione leniwe ładowanie. Te wskazówki sobie przeczą: jeśli obraz jest potrzebny od razu, lazy go opóźnia; jeśli nie, preload zużywa na niego wczesne pasmo.",
+    ],
+    x: [
+      "Decide which it is: for the LCP or another critical image remove loading=lazy (and give the preload fetchpriority=high); for an image that can wait remove the preload.",
+      "Вирішіть, яке це зображення: для LCP чи іншого критичного приберіть loading=lazy (і додайте до preload fetchpriority=high); для зображення, яке може зачекати, приберіть preload.",
+      "Zdecyduj, czym jest ten obraz: dla LCP lub innego krytycznego obrazu usuń loading=lazy (i dodaj do preload fetchpriority=high); dla obrazu, który może poczekać, usuń preload.",
+    ],
+    r: Q("mwgPreloadPriority", 'Preloading resources with <link rel="preload"> signals to the browser that a resource will be needed soon.', MWG_CHECKED),
+    also: [Q("mwgImagePriority", 'Never use loading="lazy" on the LCP image.', MWG_CHECKED)],
+  },
+  image_fetchpriority_overused: {
+    t: ["fetchpriority=high on too many images", "fetchpriority=high на забагатьох зображеннях", "fetchpriority=high na zbyt wielu obrazach"],
+    d: [
+      "More than two images ask the browser for high fetch priority. When many images claim it, they compete with each other and with the main image, and the priority no longer singles out the one that matters.",
+      "Понад два зображення просять у браузера високий пріоритет завантаження. Коли його вимагають багато зображень, вони конкурують між собою і з головним зображенням, і пріоритет уже не виділяє того, що справді важливе.",
+      "Ponad dwa obrazy proszą przeglądarkę o wysoki priorytet pobierania. Gdy żąda go wiele obrazów, konkurują ze sobą i z obrazem głównym, a priorytet przestaje wyróżniać ten, który się liczy.",
+    ],
+    x: [
+      "Keep fetchpriority=high on the LCP image (one or two images at most) and remove it from the rest; omit the attribute for normal priority.",
+      "Залиште fetchpriority=high на зображенні LCP (щонайбільше на одному-двох зображеннях) і приберіть з решти; для звичайного пріоритету атрибут не ставте.",
+      "Zostaw fetchpriority=high na obrazie LCP (najwyżej na jednym lub dwóch obrazach) i usuń go z pozostałych; dla zwykłego priorytetu pomiń atrybut.",
+    ],
+    r: Q("mwgImagePriority", 'Only use fetchpriority="high" on at most 1-2 critical images to avoid network contention and diluting the priority boost.', MWG_CHECKED),
   },
   image_legacy_format: {
     t: ["Images in JPEG or PNG only", "Зображення лише в JPEG чи PNG", "Obrazy tylko w JPEG lub PNG"],
@@ -922,11 +972,12 @@ export const EXPLAIN = {
       "Pytania FAQ siedzą w przyciskach lub przełącznikach bez otaczającego nagłówka, a odczyt odrzuca je razem z kontrolkami. Czytniki AI zachowują odpowiedzi bez pytań, na które odpowiadają, więc odpowiedź rzadko zostaje dopasowana do czyjegoś pytania.",
     ],
     x: [
-      "Wrap each question's button in an <h3> (or use <details><summary> inside a heading); keep the question text in the served DOM.",
-      "Обгорніть кнопку кожного запитання в <h3> (або використайте <details><summary> усередині заголовка); тримайте текст запитання в DOM, що віддає сервер.",
-      "Opakuj przycisk każdego pytania w <h3> (albo użyj <details><summary> wewnątrz nagłówka); zachowaj tekst pytania w serwowanym DOM.",
+      "Put each question in the <summary> of a <details> with its answer inside (no heading inside the summary), or wrap each question's button in an <h3> and fold only the answer with hidden=\"until-found\"; keep the question text in the served DOM.",
+      "Покладіть кожне запитання в <summary> елемента <details>, а відповідь — усередину нього (без заголовка всередині summary), або обгорніть кнопку кожного запитання в <h3> і згорніть лише відповідь атрибутом hidden=\"until-found\"; тримайте текст запитання в DOM, що віддає сервер.",
+      "Umieść każde pytanie w <summary> elementu <details>, a odpowiedź w jego wnętrzu (bez nagłówka wewnątrz summary), albo opakuj przycisk każdego pytania w <h3> i zwiń tylko odpowiedź atrybutem hidden=\"until-found\"; zachowaj tekst pytania w serwowanym DOM.",
     ],
     r: Q("apgAcc", "Each accordion header button is wrapped in an element with role heading that has a value set for aria-level that is appropriate for the information architecture of the page."),
+    also: [Q("mwgHiddenContent", "The <details> element has searchable and accessible text by default, and no special implementation is required.", MWG_CHECKED)],
   },
   mid_sentence_start: {
     t: ["Passages start mid-sentence", "Уривки з середини речення", "Fragmenty zaczynają się w połowie zdania"],
@@ -1338,11 +1389,12 @@ export const EXPLAIN = {
       "Nagłówki i ich tekst znajdują się w panelach ukrytych przy ładowaniu strony, na przykład w zamkniętych kartach. Czytniki, które odrzucają ukrytą treść, nigdy nie widzą tych sekcji.",
     ],
     x: [
-      'Keep panel text in the DOM without hidden (use hidden="until-found" or a CSS-only collapse), or move it into the main flow.',
-      'Тримайте текст панелей у DOM без hidden (використайте hidden="until-found" або згортання лише CSS) або перенесіть його в основний потік.',
-      "Trzymaj tekst paneli w DOM bez hidden (użyj hidden=\"until-found\" lub zwijania wyłącznie w CSS) albo przenieś go do głównego przepływu.",
+      'Keep panel text in the DOM without hidden: fold it with <details> or hidden="until-found", which stay findable (and sync the tab state on beforematch), or move it into the main flow.',
+      'Тримайте текст панелей у DOM без hidden: згортайте його через <details> або hidden="until-found", які лишаються доступними для пошуку (а стан вкладок синхронізуйте в beforematch), або перенесіть його в основний потік.',
+      "Trzymaj tekst paneli w DOM bez hidden: zwijaj go przez <details> albo hidden=\"until-found\", które pozostają dostępne dla wyszukiwania (a stan kart synchronizuj w beforematch), albo przenieś go do głównego przepływu.",
     ],
     r: Q("hidden", "When an element has the hidden attribute in the Hidden state, it indicates that the element is not yet, or is no longer, directly relevant to the page's current state"),
+    also: [Q("mwgHiddenContent", 'To hide content visually but still allow it to be searchable by users and enable it to be deep linked to via URL fragments and "Scroll to Text Fragment" links, you can use either the HTML <details> element or the hidden="until-found" attribute.', MWG_CHECKED)],
   },
   ssr_placeholder_text: {
     t: ["Loading text read as content", "Напис завантаження як зміст", "Tekst ładowania czytany jako treść"],
