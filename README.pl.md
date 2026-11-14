@@ -2,11 +2,11 @@
 
 # AI Search Audit Full
 
-AI Search Audit Full **2.112** to skill (Agent Skill) od [GetLoopLoop](https://www.getlooploop.com) dla claude.ai i aplikacji Claude na komputer, Claude Code, Codex, opencode, Hermes Agent i innych agentów, które wczytują skille `SKILL.md`. Wersje liczy się w tysięcznych (2.101, 2.102, …).
+AI Search Audit Full **2.113** to skill (Agent Skill) od [GetLoopLoop](https://www.getlooploop.com) dla claude.ai i aplikacji Claude na komputer, Claude Code, Codex, opencode, Hermes Agent i innych agentów, które wczytują skille `SKILL.md`. Wersje liczy się w tysięcznych (2.101, 2.102, …).
 
 Zanim Google, Bing albo asystent AI pokaże lub zacytuje stronę, robot musi zostać wpuszczony, strona musi powiedzieć, czym jest, a tekst musi przetrwać odczyt przez maszynę. `ai-search-audit-full` sprawdza publiczne strony według opublikowanych reguł dla wszystkich trzech warunków, dodaje trzy odczyty, które może zrobić tylko AI (pytania, jakie zadają ludzie, jak model agenta opisuje markę i co sądzi o jej opiniach), i objaśnia każdy znaleziony problem: co jest nie tak i dlaczego to ważne, co mówi reguła słowami samego źródła oraz, dla specjalistów, w którą stronę idzie poprawka. Audytuje jedną stronę albo do 50 stron serwisu, porównuje przebieg ze starszym i prowadzi lokalną historię, więc każdy raport pokazuje, co się zmieniło od poprzedniego przebiegu. Na dole każdego raportu strony blok *Na ile tekst brzmi jak wygenerowany* zestawia wskaźnik szablonowości, słowa nadużywane przez modele językowe i test podmiany przeprowadzony przez agenta. Raporty można czytać po angielsku, ukraińsku lub polsku.
 
-To jest edycja Full. Opiera się na publicznej [Lite](https://github.com/Olexan-art/ai-search-audit) (2.111) i wykonuje wszystkie kontrole Lite.
+To jest edycja Full. Opiera się na publicznej [Lite](https://github.com/Olexan-art/ai-search-audit) (2.112) i wykonuje wszystkie kontrole Lite.
 
 ![Raport strony z przykładowego przebiegu: główny wniosek, co to dla ciebie znaczy, ustalenia do przejrzenia w pierwszej kolejności i gdzie na stronie się znajdują](docs/ai-search-audit-full-light-1280.png)
 
@@ -82,9 +82,9 @@ Aby zaktualizować, uruchom to samo polecenie ponownie.
 
 Repozytorium zawiera `plugin.json` i `.agents/plugins/marketplace.json` dla Antigravity, `gemini-extension.json` dla Gemini CLI i `.claude-plugin/` dla Claude Code, a sam skill jest w `skills/`.
 
-### Sprawdzanie aktualizacji
+### Sprawdzanie aktualizacji i licznik uruchomień
 
-Skrypt audytu (`audit.mjs`) najwyżej raz na dobę pyta GitHub, czy jest nowsza wersja: jedno żądanie GET `https://raw.githubusercontent.com/Olexan-art/ai-search-audit-full/main/plugin.json`, a odpowiedź trafia do `~/.getlooploop-skills/update-check.json`. Nic więcej nie jest wysyłane: ani adres strony, ani domena, ani dane audytu, ani identyfikator. Bez internetu lub przy dowolnym błędzie sprawdzanie milczy. O nowszej wersji powie jeden wiersz w terminalu i komunikat w raporcie; agent zaproponuje polecenie aktualizacji i uruchomi je tylko za twoją zgodą. Wyłączenie: `GETLOOPLOOP_NO_UPDATE_CHECK=1` albo `--no-update-check`; gdy ustawiono `CI`, sprawdzanie też jest pomijane.
+Raz na dobę skrypt audytu (`audit.mjs`) pyta getlooploop.com o najnowszą wersję skilla. Żądanie zawiera nazwę skilla, jego wersję, system operacyjny (win, mac, linux lub other), losowy identyfikator instalacji z pliku `~/.getlooploop-skills/install-id` i liczbę uruchomień skilla od ostatniego sprawdzenia. Nic więcej: żadnych danych o sprawdzanych stronach, ani adresu, ani domeny, ani nazwy użytkownika czy komputera. Serwer ustala kraj na podstawie połączenia i nie przechowuje adresu IP. Jeśli getlooploop.com nie odpowiada, skill odczytuje wersję z pliku `plugin.json` tego repozytorium na GitHubie. O nowszej wersji powie jeden wiersz w terminalu i komunikat w raporcie; agent zaproponuje polecenie aktualizacji i uruchomi je tylko za twoją zgodą. Wyłączenie: `GETLOOPLOOP_NO_UPDATE_CHECK=1` albo `--no-update-check` (gdy ustawiono `CI`, sprawdzanie też jest wyłączone); wtedy nic nie jest wysyłane i identyfikator nie powstaje. Aby zresetować identyfikator, usuń folder `~/.getlooploop-skills`.
 
 ### claude.ai i aplikacja Claude na komputer
 
