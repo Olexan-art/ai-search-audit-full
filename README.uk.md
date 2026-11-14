@@ -61,6 +61,31 @@ AI Search Audit Full **2.112** — навичка (Agent Skill) від [GetLoopL
 
 Потрібен Node 20.18 або новіший і **жодного `npm install`**: `dist/read.mjs` і `dist/audit.mjs` уже містять усе потрібне.
 
+### Як плагін (Claude Code, Google Antigravity), рекомендовано
+
+Claude Code:
+
+```
+/plugin marketplace add Olexan-art/ai-search-audit-full
+/plugin install ai-search-audit-full@ai-search-audit-full
+```
+
+Далі ввімкніть автооновлення: у `/plugin` відкрийте **Marketplaces**, виберіть `ai-search-audit-full` і натисніть **Enable auto-update**. Доти Claude Code тримає встановлену версію; `/plugin marketplace update ai-search-audit-full` завантажує новішу вручну.
+
+Google Antigravity:
+
+```
+agy plugin install https://github.com/Olexan-art/ai-search-audit-full
+```
+
+Щоб оновити, виконайте ту саму команду ще раз.
+
+У репозиторії є `plugin.json` і `.agents/plugins/marketplace.json` для Antigravity, `gemini-extension.json` для Gemini CLI і `.claude-plugin/` для Claude Code, а сама навичка лежить у `skills/`.
+
+### Перевірка оновлень
+
+Скрипт аудиту (`audit.mjs`) щонайбільше раз на добу питає GitHub, чи вийшла новіша версія: один GET `https://raw.githubusercontent.com/Olexan-art/ai-search-audit-full/main/plugin.json`, відповідь зберігається в `~/.getlooploop-skills/update-check.json`. Більше нічого не надсилається: ні адреси сторінки, ні домену, ні даних аудиту, ні ідентифікатора. Без інтернету чи за будь-якої помилки перевірка мовчить. Про новішу версію скаже один рядок у терміналі й повідомлення у звіті; агент запропонує команду оновлення і виконає її лише з вашої згоди. Вимкнути: `GETLOOPLOOP_NO_UPDATE_CHECK=1` або `--no-update-check`; коли задано `CI`, перевірка теж не виконується.
+
 ### claude.ai і застосунок Claude
 
 1. Завантажте **`ai-search-audit-full.zip`** з [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) цього репозиторію або `gh release download v2.110 -R Olexan-art/ai-search-audit-full`. **Не розпаковуйте**: завантаження приймає zip із текою `ai-search-audit-full` на верхньому рівні.
@@ -70,23 +95,6 @@ AI Search Audit Full **2.112** — навичка (Agent Skill) від [GetLoopL
 5. Попросіть: **«аудит для ШІ-пошуку https://example.com/page»** або **«перевір ці сторінки мого сайту: …»**. Claude виконає скрипти й дасть вам `report.html` (для сайту — теку звіту zip-архівом, де початок — `index.html`).
 
 Lite і Full мають різні назви (`ai-search-audit`, `ai-search-audit-full`), тож їх можна встановити поруч.
-
-### Як плагін (Google Antigravity, Claude Code)
-
-Репозиторій — це ще й плагін: `plugin.json` і `.agents/plugins/marketplace.json` для Antigravity, `gemini-extension.json` для Gemini CLI, `.claude-plugin/` для Claude Code, а сама навичка лежить у `skills/`.
-
-Google Antigravity:
-
-```
-agy plugin install https://github.com/Olexan-art/ai-search-audit-full
-```
-
-Claude Code:
-
-```
-/plugin marketplace add Olexan-art/ai-search-audit-full
-/plugin install ai-search-audit-full@ai-search-audit-full
-```
 
 ### Claude Code, Codex, opencode, Hermes Agent
 

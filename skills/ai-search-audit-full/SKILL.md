@@ -122,6 +122,18 @@ The report works offline. It opens in English and in the light theme; add `#lang
 - Once: the checks are deterministic, each on a published rule or a named threshold; questions, brand and reviews are your judgement as 1 named model, not ChatGPT, Gemini or Perplexity (the web Brandscope and Reviewscope ask 3).
 - 1 line: Pattern score and band, marker words per 1,000 words, passages you judged generic.
 
+## Updates
+
+- `dist/audit.mjs` checks at most once a day whether a newer version of this skill is published: one GET of this repository's `plugin.json` on GitHub. Nothing about the page or the run is sent. When it finds one, it prints a line that starts with `update` on stderr, and the report shows a notice.
+- Then tell the user in 1 line: the running and the new version. Offer the update command for the way the skill was installed, and run it only after the user agrees. Never change, download or overwrite the skill's files yourself.
+  - Claude Code plugin: the user types `/plugin marketplace update ai-search-audit-full`, or you run `claude plugin update ai-search-audit-full@ai-search-audit-full` in the shell. To have it update by itself: `/plugin` > **Marketplaces** > `ai-search-audit-full` > **Enable auto-update**.
+  - skills CLI: `npx skills update ai-search-audit-full`.
+  - Google Antigravity: `agy plugin install https://github.com/Olexan-art/ai-search-audit-full` again.
+  - claude.ai or the desktop app: the user uploads the new zip from https://github.com/Olexan-art/ai-search-audit-full/releases.
+  - A folder copied from a clone: the user runs `git pull` in the clone and copies `skills/ai-search-audit-full` over the old folder.
+  - If you do not know how it was installed, ask; do not guess.
+- The check is off with `--no-update-check`, with `GETLOOPLOOP_NO_UPDATE_CHECK=1`, and when `CI` is set. If the user asks for no network beyond the page, pass `--no-update-check`.
+
 ## Refusal codes
 
 | Code | Tell the user |

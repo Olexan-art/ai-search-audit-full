@@ -269,6 +269,7 @@ export function renderSiteReport(sm) {
       `<p class="pageid"><span class="url">${esc(host)}</span></p>`,
       `<p class="lite-meta"><span>${P([LITE.checked[0](d[0]), LITE.checked[1](d[1]), LITE.checked[2](d[2])])}</span><span aria-hidden="true">·</span><span>${P(S.eyebrow)}</span></p>`,
       `<h1 id="headline">${P(siteVerdict(sm))}</h1>`,
+      `${sm.update ? `<p class="lite-meta update" role="status">${P([sm.update.notice.en, sm.update.notice.uk, sm.update.notice.pl])}</p>` : ""}`,
       `<p class="lede" id="subtitle">${P([`${S.evaluated[0](m.evaluated, m.total)} · ${S.notesN[0](total)}`, `${S.evaluated[1](m.evaluated, m.total)} · ${S.notesN[1](total)}`, `${S.evaluated[2](m.evaluated, m.total)} · ${S.notesN[2](total)}`])}</p>`,
       `<ul class="sevrow" id="sev-counts" ${parts.attrPair("aria-label", UI.severity[0], UI.severity[1], UI.severity[2])}>${sevs}</ul>`,
       `<p class="cta-row"><a class="btn btn-primary" id="see-pages" href="#pages">${P(S.seePages)}<span aria-hidden="true"> ↓</span></a></p>`,
@@ -314,7 +315,7 @@ export function renderSiteReport(sm) {
 export function renderSiteMarkdown(sm) {
   const m = sm.manifest;
   const cell = (s) => String(s ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
-  const o = [`# ${TOOL_NAME} ${EDITION}: site audit, ${sm.pages.length} pages`, "", `**${siteVerdict(sm)[0]}** · ${m.evaluated} of ${m.total} pages evaluated (cap ${m.cap}) · skill ${SKILL_VERSION}`, ""];
+  const o = [`# ${TOOL_NAME} ${EDITION}: site audit, ${sm.pages.length} pages`, "", ...(sm.update ? [`> **${sm.update.notice.en}**`, ""] : []), `**${siteVerdict(sm)[0]}** · ${m.evaluated} of ${m.total} pages evaluated (cap ${m.cap}) · skill ${SKILL_VERSION}`, ""];
   if (m.leftOut.count) o.push(`Left out: ${m.leftOut.count} (${Object.entries(m.leftOut.byReason).map(([r, n]) => `${n} ${(S.reason[r] || [r])[0]}`).join(", ")}).`, "");
   o.push("## Pages", "", "| # | Page | Problems | Blocking · high · medium · low | Report |", "|---|---|---|---|---|");
   for (const p of sm.pages) o.push(`| ${p.i} | ${cell(p.url)} | ${p.ok ? p.total : p.reasonCode} | ${p.ok ? SEVERITIES.map((s) => p.counts[s]).join(" · ") : "—"} | pages/${p.slug}.html |`);
@@ -343,6 +344,7 @@ export function buildSiteExport(sm, entries) {
     schema: SITE_EXPORT_SCHEMA,
     pageSchema: EXPORT_SCHEMA,
     skillVersion: SKILL_VERSION,
+    update: sm.update ? { current: sm.update.current, latest: sm.update.latest, how: sm.update.how } : null,
     producedBy: PRODUCED_BY,
     edition: "full",
     createdAt: sm.manifest.createdAt,

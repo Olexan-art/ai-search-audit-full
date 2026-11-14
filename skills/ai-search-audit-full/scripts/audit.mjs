@@ -26,7 +26,8 @@ import { fileURLToPath } from "node:url";
 import { buildModel } from "./lib/model.mjs";
 import { renderRefusal, renderReport } from "./lib/report.mjs";
 import { buildExport, buildRefusalExport, renderMarkdown, renderRefusalMarkdown } from "./lib/outputs.mjs";
-import { EXPORT_SCHEMA, READING_SCHEMA } from "./lib/version.mjs";
+import { EXPORT_SCHEMA, READING_SCHEMA, SKILL_VERSION } from "./lib/version.mjs";
+import { checkForUpdate, NO_UPDATE_FLAG, updateLine, updateNotice } from "./lib/update-check.mjs";
 import { validateQuestions } from "./lib/questions.mjs";
 import { validateBrand } from "./lib/brand.mjs";
 import { controlFor, validateReviews } from "./lib/reviews.mjs";
@@ -43,6 +44,7 @@ const USAGE = [
   "   or: node dist/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--style-dir dir] [--brand brand.json]",
   '       [--reviews reviews.json] [--keyword "phrase"] [--compare old-site.json] [--history dir | --no-history] [--history-from file|dir …] [--check]',
   "   --history-from cannot be combined with --no-history.",
+  "   --no-update-check (or GETLOOPLOOP_NO_UPDATE_CHECK=1) skips the daily check for a newer version.",
 ].join("\n");
 
 function parseArgs(argv) {
@@ -61,6 +63,7 @@ function parseArgs(argv) {
     } else if (arg === "--check") out.check = true;
     else if (arg === "--no-history") out.noHistory = true;
     else if (arg === "-h" || arg === "--help") out.help = true;
+    else if (arg === NO_UPDATE_FLAG) out.noUpdateCheck = true;
     else if (arg.startsWith("--")) throw new Error(`Unknown option: ${arg}`);
     else if (!out.reading) out.reading = arg;
     else throw new Error(`One reading only; also given: ${arg}. For several pages use --site.`);
@@ -75,6 +78,12 @@ try {
   console.error(error.message);
   console.error(USAGE);
   process.exit(1);
+}
+// At most one GET of plugin.json on GitHub a day, about 2 seconds at worst, silent on failure.
+const update = args.check || args.noUpdateCheck ? null : await checkForUpdate({ repo: "ai-search-audit-full", plugin: "ai-search-audit-full", current: SKILL_VERSION });
+if (update) {
+  update.notice = updateNotice(update);
+  console.error(updateLine(update));
 }
 if (args.help || (!args.reading && !args.site) || (args.reading && args.site)) {
   console.error(USAGE);
@@ -174,6 +183,7 @@ function auditPage(reading, extra, { old = null, site = null, out = {} } = {}) {
     return { model: null, exp, hist: null, compare: null };
   }
   const model = buildModel(reading, extra);
+  model.update = update;
   // How generated the text sounds: the writing patterns' own text, each passage, the swap test.
   model.generated = computeGenerated({ sections: reading.facts.sections || null, passages: reading.vs.passages, style: extra.style ?? null });
   if (site) model.site = site;
@@ -312,6 +322,7 @@ for (const e of pass) {
   console.log(`  ${e.reading.ok ? `${String(r.model.findings.length).padStart(3)} problems` : `REFUSED ${e.reading.reasonCode}`}  ${e.url}${r.hist?.drift ? ` · ${r.hist.drift.changed ?? "?"} changes since ${r.hist.drift.since}` : ""}${r.compare ? ` · ${r.compare.counts.fixed} fixed, ${r.compare.counts.new} new` : ""}`);
 }
 const sm = buildSiteModel(manifest, done);
+sm.update = update;
 if (historyDir) sm.historyPack = historyPack(historyDir);
 writeFileSync(join(args.outDir, "index.html"), renderSiteReport(sm));
 writeFileSync(join(args.outDir, "site.md"), renderSiteMarkdown(sm));

@@ -61,6 +61,31 @@ Raporty otwierają się po angielsku; dodaj `#lang=uk`, żeby czytać po ukraiń
 
 Skill wymaga Node 20.18 lub nowszego i **żadnego `npm install`**: `dist/read.mjs` i `dist/audit.mjs` zawierają wszystko, czego potrzebują.
 
+### Jako wtyczka (Claude Code, Google Antigravity), zalecane
+
+Claude Code:
+
+```
+/plugin marketplace add Olexan-art/ai-search-audit-full
+/plugin install ai-search-audit-full@ai-search-audit-full
+```
+
+Potem włącz automatyczne aktualizacje: w `/plugin` otwórz **Marketplaces**, wybierz `ai-search-audit-full` i kliknij **Enable auto-update**. Do tego czasu Claude Code trzyma zainstalowaną wersję; `/plugin marketplace update ai-search-audit-full` pobiera nowszą ręcznie.
+
+Google Antigravity:
+
+```
+agy plugin install https://github.com/Olexan-art/ai-search-audit-full
+```
+
+Aby zaktualizować, uruchom to samo polecenie ponownie.
+
+Repozytorium zawiera `plugin.json` i `.agents/plugins/marketplace.json` dla Antigravity, `gemini-extension.json` dla Gemini CLI i `.claude-plugin/` dla Claude Code, a sam skill jest w `skills/`.
+
+### Sprawdzanie aktualizacji
+
+Skrypt audytu (`audit.mjs`) najwyżej raz na dobę pyta GitHub, czy jest nowsza wersja: jedno żądanie GET `https://raw.githubusercontent.com/Olexan-art/ai-search-audit-full/main/plugin.json`, a odpowiedź trafia do `~/.getlooploop-skills/update-check.json`. Nic więcej nie jest wysyłane: ani adres strony, ani domena, ani dane audytu, ani identyfikator. Bez internetu lub przy dowolnym błędzie sprawdzanie milczy. O nowszej wersji powie jeden wiersz w terminalu i komunikat w raporcie; agent zaproponuje polecenie aktualizacji i uruchomi je tylko za twoją zgodą. Wyłączenie: `GETLOOPLOOP_NO_UPDATE_CHECK=1` albo `--no-update-check`; gdy ustawiono `CI`, sprawdzanie też jest pomijane.
+
 ### claude.ai i aplikacja Claude na komputer
 
 1. Pobierz **`ai-search-audit-full.zip`** z [Releases](https://github.com/Olexan-art/ai-search-audit-full/releases) tego repozytorium albo poleceniem `gh release download v2.110 -R Olexan-art/ai-search-audit-full`. **Nie rozpakowuj go**: przesyłanie przyjmuje zip z folderem `ai-search-audit-full` na najwyższym poziomie.
@@ -70,23 +95,6 @@ Skill wymaga Node 20.18 lub nowszego i **żadnego `npm install`**: `dist/read.mj
 5. Poproś: **„audyt AI search dla https://example.com/page”** albo **„zaudytuj te strony mojego serwisu: …”**. Claude uruchomi skrypty i przekaże ci `report.html` (dla serwisu folder raportu jako zip, z `index.html` jako stroną startową).
 
 Lite i Full mają różne nazwy (`ai-search-audit`, `ai-search-audit-full`), więc można zainstalować oba obok siebie.
-
-### Jako wtyczka (Google Antigravity, Claude Code)
-
-Repozytorium jest też wtyczką: `plugin.json` i `.agents/plugins/marketplace.json` dla Antigravity, `gemini-extension.json` dla Gemini CLI, `.claude-plugin/` dla Claude Code, a sam skill jest w `skills/`.
-
-Google Antigravity:
-
-```
-agy plugin install https://github.com/Olexan-art/ai-search-audit-full
-```
-
-Claude Code:
-
-```
-/plugin marketplace add Olexan-art/ai-search-audit-full
-/plugin install ai-search-audit-full@ai-search-audit-full
-```
 
 ### Claude Code, Codex, opencode, Hermes Agent
 
