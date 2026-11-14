@@ -138,3 +138,21 @@ Complaints are never checked against the brand's own page. Alternatives are othe
 - The brand.json honesty rules apply. Judge each platform separately, from your own knowledge of the brand on that platform.
 
 The script flags a rating that cannot be right, and every rating with no source on the page (no mention of the platform, no link, no rating markup). The report names them and says why.
+
+## drops.json (optional)
+
+Written after the report, only to set aside a finding whose code has a verifier rubric (`references/checks.md`, *Verifier rubrics*; `audit.mjs --explain <code>` prints it), when one dropWhen clause clearly holds on this page.
+
+```json
+{
+  "agent": "Claude Code",
+  "model": "<your model>",
+  "drops": [
+    { "finding": "script_render_blocking", "clause": "script_render_blocking:drop-1", "note": "The only blocking script is the consent manager." }
+  ]
+}
+```
+
+- `finding`: the code (or id) of a finding of this audit. `clause`: one id from that code's dropWhen list, as written. `note`: one sentence in English, at most 200 characters.
+- Refused, with every problem listed: an unknown finding, a code without a rubric, a clause that is not that code's, a second drop of the same code, a missing or long note.
+- Run the report again with `--drops drops.json`. Dropped findings stay in the report, in their own group with the clause and the note, and are not counted as problems.

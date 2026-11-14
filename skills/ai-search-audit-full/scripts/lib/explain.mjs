@@ -17,7 +17,7 @@
 // quote marks and HTML entities). Quotes stay in the source's language, English, in both views.
 // Nothing here is invented: a rule nobody publishes is labelled as this skill's.
 
-export const RULES_CHECKED = "2026-10-17";
+export const RULES_CHECKED = "2026-11-14";
 // The modern-web-guidance quotes were matched against the raw guides at the pinned commit on this date.
 export const MWG_CHECKED = "2026-11-14";
 
@@ -778,7 +778,7 @@ export const EXPLAIN = {
       "Віддавайте доступну для краулера квадратну іконку (48×48 або кратну) і оголосіть <link rel=icon> на головній сторінці.",
       "Serwuj dostępną dla crawlerów kwadratową ikonę (48×48 lub wielokrotność) i zadeklaruj <link rel=icon> na stronie głównej.",
     ],
-    r: Q("gFavicon", "Googlebot-Image must be able to crawl the favicon file and Googlebot must be able to crawl the home page; they cannot be blocked for crawling."),
+    r: Q("gFavicon", "Googlebot must be able to crawl the home page, follow any redirects from there to the page where the favicon is specified, and Googlebot-Image must be able to crawl the favicon file."),
   },
   site_name_missing: {
     t: ["No WebSite name markup", "Немає назви сайту в розмітці", "Brak znaczników nazwy WebSite"],

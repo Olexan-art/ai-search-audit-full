@@ -33,6 +33,8 @@ import { validateBrand } from "./lib/brand.mjs";
 import { controlFor, validateReviews } from "./lib/reviews.mjs";
 import { textModules } from "./lib/checks.mjs";
 import { computeGenerated, validateStyle } from "./vendor/vectorscope/generatedText.mjs";
+import { validateDrops } from "./lib/rubrics.mjs";
+import { codesText, EXPLAIN_LANGS, explainText, isCode } from "./lib/explainCli.mjs";
 import { compareFindings, DEFAULT_HISTORY_DIR, history, historyIndex, historyPack, importHistory, resolveHistoryDir, saveSnapshot } from "./lib/history.mjs";
 import { SITE_READING_SCHEMA } from "./lib/site.mjs";
 import { buildSiteExport, buildSiteModel, buildSiteRefusalExport, renderSiteMarkdown, renderSiteRefusal, renderSiteRefusalMarkdown, renderSiteReport, SITE_EXPORT_SCHEMA } from "./lib/siteReport.mjs";
@@ -43,13 +45,15 @@ const USAGE = [
   "       [--compare old-export.json] [--history dir | --no-history] [--history-from file|dir …] [--check]",
   "   or: node dist/audit.mjs --site readings/site.json [--out-dir report] [--questions-dir dir] [--style-dir dir] [--brand brand.json]",
   '       [--reviews reviews.json] [--keyword "phrase"] [--compare old-site.json] [--history dir | --no-history] [--history-from file|dir …] [--check]',
-  "   --history-from cannot be combined with --no-history.",
+  "   --history-from cannot be combined with --no-history. --drops drops.json takes one page.",
+  "   or: node dist/audit.mjs --codes [--lang en|uk|pl]          every finding code with its title",
+  "   or: node dist/audit.mjs --explain <code> [--lang en|uk|pl]  what one code means: description, fix, rule quotes, sources, rubric",
   "   --no-update-check (or GETLOOPLOOP_NO_UPDATE_CHECK=1) skips the daily check for a newer version.",
 ].join("\n");
 
 function parseArgs(argv) {
   const out = { reading: null, html: null, md: null, json: null, questions: null, brand: null, reviews: null, style: null, styleDir: null, keyword: null, check: false, compare: null, history: null, historyFrom: [], noHistory: false, site: null, outDir: "report", questionsDir: null };
-  const takes = { "--html": "html", "--md": "md", "--json": "json", "--questions": "questions", "--brand": "brand", "--reviews": "reviews", "--style": "style", "--style-dir": "styleDir", "--keyword": "keyword", "--compare": "compare", "--history": "history", "--site": "site", "--out-dir": "outDir", "--questions-dir": "questionsDir" };
+  const takes = { "--html": "html", "--md": "md", "--json": "json", "--questions": "questions", "--brand": "brand", "--reviews": "reviews", "--style": "style", "--drops": "drops", "--explain": "explain", "--lang": "lang", "--style-dir": "styleDir", "--keyword": "keyword", "--compare": "compare", "--history": "history", "--site": "site", "--out-dir": "outDir", "--questions-dir": "questionsDir" };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (takes[arg]) {
@@ -61,6 +65,7 @@ function parseArgs(argv) {
       if (v === undefined) throw new Error("--history-from needs a value");
       out.historyFrom.push(v);
     } else if (arg === "--check") out.check = true;
+    else if (arg === "--codes") out.codes = true;
     else if (arg === "--no-history") out.noHistory = true;
     else if (arg === "-h" || arg === "--help") out.help = true;
     else if (arg === NO_UPDATE_FLAG) out.noUpdateCheck = true;
@@ -77,6 +82,24 @@ try {
 } catch (error) {
   console.error(error.message);
   console.error(USAGE);
+  process.exit(1);
+}
+// --codes and --explain: what the codes mean, with no reading and no network.
+if (args.codes || args.explain) {
+  const lang = args.lang || "en";
+  if (!EXPLAIN_LANGS.includes(lang)) {
+    console.error(`--lang must be one of ${EXPLAIN_LANGS.join(", ")}`);
+    process.exit(2);
+  }
+  if (args.explain && !isCode(args.explain)) {
+    console.error(`unknown code: ${args.explain}. List them with --codes.`);
+    process.exit(2);
+  }
+  console.log(args.explain ? explainText(args.explain, lang) : codesText(lang));
+  process.exit(0);
+}
+if (args.site && args.drops) {
+  console.error("--drops takes one page; with --site, run the page that needs it on its own.");
   process.exit(1);
 }
 // At most one GET of plugin.json on GitHub a day, about 2 seconds at worst, silent on failure.
@@ -229,6 +252,17 @@ if (args.reading) {
     process.exit(2);
   }
   const extra = judge(reading, { questions: args.questions, brand: args.brand, reviews: args.reviews, style: args.style });
+  // drops.json: checked against the findings of this very audit, so it is read after the others.
+  if (args.drops) {
+    try {
+      extra.drops = validateDrops(readJson(args.drops, "drops"), buildModel(reading, extra).findings);
+    } catch (error) {
+      console.error(`REFUSED   ${args.drops}: ${error.message}`);
+      process.exit(1);
+    }
+    const j = extra.drops.judgement;
+    console.log(`drops     ${args.drops} ok · ${extra.drops.drops.length} dropped · judged by ${j.agent || "agent not stated"} · ${j.model || "model not stated"}`);
+  }
   const old = loadCompare(args.compare);
   if (args.check) process.exit(0);
   const { model, hist, compare } = auditPage(reading, extra, { old, out: args });
@@ -240,6 +274,7 @@ if (args.reading) {
   const p = model.modules.patterns;
   console.log(`patterns  ${p.analysed ? `${p.language} · ${p.wordCount} words · ${p.findings.length} signals` : `not analysed (${p.reason})`}`);
   if (model.modules.locales) console.log(`locales   ${model.modules.locales.compared.map((x) => `${x.hreflang} ${x.aligned ? `${x.differ} differ` : "not aligned"}`).join(" · ")}`);
+  if (model.dropped.length) console.log(`dropped   ${model.dropped.map((f) => `${f.code} (${f.drop.clause})`).join(" · ")}`);
   for (const f of model.findings) console.log(`  ${String(f.pin).padStart(2)} [${f.severity}] ${f.code}${f.layer === "judgement" ? " (judgement)" : ""}${f.where ? `  @ ${f.where.slice(0, 90)}` : ""}`);
   const cl = model.checklist;
   console.log(`checklist ${["pass", "fail", "warn", "na", "none"].map((s) => `${s} ${cl.filter((x) => x.state === s).length}`).join(" · ")}`);

@@ -15,7 +15,7 @@ To jest edycja Full. Opiera się na publicznej [Lite](https://github.com/Olexan-
 | | Lite | Full |
 |---|---|---|
 | Każdy problem | krótka etykieta, waga, miejsce | do tego **Co jest nie tak**: prosty opis dla juniorów i menedżerów, bez porad |
-| Reguła | tylko w eksporcie | **Co mówi reguła**: krótki dosłowny cytat z oficjalnego źródła z linkiem i datą sprawdzenia albo „Reguła tego skilla”, gdy nikt takiej nie publikuje (86 cytatów i 6 dodatkowych, każdy porównany słowo w słowo: cytaty z modern-web-guidance z przewodnikami na przypiętym commicie 14 listopada 2026, pozostałe z aktualnymi stronami 17 października 2026) |
+| Reguła | tylko w eksporcie | **Co mówi reguła**: krótki dosłowny cytat z oficjalnego źródła z linkiem i datą sprawdzenia albo „Reguła tego skilla”, gdy nikt takiej nie publikuje (86 cytatów i 6 dodatkowych, każdy porównany słowo w słowo 14 listopada 2026: cytaty z modern-web-guidance z przewodnikami na przypiętym commicie, pozostałe z aktualnymi stronami) |
 | Poprawki | brak | **kierunek poprawki**, techniczny i zwięzły, tylko w zwiniętych „Szczegółach dla specjalistów” każdego problemu |
 | Strony | jedna | **do 50 na serwis**, z listy adresów lub z sitemapy, czytane pojedynczo z poszanowaniem robots.txt; limit jest podany jako sprawdzone / wszystkie, z każdą pominiętą stroną i powodem |
 | Serwis | — | **raport serwisu**: strony × problemy, problemy powtarzające się na wielu stronach zgrupowane jako „na N stronach” oraz kontrole możliwe tylko na zestawie stron (powtórzone title, opisy i h1, strony osierocone, głębokość linków, pary hreflang, łańcuchy canonical, linki wewnętrzne przez przekierowania, zbyt krótkie strony) |

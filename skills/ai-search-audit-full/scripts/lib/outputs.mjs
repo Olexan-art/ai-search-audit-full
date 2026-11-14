@@ -130,6 +130,11 @@ export function renderMarkdown(model) {
   o.push("", "## What this check cannot see", "");
   for (const c of CANNOT) o.push(`- ${c.t[0]}: ${c.links.map(([en, , href]) => `[${en}](${href})`).join(" · ")}`);
   o.push("");
+  if (model.dropped?.length) {
+    o.push(`## Dropped by the agent (${model.dropped.length})`, "", "Set aside under a rubric clause (references/checks.md, *Verifier rubrics*); listed here, not counted as problems.", "");
+    for (const f of model.dropped) o.push(`- **${f.label[0]}** (\`${f.code}\`, ${f.severity}) · clause \`${f.drop.clause}\`: ${f.drop.clauseText} · note: ${f.drop.note}`);
+    o.push("");
+  }
   return o.join("\n");
 }
 
@@ -163,7 +168,10 @@ export function buildExport(model) {
     edition: "full",
     page: { url: r.fetch.finalUrl, requestedUrl: r.fetch.requestedUrl, title: r.facts.head.title, saved: r.fetch.saved, ...(r.fetch.savedAt ? { savedAt: r.fetch.savedAt } : {}), redirects: r.fetch.chain },
     verdict: { en: verdict(model.findings)[0], uk: verdict(model.findings)[1] },
-    counts: { total: model.findings.length, ...model.counts },
+    counts: { total: model.findings.length, ...model.counts, dropped: (model.dropped || []).length },
+    // drops.json: findings the agent set aside by a rubric clause; never deleted, not counted above.
+    dropped: (model.dropped || []).map((f) => ({ code: f.code, severity: f.severity, label: { en: f.label[0], uk: f.label[1] }, where: f.where, evidence: f.evidence, clause: f.drop.clause, clauseText: f.drop.clauseText, note: f.drop.note })),
+    dropJudgement: model.dropJudgement || null,
     tiles: model.tiles.map((t) => ({ id: t.id, question: { en: t.q[0], uk: t.q[1] }, state: t.state, problems: t.count })),
     findings: model.findings.map((f) => ({
       id: f.id,

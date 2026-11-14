@@ -50,7 +50,12 @@ R9. Do not volunteer fixes. When asked, point to "Details for specialists"; labe
    - Add `--keyword "phrase"` for the user's keyword (default: from the h1), `--compare old-export.json` for an older export.
    - Result: the 3 files, the problems numbered as on the report's map, the export saved in the history.
    - No earlier report and an empty history: tell the user once that the history starts now and the report carries it; keep it and attach it next time.
-8. **Show the report** (required). The chat summary goes with it, never instead.
+8. **Drops (optional judgement).** Only for a finding whose code has a verifier rubric (`node "$SKILL/dist/audit.mjs" --explain <code>` prints it). Read the page where the finding points. If exactly one dropWhen clause clearly holds, write `drops.json`: `{"agent": "…", "model": "…", "drops": [{"finding": "<code>", "clause": "<code>:drop-N", "note": "one sentence in English"}]}`, and run step 7 again with `--drops drops.json` added.
+   - Cite one clause id per drop, word for word. If no clause holds, or you are not sure, do not drop.
+   - Nothing else may be removed, hidden or softened. A code without a rubric cannot be dropped.
+   - On failure: `REFUSED drops.json: <n> problems: …` lists every bad drop. Fix them all, or leave the finding in.
+   - The report keeps every dropped finding in its own group, "Dropped by the agent", with the clause and your note; it is not counted as a problem.
+9. **Show the report** (required). The chat summary goes with it, never instead.
 
 ## Procedure: a site
 
@@ -116,7 +121,7 @@ The report works offline. It opens in English and in the light theme; add `#lang
 - First: a blocked crawler (`ai_search_blocked`, `search_engine_blocked`, `robots_unreachable`), `snippet_blocked` or `noindex`.
 - The verdict line and severity counts. Site: pages evaluated of found, left out, problems on most pages.
 - Problems 1 to 5, with where, in the report's words.
-- For a problem whose code has a verifier rubric (`references/checks.md`, *Verifier rubrics*), read the page first. If a dropWhen clause holds, still list the problem and name the clause id. Never remove a finding.
+- If you dropped findings (step 8), say how many, and for each the code and the clause id, in 1 line. Never leave a finding out of the summary any other way.
 - Changes since the last run; `--compare` counts; the history size the run prints; if it started empty, that the report carries it.
 - Every cap printed (links past 30, images past 20, alternates past 10, child sitemaps past 5, pages past 50, merged map sections, a failed render).
 - Once: the checks are deterministic, each on a published rule or a named threshold; questions, brand and reviews are your judgement as 1 named model, not ChatGPT, Gemini or Perplexity (the web Brandscope and Reviewscope ask 3).
@@ -155,5 +160,5 @@ The report works offline. It opens in English and in the light theme; add `#lang
 |---|---|
 | `references/judgement-files.md` | Before writing a judgement file. |
 | `references/network-and-limits.md` | A fetch fails, no network, a read-only skill folder, a saved copy, or questions on requests and limits. |
-| `references/checks.md` | Questions on a code, a check, a threshold, or why something was flagged. |
+| `references/checks.md` | Questions on a code, a check, a threshold, or why something was flagged. For one code, run `node "$SKILL/dist/audit.mjs" --explain <code>` instead (`--codes` lists them; `--lang uk` or `pl`). |
 | `references/outputs-and-history.md` | Questions on a file, the export format, history, drift or `--compare`. |
