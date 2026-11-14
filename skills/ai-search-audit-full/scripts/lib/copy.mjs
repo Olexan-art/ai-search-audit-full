@@ -300,6 +300,7 @@ export const UI = {
     "Przygotowano skillem ai-search-audit-full od GetLoopLoop: skrypty raz pobrały stronę i niczego z niej nie zachowały.",
   ],
   author: ["the author", "автор", "autor"],
+  gllmolfar: ["crawl your whole site", "проскануйте весь сайт", "przeskanuj cały serwis"],
   refusedEyebrow: ["AI search audit · Full", "Аудит для ШІ-пошуку · Full", "Audyt wyszukiwania AI · Full"],
   // ── Full ──
   unmappedMore: [(n) => `+${n} more`, (n) => `ще +${n}`, (n) => `jeszcze +${n}`],
