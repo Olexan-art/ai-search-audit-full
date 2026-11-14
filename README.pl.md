@@ -71,6 +71,23 @@ Skill wymaga Node 20.18 lub nowszego i **żadnego `npm install`**: `dist/read.mj
 
 Lite i Full mają różne nazwy (`ai-search-audit`, `ai-search-audit-full`), więc można zainstalować oba obok siebie.
 
+### Jako wtyczka (Google Antigravity, Claude Code)
+
+Repozytorium jest też wtyczką: `plugin.json` i `.agents/plugins/marketplace.json` dla Antigravity, `gemini-extension.json` dla Gemini CLI, `.claude-plugin/` dla Claude Code, a sam skill jest w `skills/`.
+
+Google Antigravity:
+
+```
+agy plugin install https://github.com/Olexan-art/ai-search-audit-full
+```
+
+Claude Code:
+
+```
+/plugin marketplace add Olexan-art/ai-search-audit-full
+/plugin install ai-search-audit-full@ai-search-audit-full
+```
+
 ### Claude Code, Codex, opencode, Hermes Agent
 
 ```

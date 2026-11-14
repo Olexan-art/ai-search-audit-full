@@ -71,6 +71,23 @@ AI Search Audit Full **2.111** — навичка (Agent Skill) від [GetLoopL
 
 Lite і Full мають різні назви (`ai-search-audit`, `ai-search-audit-full`), тож їх можна встановити поруч.
 
+### Як плагін (Google Antigravity, Claude Code)
+
+Репозиторій — це ще й плагін: `plugin.json` і `.agents/plugins/marketplace.json` для Antigravity, `gemini-extension.json` для Gemini CLI, `.claude-plugin/` для Claude Code, а сама навичка лежить у `skills/`.
+
+Google Antigravity:
+
+```
+agy plugin install https://github.com/Olexan-art/ai-search-audit-full
+```
+
+Claude Code:
+
+```
+/plugin marketplace add Olexan-art/ai-search-audit-full
+/plugin install ai-search-audit-full@ai-search-audit-full
+```
+
 ### Claude Code, Codex, opencode, Hermes Agent
 
 ```

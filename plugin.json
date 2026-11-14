@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ai-search-audit-full",
+  "version": "2.111.0",
+  "description": "AI Search Audit Full: the Lite checks plus a plain description, the rule quoted from its source and a fix direction for every problem, up to 50 pages per site, before and after, and a local history with drift. The scripts call no model.",
+  "author": {
+    "name": "GetLoopLoop",
+    "url": "https://www.getlooploop.com"
+  },
+  "homepage": "https://www.getlooploop.com",
+  "repository": "https://github.com/Olexan-art/ai-search-audit-full",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "ai-search",
+    "geo",
+    "audit",
+    "robots-txt",
+    "agent-skill"
+  ]
+}
